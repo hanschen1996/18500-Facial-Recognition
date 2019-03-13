@@ -14,5 +14,10 @@ void get_integral_image(unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH],
                         unsigned int result[IMAGE_HEIGHT][IMAGE_WIDTH]);
 float get_rect_val(unsigned int image[WINDOW_SIZE][WINDOW_SIZE],
                    Rect *r);
+void scale(unsigned char **src,
+           unsigned int h1,
+           unsigned int w1,
+           unsigned int h2,
+           unsigned int w2);
 
 #endif  /* __INC_VJ_UTILS_H_ */

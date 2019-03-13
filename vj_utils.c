@@ -37,3 +37,25 @@ float get_rect_val(unsigned int image[WINDOW_SIZE][WINDOW_SIZE],
     unsigned int C = image[start_y + height - 1][start_x];
     return weight * ((float)(D+A-B-C));
 }
+
+void scale(unsigned char **src,
+           unsigned int h1,
+           unsigned int w1,
+           unsigned int h2,
+           unsigned int w2) {
+    unsigned char temp[h2][w2];
+    unsigned int x_ratio = ( (w1<<16)/w2 ) + 1;
+    unsigned int y_ratio = ( (h1<<16)/h2 ) + 1;
+    for (unsigned int h = 0; h < h2; h++) {
+        for (unsigned int w = 0; w < w2; w++) {
+            unsigned int x2 = (w * x_ratio) >> 16;
+            unsigned int y2 = (h * y_ratio) >> 16;
+            temp[h][w] = src[y2][x2];
+        }
+    }
+    for (unsigned int h = 0; h < h2; h++) {
+        for (unsigned int w = 0; w < w2; w++) {
+            src[h][w] = temp[h][w];
+        }
+    }
+}
