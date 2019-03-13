@@ -38,7 +38,7 @@ float get_rect_val(unsigned int image[WINDOW_SIZE][WINDOW_SIZE],
     return weight * ((float)(D+A-B-C));
 }
 
-void scale(unsigned char **src,
+void scale(unsigned char src[IMAGE_HEIGHT][IMAGE_WIDTH],
            unsigned int h1,
            unsigned int w1,
            unsigned int h2,
