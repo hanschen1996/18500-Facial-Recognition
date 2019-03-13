@@ -8,6 +8,6 @@
 #include "vj_types.h"
 
 void cascade_classifier(
-    unsigned int integral_image[IMAGE_HEIGHT][IMAGE_WIDTH]);
+    unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH]);
 
 #endif  /* __INC_VJ_CASCADE_CLASSIFIER_H_ */

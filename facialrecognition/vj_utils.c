@@ -2,39 +2,49 @@
  *  @brief implementations to calculate integral image and rectangle value
  */
 
+#include <stdio.h>
 #include "inc/vj_utils.h"
 
 void get_integral_image(unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH],
-                        unsigned int result[IMAGE_HEIGHT][IMAGE_WIDTH]) {
-    for (unsigned int row = 0; row < IMAGE_HEIGHT; row ++) {
-        if (row == 0) {
-            for (unsigned int col = 0; col < IMAGE_WIDTH; col ++) {
-                result[row][col] = result[row][col-1] + image[row][col];
+                        unsigned int result[IMAGE_HEIGHT][IMAGE_WIDTH],
+                        unsigned int height,
+                        unsigned int width) {
+    for (unsigned int row = 0; row < height; row ++) {
+        for (unsigned int col = 0; col < width; col ++) {
+            unsigned int val = image[row][col];
+            if (row != 0) {
+                val += result[row - 1][col];
             }
-        } else {
-            for (unsigned int col = 0; col < IMAGE_WIDTH; col ++) {
-                if (col == 0) {
-                    result[row][col] = result[row - 1][col] + image[row][col];
-                } else {
-                    result[row][col] = result[row - 1][col] + result[row][col - 1] + image[row][col];
-                }
+            if (col != 0) {
+                val += result[row][col - 1];
             }
+            if (row != 0 && col != 0) {
+                val -= result[row - 1][col - 1];
+            }
+            result[row][col] = val;
         }
     }
 }
 
-float get_rect_val(unsigned int image[WINDOW_SIZE][WINDOW_SIZE],
+float get_rect_val(unsigned int image[IMAGE_HEIGHT][IMAGE_WIDTH],
+                   unsigned int window_row,
+                   unsigned int window_col,
                    Rect *r) {
     float weight = r->weight;
     unsigned int start_x = r->x;
     unsigned int start_y = r->y;
     unsigned int width = r->width;
     unsigned int height = r->height;
+    if (start_x + width > 24 || start_y + height > 24 ||
+        window_row + start_y + height >= IMAGE_HEIGHT ||
+        window_col + start_x + width >= IMAGE_WIDTH) {
+        printf("alert!!!\n");
+    }
 
-    unsigned int D = image[start_y + height - 1][start_x + width - 1];
-    unsigned int A = image[start_y][start_x];
-    unsigned int B = image[start_y][start_x + width - 1];
-    unsigned int C = image[start_y + height - 1][start_x];
+    unsigned int D = image[window_row + start_y + height][window_col + start_x + width];
+    unsigned int A = image[window_row + start_y][window_col + start_x];
+    unsigned int B = image[window_row + start_y][window_col + start_x + width];
+    unsigned int C = image[window_row + start_y + height][window_col + start_x];
     return weight * ((float)(D+A-B-C));
 }
 

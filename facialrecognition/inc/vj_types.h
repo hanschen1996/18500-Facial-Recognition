@@ -10,6 +10,7 @@
 // assume our input image size is the following
 #define IMAGE_WIDTH 320
 #define IMAGE_HEIGHT 240
+#define SCALE_FACTOR 1.2
 
 typedef struct Rectangle {
     // starting column

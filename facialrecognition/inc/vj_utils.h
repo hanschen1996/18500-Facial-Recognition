@@ -11,8 +11,12 @@
 
 /* compute integral image of an input image */
 void get_integral_image(unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH],
-                        unsigned int result[IMAGE_HEIGHT][IMAGE_WIDTH]);
-float get_rect_val(unsigned int image[WINDOW_SIZE][WINDOW_SIZE],
+                        unsigned int result[IMAGE_HEIGHT][IMAGE_WIDTH],
+                        unsigned int height,
+                        unsigned int width);
+float get_rect_val(unsigned int image[IMAGE_HEIGHT][IMAGE_WIDTH],
+                   unsigned int window_row,
+                   unsigned int window_col,
                    Rect *r);
 void scale(unsigned char src[IMAGE_HEIGHT][IMAGE_WIDTH],
            unsigned int h1,
