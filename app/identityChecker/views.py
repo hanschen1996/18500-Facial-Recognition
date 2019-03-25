@@ -5,3 +5,6 @@ def home(request):
 
 def add(request):
     return render(request, 'identityChecker/add.html', {})
+
+def checkIdentity(request):
+    return render(request, 'identityChecker/checkIdentity.html', {})
