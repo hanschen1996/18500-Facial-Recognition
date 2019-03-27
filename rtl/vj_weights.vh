@@ -6,6 +6,18 @@
 `define NUM_STAGE 25
 `define NUM_FEATURE 2913
 `define WINDOW_SIZE 24
+`define LAPTOP_WIDTH 320
+`define LAPTOP_HEIGHT 240
+`define PYRAMID_LEVELS 13
+
+localparam int[13] pyramid_widths = {320, 266, 222, 185, 154, 128, 107, 89, 74, 62, 51, 43, 35};
+localparam int[13] pyramid_heights = {240, 199, 166, 138, 115, 96, 80, 66, 55, 46, 38, 32, 26};
+localparam logic [12:0][31:0] x_ratios = 
+{32'd78841, 32'd78526, 32'd78644, 32'd78729, 32'd78849, 32'd78399, 32'd78791, 
+ 32'd78821, 32'd78221, 32'd79672, 32'd77729, 32'd80516};
+localparam logic [12:0][31:0] y_ratios = 
+{32'd79039, 32'd78565, 32'd78834, 32'd78644, 32'd78507, 32'd78644, 32'd79438, 
+ 32'd78644, 32'd78359, 32'd79334, 32'd77825, 32'd80660};
 
 localparam logic [25:0][31:0] stage_num_feature = {32'sd0, 32'sd9, 32'sd25, 32'sd52, 32'sd84, 32'sd136, 32'sd189, 32'sd251, 32'sd323, 32'sd406, 32'sd497, 32'sd596, 32'sd711, 32'sd838, 32'sd973, 32'sd1109, 32'sd1246, 32'sd1405, 32'sd1560, 32'sd1729, 32'sd1925, 32'sd2122, 32'sd2303, 32'sd2502, 32'sd2713, 32'sd2913}
 
