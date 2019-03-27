@@ -10,7 +10,6 @@ module top(
   input logic [239:0][319:0][7:0] laptop_img, // coming from uart module
   input logic clock, laptop_img_rdy, reset,
   output logic [3:0][31:0] face_coords,
-  output logic [31:0]
   output logic face_coords_ready);
 
   logic [12:0][239:0][319:0][7:0] images, int_images;
