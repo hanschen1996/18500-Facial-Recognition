@@ -153,39 +153,25 @@ weights_file.write("/** @file vj_weights.vh\n")
 weights_file.write(" *  @brief Viola-Jones weights data structure\n")
 weights_file.write(" */\n\n")
 
-'''
-# #include statements
-weights_file.write("#ifndef __INC_VJ_WEIGHTS_H_\n")
-weights_file.write("#define __INC_VJ_WEIGHTS_H_\n\n")
-weights_file.write('#include "vj_types.h"\n\n')
-'''
-
 weights_file.write("// assume we use haarcascade_frontalface_default.xml\n")
 weights_file.write("#define NUM_STAGE {num_stage}\n".format(num_stage=num_stage))
 weights_file.write("#define NUM_FEATURE {num_feature}\n".format(num_feature=num_feature))
 weights_file.write("#define WINDOW_SIZE {window_size}\n\n".format(window_size=window_size))
 
-"""
-weights_file.write("static const Stage STAGES[NUM_STAGE];\n")
-weights_file.write("static const Feature FEATURES[NUM_FEATURE];\n\n")
-weights_file.write("#endif  /* __INC_VJ_WEIGHTS_H_ */")
-
-# .c header comments
-weights_file = open("vj_weights.c", mode="wb")
-weights_file.write("/** @file vj_weights.c\n")
-weights_file.write(" *  @brief Viola-Jones weights data\n")
-weights_file.write(" */\n\n")
-
-# #include statements
-weights_file.write('#include "inc/vj_types.h"\n\n')
-"""
 
 def write_array(arr, arr_len):
     for s in range(arr_len):
+        val = arr[s]
         if (s == arr_len - 1):
-            weights_file.write("%d};\n"%(arr[s]))
+            if (val < 0):
+                weights_file.write("-32'sd%d};\n"%(-val))
+            else:
+                weights_file.write("32'sd%d}\n"%(val))
         else:
-            weights_file.write("%d, "%(arr[s]))
+            if (val < 0):
+                weights_file.write("-32'sd%d, "%(-val))
+            else:
+                weights_file.write("32'sd%d, "%(val))
 
 def write_array_body(arr, arr_name):
     arr_len = len(arr)
