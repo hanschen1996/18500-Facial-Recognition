@@ -26,7 +26,7 @@ typedef struct Rectangle {
     unsigned int height;
 
     // weight of the rectangle feature
-    float weight;
+    int weight;
 } Rect;
 
 typedef struct Feature {
@@ -36,16 +36,16 @@ typedef struct Feature {
     Rect rect3;
 
     // based on threshold, choose one of the two trained values
-    float below;
-    float above;
+    int below;
+    int above;
 
     // feature threshold
-    float threshold;
+    int threshold;
 } Feature;
 
 typedef struct Stage {
     unsigned int feature_count;
-    float threshold;
+    int threshold;
 } Stage;
 
 #endif  /* __INC_VJ_TYPES_H_ */

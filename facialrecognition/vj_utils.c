@@ -6,6 +6,8 @@
 #include <math.h>
 #include "inc/vj_utils.h"
 
+#define BOX_COLOR 0
+
 /* tested */
 void get_integral_image(unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH],
                         unsigned int result[IMAGE_HEIGHT][IMAGE_WIDTH],
@@ -30,11 +32,11 @@ void get_integral_image(unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH],
     }
 }
 
-float get_rect_val(unsigned int image[IMAGE_HEIGHT][IMAGE_WIDTH],
-                   unsigned int window_row,
-                   unsigned int window_col,
-                   Rect *r) {
-    float weight = r->weight;
+int get_rect_val(unsigned int image[IMAGE_HEIGHT][IMAGE_WIDTH],
+                 unsigned int window_row,
+                 unsigned int window_col,
+                 Rect *r) {
+    int weight = r->weight;
     unsigned int start_x = r->x;
     unsigned int start_y = r->y;
     unsigned int width = r->width;
@@ -49,13 +51,13 @@ float get_rect_val(unsigned int image[IMAGE_HEIGHT][IMAGE_WIDTH],
     unsigned int A = image[window_row + start_y][window_col + start_x];
     unsigned int B = image[window_row + start_y][window_col + start_x + width];
     unsigned int C = image[window_row + start_y + height][window_col + start_x];
-    return weight * ((float)(D+A-B-C));
+    return weight * (int)(D+A-B-C);
 }
 
-float get_window_std(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_WIDTH],
-                     unsigned int integral_image_sq[IMAGE_HEIGHT][IMAGE_WIDTH],
-                     unsigned int start_row,
-                     unsigned int start_col) {
+unsigned int get_window_std(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_WIDTH],
+                            unsigned int integral_image_sq[IMAGE_HEIGHT][IMAGE_WIDTH],
+                            unsigned int start_row,
+                            unsigned int start_col) {
     unsigned int D = integral_image[start_row + WINDOW_SIZE - 1][start_col + WINDOW_SIZE - 1];
     unsigned int A = integral_image[start_row][start_col];
     unsigned int B = integral_image[start_row][start_col + WINDOW_SIZE - 1];
@@ -75,11 +77,13 @@ float get_window_std(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_WIDTH],
 void scale(unsigned char src[IMAGE_HEIGHT][IMAGE_WIDTH],
            unsigned int h1,
            unsigned int w1,
+           unsigned char dest[IMAGE_HEIGHT][IMAGE_WIDTH],
            unsigned int h2,
            unsigned int w2) {
-    unsigned char temp[h2][w2];
+    unsigned int temp[h2][w2];
     unsigned int x_ratio = ( (w1<<16)/w2 ) + 1;
     unsigned int y_ratio = ( (h1<<16)/h2 ) + 1;
+    printf("x_ratio: %d, y_ratio: %d\n", x_ratio, y_ratio);
     for (unsigned int h = 0; h < h2; h++) {
         for (unsigned int w = 0; w < w2; w++) {
             unsigned int x2 = (w * x_ratio) >> 16;
@@ -87,9 +91,10 @@ void scale(unsigned char src[IMAGE_HEIGHT][IMAGE_WIDTH],
             temp[h][w] = src[y2][x2];
         }
     }
-    for (unsigned int h = 0; h < h2; h++) {
-        for (unsigned int w = 0; w < w2; w++) {
-            src[h][w] = temp[h][w];
+
+    for (unsigned int h = 0; h < h2; h ++) {
+        for (unsigned int w = 0; w < w2; w ++) {
+            dest[h][w] = temp[h][w];
         }
     }
 }
@@ -121,12 +126,12 @@ void merge_bounding_box(unsigned int final_pass,
 void draw_rectangle(unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH],
                     Rect *rect) {
     for (unsigned int col = 0; col < rect->width; col ++) {
-        image[rect->y][rect->x + col] = 255;
-        image[rect->y + rect->height - 1][rect->x + col] = 255;
+        image[rect->y][rect->x + col] = BOX_COLOR;
+        image[rect->y + rect->height - 1][rect->x + col] = BOX_COLOR;
     }
 
     for (unsigned int row = 0; row < rect->height; row ++) {
-        image[rect->y + row][rect->x] = 255;
-        image[rect->y + row][rect->x + rect->width - 1] = 255;
+        image[rect->y + row][rect->x] = BOX_COLOR;
+        image[rect->y + row][rect->x + rect->width - 1] = BOX_COLOR;
     }
 }

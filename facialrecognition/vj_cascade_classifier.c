@@ -24,33 +24,31 @@ unsigned int cascade_classifier(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_
             // pass the subwindow through the cascading classifier
 
             // get standard deviation of the current window
-            float std = get_window_std(integral_image, integral_image_sq, row, col);
+            unsigned int std = get_window_std(integral_image, integral_image_sq, row, col);
             unsigned int feature_index = 0;
             bool passed = true;
             for (unsigned int s = 0; s < NUM_STAGE; s ++) {
                 Stage stage = STAGES[s];
-                float stage_accum = 0.0;
+                int stage_accum = 0.0;
 
                 for (unsigned int f = 0; f < stage.feature_count; f ++) {
                     Feature feature = FEATURES[feature_index];
-                    float val1 = get_rect_val(integral_image, row, col, &feature.rect1);
-                    float val2 = get_rect_val(integral_image, row, col, &feature.rect2);
-                    float val3 = get_rect_val(integral_image, row, col, &feature.rect3);
-                    float total_val = val1 + val2 + val3;
+                    int thresh = feature.threshold * std;
+
+                    int val1 = get_rect_val(integral_image, row, col, &feature.rect1);
+                    int val2 = get_rect_val(integral_image, row, col, &feature.rect2);
+                    int val3 = get_rect_val(integral_image, row, col, &feature.rect3);
+                    int total_val = val1 + val2 + val3;
 
                     //printf("total_val: %f\n", total_val);
-                    float stage_val =
-                        total_val > (feature.threshold * std) ? feature.above : feature.below;
+                    int stage_val = total_val > thresh ? feature.above : feature.below;
 
                     // accumulate to stage value
                     stage_accum += stage_val;
                     feature_index ++;
                 }
 
-                //printf("stage_accum: %f\n", stage_accum);
-
-                if (stage_accum < 0.4*stage.threshold) {
-                    //printf("stage_accum: %f, stage_threshold: %f\n", stage_accum, stage.threshold);
+                if (stage_accum < stage.threshold) {
                     passed = false;
                     break;
                 }
@@ -74,7 +72,8 @@ unsigned int cascade_classifier(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_
 }
 
 void detect_face(
-    unsigned char orig_image[IMAGE_HEIGHT][IMAGE_WIDTH]) {
+    unsigned char orig_image[IMAGE_HEIGHT][IMAGE_WIDTH],
+    int *success) {
 
     unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH];
     memcpy(image, orig_image, IMAGE_HEIGHT * IMAGE_WIDTH * sizeof(char));
@@ -92,11 +91,18 @@ void detect_face(
         final_pass = cascade_classifier(integral_image, integral_image_sq, curr_height, curr_width, factor, final_pass_rects, final_pass);
 
         factor *= SCALE_FACTOR;
-        scale(image, curr_height, curr_width, IMAGE_HEIGHT / factor, IMAGE_WIDTH / factor);
+        scale(image, curr_height, curr_width, image, IMAGE_HEIGHT / factor, IMAGE_WIDTH / factor);
         curr_height = IMAGE_HEIGHT / factor;
         curr_width = IMAGE_WIDTH / factor;
     }
-    merge_bounding_box(final_pass, final_pass_rects);
-    printf("Final face region: left corner: (x=%d,y=%d), size: (w=%d,h=%d)\n",         final_pass_rects[0].x, final_pass_rects[0].y, final_pass_rects[0].width, final_pass_rects[0].height);
-    draw_rectangle(orig_image, &final_pass_rects[0]);
+
+    if (final_pass == 0) {
+        *success = 0;
+        printf("no face found\n");
+    } else {
+        *success = 1;
+        merge_bounding_box(final_pass, final_pass_rects);
+        printf("Final face region: left corner: (x=%d,y=%d), size: (w=%d,h=%d)\n",         final_pass_rects[0].x, final_pass_rects[0].y, final_pass_rects[0].width, final_pass_rects[0].height);
+        draw_rectangle(orig_image, &final_pass_rects[0]);
+    }
 }

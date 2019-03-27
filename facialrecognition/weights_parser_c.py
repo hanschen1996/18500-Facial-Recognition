@@ -18,6 +18,9 @@ feature_below_val = []
 feature_above_val = []
 feature_rects = []
 
+STAGE_SCALE = 128
+FEATURE_SCALE = 128
+
 tree = ET.parse("vj_weights.xml")
 root = tree.getroot()
 
@@ -39,7 +42,7 @@ print("Number of features: " + str(num_feature))
 
 # get stage threshold
 for item in root.findall("./cascade/stages/_/stageThreshold"):
-    stage_thresh.append(float(item.text))
+    stage_thresh.append(int(round(STAGE_SCALE * (0.4 * float(item.text)))))
 
 # get feature threshold
 count = 0
@@ -49,13 +52,13 @@ for item in root.findall("./cascade/stages/_/weakClassifiers/_/internalNodes"):
     assert(int(texts[1]) == -1)
     assert(int(texts[2]) == count)
     count += 1
-    feature_thresh.append(float(texts[-1]))
+    feature_thresh.append(int(round(FEATURE_SCALE * float(texts[-1]))))
 
 # get values to use based on threshold
 for item in root.findall("./cascade/stages/_/weakClassifiers/_/leafValues"):
     texts = item.text.strip().split(" ")
-    feature_below_val.append(float(texts[0]))
-    feature_above_val.append(float(texts[1]))
+    feature_below_val.append(int(round(FEATURE_SCALE * float(texts[0]))))
+    feature_above_val.append(int(round(FEATURE_SCALE * float(texts[1]))))
 
 
 for item in root.iter("rects"):
@@ -63,7 +66,7 @@ for item in root.iter("rects"):
     for rect in item.iter("_"):
         texts = rect.text.strip().split(" ")
         assert(len(texts) == 5)
-        texts = [int(texts[0]), int(texts[1]), int(texts[2]), int(texts[3]), float(texts[4])]
+        texts = [int(texts[0]), int(texts[1]), int(texts[2]), int(texts[3]), int(round(FEATURE_SCALE * float(texts[4])))]
         rects.append(texts)
     if (len(rects) == 2):
         # set weights to 0 so it doesn't affect calculation

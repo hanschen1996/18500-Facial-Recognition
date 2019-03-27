@@ -7,6 +7,7 @@
 
 #include "vj_types.h"
 
-void detect_face(unsigned char orig_image[IMAGE_HEIGHT][IMAGE_WIDTH]);
+void detect_face(unsigned char orig_image[IMAGE_HEIGHT][IMAGE_WIDTH],
+                 int *success);
 
 #endif  /* __INC_VJ_CASCADE_CLASSIFIER_H_ */
