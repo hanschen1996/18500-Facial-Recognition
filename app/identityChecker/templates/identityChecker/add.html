@@ -12,13 +12,15 @@
 
             
         <div class="video-container"> 
-        <progress value="0" max="5" id="progressBar"></progress>
+            <div id="countdown" onclick="captureImages()"></div>
+<!--        <progress value="0" max="5" id="progressBar"></progress>-->
         <video width="640" height="480" align="center" id="player" controls autoplay></video>
         
 <!--        <canvas id="canvas" width=320 height=240></canvas>-->
         
         </div>
             <div class="button-container">
+                
                 <a id="capture"><button type="button" onClick="captureImages()">Capture</button></a>
                 
                 <a id="download" download="image.png"><button type="button" onClick="download()">Download</button></a>
@@ -51,13 +53,18 @@
             });
             
             function captureImages() {
-                var timeleft = 10;
+                var count = 0;
+                
+                var timeleft = 5;
                 var downloadTimer = setInterval(function(){
-                  document.getElementById("progressBar").value = 10 - timeleft;
+                  document.getElementById("countdown").innerHTML = timeleft + " Seconds Until Photo is Taken";
                   timeleft -= 1;
-                  if(timeleft <= 0)
+                  if(timeleft < 0){
                     clearInterval(downloadTimer);
+                    
+                  }
                 }, 1000);
+                document.getElementById("countdown").innerHTML = "Finished"
             }
             
             function download(){
