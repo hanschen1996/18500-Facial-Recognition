@@ -10,16 +10,29 @@
         <div class="page-container">
             <div class="title">Identity Checker</div>
 
+            
+        <div class="video-container"> 
+        <progress value="0" max="5" id="progressBar"></progress>
+        <video width="640" height="480" align="center" id="player" controls autoplay></video>
+        
+<!--        <canvas id="canvas" width=320 height=240></canvas>-->
+        
+        </div>
             <div class="button-container">
+                <a id="capture"><button type="button" onClick="captureImages()">Capture</button></a>
+                
+                <a id="download" download="image.png"><button type="button" onClick="download()">Download</button></a>
+            </div>
 
-        <video width="640" height="480" id="player" controls autoplay></video>
-        <a id="capture" download="image.png"><button type="button" onClick="download()">Capture</button></a>
-<!--        <button id="capture">Capture</button>-->
-        <canvas id="canvas" width=320 height=240></canvas>
         <script>
           const player = document.getElementById('player');
-          const canvas = document.getElementById('canvas');
+          const canvas = document.createElement('canvas');
+            canvas.width = 640;
+            canvas.height = 480;
+            
           const context = canvas.getContext('2d');
+            var pic1 = context.canvas;
+            document.body.appendChild(pic1);
           const captureButton = document.getElementById('capture');
 
           const constraints = {
@@ -37,17 +50,27 @@
               player.srcObject = stream;
             });
             
+            function captureImages() {
+                var timeleft = 10;
+                var downloadTimer = setInterval(function(){
+                  document.getElementById("progressBar").value = 10 - timeleft;
+                  timeleft -= 1;
+                  if(timeleft <= 0)
+                    clearInterval(downloadTimer);
+                }, 1000);
+            }
+            
             function download(){
+                
         var download = document.getElementById("download");
-        var image = document.getElementById("canvas").toDataURL("image/png")
-                    .replace("image/png", "image/octet-stream");
+        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                
         download.setAttribute("href", image);
 
     }
+            
+            
         </script>
-                                <a id="download" download="image.png"><button type="button" onClick="download()">Download</button></a>
-            </div>
-
         </div>
       
     </body>

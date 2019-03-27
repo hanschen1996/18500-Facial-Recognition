@@ -11,50 +11,9 @@
             <div class="title">Identity Checker</div>
 
             <div class="button-container">
-
-<!--
-        <video width="640" height="480" id="player" controls autoplay></video>
-        <a id="capture" download="image.png"><button type="button" onClick="download()">Capture</button></a>
--->
-<!--        <button id="capture">Capture</button>-->
-<!--
-        <canvas id="canvas" width=320 height=240></canvas>
-        <script>
-          const player = document.getElementById('player');
-          const canvas = document.getElementById('canvas');
-          const context = canvas.getContext('2d');
-          const captureButton = document.getElementById('capture');
-
-          const constraints = {
-            video: true,
-          };
-
-          captureButton.addEventListener('click', () => {
-            // Draw the video frame to the canvas.
-            context.drawImage(player, 0, 0, canvas.width, canvas.height);
-          });
-
-          // Attach the video stream to the video element and autoplay.
-          navigator.mediaDevices.getUserMedia(constraints)
-            .then((stream) => {
-              player.srcObject = stream;
-            });
-            
-            function download(){
-        var download = document.getElementById("capture");
-        var image = document.getElementById("canvas").toDataURL("image/png")
-                    .replace("image/png", "image/octet-stream");
-        download.setAttribute("href", image);
-
-    }
-        </script>
--->
-<!--                <a id="download" download="image.png"><button type="button" onClick="download()">Download</button></a>-->
-                
                 <a href="{% url 'add' %}"><button name = "add_button" id = "add_button">Add to Database</button></a>
-            </div>
+            
 
-            <div class = "button-container">
                 <a href="{% url 'checkIdentity' %}"><button nanme = "identify_button" id = "identify_button">Check Identity</button></a>
             </div>
         </div>
