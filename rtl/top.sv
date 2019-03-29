@@ -22,22 +22,52 @@ module top(
     for (i=0; i<PYRAMID_LEVELS-1; i=i+1) begin: downscalers
       downscaler #(WIDTH_LIMIT = pyramid_widths[i+1],
                    HEIGHT_LIMIT = pyramid_heights[i+1]) 
-                 d(.input_img(images[i]), .x_ratio(x_ratios[i+1]), .y_ratio(y_ratios[i+1]), .output_img(images[i+1]));
+                 down(.input_img(images[i]),
+                      .x_ratio(x_ratios[i+1]),
+                      .y_ratio(y_ratios[i+1]),
+                      .output_img(images[i+1]));
     end
   endgenerate
 
   genvar j;
   generate
     for (j=0; j<PYRAMID_LEVELS; j=j+1) begin: integral_img_calculators
-      int_img_calc i(.input_img(images[i]), .output_img(int_images[i]), .output_img_sq(int_images_sq[i]));
+      int_img_calc int_calc(.input_img(images[j]),
+                            .output_img(int_images[j]),
+                            .output_img_sq(int_images_sq[j]));
     end
   endgenerate
 
   logic [3:0] img_index;
   logic [31:0] row_index, col_index;
-  logic [WINDOW_SIZE-1:0][WINDOW_SIZE-1:0][7:0] scanning_window;
-  logic [31:0] scanning_window_top_left;
+  logic [WINDOW_SIZE-1:0][WINDOW_SIZE-1:0][7:0] scan_win;
+  logic [1:0][31:0] scan_win_index;
 
+  logic [31:0] scan_win_top_left, scan_win_top_right, scan_win_bottom_left, scan_win_bottom_right;
+  logic [31:0] scan_win_top_left_sq, scan_win_top_right_sq, scan_win_bottom_left_sq, scan_win_bottom_right_sq;
+  logic [31:0] scan_win_sum, scan_win_sq_sum;
+  logic [31:0] scan_win_std, scan_win_std_dev1, scan_win_std_dev2;
+
+
+  assign scan_win_index[0] = row_index;
+  assign scan_win_index[1] = col_index;
+  assign scan_win_top_left = int_images[img_index][row_index][col_index];
+  assign scan_win_top_right = int_images[img_index][row_index][col_index + WINDOW_SIZE];
+  assign scan_win_bottom_left = int_images[img_index][row_index + WINDOW_SIZE][col_index];
+  assign scan_win_bottom_right = int_images[img_index][row_index + WINDOW_SIZE][col_index + WINDOW_SIZE];
+  assign scan_win_top_left_sq = int_images_sq[img_index][row_index][col_index];
+  assign scan_win_top_right_sq = int_images_sq[img_index][row_index][col_index + WINDOW_SIZE];
+  assign scan_win_bottom_left_sq = int_images_sq[img_index][row_index + WINDOW_SIZE][col_index];
+  assign scan_win_bottom_right_sq = int_images_sq[img_index][row_index + WINDOW_SIZE][col_index + WINDOW_SIZE];
+  assign scan_win_sq_sum = scan_win_bottom_right_sq - scan_win_bottom_left_sq + scan_win_top_left_sq - scan_win_top_right_sq;
+
+  multiplier scan_win_mult1(.Y(scan_win_std_dev1), .A(scan_win_sq_sum), .B(32'd576));
+  multiplier scan_win_mult2(.Y(scan_win_std_dev2), .A(scan_win_sum), .B(scan_win_sum));
+  
+  // TODO: define sqrt
+  assign scan_win_std_dev = sqrt(scan_win_std_dev1 - scan_win_std_dev2);
+
+  // copy current scanning window into a buffer
   genvar k, l;
   generate
     for (k=0; k<WINDOW_SIZE; k=k+1) begin
@@ -47,20 +77,17 @@ module top(
     end
   endgenerate
 
-  assign scanning_window_top_left = row_index;
- 
-  // todo: figure out standard deviation calculation
-  vj_pipeline vjp(.clock, .reset, .scanning_window, 
-                  .scanning_window_std_dev(), .scanning_window_top_left, 
-                  .top_left(), .top_left_ready);
+  logic [1:0][31:0] top_left;
 
+  // TODO: react to top_left_ready signal
+  vj_pipeline vjp(.clock, .reset, .scan_win, .scan_win_std_dev,
+                  .scan_win_index, .top_left, .top_left_ready);
 
 
   /* ---------------------------------------------------------------------------
    * FSM -----------------------------------------------------------------------
    */
 
-  // todo: fsm controlling img_index, row_index, col_index, vj_enable, vj_reset
   logic [31:0] wait_integral_image_count;
   logic vj_pipeline_on;
 
@@ -185,59 +212,60 @@ endmodule
 
 module vj_pipeline(
   input  logic clock, reset,
-  input  logic [WINDOW_SIZE-1:0][WINDOW_SIZE-1:0][7:0] scanning_window,
-  input  logic [31:0] scanning_window_std_dev,
-  input  logic [1:0][31:0] scanning_window_top_left,
+  input  logic [WINDOW_SIZE-1:0][WINDOW_SIZE-1:0][7:0] scan_win,
+  input  logic [31:0] scan_win_std_dev,
+  input  logic [1:0][31:0] scan_win_index,
   output logic [1:0][31:0] top_left,
   output logic top_left_ready);
 
   logic [NUM_FEATURE-1:0][WINDOW_SIZE-1:0][WINDOW_SIZE-1:0][7:0] scan_wins;
   logic [NUM_FEATURE-1:0][1:0][31:0] scan_coords;
-  logic [NUM_FEATURE-1:0][31:0] std_devs;
+  logic [NUM_FEATURE-1:0][31:0] scan_win_std_devs;
 
   always_ff @(posedge clock, posedge reset) begin: set_scanning_windows
     if (reset) begin: reset_scanning_windows
        scan_wins <= 'd0;
        scan_coords <= 'd0;
-       std_devs <= 'd0;
+       scan_win_std_devs <= 'd0;
        top_left <= 'd0;
     end else begin: move_scanning_windows
-      scan_wins[0] <= scanning_window;
-      scan_coords[0] <= scanning_window_top_left;
-      std_devs[0] <= scanning_window_std_dev;
+      scan_wins[0] <= scan_win;
+      scan_coords[0] <= scan_win_index;
+      scan_win_std_devs[0] <= scan_win_std_dev;
       for (int i = 0; i < NUM_FEATURE-1; i++) begin
         scan_wins[i+1] <= scan_wins[i];
         scan_coords[i+1] <= scan_coords[i];
-        std_devs[i+1] <= std_devs[i]
+        scan_win_std_devs[i+1] <= scan_win_std_devs[i]
       end
       top_left <= scan_coords[NUM_FEATURE-1];
     end
   end
 
-  logic [NUM_FEATURE-1:0] rectangle1_vals, rectangle2_vals, rectangle3_vals, 
-                 rectangle1_products, rectangle2_products, rectangle3_products, 
-                 feature_sums, feature_thresholds, feature_products, 
-                 feature_accums, feature_comparisons;
+  logic [NUM_FEATURE-1:0][31:0] rectangle1_vals, rectangle2_vals, rectangle3_vals,
+                                rectangle1_products, rectangle2_products, rectangle3_products,
+                                feature_sums, feature_thresholds, feature_products, 
+                                feature_accums;
+  logic [NUM_FEATURE-1:0] feature_comparisons;
 
   genvar j;
   generate
     for (j = 0; j < NUM_FEATURE; j = j+1) begin: 
-      assign rectangle1_vals[j] = scan_wins[j][rectangle1_ys[j] + rectangle1_heights[j] - 1][rectangle1_xs[j] + rectangle1_widths[j] - 1] +
+      assign rectangle1_vals[j] = scan_wins[j][rectangle1_ys[j] + rectangle1_heights[j]][rectangle1_xs[j] + rectangle1_widths[j]] +
                                   scan_wins[j][rectangle1_ys[j]][rectangle1_xs[j]]-
-                                  scan_wins[j][rectangle1_ys[j]][rectangle1_xs[j] + rectangle1_widths[j] - 1] -
-                                  scan_wins[j][rectangle1_ys[j] + rectangle1_heights[j]][rectangle1_xs[j] - 1];
-      assign rectangle2_vals[j] = scan_wins[j][rectangle2_ys[j] + rectangle2_heights[j] - 1][rectangle2_xs[j] + rectangle2_widths[j] - 1] +
+                                  scan_wins[j][rectangle1_ys[j]][rectangle1_xs[j] + rectangle1_widths[j]] -
+                                  scan_wins[j][rectangle1_ys[j] + rectangle1_heights[j]][rectangle1_xs[j]];
+      assign rectangle2_vals[j] = scan_wins[j][rectangle2_ys[j] + rectangle2_heights[j]][rectangle2_xs[j] + rectangle2_widths[j]] +
                                   scan_wins[j][rectangle2_ys[j]][rectangle2_xs[j]]-
-                                  scan_wins[j][rectangle2_ys[j]][rectangle2_xs[j] + rectangle2_widths[j] - 1] -
-                                  scan_wins[j][rectangle2_ys[j] + rectangle2_heights[j] - 1][rectangle2_xs[j]];
-      assign rectangle3_vals[j] = scan_wins[j][rectangle3_ys[j] + rectangle3_heights[j] - 1][rectangle3_xs[j] + rectangle3_widths[j] - 1] +
+                                  scan_wins[j][rectangle2_ys[j]][rectangle2_xs[j] + rectangle2_widths[j]] -
+                                  scan_wins[j][rectangle2_ys[j] + rectangle2_heights[j]][rectangle2_xs[j]];
+      assign rectangle3_vals[j] = scan_wins[j][rectangle3_ys[j] + rectangle3_heights[j]][rectangle3_xs[j] + rectangle3_widths[j]] +
                                   scan_wins[j][rectangle3_ys[j]][rectangle3_xs[j]]-
-                                  scan_wins[j][rectangle3_ys[j]][rectangle3_xs[j] + rectangle3_widths[j] - 1] -
-                                  scan_wins[j][rectangle3_ys[j] + rectangle3_heights[j] - 1][rectangle3_xs[j]];
+                                  scan_wins[j][rectangle3_ys[j]][rectangle3_xs[j] + rectangle3_widths[j]] -
+                                  scan_wins[j][rectangle3_ys[j] + rectangle3_heights[j]][rectangle3_xs[j]];
       multiplier m1(.Y(rectangle1_products[j]), .A(rectangle1_vals[j]), .B(rectangle1_weights[j]));
       multiplier m2(.Y(rectangle2_products[j]), .A(rectangle2_vals[j]), .B(rectangle2_weights[j]));
       multiplier m3(.Y(rectangle3_products[j]), .A(rectangle3_vals[j]), .B(rectangle3_weights[j]));
-      multiplier m4(.Y(feature_products[j]), .A(feature_thresholds[j]), .B(std_devs[j]));
+      multiplier m4(.Y(feature_products[j]), .A(feature_thresholds[j]), .B(scan_win_std_devs[j]));
       assign feature_sums[j] = rectangle1_products[j] + rectangle2_products[j] + rectangle3_products[j];
       signed_comparator feature_c(.gt(feature_comparisons[j]), .A(feature_sums[j]), .B(feature_products[j]));
       assign feature_accums[j] = (feature_comparisons[j]) ? feature_aboves[j] : feature_belows[j];
