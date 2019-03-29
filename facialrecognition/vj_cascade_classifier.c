@@ -11,16 +11,22 @@
 #include "inc/vj_types.h"
 #include "inc/vj_utils.h"
 
-unsigned int cascade_classifier(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_WIDTH],
-                                unsigned int integral_image_sq[IMAGE_HEIGHT][IMAGE_WIDTH],
-                                unsigned int height,
-                                unsigned int width,
-                                float factor,
-                                Rect final_pass_rects[],
-                                unsigned int final_pass) {
+#define COUNTER 11
+
+int count = 0;
+
+void cascade_classifier(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_WIDTH],
+                        unsigned int integral_image_sq[IMAGE_HEIGHT][IMAGE_WIDTH],
+                        unsigned int height,
+                        unsigned int width,
+                        float factor,
+                        int *alr_found,
+                        unsigned int *start_x,
+                        unsigned int *start_y,
+                        unsigned int *end_x,
+                        unsigned int *end_y) {
     for (unsigned int row = 0; row < height - WINDOW_SIZE; row ++) {
         for (unsigned int col = 0; col < width - WINDOW_SIZE; col ++) {
-
             // pass the subwindow through the cascading classifier
 
             // get standard deviation of the current window
@@ -29,7 +35,7 @@ unsigned int cascade_classifier(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_
             bool passed = true;
             for (unsigned int s = 0; s < NUM_STAGE; s ++) {
                 Stage stage = STAGES[s];
-                int stage_accum = 0.0;
+                int stage_accum = 0;
 
                 for (unsigned int f = 0; f < stage.feature_count; f ++) {
                     Feature feature = FEATURES[feature_index];
@@ -40,8 +46,7 @@ unsigned int cascade_classifier(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_
                     int val3 = get_rect_val(integral_image, row, col, &feature.rect3);
                     int total_val = val1 + val2 + val3;
 
-                    //printf("total_val: %f\n", total_val);
-                    int stage_val = total_val > thresh ? feature.above : feature.below;
+                    int stage_val = total_val >= thresh ? feature.above : feature.below;
 
                     // accumulate to stage value
                     stage_accum += stage_val;
@@ -53,56 +58,81 @@ unsigned int cascade_classifier(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_
                     break;
                 }
             }
-            //exit(0);
+
             if (passed) {
-                final_pass_rects[final_pass].x = col*factor;
-                final_pass_rects[final_pass].y = row*factor;
-                final_pass_rects[final_pass].width = WINDOW_SIZE*factor;
-                final_pass_rects[final_pass].height = WINDOW_SIZE*factor;
-                printf("face region: left corner: (x=%d,y=%d), size: (w=%d,h=%d)\n", final_pass_rects[final_pass].x, final_pass_rects[final_pass].y, final_pass_rects[final_pass].width, final_pass_rects[final_pass].height);
-                final_pass ++;
-                if (final_pass == MAX_PASS_COUNT) {
-                    printf("Set MAX_PASS_COUNT to a bigger value!\n");
-                    return final_pass;
+                unsigned int curr_start_x = col*factor;
+                unsigned int curr_start_y = row*factor;
+                unsigned int curr_end_x = curr_start_x + WINDOW_SIZE*factor;
+                unsigned int curr_end_y = curr_start_y + WINDOW_SIZE*factor;
+                if (*alr_found) {
+                    *start_x = curr_start_x < *start_x ? curr_start_x : *start_x;
+                    *start_y = curr_start_y < *start_y ? curr_start_y : *start_y;
+                    *end_x = curr_end_x > *end_x ? curr_end_x : *end_x;
+                    *end_y = curr_end_y > *end_y ? curr_end_y : *end_y;
+                } else {
+                    *start_x = curr_start_x;
+                    *start_y = curr_start_y;
+                    *end_x = curr_end_x;
+                    *end_y = curr_end_y;
                 }
+                *alr_found = 1;
+                printf("face region: topleft: (x=%d,y=%d), "
+                       "bottomright:(x=%d,y=%d)\n",
+                       curr_start_x,
+                       curr_start_y,
+                       curr_end_x,
+                       curr_end_y);
             }
         }
     }
-    return final_pass;
 }
 
 void detect_face(
     unsigned char orig_image[IMAGE_HEIGHT][IMAGE_WIDTH],
     int *success) {
 
+    *success = 0;
     unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH];
     memcpy(image, orig_image, IMAGE_HEIGHT * IMAGE_WIDTH * sizeof(char));
-    unsigned int final_pass = 0;
+
     unsigned int curr_height = IMAGE_HEIGHT;
     unsigned int curr_width = IMAGE_WIDTH;
     float factor = 1;
     unsigned int integral_image[IMAGE_HEIGHT][IMAGE_WIDTH];
     unsigned int integral_image_sq[IMAGE_HEIGHT][IMAGE_WIDTH];
-    Rect final_pass_rects[MAX_PASS_COUNT];
+    unsigned int start_x;
+    unsigned int start_y;
+    unsigned int end_x;
+    unsigned int end_y;
 
     while (curr_height >= WINDOW_SIZE && curr_width >= WINDOW_SIZE) {
-        printf("using image size width=%d, height=%d\n", curr_width, curr_height);
         get_integral_image(image, integral_image, integral_image_sq, curr_height, curr_width);
-        final_pass = cascade_classifier(integral_image, integral_image_sq, curr_height, curr_width, factor, final_pass_rects, final_pass);
+        cascade_classifier(integral_image,
+                           integral_image_sq,
+                           curr_height,
+                           curr_width,
+                           factor,
+                           success,
+                           &start_x,
+                           &start_y,
+                           &end_x,
+                           &end_y);
 
         factor *= SCALE_FACTOR;
-        scale(image, curr_height, curr_width, image, IMAGE_HEIGHT / factor, IMAGE_WIDTH / factor);
         curr_height = IMAGE_HEIGHT / factor;
         curr_width = IMAGE_WIDTH / factor;
+        scale(orig_image, IMAGE_HEIGHT, IMAGE_WIDTH, image, curr_height, curr_width);
     }
 
-    if (final_pass == 0) {
-        *success = 0;
-        printf("no face found\n");
+    if (*success) {
+        printf("Final face region:\ntopleft: (x=%d,y=%d), "
+               "bottomright: (x=%d,y=%d)\n",
+               start_x,
+               start_y,
+               end_x,
+               end_y);
+        draw_rectangle(orig_image, start_x, start_y, end_x, end_y);
     } else {
-        *success = 1;
-        merge_bounding_box(final_pass, final_pass_rects);
-        printf("Final face region: left corner: (x=%d,y=%d), size: (w=%d,h=%d)\n",         final_pass_rects[0].x, final_pass_rects[0].y, final_pass_rects[0].width, final_pass_rects[0].height);
-        draw_rectangle(orig_image, &final_pass_rects[0]);
+        printf("No face found!\n");
     }
 }

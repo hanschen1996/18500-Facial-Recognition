@@ -57,8 +57,8 @@ for item in root.findall("./cascade/stages/_/weakClassifiers/_/internalNodes"):
 # get values to use based on threshold
 for item in root.findall("./cascade/stages/_/weakClassifiers/_/leafValues"):
     texts = item.text.strip().split(" ")
-    feature_below_val.append(int(round(FEATURE_SCALE * float(texts[0]))))
-    feature_above_val.append(int(round(FEATURE_SCALE * float(texts[1]))))
+    feature_below_val.append(int(round(STAGE_SCALE * float(texts[0]))))
+    feature_above_val.append(int(round(STAGE_SCALE * float(texts[1]))))
 
 
 for item in root.iter("rects"):

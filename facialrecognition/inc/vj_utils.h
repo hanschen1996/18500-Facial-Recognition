@@ -30,9 +30,10 @@ void scale(unsigned char src[IMAGE_HEIGHT][IMAGE_WIDTH],
            unsigned char dest[IMAGE_HEIGHT][IMAGE_WIDTH],
            unsigned int h2,
            unsigned int w2);
-void merge_bounding_box(unsigned int final_pass,
-                        Rect final_pass_rects[]);
 void draw_rectangle(unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH],
-                    Rect *rect);
+                    unsigned int start_x,
+                    unsigned int start_y,
+                    unsigned int end_x,
+                    unsigned int end_y);
 
 #endif  /* __INC_VJ_UTILS_H_ */
