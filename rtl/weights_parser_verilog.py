@@ -54,6 +54,7 @@ for item in root.findall("./cascade/stageNum"):
 print("Number of stages: " + str(num_stage))
 
 # count the total number of features
+stage_num_feature.append(0)
 for item in root.findall("./cascade/stages/_/maxWeakCount"):
     num_feature += int(item.text)
     stage_num_feature.append(num_feature)
@@ -80,8 +81,8 @@ for item in root.findall("./cascade/stages/_/weakClassifiers/_/internalNodes"):
 # get values to use based on threshold
 for item in root.findall("./cascade/stages/_/weakClassifiers/_/leafValues"):
     texts = item.text.strip().split(" ")
-    feature_below.append(int(round(FEATURE_SCALE * float(texts[0]))))
-    feature_above.append(int(round(FEATURE_SCALE * float(texts[1]))))
+    feature_below.append(int(round(STAGE_SCALE * float(texts[0]))))
+    feature_above.append(int(round(STAGE_SCALE * float(texts[1]))))
 
 
 for item in root.iter("rects"):
@@ -154,28 +155,35 @@ weights_file.write(" *  @brief Viola-Jones weights data structure\n")
 weights_file.write(" */\n\n")
 
 weights_file.write("// assume we use haarcascade_frontalface_default.xml\n")
-weights_file.write("#define NUM_STAGE {num_stage}\n".format(num_stage=num_stage))
-weights_file.write("#define NUM_FEATURE {num_feature}\n".format(num_feature=num_feature))
-weights_file.write("#define WINDOW_SIZE {window_size}\n\n".format(window_size=window_size))
+weights_file.write("`define NUM_STAGE %d\n"%(num_stage))
+weights_file.write("`define NUM_FEATURE %d\n"%(num_feature))
+weights_file.write("`define WINDOW_SIZE %d\n"%(window_size))
+weights_file.write("`define LAPTOP_WIDTH 320\n")
+weights_file.write("`define LAPTOP_HEIGHT 240\n")
+weights_file.write("`define PYRAMID_LEVELS 13\n\n")
 
+weights_file.write("integer pyramid_widths[12:0] = '{320, 266, 222, 185, 154, 128, 107, 89, 74, 62, 51, 43, 35};\n")
+weights_file.write("integer pyramid_heights[12:0] = '{240, 199, 166, 138, 115, 96, 80, 66, 55, 46, 38, 32, 26};\n")
+weights_file.write("logic [12:0][31:0] x_ratios = {32'd78841, 32'd78526, 32'd78644, 32'd78729, 32'd78849, 32'd78399, 32'd78791, 32'd78821, 32'd78221, 32'd79672, 32'd77729, 32'd80516};\n")
+weights_file.write("logic [12:0][31:0] y_ratios = {32'd79039, 32'd78565, 32'd78834, 32'd78644, 32'd78507, 32'd78644, 32'd79438, 32'd78644, 32'd78359, 32'd79334, 32'd77825, 32'd80660};\n\n")
 
 def write_array(arr, arr_len):
     for s in range(arr_len):
         val = arr[s]
         if (s == arr_len - 1):
             if (val < 0):
-                weights_file.write("-32'sd%d};\n"%(-val))
+                weights_file.write("32'd%d};\n"%(val+2**32))
             else:
-                weights_file.write("32'sd%d}\n"%(val))
+                weights_file.write("32'd%d}\n"%(val))
         else:
             if (val < 0):
-                weights_file.write("-32'sd%d, "%(-val))
+                weights_file.write("32'd%d, "%(val+2**32))
             else:
-                weights_file.write("32'sd%d, "%(val))
+                weights_file.write("32'd%d, "%(val))
 
 def write_array_body(arr, arr_name):
     arr_len = len(arr)
-    weights_file.write("localparam logic [%d:0][31:0] %s = {"%(arr_len - 1, arr_name))
+    weights_file.write("logic [%d:0][31:0] %s = {"%(arr_len - 1, arr_name))
     write_array(arr, arr_len)
     weights_file.write("\n")
 
@@ -183,6 +191,7 @@ def write_array_body(arr, arr_name):
 
 # number of features in each stage
 write_array_body(stage_num_feature, "stage_num_feature")
+weights_file.write("// thresholds are negative values\n")
 write_array_body(stage_threshold, "stage_threshold")
 
 write_array_body(rectangle1_xs, "rectangle1_xs")
