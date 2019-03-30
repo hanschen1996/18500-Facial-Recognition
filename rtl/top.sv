@@ -162,8 +162,8 @@ module top(
   assign scan_win_sq_sum = scan_win_bottom_right_sq - scan_win_bottom_left_sq + scan_win_top_left_sq - scan_win_top_right_sq;
   assign scan_win_sum = scan_win_bottom_right - scan_win_bottom_left + scan_win_top_left - scan_win_top_right;
 
-  multiplier scan_win_mult1(.Y(scan_win_std_dev1), .A(scan_win_sq_sum), .B(32'd576));
-  multiplier scan_win_mult2(.Y(scan_win_std_dev2), .A(scan_win_sum), .B(scan_win_sum));
+  multiplier scan_win_mult1(.out(scan_win_std_dev1), .a(scan_win_sq_sum), .b(32'd576));
+  multiplier scan_win_mult2(.out(scan_win_std_dev2), .a(scan_win_sum), .b(scan_win_sum));
 
   sqrt stddev(.val(scan_win_std_dev1 - scan_win_std_dev2), .res(scan_win_std_dev));
 
@@ -250,10 +250,10 @@ module downscaler
   genvar i, j, k, l, m;
   generate
     for (i = 0; i < HEIGHT_LIMIT; i=i+1) begin: downscaled_row
-      multiplier m_r(.Y(row_nums[i]), .A(i), .B(x_ratio));
+      multiplier m_r(.out(row_nums[i]), .a(i), .b(x_ratio));
 
       for (j = 0; j < WIDTH_LIMIT; j=j+1) begin: downscaled_pixels_in_row
-        multiplier m_c(.Y(col_nums[j]), .A(j), .B(y_ratio));
+        multiplier m_c(.out(col_nums[j]), .a(j), .b(y_ratio));
         assign output_img[i][j] = input_img[row_nums[i]>>16][col_nums[j]>>16];
       end
 
@@ -301,7 +301,7 @@ module int_img_calc(
   generate
     for (m = 0; m < `LAPTOP_HEIGHT; m=m+1) begin: multiplier_row
       for (n = 0; n < `LAPTOP_WIDTH; n=n+1) begin: multiplier_column
-        multiplier m(.Y(input_img_sq[m][n]), .A(input_img[m][n]), .B(input_img[m][n]));
+        multiplier m(.out(input_img_sq[m][n]), .a(input_img[m][n]), .b(input_img[m][n]));
       end
     end
   endgenerate
@@ -381,10 +381,10 @@ module vj_pipeline(
                                   scan_wins[j][rectangle3_ys[j]][rectangle3_xs[j]]-
                                   scan_wins[j][rectangle3_ys[j]][rectangle3_xs[j] + rectangle3_widths[j]] -
                                   scan_wins[j][rectangle3_ys[j] + rectangle3_heights[j]][rectangle3_xs[j]];
-      multiplier m1(.Y(rectangle1_products[j]), .A(rectangle1_vals[j]), .B(rectangle1_weights[j]));
-      multiplier m2(.Y(rectangle2_products[j]), .A(rectangle2_vals[j]), .B(rectangle2_weights[j]));
-      multiplier m3(.Y(rectangle3_products[j]), .A(rectangle3_vals[j]), .B(rectangle3_weights[j]));
-      multiplier m4(.Y(feature_products[j]), .A(feature_thresholds[j]), .B(scan_win_std_devs[j]));
+      multiplier m1(.out(rectangle1_products[j]), .a(rectangle1_vals[j]), .b(rectangle1_weights[j]));
+      multiplier m2(.out(rectangle2_products[j]), .a(rectangle2_vals[j]), .b(rectangle2_weights[j]));
+      multiplier m3(.out(rectangle3_products[j]), .a(rectangle3_vals[j]), .b(rectangle3_weights[j]));
+      multiplier m4(.out(feature_products[j]), .a(feature_thresholds[j]), .b(scan_win_std_devs[j]));
       assign feature_sums[j] = rectangle1_products[j] + rectangle2_products[j] + rectangle3_products[j];
       signed_comparator feature_c(.gt(feature_comparisons[j]), .A(feature_sums[j]), .B(feature_products[j]));
       assign feature_accums[j] = (feature_comparisons[j]) ? feature_aboves[j] : feature_belows[j];
