@@ -1,8 +1,8 @@
-`default_nettype none
+//`default_nettype none
 
 module multiplier(
-  input  logic [31:0]  a, b,
-  output logic [31:0]  out);
+  input  wire logic [31:0]  a, b,
+  output wire logic [31:0]  out);
 
   logic [31:0][31:0] partial_products;
   logic [3:0][31:0] intermed_sums;
