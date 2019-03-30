@@ -8,20 +8,25 @@ module top(
   output logic face_coords_ready,
   output logic [3:0] pyramid_number);
 
-  //logic [`PYRAMID_LEVELS-1:0][`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] images, int_images, int_images_sq;
-  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0]
-      images0, images1, images2, images3, images4, images5,
-      images6, images7, images8, images9,
-      int_images0, int_images1, int_images2, int_images3, int_images4,
-      int_images5, int_images6, int_images7, int_images8, int_images9,
-      int_images_sq0, int_images_sq1, int_images_sq2, int_images_sq3,
-      int_images_sq4, int_images_sq5, int_images_sq6, int_images_sq7,
-      int_images_sq8, int_images_sq9, curr_int_image, curr_int_image_sq;
-
   localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_widths = `PYRAMID_WIDTHS;
   localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_heights = `PYRAMID_HEIGHTS;
   logic [`PYRAMID_LEVELS-2:0][31:0] x_ratios = `X_RATIOS;
   logic [`PYRAMID_LEVELS-2:0][31:0] y_ratios = `Y_RATIOS;
+
+  // each pyramid image has different size
+  logic [pyramid_heights[0]-1:0][pyramid_widths[0]-1:0][31:0] images0, int_images0, int_images_sq0;
+  logic [pyramid_heights[1]-1:0][pyramid_widths[1]-1:0][31:0] images1, int_images1, int_images_sq1;
+  logic [pyramid_heights[2]-1:0][pyramid_widths[2]-1:0][31:0] images2, int_images2, int_images_sq2;
+  logic [pyramid_heights[3]-1:0][pyramid_widths[3]-1:0][31:0] images3, int_images3, int_images_sq3;
+  logic [pyramid_heights[4]-1:0][pyramid_widths[4]-1:0][31:0] images4, int_images4, int_images_sq4;
+  logic [pyramid_heights[5]-1:0][pyramid_widths[5]-1:0][31:0] images5, int_images5, int_images_sq5;
+  logic [pyramid_heights[6]-1:0][pyramid_widths[6]-1:0][31:0] images6, int_images6, int_images_sq6;
+  logic [pyramid_heights[7]-1:0][pyramid_widths[7]-1:0][31:0] images7, int_images7, int_images_sq7;
+  logic [pyramid_heights[8]-1:0][pyramid_widths[8]-1:0][31:0] images8, int_images8, int_images_sq8;
+  logic [pyramid_heights[9]-1:0][pyramid_widths[9]-1:0][31:0] images9, int_images9, int_images_sq9;
+
+  // temporary array to hold the image for the current pyramid level
+  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] curr_int_image, curr_int_image_sq;
 
   always_ff @(posedge clock, posedge reset) begin: set_first_img
     if (reset) begin
@@ -72,25 +77,45 @@ module top(
              down9(.input_img(images0), .x_ratio(x_ratios[8]),
                    .y_ratio(y_ratios[8]), .output_img(images9));
 
-  int_img_calc int_calc0(.input_img(images0), .output_img(int_images0),
+  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[0]),
+                 .HEIGHT_LIMIT(pyramid_heights[0]))
+               int_calc0(.input_img(images0), .output_img(int_images0),
                          .output_img_sq(int_images_sq0));
-  int_img_calc int_calc1(.input_img(images1), .output_img(int_images1),
+  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[1]),
+                 .HEIGHT_LIMIT(pyramid_heights[1]))
+               int_calc1(.input_img(images1), .output_img(int_images1),
                          .output_img_sq(int_images_sq1));
-  int_img_calc int_calc2(.input_img(images2), .output_img(int_images2),
+  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[2]),
+                 .HEIGHT_LIMIT(pyramid_heights[2]))
+               int_calc2(.input_img(images2), .output_img(int_images2),
                          .output_img_sq(int_images_sq2));
-  int_img_calc int_calc3(.input_img(images3), .output_img(int_images3),
+  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[3]),
+                 .HEIGHT_LIMIT(pyramid_heights[3]))
+               int_calc3(.input_img(images3), .output_img(int_images3),
                          .output_img_sq(int_images_sq3));
-  int_img_calc int_calc4(.input_img(images4), .output_img(int_images4),
+  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[4]),
+                 .HEIGHT_LIMIT(pyramid_heights[4]))
+               int_calc4(.input_img(images4), .output_img(int_images4),
                          .output_img_sq(int_images_sq4));
-  int_img_calc int_calc5(.input_img(images5), .output_img(int_images5),
+  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[5]),
+                 .HEIGHT_LIMIT(pyramid_heights[5]))
+               int_calc5(.input_img(images5), .output_img(int_images5),
                          .output_img_sq(int_images_sq5));
-  int_img_calc int_calc6(.input_img(images6), .output_img(int_images6),
+  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[6]),
+                 .HEIGHT_LIMIT(pyramid_heights[6]))
+               int_calc6(.input_img(images6), .output_img(int_images6),
                          .output_img_sq(int_images_sq6));
-  int_img_calc int_calc7(.input_img(images7), .output_img(int_images7),
+  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[7]),
+                 .HEIGHT_LIMIT(pyramid_heights[7]))
+               int_calc7(.input_img(images7), .output_img(int_images7),
                          .output_img_sq(int_images_sq7));
-  int_img_calc int_calc8(.input_img(images8), .output_img(int_images8),
+  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[8]),
+                 .HEIGHT_LIMIT(pyramid_heights[8]))
+               int_calc8(.input_img(images8), .output_img(int_images8),
                          .output_img_sq(int_images_sq8));
-  int_img_calc int_calc9(.input_img(images9), .output_img(int_images9),
+  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[9]),
+                 .HEIGHT_LIMIT(pyramid_heights[9]))
+               int_calc9(.input_img(images9), .output_img(int_images9),
                          .output_img_sq(int_images_sq9));
 
   logic [3:0] img_index;
@@ -106,44 +131,84 @@ module top(
   always_comb begin
     case (img_index)
       4'd0: begin
-            curr_int_image = int_images0;
-            curr_int_image_sq = int_images_sq0;
+            for (int row = 0; row < pyramid_heights[0]; row++) begin: image0_row
+              for (int col = 0; col < pyramid_widths[0]; col++) begin: image0_col
+                curr_int_image[row][col] = images0[row][col];
+                curr_int_image_sq[row][col] = images0[row][col];
+              end
+            end
             end
       4'd1: begin
-            curr_int_image = int_images1;
-            curr_int_image_sq = int_images_sq1;
+            for (int row = 0; row < pyramid_heights[1]; row++) begin: image1_row
+              for (int col = 0; col < pyramid_widths[1]; col++) begin: image1_col
+                curr_int_image[row][col] = images1[row][col];
+                curr_int_image_sq[row][col] = images1[row][col];
+              end
+            end
             end
       4'd2: begin
-            curr_int_image = int_images2;
-            curr_int_image_sq = int_images_sq2;
+            for (int row = 0; row < pyramid_heights[2]; row++) begin: image2_row
+              for (int col = 0; col < pyramid_widths[2]; col++) begin: image2_col
+                curr_int_image[row][col] = images2[row][col];
+                curr_int_image_sq[row][col] = images2[row][col];
+              end
+            end
             end
       4'd3: begin
-            curr_int_image = int_images3;
-            curr_int_image_sq = int_images_sq3;
+            for (int row = 0; row < pyramid_heights[3]; row++) begin: image3_row
+              for (int col = 0; col < pyramid_widths[3]; col++) begin: image3_col
+                curr_int_image[row][col] = images3[row][col];
+                curr_int_image_sq[row][col] = images3[row][col];
+              end
+            end
             end
       4'd4: begin
-            curr_int_image = int_images4;
-            curr_int_image_sq = int_images_sq4;
+            for (int row = 0; row < pyramid_heights[4]; row++) begin: image4_row
+              for (int col = 0; col < pyramid_widths[4]; col++) begin: image4_col
+                curr_int_image[row][col] = images4[row][col];
+                curr_int_image_sq[row][col] = images4[row][col];
+              end
+            end
             end
       4'd5: begin
-            curr_int_image = int_images5;
-            curr_int_image_sq = int_images_sq5;
+            for (int row = 0; row < pyramid_heights[5]; row++) begin: image5_row
+              for (int col = 0; col < pyramid_widths[5]; col++) begin: image5_col
+                curr_int_image[row][col] = images5[row][col];
+                curr_int_image_sq[row][col] = images5[row][col];
+              end
+            end
             end
       4'd6: begin
-            curr_int_image = int_images6;
-            curr_int_image_sq = int_images_sq6;
+            for (int row = 0; row < pyramid_heights[6]; row++) begin: image6_row
+              for (int col = 0; col < pyramid_widths[6]; col++) begin: image6_col
+                curr_int_image[row][col] = images6[row][col];
+                curr_int_image_sq[row][col] = images6[row][col];
+              end
+            end
             end
       4'd7: begin
-            curr_int_image = int_images7;
-            curr_int_image_sq = int_images_sq7;
+            for (int row = 0; row < pyramid_heights[7]; row++) begin: image7_row
+              for (int col = 0; col < pyramid_widths[7]; col++) begin: image7_col
+                curr_int_image[row][col] = images7[row][col];
+                curr_int_image_sq[row][col] = images7[row][col];
+              end
+            end
             end
       4'd8: begin
-            curr_int_image = int_images8;
-            curr_int_image_sq = int_images_sq8;
+            for (int row = 0; row < pyramid_heights[8]; row++) begin: image8_row
+              for (int col = 0; col < pyramid_widths[8]; col++) begin: image8_col
+                curr_int_image[row][col] = images8[row][col];
+                curr_int_image_sq[row][col] = images8[row][col];
+              end
+            end
             end
       4'd9: begin
-            curr_int_image = int_images9;
-            curr_int_image_sq = int_images_sq9;
+            for (int row = 0; row < pyramid_heights[9]; row++) begin: image9_row
+              for (int col = 0; col < pyramid_widths[9]; col++) begin: image9_col
+                curr_int_image[row][col] = images9[row][col];
+                curr_int_image_sq[row][col] = images9[row][col];
+              end
+            end
             end
       default: curr_int_image = 'd0;
     endcase
@@ -239,13 +304,13 @@ module top(
 endmodule
 
 module downscaler
-  #(parameter WIDTH_LIMIT = 320, HEIGHT_LIMIT = 240)(
+  #(parameter WIDTH_LIMIT = `LAPTOP_WIDTH, HEIGHT_LIMIT = `LAPTOP_HEIGHT)(
   input  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] input_img,
   input  logic [31:0] x_ratio, y_ratio,
-  output logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] output_img);
+  output logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] output_img);
 
-  logic [`LAPTOP_HEIGHT-1:0][31:0] row_nums;
-  logic [`LAPTOP_WIDTH-1:0][31:0] col_nums;
+  logic [HEIGHT_LIMIT-1:0][31:0] row_nums;
+  logic [WIDTH_LIMIT-1:0][31:0] col_nums;
 
   genvar i, j, k, l, m;
   generate
@@ -257,40 +322,43 @@ module downscaler
         assign output_img[i][j] = input_img[row_nums[i]>>16][col_nums[j]>>16];
       end
 
+/*
       for (k = WIDTH_LIMIT; k < `LAPTOP_WIDTH; k=k+1) begin: black_pixels1
         assign output_img[i][k] = 31'd0;
-      end
+      end*/
     end
 
+/*
     for (l = HEIGHT_LIMIT; l < `LAPTOP_HEIGHT; l=l+1) begin: black_pixel2_row
       for (m = 0; m < `LAPTOP_WIDTH; m=m+1) begin: black_pixel2_column
         assign output_img[l][m] = 31'd0;
       end
-    end
+    end*/
   endgenerate
 
 endmodule
 
-module int_img_calc(
-  input  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] input_img,
-  output logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] output_img, output_img_sq);
+module int_img_calc
+  #(parameter WIDTH_LIMIT = `LAPTOP_WIDTH, HEIGHT_LIMIT = `LAPTOP_HEIGHT)(
+  input  logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] input_img,
+  output logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] output_img, output_img_sq);
 
-  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] input_img_sq;
+  logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] input_img_sq;
   assign output_img[0][0] = input_img[0][0];
   assign output_img_sq[0][0] = input_img_sq[0][0];
 
   genvar i, j, k, l;
   generate
-    for (i = 1; i < `LAPTOP_WIDTH; i=i+1) begin: top_row
+    for (i = 1; i < WIDTH_LIMIT; i=i+1) begin: top_row
       assign output_img[0][i] = input_img[0][i] + output_img[0][i-1];
       assign output_img_sq[0][i] = input_img_sq[0][i] + output_img_sq[0][i-1];
     end
-    for (j = 1; j < `LAPTOP_HEIGHT; j=j+1) begin: left_column
+    for (j = 1; j < HEIGHT_LIMIT; j=j+1) begin: left_column
       assign output_img[j][0] = input_img[j][0] + output_img[j-1][0];
       assign output_img_sq[j][0] = input_img_sq[j][0] + output_img_sq[j-1][0];
     end
-    for (k = 1; k < `LAPTOP_HEIGHT; k=k+1) begin: rest_of_rows
-      for (l = 1; l < `LAPTOP_WIDTH; l=l+1) begin: rest_of_columns
+    for (k = 1; k < HEIGHT_LIMIT; k=k+1) begin: rest_of_rows
+      for (l = 1; l < WIDTH_LIMIT; l=l+1) begin: rest_of_columns
         assign output_img[k][l] = input_img[k][l] + output_img[k][l-1] + output_img[k-1][l] - output_img[k-1][l-1];
         assign output_img_sq[k][l] = input_img_sq[k][l] + output_img_sq[k][l-1] + output_img_sq[k-1][l] - output_img_sq[k-1][l-1];
       end
@@ -299,8 +367,8 @@ module int_img_calc(
 
   genvar m, n;
   generate
-    for (m = 0; m < `LAPTOP_HEIGHT; m=m+1) begin: multiplier_row
-      for (n = 0; n < `LAPTOP_WIDTH; n=n+1) begin: multiplier_column
+    for (m = 0; m < HEIGHT_LIMIT; m=m+1) begin: multiplier_row
+      for (n = 0; n < WIDTH_LIMIT; n=n+1) begin: multiplier_column
         multiplier m(.out(input_img_sq[m][n]), .a(input_img[m][n]), .b(input_img[m][n]));
       end
     end
