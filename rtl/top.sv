@@ -9,20 +9,19 @@ module top(
   output logic [3:0] pyramid_number);
 
   //logic [`PYRAMID_LEVELS-1:0][`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] images, int_images, int_images_sq;
-  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] images0, images1, images2, images3, images4, images5, images6, images7, images8, 
-                                                      images9, images10, images11, images12,
-                                                      int_images0, int_images1, int_images2, int_images3, int_images4, int_images5,
-                                                      int_images6, int_images7, int_images8, int_images9, int_images10, int_images11,
-                                                      int_images12,
-                                                      int_images_sq0, int_images_sq1, int_images_sq2, int_images_sq3, int_images_sq4,
-                                                      int_images_sq5, int_images_sq6, int_images_sq7, int_images_sq8, int_images_sq9,
-                                                      int_images_sq10, int_images_sq11, int_images_sq12,
-                                                      curr_int_image, curr_int_image_sq;
+  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0]
+      images0, images1, images2, images3, images4, images5,
+      images6, images7, images8, images9,
+      int_images0, int_images1, int_images2, int_images3, int_images4,
+      int_images5, int_images6, int_images7, int_images8, int_images9,
+      int_images_sq0, int_images_sq1, int_images_sq2, int_images_sq3,
+      int_images_sq4, int_images_sq5, int_images_sq6, int_images_sq7,
+      int_images_sq8, int_images_sq9, curr_int_image, curr_int_image_sq;
 
-  localparam [12:0][31:0] pyramid_widths = `PYRAMID_WIDTHS;
-  localparam [12:0][31:0] pyramid_heights = `PYRAMID_HEIGHTS;
-  logic [12:0][31:0] x_ratios = `X_RATIOS;
-  logic [12:0][31:0] y_ratios = `Y_RATIOS;
+  localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_widths = `PYRAMID_WIDTHS;
+  localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_heights = `PYRAMID_HEIGHTS;
+  logic [`PYRAMID_LEVELS-2:0][31:0] x_ratios = `X_RATIOS;
+  logic [`PYRAMID_LEVELS-2:0][31:0] y_ratios = `Y_RATIOS;
 
   always_ff @(posedge clock, posedge reset) begin: set_first_img
     if (reset) begin
@@ -30,48 +29,48 @@ module top(
     end else if (laptop_img_rdy) begin
       for (int y = 0; y < `LAPTOP_HEIGHT; y++) begin: traverse_rows
         for (int z = 0; z < `LAPTOP_WIDTH; z++) begin: traverse_cols
-          images0 <= {24'd0, laptop_img};
+          images0[y][z] <= {24'd0, laptop_img[y][z]};
         end
       end
     end
   end
 
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[1]), .HEIGHT_LIMIT(pyramid_heights[1])) 
-             down1(.input_img(images0), .x_ratio(x_ratios[1]),
-                   .y_ratio(y_ratios[1]), .output_img(images1));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[2]), .HEIGHT_LIMIT(pyramid_heights[2])) 
-             down2(.input_img(images1), .x_ratio(x_ratios[2]),
-                   .y_ratio(y_ratios[2]), .output_img(images2));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[3]), .HEIGHT_LIMIT(pyramid_heights[3])) 
-             down3(.input_img(images2), .x_ratio(x_ratios[3]),
-                   .y_ratio(y_ratios[3]), .output_img(images3));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[4]), .HEIGHT_LIMIT(pyramid_heights[4])) 
-             down4(.input_img(images3), .x_ratio(x_ratios[4]),
-                   .y_ratio(y_ratios[4]), .output_img(images4));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[5]), .HEIGHT_LIMIT(pyramid_heights[5])) 
-             down5(.input_img(images4), .x_ratio(x_ratios[5]),
-                   .y_ratio(y_ratios[5]), .output_img(images5));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[6]), .HEIGHT_LIMIT(pyramid_heights[6])) 
-             down6(.input_img(images5), .x_ratio(x_ratios[6]),
-                   .y_ratio(y_ratios[6]), .output_img(images6));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[7]), .HEIGHT_LIMIT(pyramid_heights[7])) 
-             down7(.input_img(images6), .x_ratio(x_ratios[7]),
-                   .y_ratio(y_ratios[7]), .output_img(images7));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[8]), .HEIGHT_LIMIT(pyramid_heights[8])) 
-             down8(.input_img(images7), .x_ratio(x_ratios[8]),
-                   .y_ratio(y_ratios[8]), .output_img(images8));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[9]), .HEIGHT_LIMIT(pyramid_heights[9])) 
-             down9(.input_img(images8), .x_ratio(x_ratios[9]),
-                   .y_ratio(y_ratios[9]), .output_img(images9));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[10]), .HEIGHT_LIMIT(pyramid_heights[10])) 
-             down10(.input_img(images9), .x_ratio(x_ratios[10]),
-                   .y_ratio(y_ratios[10]), .output_img(images10));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[11]), .HEIGHT_LIMIT(pyramid_heights[11])) 
-             down11(.input_img(images10), .x_ratio(x_ratios[11]),
-                   .y_ratio(y_ratios[11]), .output_img(images11));
-  downscaler #(.WIDTH_LIMIT(pyramid_widths[12]), .HEIGHT_LIMIT(pyramid_heights[12])) 
-             down12(.input_img(images11), .x_ratio(x_ratios[12]),
-                   .y_ratio(y_ratios[12]), .output_img(images12));
+  downscaler #(.WIDTH_LIMIT(pyramid_widths[1]),
+               .HEIGHT_LIMIT(pyramid_heights[1]))
+             down1(.input_img(images0), .x_ratio(x_ratios[0]),
+                   .y_ratio(y_ratios[0]), .output_img(images1));
+  downscaler #(.WIDTH_LIMIT(pyramid_widths[2]),
+               .HEIGHT_LIMIT(pyramid_heights[2]))
+             down2(.input_img(images0), .x_ratio(x_ratios[1]),
+                   .y_ratio(y_ratios[1]), .output_img(images2));
+  downscaler #(.WIDTH_LIMIT(pyramid_widths[3]),
+               .HEIGHT_LIMIT(pyramid_heights[3]))
+             down3(.input_img(images0), .x_ratio(x_ratios[2]),
+                   .y_ratio(y_ratios[2]), .output_img(images3));
+  downscaler #(.WIDTH_LIMIT(pyramid_widths[4]),
+               .HEIGHT_LIMIT(pyramid_heights[4]))
+             down4(.input_img(images0), .x_ratio(x_ratios[3]),
+                   .y_ratio(y_ratios[3]), .output_img(images4));
+  downscaler #(.WIDTH_LIMIT(pyramid_widths[5]),
+               .HEIGHT_LIMIT(pyramid_heights[5]))
+             down5(.input_img(images0), .x_ratio(x_ratios[4]),
+                   .y_ratio(y_ratios[4]), .output_img(images5));
+  downscaler #(.WIDTH_LIMIT(pyramid_widths[6]),
+               .HEIGHT_LIMIT(pyramid_heights[6]))
+             down6(.input_img(images0), .x_ratio(x_ratios[5]),
+                   .y_ratio(y_ratios[5]), .output_img(images6));
+  downscaler #(.WIDTH_LIMIT(pyramid_widths[7]),
+               .HEIGHT_LIMIT(pyramid_heights[7]))
+             down7(.input_img(images0), .x_ratio(x_ratios[6]),
+                   .y_ratio(y_ratios[6]), .output_img(images7));
+  downscaler #(.WIDTH_LIMIT(pyramid_widths[8]),
+               .HEIGHT_LIMIT(pyramid_heights[8]))
+             down8(.input_img(images0), .x_ratio(x_ratios[7]),
+                   .y_ratio(y_ratios[7]), .output_img(images8));
+  downscaler #(.WIDTH_LIMIT(pyramid_widths[9]),
+               .HEIGHT_LIMIT(pyramid_heights[9]))
+             down9(.input_img(images0), .x_ratio(x_ratios[8]),
+                   .y_ratio(y_ratios[8]), .output_img(images9));
 
   int_img_calc int_calc0(.input_img(images0), .output_img(int_images0),
                          .output_img_sq(int_images_sq0));
@@ -93,12 +92,6 @@ module top(
                          .output_img_sq(int_images_sq8));
   int_img_calc int_calc9(.input_img(images9), .output_img(int_images9),
                          .output_img_sq(int_images_sq9));
-  int_img_calc int_calc10(.input_img(images10), .output_img(int_images10),
-                          .output_img_sq(int_images_sq10));
-  int_img_calc int_calc11(.input_img(images11), .output_img(int_images11),
-                          .output_img_sq(int_images_sq11));
-  int_img_calc int_calc12(.input_img(images12), .output_img(int_images12),
-                          .output_img_sq(int_images_sq12));
 
   logic [3:0] img_index;
   logic [31:0] row_index, col_index;
@@ -152,18 +145,6 @@ module top(
             curr_int_image = int_images9;
             curr_int_image_sq = int_images_sq9;
             end
-      4'd10: begin
-            curr_int_image = int_images10;
-            curr_int_image_sq = int_images_sq10;
-            end
-      4'd11: begin
-            curr_int_image = int_images11;
-            curr_int_image_sq = int_images_sq11;
-            end
-      4'd12: begin
-            curr_int_image = int_images12;
-            curr_int_image_sq = int_images_sq12;
-            end
       default: curr_int_image = 'd0;
     endcase
   end
@@ -183,7 +164,7 @@ module top(
 
   multiplier scan_win_mult1(.Y(scan_win_std_dev1), .A(scan_win_sq_sum), .B(32'd576));
   multiplier scan_win_mult2(.Y(scan_win_std_dev2), .A(scan_win_sum), .B(scan_win_sum));
-  
+
   sqrt stddev(.val(scan_win_std_dev1 - scan_win_std_dev2), .res(scan_win_std_dev));
 
   // copy current scanning window into a buffer
@@ -218,7 +199,7 @@ module top(
       row_index <= 32'd0;
       col_index <= 32'd0;
     end else begin
-      if (laptop_img_rdy) begin 
+      if (laptop_img_rdy) begin
         wait_integral_image_count <= 32'd1;
       end
       if ((wait_integral_image_count > 32'd0) && (wait_integral_image_count < 32'd76800)) begin: waiting_for_first_int_img
@@ -231,7 +212,7 @@ module top(
         row_index <= 32'd0;
         col_index <= 32'd0;
       end
-      if (vj_pipeline_on) begin 
+      if (vj_pipeline_on) begin
         if ((img_index == `PYRAMID_LEVELS-1) && (row_index == pyramid_heights[img_index] - `WINDOW_SIZE) &&
             (col_index == pyramid_widths[img_index] - `WINDOW_SIZE)) begin: vj_pipeline_finished
           img_index <= 4'd15;
@@ -308,7 +289,7 @@ module int_img_calc(
       assign output_img[j][0] = input_img[j][0] + output_img[j-1][0];
       assign output_img_sq[j][0] = input_img_sq[j][0] + output_img_sq[j-1][0];
     end
-    for (k = 1; k < `LAPTOP_HEIGHT; k=k+1) begin: rest_of_rows 
+    for (k = 1; k < `LAPTOP_HEIGHT; k=k+1) begin: rest_of_rows
       for (l = 1; l < `LAPTOP_WIDTH; l=l+1) begin: rest_of_columns
         assign output_img[k][l] = input_img[k][l] + output_img[k][l-1] + output_img[k-1][l] - output_img[k-1][l-1];
         assign output_img_sq[k][l] = input_img_sq[k][l] + output_img_sq[k][l-1] + output_img_sq[k-1][l] - output_img_sq[k-1][l-1];
@@ -338,28 +319,28 @@ module vj_pipeline(
   logic [`NUM_FEATURE-1:0][`WINDOW_SIZE-1:0][`WINDOW_SIZE-1:0][31:0] scan_wins;
   logic [`NUM_FEATURE-1:0][1:0][31:0] scan_coords;
   logic [`NUM_FEATURE-1:0][31:0] scan_win_std_devs;
-  
-  logic [25:0][31:0] stage_num_feature = `STAGE_NUM_FEATURE;
-  logic [24:0][31:0] stage_threshold = `STAGE_THRESHOLD;
-  logic [2912:0][31:0] rectangle1_xs = `RECTANGLE1_XS;
-  logic [2912:0][31:0] rectangle1_ys = `RECTANGLE1_YS;
-  logic [2912:0][31:0] rectangle1_widths = `RECTANGLE1_WIDTHS;
-  logic [2912:0][31:0] rectangle1_heights = `RECTANGLE1_HEIGHTS;
-  logic [2912:0][31:0] rectangle1_weights = `RECTANGLE1_WEIGHTS;
-  logic [2912:0][31:0] rectangle2_xs = `RECTANGLE2_XS;
-  logic [2912:0][31:0] rectangle2_ys = `RECTANGLE2_YS;
-  logic [2912:0][31:0] rectangle2_widths = `RECTANGLE2_WIDTHS;
-  logic [2912:0][31:0] rectangle2_heights = `RECTANGLE2_HEIGHTS;
-  logic [2912:0][31:0] rectangle2_weights = `RECTANGLE2_WEIGHTS;
-  logic [2912:0][31:0] rectangle3_xs = `RECTANGLE3_XS;
-  logic [2912:0][31:0] rectangle3_ys = `RECTANGLE3_YS;
-  logic [2912:0][31:0] rectangle3_widths = `RECTANGLE3_WIDTHS;
-  logic [2912:0][31:0] rectangle3_heights = `RECTANGLE3_HEIGHTS;
-  logic [2912:0][31:0] rectangle3_weights = `RECTANGLE3_WEIGHTS;
-  logic [2912:0][31:0] feature_threshold = `FEATURE_THRESHOLD;
-  logic [2912:0][31:0] feature_aboves = `FEATURE_ABOVE;
-  logic [2912:0][31:0] feature_belows = `FEATURE_BELOW;
-  
+
+  logic [`NUM_STAGE:0][31:0] stage_num_feature = `STAGE_NUM_FEATURE;
+  logic [`NUM_STAGE-1:0][31:0] stage_threshold = `STAGE_THRESHOLD;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle1_xs = `RECTANGLE1_XS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle1_ys = `RECTANGLE1_YS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle1_widths = `RECTANGLE1_WIDTHS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle1_heights = `RECTANGLE1_HEIGHTS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle1_weights = `RECTANGLE1_WEIGHTS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle2_xs = `RECTANGLE2_XS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle2_ys = `RECTANGLE2_YS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle2_widths = `RECTANGLE2_WIDTHS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle2_heights = `RECTANGLE2_HEIGHTS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle2_weights = `RECTANGLE2_WEIGHTS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle3_xs = `RECTANGLE3_XS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle3_ys = `RECTANGLE3_YS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle3_widths = `RECTANGLE3_WIDTHS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle3_heights = `RECTANGLE3_HEIGHTS;
+  logic [`NUM_FEATURE-1:0][31:0] rectangle3_weights = `RECTANGLE3_WEIGHTS;
+  logic [`NUM_FEATURE-1:0][31:0] feature_threshold = `FEATURE_THRESHOLD;
+  logic [`NUM_FEATURE-1:0][31:0] feature_aboves = `FEATURE_ABOVE;
+  logic [`NUM_FEATURE-1:0][31:0] feature_belows = `FEATURE_BELOW;
+
   always_ff @(posedge clock, posedge reset) begin: set_scanning_windows
     if (reset) begin: reset_scanning_windows
        scan_wins <= 'd0;
@@ -381,7 +362,7 @@ module vj_pipeline(
 
   logic [`NUM_FEATURE-1:0][31:0] rectangle1_vals, rectangle2_vals, rectangle3_vals,
                                 rectangle1_products, rectangle2_products, rectangle3_products,
-                                feature_sums, feature_thresholds, feature_products, 
+                                feature_sums, feature_thresholds, feature_products,
                                 feature_accums;
   logic [`NUM_FEATURE-1:0] feature_comparisons;
 

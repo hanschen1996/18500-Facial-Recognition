@@ -158,14 +158,14 @@ weights_file.write("// assume we use haarcascade_frontalface_default.xml\n")
 weights_file.write("`define NUM_STAGE %d\n"%(num_stage))
 weights_file.write("`define NUM_FEATURE %d\n"%(num_feature))
 weights_file.write("`define WINDOW_SIZE %d\n"%(window_size))
-weights_file.write("`define LAPTOP_WIDTH 320\n")
-weights_file.write("`define LAPTOP_HEIGHT 240\n")
-weights_file.write("`define PYRAMID_LEVELS 13\n\n")
+weights_file.write("`define LAPTOP_WIDTH 160\n")
+weights_file.write("`define LAPTOP_HEIGHT 120\n")
+weights_file.write("`define PYRAMID_LEVELS 10\n\n")
 
-weights_file.write("`define PYRAMID_WIDTHS {32'd320, 32'd266, 32'd222, 32'd185, 32'd154, 32'd128, 32'd107, 32'd89, 32'd74, 32'd62, 32'd51, 32'd43, 32'd35}\n")
-weights_file.write("`define PYRAMID_HEIGHTS {32'd240, 32'd199, 32'd166, 32'd138, 32'd115, 32'd96, 32'd80, 32'd66, 32'd55, 32'd46, 32'd38, 32'd32, 32'd26}\n")
-weights_file.write("`define X_RATIOS {32'd78841, 32'd78526, 32'd78644, 32'd78729, 32'd78849, 32'd78399, 32'd78791, 32'd78821, 32'd78221, 32'd79672, 32'd77729, 32'd80516}\n")
-weights_file.write("`define Y_RATIOS {32'd79039, 32'd78565, 32'd78834, 32'd78644, 32'd78507, 32'd78644, 32'd79438, 32'd78644, 32'd78359, 32'd79334, 32'd77825, 32'd80660}\n\n")
+weights_file.write("`define PYRAMID_WIDTHS {32'd160, 32'd133, 32'd111, 32'd92, 32'd77, 32'd64, 32'd53, 32'd44, 32'd37, 32'd31}\n")
+weights_file.write("`define PYRAMID_HEIGHTS {32'd120, 32'd99, 32'd83, 32'd69, 32'd57, 32'd48, 32'd40, 32'd33, 32'd27, 32'd23}\n")
+weights_file.write("`define X_RATIOS {32'd78841, 32'd94467, 32'd113976, 32'd136179, 32'd163841, 32'd197845, 32'd238313, 32'd283399, 32'd338251}\n")
+weights_file.write("`define Y_RATIOS {32'd79438, 32'd94751, 32'd113976, 32'd137971, 32'd163841, 32'd196609, 32'd238313, 32'd291272, 32'd341927}\n\n")
 
 def write_array(arr, arr_len):
     for s in range(arr_len):
