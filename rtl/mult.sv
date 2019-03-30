@@ -27,7 +27,7 @@ module multiplier(
         assign partial_products[i][j] = 1'b0;
       end
       for (k = i; k < 32; k=k+1) begin: remaining
-        assign partial_products[i][k-i] = a[k-i] & b[i];
+        assign partial_products[i][k] = a[k-i] & b[i];
       end
     end
   endgenerate

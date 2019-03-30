@@ -1,13 +1,19 @@
 `default_nettype none
-`include "vj_weights.svh"
+`include "vj_weights.vh"
 
 module top(
   input logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] laptop_img, // coming from uart module
   input logic clock, laptop_img_rdy, reset,
-  output logic [3:0][31:0] face_coords,
-  output logic face_coords_ready);
+  output logic [1:0][31:0] face_coords,
+  output logic face_coords_ready,
+  output logic [3:0] pyramid_number);
 
   logic [`PYRAMID_LEVELS-1:0][`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] images, int_images, int_images_sq;
+
+  localparam [12:0][31:0] pyramid_widths = `PYRAMID_WIDTHS;
+  localparam [12:0][31:0] pyramid_heights = `PYRAMID_HEIGHTS;
+  logic [12:0][31:0] x_ratios = `X_RATIOS;
+  logic [12:0][31:0] y_ratios = `Y_RATIOS;
 
   always_ff @(posedge clock, posedge reset) begin: set_first_img
     if (reset) begin
@@ -81,12 +87,13 @@ module top(
     end
   endgenerate
 
-  logic [1:0][31:0] top_left;
+  //logic [1:0][31:0] top_left;
+  //logic top_left_ready;
 
-  // TODO: react to top_left_ready signal
   vj_pipeline vjp(.clock, .reset, .scan_win, .scan_win_std_dev,
-                  .scan_win_index, .top_left, .top_left_ready);
+                  .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready));
 
+  assign pyramid_number = img_index;
 
   /* ---------------------------------------------------------------------------
    * FSM -----------------------------------------------------------------------
@@ -222,7 +229,7 @@ module vj_pipeline(
   logic [`NUM_FEATURE-1:0][`WINDOW_SIZE-1:0][`WINDOW_SIZE-1:0][31:0] scan_wins;
   logic [`NUM_FEATURE-1:0][1:0][31:0] scan_coords;
   logic [`NUM_FEATURE-1:0][31:0] scan_win_std_devs;
-  logic [24:0][31:0] stage_threshold = `STAGE_THRESHOLD;
+  
   logic [25:0][31:0] stage_num_feature = `STAGE_NUM_FEATURE;
   logic [24:0][31:0] stage_threshold = `STAGE_THRESHOLD;
   logic [2912:0][31:0] rectangle1_xs = `RECTANGLE1_XS;
@@ -241,10 +248,9 @@ module vj_pipeline(
   logic [2912:0][31:0] rectangle3_heights = `RECTANGLE3_HEIGHTS;
   logic [2912:0][31:0] rectangle3_weights = `RECTANGLE3_WEIGHTS;
   logic [2912:0][31:0] feature_threshold = `FEATURE_THRESHOLD;
-  logic [2912:0][31:0] feature_above = `FEATURE_ABOVE;
-  logic [2912:0][31:0] feature_below = `FEATURE_BELOW;
-
-
+  logic [2912:0][31:0] feature_aboves = `FEATURE_ABOVE;
+  logic [2912:0][31:0] feature_belows = `FEATURE_BELOW;
+  
   always_ff @(posedge clock, posedge reset) begin: set_scanning_windows
     if (reset) begin: reset_scanning_windows
        scan_wins <= 'd0;
@@ -308,7 +314,7 @@ module vj_pipeline(
       is_feature <= 'd0;
     end else begin
       for (int k = 1; k < 26; k++) begin
-        for (int l = stage_num_feature[k-1]; l < stage_num_feature[k] - 1; l++) 
+        for (int l = stage_num_feature[k-1]; l < stage_num_feature[k] - 1; l++) begin
           stage_accums[l+1] <= stage_accums[l] + feature_accums[l];
           is_feature[l+1] <= is_feature[l];
         end

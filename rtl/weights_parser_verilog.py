@@ -162,10 +162,10 @@ weights_file.write("`define LAPTOP_WIDTH 320\n")
 weights_file.write("`define LAPTOP_HEIGHT 240\n")
 weights_file.write("`define PYRAMID_LEVELS 13\n\n")
 
-weights_file.write("integer pyramid_widths[12:0] = '{320, 266, 222, 185, 154, 128, 107, 89, 74, 62, 51, 43, 35};\n")
-weights_file.write("integer pyramid_heights[12:0] = '{240, 199, 166, 138, 115, 96, 80, 66, 55, 46, 38, 32, 26};\n")
-weights_file.write("logic [12:0][31:0] x_ratios = {32'd78841, 32'd78526, 32'd78644, 32'd78729, 32'd78849, 32'd78399, 32'd78791, 32'd78821, 32'd78221, 32'd79672, 32'd77729, 32'd80516};\n")
-weights_file.write("logic [12:0][31:0] y_ratios = {32'd79039, 32'd78565, 32'd78834, 32'd78644, 32'd78507, 32'd78644, 32'd79438, 32'd78644, 32'd78359, 32'd79334, 32'd77825, 32'd80660};\n\n")
+weights_file.write("`define PYRAMID_WIDTHS {32'd320, 32'd266, 32'd222, 32'd185, 32'd154, 32'd128, 32'd107, 32'd89, 32'd74, 32'd62, 32'd51, 32'd43, 32'd35}\n")
+weights_file.write("`define PYRAMID_HEIGHTS {32'd240, 32'd199, 32'd166, 32'd138, 32'd115, 32'd96, 32'd80, 32'd66, 32'd55, 32'd46, 32'd38, 32'd32, 32'd26}\n")
+weights_file.write("`define X_RATIOS {32'd78841, 32'd78526, 32'd78644, 32'd78729, 32'd78849, 32'd78399, 32'd78791, 32'd78821, 32'd78221, 32'd79672, 32'd77729, 32'd80516}\n")
+weights_file.write("`define Y_RATIOS {32'd79039, 32'd78565, 32'd78834, 32'd78644, 32'd78507, 32'd78644, 32'd79438, 32'd78644, 32'd78359, 32'd79334, 32'd77825, 32'd80660}\n\n")
 
 def write_array(arr, arr_len):
     for s in range(arr_len):
@@ -183,38 +183,38 @@ def write_array(arr, arr_len):
 
 def write_array_body(arr, arr_name):
     arr_len = len(arr)
-    weights_file.write("logic [%d:0][31:0] %s = {"%(arr_len - 1, arr_name))
+    weights_file.write("`define %s {"%(arr_name))
     write_array(arr, arr_len)
     weights_file.write("\n")
 
 ## write data
 
 # number of features in each stage
-write_array_body(stage_num_feature, "stage_num_feature")
+write_array_body(stage_num_feature, "stage_num_feature".upper())
 weights_file.write("// thresholds are negative values\n")
-write_array_body(stage_threshold, "stage_threshold")
+write_array_body(stage_threshold, "stage_threshold".upper())
 
-write_array_body(rectangle1_xs, "rectangle1_xs")
-write_array_body(rectangle1_ys, "rectangle1_ys")
-write_array_body(rectangle1_widths, "rectangle1_widths")
-write_array_body(rectangle1_heights, "rectangle1_heights")
-write_array_body(rectangle1_weights, "rectangle1_weights")
+write_array_body(rectangle1_xs, "rectangle1_xs".upper())
+write_array_body(rectangle1_ys, "rectangle1_ys".upper())
+write_array_body(rectangle1_widths, "rectangle1_widths".upper())
+write_array_body(rectangle1_heights, "rectangle1_heights".upper())
+write_array_body(rectangle1_weights, "rectangle1_weights".upper())
 
-write_array_body(rectangle2_xs, "rectangle2_xs")
-write_array_body(rectangle2_ys, "rectangle2_ys")
-write_array_body(rectangle2_widths, "rectangle2_widths")
-write_array_body(rectangle2_heights, "rectangle2_heights")
-write_array_body(rectangle2_weights, "rectangle2_weights")
+write_array_body(rectangle2_xs, "rectangle2_xs".upper())
+write_array_body(rectangle2_ys, "rectangle2_ys".upper())
+write_array_body(rectangle2_widths, "rectangle2_widths".upper())
+write_array_body(rectangle2_heights, "rectangle2_heights".upper())
+write_array_body(rectangle2_weights, "rectangle2_weights".upper())
 
-write_array_body(rectangle3_xs, "rectangle3_xs")
-write_array_body(rectangle3_ys, "rectangle3_ys")
-write_array_body(rectangle3_widths, "rectangle3_widths")
-write_array_body(rectangle3_heights, "rectangle3_heights")
-write_array_body(rectangle3_weights, "rectangle3_weights")
+write_array_body(rectangle3_xs, "rectangle3_xs".upper())
+write_array_body(rectangle3_ys, "rectangle3_ys".upper())
+write_array_body(rectangle3_widths, "rectangle3_widths".upper())
+write_array_body(rectangle3_heights, "rectangle3_heights".upper())
+write_array_body(rectangle3_weights, "rectangle3_weights".upper())
 
-write_array_body(feature_threshold, "feature_threshold")
-write_array_body(feature_above, "feature_above")
-write_array_body(feature_below, "feature_below")
+write_array_body(feature_threshold, "feature_threshold".upper())
+write_array_body(feature_above, "feature_above".upper())
+write_array_body(feature_below, "feature_below".upper())
 
 #for i in range(10):
 #    print(feature_rects[i])
