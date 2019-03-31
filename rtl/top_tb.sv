@@ -9,8 +9,11 @@ module top_tb();
   logic face_coords_ready;
   logic [3:0] pyramid_number;
   localparam [`NUM_STAGE:0][31:0] stage_num_feature = `STAGE_NUM_FEATURE;
+  integer file;
+  logic [31:0] c;
+  logic [31:0] row, col;
 
-  top dut(.*);
+  //top dut(.*);
 
   default clocking cb_main 
     @(posedge clock); 
@@ -22,11 +25,34 @@ module top_tb();
   end
 
   initial begin
-    for (int i = 0; i < `LAPTOP_HEIGHT; i++) begin 
-      for (int j = 0; j < `LAPTOP_WIDTH; j++) begin 
-        laptop_img = 32'd5;
-      end
+    row <= 0;
+    col <= 0;
+    ##1;
+
+    file = $fopen("input.txt", "r");
+
+    if (file == 0) begin
+      $display("ERROR: file not opened");
+      $finish;
     end
+
+    while ((c = $fgetc(file)) != -1) begin
+      laptop_img[row][col] <= c[7:0];
+      if (col == `LAPTOP_WIDTH - 1) begin
+        row <= row + 1;
+        col <= 0;
+      end
+      else col <= col + 1;
+      ##1;
+    end
+
+    for (int y = 0; y < `LAPTOP_HEIGHT; y ++) begin
+      for (int x = 0; x < `LAPTOP_WIDTH; x ++) begin
+        $write("%0d,", laptop_img[y][x]);
+      end
+      $write("\n");
+    end
+
     reset = 1'b1;
     laptop_img_rdy = 1'b0;
     
