@@ -10,8 +10,24 @@ module top(
 
   localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_widths = `PYRAMID_WIDTHS;
   localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_heights = `PYRAMID_HEIGHTS;
-  logic [`PYRAMID_LEVELS-2:0][31:0] x_ratios = `X_RATIOS;
-  logic [`PYRAMID_LEVELS-2:0][31:0] y_ratios = `Y_RATIOS;
+  logic [pyramid_widths[1]-1:0][31:0] pyramid1_x_ratios = `PYRAMID1_X_RATIOS;
+  logic [pyramid_heights[1]-1:0][31:0] pyramid1_y_ratios = `PYRAMID1_Y_RATIOS;
+  logic [pyramid_widths[2]-1:0][31:0] pyramid2_x_ratios = `PYRAMID2_X_RATIOS;
+  logic [pyramid_heights[2]-1:0][31:0] pyramid2_y_ratios = `PYRAMID2_Y_RATIOS;
+  logic [pyramid_widths[3]-1:0][31:0] pyramid3_x_ratios = `PYRAMID3_X_RATIOS;
+  logic [pyramid_heights[3]-1:0][31:0] pyramid3_y_ratios = `PYRAMID3_Y_RATIOS;
+  logic [pyramid_widths[4]-1:0][31:0] pyramid4_x_ratios = `PYRAMID4_X_RATIOS;
+  logic [pyramid_heights[4]-1:0][31:0] pyramid4_y_ratios = `PYRAMID4_Y_RATIOS;
+  logic [pyramid_widths[5]-1:0][31:0] pyramid5_x_ratios = `PYRAMID5_X_RATIOS;
+  logic [pyramid_heights[5]-1:0][31:0] pyramid5_y_ratios = `PYRAMID5_Y_RATIOS;
+  logic [pyramid_widths[6]-1:0][31:0] pyramid6_x_ratios = `PYRAMID6_X_RATIOS;
+  logic [pyramid_heights[6]-1:0][31:0] pyramid6_y_ratios = `PYRAMID6_Y_RATIOS;
+  logic [pyramid_widths[7]-1:0][31:0] pyramid7_x_ratios = `PYRAMID7_X_RATIOS;
+  logic [pyramid_heights[7]-1:0][31:0] pyramid7_y_ratios = `PYRAMID7_Y_RATIOS;
+  logic [pyramid_widths[8]-1:0][31:0] pyramid8_x_ratios = `PYRAMID8_X_RATIOS;
+  logic [pyramid_heights[8]-1:0][31:0] pyramid8_y_ratios = `PYRAMID8_Y_RATIOS;
+  logic [pyramid_widths[9]-1:0][31:0] pyramid9_x_ratios = `PYRAMID9_X_RATIOS;
+  logic [pyramid_heights[9]-1:0][31:0] pyramid9_y_ratios = `PYRAMID9_Y_RATIOS;
 
   // each pyramid image has different size
   logic [pyramid_heights[0]-1:0][pyramid_widths[0]-1:0][31:0] images0, int_images0, int_images_sq0;
@@ -42,40 +58,40 @@ module top(
 
   downscaler #(.WIDTH_LIMIT(pyramid_widths[1]),
                .HEIGHT_LIMIT(pyramid_heights[1]))
-             down1(.input_img(images0), .x_ratio(x_ratios[0]),
-                   .y_ratio(y_ratios[0]), .output_img(images1));
+             down1(.input_img(images0), .x_ratio(pyramid1_x_ratios),
+                   .y_ratio(pyramid1_y_ratios), .output_img(images1));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[2]),
                .HEIGHT_LIMIT(pyramid_heights[2]))
-             down2(.input_img(images0), .x_ratio(x_ratios[1]),
-                   .y_ratio(y_ratios[1]), .output_img(images2));
+             down2(.input_img(images0), .x_ratio(pyramid2_x_ratios),
+                   .y_ratio(pyramid2_y_ratios), .output_img(images2));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[3]),
                .HEIGHT_LIMIT(pyramid_heights[3]))
-             down3(.input_img(images0), .x_ratio(x_ratios[2]),
-                   .y_ratio(y_ratios[2]), .output_img(images3));
+             down3(.input_img(images0), .x_ratio(pyramid3_x_ratios),
+                   .y_ratio(pyramid3_y_ratios), .output_img(images3));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[4]),
                .HEIGHT_LIMIT(pyramid_heights[4]))
-             down4(.input_img(images0), .x_ratio(x_ratios[3]),
-                   .y_ratio(y_ratios[3]), .output_img(images4));
+             down4(.input_img(images0), .x_ratio(pyramid4_x_ratios),
+                   .y_ratio(pyramid4_y_ratios), .output_img(images4));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[5]),
                .HEIGHT_LIMIT(pyramid_heights[5]))
-             down5(.input_img(images0), .x_ratio(x_ratios[4]),
-                   .y_ratio(y_ratios[4]), .output_img(images5));
+             down5(.input_img(images0), .x_ratio(pyramid5_x_ratios),
+                   .y_ratio(pyramid5_y_ratios), .output_img(images5));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[6]),
                .HEIGHT_LIMIT(pyramid_heights[6]))
-             down6(.input_img(images0), .x_ratio(x_ratios[5]),
-                   .y_ratio(y_ratios[5]), .output_img(images6));
+             down6(.input_img(images0), .x_ratio(pyramid6_x_ratios),
+                   .y_ratio(pyramid6_y_ratios), .output_img(images6));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[7]),
                .HEIGHT_LIMIT(pyramid_heights[7]))
-             down7(.input_img(images0), .x_ratio(x_ratios[6]),
-                   .y_ratio(y_ratios[6]), .output_img(images7));
+             down7(.input_img(images0), .x_ratio(pyramid7_x_ratios),
+                   .y_ratio(pyramid7_y_ratios), .output_img(images7));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[8]),
                .HEIGHT_LIMIT(pyramid_heights[8]))
-             down8(.input_img(images0), .x_ratio(x_ratios[7]),
-                   .y_ratio(y_ratios[7]), .output_img(images8));
+             down8(.input_img(images0), .x_ratio(pyramid8_x_ratios),
+                   .y_ratio(pyramid8_y_ratios), .output_img(images8));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[9]),
                .HEIGHT_LIMIT(pyramid_heights[9]))
-             down9(.input_img(images0), .x_ratio(x_ratios[8]),
-                   .y_ratio(y_ratios[8]), .output_img(images9));
+             down9(.input_img(images0), .x_ratio(pyramid9_x_ratios),
+                   .y_ratio(pyramid9_y_ratios), .output_img(images9));
 
   int_img_calc #(.WIDTH_LIMIT(pyramid_widths[0]),
                  .HEIGHT_LIMIT(pyramid_heights[0]))
@@ -306,20 +322,17 @@ endmodule
 module downscaler
   #(parameter WIDTH_LIMIT = `LAPTOP_WIDTH, HEIGHT_LIMIT = `LAPTOP_HEIGHT)(
   input  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] input_img,
-  input  logic [31:0] x_ratio, y_ratio,
+  input  logic [WIDTH_LIMIT-1:0][31:0] x_ratio,
+  input  logic [HEIGHT_LIMIT-1:0][31:0] y_ratio,
   output logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] output_img);
 
-  logic [HEIGHT_LIMIT-1:0][31:0] row_nums;
-  logic [WIDTH_LIMIT-1:0][31:0] col_nums;
-
+  localparam [HEIGHT_LIMIT-1:0][31:0] local_y_ratio = y_ratio;
+  localparam [WIDTH_LIMIT-1:0][31:0] local_x_ratio = x_ratio;
   genvar i, j, k, l, m;
   generate
     for (i = 0; i < HEIGHT_LIMIT; i=i+1) begin: downscaled_row
-      multiplier m_r(.out(row_nums[i]), .a(i), .b(x_ratio));
-
       for (j = 0; j < WIDTH_LIMIT; j=j+1) begin: downscaled_pixels_in_row
-        multiplier m_c(.out(col_nums[j]), .a(j), .b(y_ratio));
-        assign output_img[i][j] = input_img[row_nums[i]>>16][col_nums[j]>>16];
+        assign output_img[i][j] = input_img[local_y_ratio[i]][local_x_ratio[j]];
       end
 
 /*
@@ -327,12 +340,10 @@ module downscaler
         assign output_img[i][k] = 31'd0;
       end*/
     end
-
 /*
     for (l = HEIGHT_LIMIT; l < `LAPTOP_HEIGHT; l=l+1) begin: black_pixel2_row
       for (m = 0; m < `LAPTOP_WIDTH; m=m+1) begin: black_pixel2_column
-        assign output_img[l][m] = 31'd0;
-      end
+        assign output_img[l][m] = 31'd0;      end
     end*/
   endgenerate
 
