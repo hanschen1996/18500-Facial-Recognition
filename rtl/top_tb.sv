@@ -78,6 +78,9 @@ module top_tb();
       end
       $display("face_coords are (r%0d, c%0d)", face_coords[0], face_coords[1]);
       $display("------------------------------------------------------");
+
+      ##1;
+
     end
 
     ##5;

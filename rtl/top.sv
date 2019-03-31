@@ -264,6 +264,7 @@ module top(
       img_index <= 4'd15;
       row_index <= 32'd0;
       col_index <= 32'd0;
+      vj_pipeline_on <= 1'd0;
     end else begin
       if (laptop_img_rdy) begin
         wait_integral_image_count <= 32'd1;
