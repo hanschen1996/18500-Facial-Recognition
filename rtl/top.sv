@@ -246,7 +246,7 @@ module top(
   //logic [1:0][31:0] top_left;
   //logic top_left_ready;
 
-  vj_pipeline vjp(.clock, .reset, .scan_win, .scan_win_std_dev,
+  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev),
                   .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready));
 
   assign pyramid_number = img_index;
