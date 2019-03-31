@@ -12,6 +12,76 @@ def get_xml():
 if (not os.path.isfile("./vj_weights.xml")):
     get_xml()
 
+pyramid_widths = [160, 133, 111, 92, 77, 64, 53, 44, 37, 31]
+pyramid_heights = [120, 99, 83, 69, 57, 48, 40, 33, 27, 23]
+
+x_ratios = [78841, 94467, 113976, 136179, 163841, 197845, 238313, 283399, 338251]
+y_ratios = [79438, 94751, 113976, 137971, 163841, 196609, 238313, 291272, 341927]
+
+pyramid1_x_ratios = []
+pyramid1_y_ratios = []
+for i in range(pyramid_widths[1]):
+    pyramid1_x_ratios.append((i * x_ratios[0]) >> 16)
+for i in range(pyramid_heights[1]):
+    pyramid1_y_ratios.append((i * y_ratios[0]) >> 16)
+
+pyramid2_x_ratios = []
+pyramid2_y_ratios = []
+for i in range(pyramid_widths[2]):
+    pyramid2_x_ratios.append((i * x_ratios[1]) >> 16)
+for i in range(pyramid_heights[2]):
+    pyramid2_y_ratios.append((i * y_ratios[1]) >> 16)
+
+pyramid3_x_ratios = []
+pyramid3_y_ratios = []
+for i in range(pyramid_widths[3]):
+    pyramid3_x_ratios.append((i * x_ratios[2]) >> 16)
+for i in range(pyramid_heights[3]):
+    pyramid3_y_ratios.append((i * y_ratios[2]) >> 16)
+
+pyramid4_x_ratios = []
+pyramid4_y_ratios = []
+for i in range(pyramid_widths[4]):
+    pyramid4_x_ratios.append((i * x_ratios[3]) >> 16)
+for i in range(pyramid_heights[4]):
+    pyramid4_y_ratios.append((i * y_ratios[3]) >> 16)
+
+pyramid5_x_ratios = []
+pyramid5_y_ratios = []
+for i in range(pyramid_widths[5]):
+    pyramid5_x_ratios.append((i * x_ratios[4]) >> 16)
+for i in range(pyramid_heights[5]):
+    pyramid5_y_ratios.append((i * y_ratios[4]) >> 16)
+
+pyramid6_x_ratios = []
+pyramid6_y_ratios = []
+for i in range(pyramid_widths[6]):
+    pyramid6_x_ratios.append((i * x_ratios[5]) >> 16)
+for i in range(pyramid_heights[6]):
+    pyramid6_y_ratios.append((i * y_ratios[5]) >> 16)
+
+pyramid7_x_ratios = []
+pyramid7_y_ratios = []
+for i in range(pyramid_widths[7]):
+    pyramid7_x_ratios.append((i * x_ratios[6]) >> 16)
+for i in range(pyramid_heights[7]):
+    pyramid7_y_ratios.append((i * y_ratios[6]) >> 16)
+
+pyramid8_x_ratios = []
+pyramid8_y_ratios = []
+for i in range(pyramid_widths[8]):
+    pyramid8_x_ratios.append((i * x_ratios[7]) >> 16)
+for i in range(pyramid_heights[8]):
+    pyramid8_y_ratios.append((i * y_ratios[7]) >> 16)
+
+pyramid9_x_ratios = []
+pyramid9_y_ratios = []
+for i in range(pyramid_widths[9]):
+    pyramid9_x_ratios.append((i * x_ratios[8]) >> 16)
+for i in range(pyramid_heights[9]):
+    pyramid9_y_ratios.append((i * y_ratios[8]) >> 16)
+
+
 num_stage = 0
 num_feature = 0
 window_size = 0
@@ -158,36 +228,52 @@ weights_file.write("// assume we use haarcascade_frontalface_default.xml\n")
 weights_file.write("`define NUM_STAGE %d\n"%(num_stage))
 weights_file.write("`define NUM_FEATURE %d\n"%(num_feature))
 weights_file.write("`define WINDOW_SIZE %d\n"%(window_size))
-weights_file.write("`define LAPTOP_WIDTH 160\n")
-weights_file.write("`define LAPTOP_HEIGHT 120\n")
-weights_file.write("`define PYRAMID_LEVELS 10\n\n")
+weights_file.write("`define LAPTOP_WIDTH %d\n"%(pyramid_widths[0]))
+weights_file.write("`define LAPTOP_HEIGHT %d\n"%(pyramid_heights[0]))
+weights_file.write("`define PYRAMID_LEVELS %d\n\n"%(len(pyramid_widths)))
 
-weights_file.write("`define PYRAMID_WIDTHS {32'd160, 32'd133, 32'd111, 32'd92, 32'd77, 32'd64, 32'd53, 32'd44, 32'd37, 32'd31}\n")
-weights_file.write("`define PYRAMID_HEIGHTS {32'd120, 32'd99, 32'd83, 32'd69, 32'd57, 32'd48, 32'd40, 32'd33, 32'd27, 32'd23}\n")
-weights_file.write("`define X_RATIOS {32'd78841, 32'd94467, 32'd113976, 32'd136179, 32'd163841, 32'd197845, 32'd238313, 32'd283399, 32'd338251}\n")
-weights_file.write("`define Y_RATIOS {32'd79438, 32'd94751, 32'd113976, 32'd137971, 32'd163841, 32'd196609, 32'd238313, 32'd291272, 32'd341927}\n\n")
-
-def write_array(arr, arr_len):
+def write_array(arr):
+    arr_len = len(arr)
+    weights_file.write("{")
     for s in range(arr_len):
         val = arr[s]
-        if (s == arr_len - 1):
-            if (val < 0):
-                weights_file.write("32'd%d};\n"%(val+2**32))
-            else:
-                weights_file.write("32'd%d}\n"%(val))
-        else:
-            if (val < 0):
-                weights_file.write("32'd%d, "%(val+2**32))
-            else:
-                weights_file.write("32'd%d, "%(val))
+        if (val < 0): val += 2**32
+
+        weights_file.write("32'd%d"%(val))
+        if (s != arr_len - 1):
+            weights_file.write(",")
+    weights_file.write("}")
 
 def write_array_body(arr, arr_name):
     arr_len = len(arr)
-    weights_file.write("`define %s {"%(arr_name))
-    write_array(arr, arr_len)
+    weights_file.write("`define %s "%(arr_name))
+    write_array(arr)
     weights_file.write("\n")
 
 ## write data
+write_array_body(pyramid_widths, "pyramid_widths".upper())
+write_array_body(pyramid_heights, "pyramid_heights".upper())
+weights_file.write("\n")
+
+write_array_body(pyramid1_x_ratios, "pyramid1_x_ratios".upper())
+write_array_body(pyramid1_y_ratios, "pyramid1_y_ratios".upper())
+write_array_body(pyramid2_x_ratios, "pyramid2_x_ratios".upper())
+write_array_body(pyramid2_y_ratios, "pyramid2_y_ratios".upper())
+write_array_body(pyramid3_x_ratios, "pyramid3_x_ratios".upper())
+write_array_body(pyramid3_y_ratios, "pyramid3_y_ratios".upper())
+write_array_body(pyramid4_x_ratios, "pyramid4_x_ratios".upper())
+write_array_body(pyramid4_y_ratios, "pyramid4_y_ratios".upper())
+write_array_body(pyramid5_x_ratios, "pyramid5_x_ratios".upper())
+write_array_body(pyramid5_y_ratios, "pyramid5_y_ratios".upper())
+write_array_body(pyramid6_x_ratios, "pyramid6_x_ratios".upper())
+write_array_body(pyramid6_y_ratios, "pyramid6_y_ratios".upper())
+write_array_body(pyramid7_x_ratios, "pyramid7_x_ratios".upper())
+write_array_body(pyramid7_y_ratios, "pyramid7_y_ratios".upper())
+write_array_body(pyramid8_x_ratios, "pyramid8_x_ratios".upper())
+write_array_body(pyramid8_y_ratios, "pyramid8_y_ratios".upper())
+write_array_body(pyramid9_x_ratios, "pyramid9_x_ratios".upper())
+write_array_body(pyramid9_y_ratios, "pyramid9_y_ratios".upper())
+weights_file.write("\n")
 
 # number of features in each stage
 write_array_body(stage_num_feature, "stage_num_feature".upper())
@@ -215,10 +301,3 @@ write_array_body(rectangle3_weights, "rectangle3_weights".upper())
 write_array_body(feature_threshold, "feature_threshold".upper())
 write_array_body(feature_above, "feature_above".upper())
 write_array_body(feature_below, "feature_below".upper())
-
-#for i in range(10):
-#    print(feature_rects[i])
-#print(stage_thresh)
-#print(feature_thresh)
-#print(feature_below_val)
-#print(feature_above_val)
