@@ -3,18 +3,63 @@
 
 module downscaler
   #(parameter WIDTH_LIMIT = `LAPTOP_WIDTH, HEIGHT_LIMIT = `LAPTOP_HEIGHT)(
+  input  logic [3:0] pyramid_index,
   input  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] input_img,
-  input  logic [WIDTH_LIMIT-1:0][31:0] x_ratio,
-  input  logic [HEIGHT_LIMIT-1:0][31:0] y_ratio,
   output logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] output_img);
 
-  localparam [HEIGHT_LIMIT-1:0][31:0] local_y_ratio = `PYRAMID9_Y_RATIOS;
-  localparam [WIDTH_LIMIT-1:0][31:0] local_x_ratio = `PYRAMID9_X_RATIOS;
+  localparam [`LAPTOP_HEIGHT-1:0][31:0] y_mappings;
+  localparam [`LAPTOP_WIDTH-1:0][31:0] x_mappings;
+
+  always_comb begin: choose_mappings
+    case (pyramid_index)
+      4'd1: begin
+            y_mappings = `PYRAMID1_Y_MAPPINGS;
+            x_mappings = `PYRAMID1_X_MAPPINGS;
+            end
+      4'd2: begin
+            y_mappings = `PYRAMID2_Y_MAPPINGS;
+            x_mappings = `PYRAMID2_X_MAPPINGS;
+            end
+      4'd3: begin
+            y_mappings = `PYRAMID3_Y_MAPPINGS;
+            x_mappings = `PYRAMID3_X_MAPPINGS;
+            end
+      4'd4: begin
+            y_mappings = `PYRAMID4_Y_MAPPINGS;
+            x_mappings = `PYRAMID4_X_MAPPINGS;
+            end
+      4'd5: begin
+            y_mappings = `PYRAMID5_Y_MAPPINGS;
+            x_mappings = `PYRAMID5_X_MAPPINGS;
+            end
+      4'd6: begin
+            y_mappings = `PYRAMID6_Y_MAPPINGS;
+            x_mappings = `PYRAMID6_X_MAPPINGS;
+            end
+      4'd7: begin
+            y_mappings = `PYRAMID7_Y_MAPPINGS;
+            x_mappings = `PYRAMID7_X_MAPPINGS;
+            end
+      4'd8: begin
+            y_mappings = `PYRAMID8_Y_MAPPINGS;
+            x_mappings = `PYRAMID8_X_MAPPINGS;
+            end
+      4'd9: begin
+            y_mappings = `PYRAMID9_Y_MAPPINGS;
+            x_mappings = `PYRAMID9_X_MAPPINGS;
+            end
+      default: begin
+            y_mappings = 'd0;
+            x_mappings = 'd0;
+            end
+    endcase // pyramid_index
+  end
+
   genvar i, j, k, l, m;
   generate
     for (i = 0; i < HEIGHT_LIMIT; i=i+1) begin: downscaled_row
       for (j = 0; j < WIDTH_LIMIT; j=j+1) begin: downscaled_pixels_in_row
-        assign output_img[i][j] = input_img[local_y_ratio[i]][local_x_ratio[j]];
+        assign output_img[i][j] = input_img[y_mappings[i]][x_mappings[j]];
       end
 
 /*
