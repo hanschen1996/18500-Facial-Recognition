@@ -68,20 +68,7 @@
               player.srcObject = stream;
             });
             
-            function captureImages() {
-                var count = 0;
-                
-                var timeleft = 5;
-                var downloadTimer = setInterval(function(){
-                  document.getElementById("countdown").innerHTML = timeleft + " Seconds Until Photo is Taken";
-                  timeleft -= 1;
-                  if(timeleft < 0){
-                    clearInterval(downloadTimer);
-                    
-                  }
-                }, 1000);
-                document.getElementById("countdown").innerHTML = "Finished"
-            }
+            
             
             function download(){
                 
