@@ -4,17 +4,18 @@
         <meta charset="UTF-8">
         <title>Identity Checker</title>
         <link rel="stylesheet" href="../../static/identityChecker/identityChecker.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
 
     <body>
-        <div class="page-container">
+        <div class="container">
             <div class="title">Identity Checker</div>
 
             <div class="button-container">
-                <a href="{% url 'add' %}"><button name = "add_button" id = "add_button">Add to Database</button></a>
+                <a href="{% url 'add' %}"><button type="button" class="btn btn-dark btn-lg btn-block" name = "add_button" id = "add_button">Add to Database</button></a>
             
 
-                <a href="{% url 'checkIdentity' %}"><button nanme = "identify_button" id = "identify_button">Check Identity</button></a>
+                <a href="{% url 'checkIdentity' %}"><button type="button" class="btn btn-dark btn-lg btn-block" name = "identify_button" id = "identify_button">Check Identity</button></a>
             </div>
         </div>
       

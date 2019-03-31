@@ -9,7 +9,7 @@ module signed_comparator(
       gt = 1'b0;
     end else if (~A[31] & B[31]) begin // A is positive, B is negative
       gt = 1'b1;
-    end else if (A[31]) begin // both are same sign
+    end else begin // both are same sign
       gt = A > B;
     end
   end

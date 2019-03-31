@@ -4,22 +4,53 @@
         <meta charset="UTF-8">
         <title>Identity Checker</title>
         <link rel="stylesheet" href="../../static/identityChecker/identityChecker.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     </head>
 
     <body>
-        <div class="page-container">
+        <div class="container">
             <div class="title">Identity Checker</div>
 
-            <div class="button-container">
+            
+        <div class="video-container"> 
+            <div id="countdown" onclick="captureImages()"></div>
+<!--        <progress value="0" max="5" id="progressBar"></progress>-->
+            <video width="640" height="480" align="center" id="player" controls autoplay></video>
+        
+        </div>
+            
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                </div>
+                
+                <div class="col-3">
+                    <a><button type="button" class="btn btn-dark btn-lg" onClick="captureImages()" id="capture">Capture</button></a>
+                </div>
+                <div class="col-3">
+                    <a id="download" download="image.png"><button type="button" class="btn btn-dark btn-lg"  onClick="download()" id="download">Download</button></a>
+                </div>
+                
+                
+                <div class="col">
+                </div>
+                
+            </div>
+        </div>
+            
 
-        <video width="640" height="480" id="player" controls autoplay></video>
-        <a id="capture" download="image.png"><button type="button" onClick="download()">Capture</button></a>
-<!--        <button id="capture">Capture</button>-->
-        <canvas id="canvas" width=320 height=240></canvas>
+            
+        
+
         <script>
           const player = document.getElementById('player');
-          const canvas = document.getElementById('canvas');
+          const canvas = document.createElement('canvas');
+            canvas.width = 640;
+            canvas.height = 480;
+            
           const context = canvas.getContext('2d');
+            var pic1 = context.canvas;
+            document.body.appendChild(pic1);
           const captureButton = document.getElementById('capture');
 
           const constraints = {
@@ -37,17 +68,32 @@
               player.srcObject = stream;
             });
             
+            function captureImages() {
+                var count = 0;
+                
+                var timeleft = 5;
+                var downloadTimer = setInterval(function(){
+                  document.getElementById("countdown").innerHTML = timeleft + " Seconds Until Photo is Taken";
+                  timeleft -= 1;
+                  if(timeleft < 0){
+                    clearInterval(downloadTimer);
+                    
+                  }
+                }, 1000);
+                document.getElementById("countdown").innerHTML = "Finished"
+            }
+            
             function download(){
+                
         var download = document.getElementById("download");
-        var image = document.getElementById("canvas").toDataURL("image/png")
-                    .replace("image/png", "image/octet-stream");
+        var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+                
         download.setAttribute("href", image);
 
     }
+            
+            
         </script>
-        <a id="download" download="image.png"><button type="button" onClick="download()">Download</button></a>
-            </div>
-
         </div>
       
     </body>
