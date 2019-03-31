@@ -38,29 +38,58 @@
             </div>
         </div>
             
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-sm">
+                    <canvas id="canvas1"></canvas>
+                </div>
+                
+                <div class="col-sm">
+                    <canvas id="canvas2"></canvas>
+                </div>
+                
+                <div class="col-sm">
+                    <canvas id="canvas3"></canvas>
+                </div>
+                
+                <div class="col-sm">
+                    <canvas id="canvas4"></canvas>
+                </div>
+                
+                <div class="col-sm">
+                    <canvas id="canvas5"></canvas>
+                </div>
+                
+                <div class="col-sm">
+                </div>
+                
+            </div>
+        </div> 
+            
 
             
         
 
         <script>
           const player = document.getElementById('player');
-          const canvas = document.createElement('canvas');
-            canvas.width = 640;
-            canvas.height = 480;
+          const canvas = document.getElementById('canvas1');
+//            canvas.width = 100;
+//            canvas.height = 100;
             
           const context = canvas.getContext('2d');
-            var pic1 = context.canvas;
-            document.body.appendChild(pic1);
+//            var pic1 = context.canvas;
+//            document.body.appendChild(pic1);
           const captureButton = document.getElementById('capture');
 
           const constraints = {
             video: true,
           };
 
-          captureButton.addEventListener('click', () => {
-            // Draw the video frame to the canvas.
-            context.drawImage(player, 0, 0, canvas.width, canvas.height);
-          });
+//          captureButton.addEventListener('click', () => {
+//            // Draw the video frame to the canvas.
+//            context.drawImage(player, 0, 0, canvas.width, canvas.height);
+//          });
 
           // Attach the video stream to the video element and autoplay.
           navigator.mediaDevices.getUserMedia(constraints)
@@ -77,10 +106,10 @@
                   timeleft -= 1;
                   if(timeleft < 0){
                     clearInterval(downloadTimer);
-                    
+                    context.drawImage(player, 0, 0, canvas.width, canvas.height);
+                    document.getElementById("countdown").innerHTML = "Finished"
                   }
-                }, 1000);
-                document.getElementById("countdown").innerHTML = "Finished"
+                }, 1000);                
             }
             
             function download(){
