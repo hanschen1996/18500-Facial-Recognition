@@ -26,7 +26,7 @@ module vj_pipeline(
   logic [`NUM_FEATURE-1:0][1:0][31:0] scan_coords;
   logic [`NUM_FEATURE-1:0][31:0] scan_win_std_dev;
 
-  logic [`NUM_STAGE:0][31:0] stage_num_feature = `STAGE_NUM_FEATURE;
+  localparam [`NUM_STAGE:0][31:0] stage_num_feature = `STAGE_NUM_FEATURE;
   logic [`NUM_STAGE-1:0][31:0] stage_threshold = `STAGE_THRESHOLD;
   logic [`NUM_FEATURE-1:0][31:0] rectangle1_xs = `RECTANGLE1_XS;
   logic [`NUM_FEATURE-1:0][31:0] rectangle1_ys = `RECTANGLE1_YS;
@@ -99,7 +99,7 @@ module vj_pipeline(
   genvar m;
   generate
     for (m = 1; m < `NUM_STAGE+1; m=m+1) begin: stage_threshold_check
-      signed_comparator stage_c(.gt(stage_comparisons[m]), .A(stage_accums[stage_num_feature[m] - 1] + feature_accums[stage_num_feature[m] - 1]), .B(stage_threshold[m]));
+      signed_comparator stage_c(.gt(stage_comparisons[m]), .A(stage_accums[stage_num_feature[m] - 1] + feature_accums[stage_num_feature[m] - 1]), .B(stage_threshold[m-1]));
     end
   endgenerate
 
@@ -3067,7 +3067,8 @@ module accum_calculator(
 
   logic [31:0] rectangle1_val, rectangle2_val, rectangle3_val, 
                rectangle1_product, rectangle2_product, rectangle3_product,
-               feature_product, feature_sum, feature_comparison;
+               feature_product, feature_sum;
+  logic feature_comparison;
 
   assign rectangle1_val = scan_win[rectangle1_y + rectangle1_height][rectangle1_x + rectangle1_width] +
                           scan_win[rectangle1_y][rectangle1_x]-
