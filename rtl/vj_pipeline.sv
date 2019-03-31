@@ -3,7 +3,7 @@
 module vj_pipeline(
   input  logic clock, reset,
   input  logic [`WINDOW_SIZE-1:0][`WINDOW_SIZE-1:0][31:0] scan_win,
-  input  logic [31:0] scan_win_std_dev,
+  input  logic [31:0] input_std_dev,
   input  logic [1:0][31:0] scan_win_index,
   output logic [1:0][31:0] top_left,
   output logic top_left_ready);
@@ -24,7 +24,7 @@ module vj_pipeline(
   scan_win2601,scan_win2602,scan_win2603,scan_win2604,scan_win2605,scan_win2606,scan_win2607,scan_win2608,scan_win2609,scan_win2610,scan_win2611,scan_win2612,scan_win2613,scan_win2614,scan_win2615,scan_win2616,scan_win2617,scan_win2618,scan_win2619,scan_win2620,scan_win2621,scan_win2622,scan_win2623,scan_win2624,scan_win2625,scan_win2626,scan_win2627,scan_win2628,scan_win2629,scan_win2630,scan_win2631,scan_win2632,scan_win2633,scan_win2634,scan_win2635,scan_win2636,scan_win2637,scan_win2638,scan_win2639,scan_win2640,scan_win2641,scan_win2642,scan_win2643,scan_win2644,scan_win2645,scan_win2646,scan_win2647,scan_win2648,scan_win2649,scan_win2650,scan_win2651,scan_win2652,scan_win2653,scan_win2654,scan_win2655,scan_win2656,scan_win2657,scan_win2658,scan_win2659,scan_win2660,scan_win2661,scan_win2662,scan_win2663,scan_win2664,scan_win2665,scan_win2666,scan_win2667,scan_win2668,scan_win2669,scan_win2670,scan_win2671,scan_win2672,scan_win2673,scan_win2674,scan_win2675,scan_win2676,scan_win2677,scan_win2678,scan_win2679,scan_win2680,scan_win2681,scan_win2682,scan_win2683,scan_win2684,scan_win2685,scan_win2686,scan_win2687,scan_win2688,scan_win2689,scan_win2690,scan_win2691,scan_win2692,scan_win2693,scan_win2694,scan_win2695,scan_win2696,scan_win2697,scan_win2698,scan_win2699,scan_win2700,scan_win2701,scan_win2702,scan_win2703,scan_win2704,scan_win2705,scan_win2706,scan_win2707,scan_win2708,scan_win2709,scan_win2710,scan_win2711,scan_win2712,scan_win2713,scan_win2714,scan_win2715,scan_win2716,scan_win2717,scan_win2718,scan_win2719,scan_win2720,scan_win2721,scan_win2722,scan_win2723,scan_win2724,scan_win2725,scan_win2726,scan_win2727,scan_win2728,scan_win2729,scan_win2730,scan_win2731,scan_win2732,scan_win2733,scan_win2734,scan_win2735,scan_win2736,scan_win2737,scan_win2738,scan_win2739,scan_win2740,scan_win2741,scan_win2742,scan_win2743,scan_win2744,scan_win2745,scan_win2746,scan_win2747,scan_win2748,scan_win2749,scan_win2750,scan_win2751,scan_win2752,scan_win2753,scan_win2754,scan_win2755,scan_win2756,scan_win2757,scan_win2758,scan_win2759,scan_win2760,scan_win2761,scan_win2762,scan_win2763,scan_win2764,scan_win2765,scan_win2766,scan_win2767,scan_win2768,scan_win2769,scan_win2770,scan_win2771,scan_win2772,scan_win2773,scan_win2774,scan_win2775,scan_win2776,scan_win2777,scan_win2778,scan_win2779,scan_win2780,scan_win2781,scan_win2782,scan_win2783,scan_win2784,scan_win2785,scan_win2786,scan_win2787,scan_win2788,scan_win2789,scan_win2790,scan_win2791,scan_win2792,scan_win2793,scan_win2794,scan_win2795,scan_win2796,scan_win2797,scan_win2798,scan_win2799,scan_win2800,
   scan_win2801,scan_win2802,scan_win2803,scan_win2804,scan_win2805,scan_win2806,scan_win2807,scan_win2808,scan_win2809,scan_win2810,scan_win2811,scan_win2812,scan_win2813,scan_win2814,scan_win2815,scan_win2816,scan_win2817,scan_win2818,scan_win2819,scan_win2820,scan_win2821,scan_win2822,scan_win2823,scan_win2824,scan_win2825,scan_win2826,scan_win2827,scan_win2828,scan_win2829,scan_win2830,scan_win2831,scan_win2832,scan_win2833,scan_win2834,scan_win2835,scan_win2836,scan_win2837,scan_win2838,scan_win2839,scan_win2840,scan_win2841,scan_win2842,scan_win2843,scan_win2844,scan_win2845,scan_win2846,scan_win2847,scan_win2848,scan_win2849,scan_win2850,scan_win2851,scan_win2852,scan_win2853,scan_win2854,scan_win2855,scan_win2856,scan_win2857,scan_win2858,scan_win2859,scan_win2860,scan_win2861,scan_win2862,scan_win2863,scan_win2864,scan_win2865,scan_win2866,scan_win2867,scan_win2868,scan_win2869,scan_win2870,scan_win2871,scan_win2872,scan_win2873,scan_win2874,scan_win2875,scan_win2876,scan_win2877,scan_win2878,scan_win2879,scan_win2880,scan_win2881,scan_win2882,scan_win2883,scan_win2884,scan_win2885,scan_win2886,scan_win2887,scan_win2888,scan_win2889,scan_win2890,scan_win2891,scan_win2892,scan_win2893,scan_win2894,scan_win2895,scan_win2896,scan_win2897,scan_win2898,scan_win2899,scan_win2900,scan_win2901,scan_win2902,scan_win2903,scan_win2904,scan_win2905,scan_win2906,scan_win2907,scan_win2908,scan_win2909,scan_win2910,scan_win2911,scan_win2912;
   logic [`NUM_FEATURE-1:0][1:0][31:0] scan_coords;
-  logic [`NUM_FEATURE-1:0][31:0] scan_win_std_devs;
+  logic [`NUM_FEATURE-1:0][31:0] scan_win_std_dev;
 
   logic [`NUM_STAGE:0][31:0] stage_num_feature = `STAGE_NUM_FEATURE;
   logic [`NUM_STAGE-1:0][31:0] stage_threshold = `STAGE_THRESHOLD;
@@ -50,14 +50,14 @@ module vj_pipeline(
   always_ff @(posedge clock, posedge reset) begin: set_scan_coords_and_scan_win_std_devs
     if (reset) begin: reset_scanning_windows
        scan_coords <= 'd0;
-       scan_win_std_devs <= 'd0;
+       scan_win_std_dev <= 'd0;
        top_left <= 'd0;
     end else begin: move_scan_coords_and_scan_win_std_devs
       scan_coords[0] <= scan_win_index;
-      scan_win_std_devs[0] <= scan_win_std_dev;
+      scan_win_std_dev[0] <= input_std_dev;
       for (int i = 0; i < `NUM_FEATURE-1; i++) begin
         scan_coords[i+1] <= scan_coords[i];
-        scan_win_std_devs[i+1] <= scan_win_std_devs[i];
+        scan_win_std_dev[i+1] <= scan_win_std_dev[i];
       end
       top_left <= scan_coords[`NUM_FEATURE-1];
     end
@@ -72,15 +72,19 @@ module vj_pipeline(
   logic [`NUM_FEATURE:0][31:0] stage_accums; // stage_accums[0] is wire to zero and stage_accums[2913] is reg to zero
   logic [`NUM_FEATURE:0] is_feature; // is_feature[0] is wire to one and is_feature[2913] is reg to face_coords_ready
   logic [`NUM_STAGE:1] stage_comparisons;
-  assign stage_accums[0] = 32'd0;
-  assign is_feature[0] = 1'd1;
   assign top_left_ready = is_feature[`NUM_FEATURE];
 
   always_ff @(posedge clock, posedge reset) begin: set_accums_and_is_feature
     if (reset) begin
-      stage_accums <= 'd0;
-      is_feature <= 'd0;
+      for (int m = 1; m < `NUM_FEATURE; m++) begin
+        stage_accums[m] <= 32'd0;
+        is_feature[m] <= 1'd0;
+      end
+      stage_accums[0] <= 32'd0;
+      is_feature[0] <= 1'd1;
     end else begin
+      stage_accums[0] <= 32'd0;
+      is_feature[0] <= 1'd1;
       for (int k = 1; k < 26; k++) begin
         for (int l = stage_num_feature[k-1]; l < stage_num_feature[k] - 1; l++) begin
           stage_accums[l+1] <= stage_accums[l] + feature_accums[l];

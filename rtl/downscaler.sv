@@ -8,8 +8,8 @@ module downscaler
   input  logic [HEIGHT_LIMIT-1:0][31:0] y_ratio,
   output logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] output_img);
 
-  localparam [HEIGHT_LIMIT-1:0][31:0] local_y_ratio = y_ratio;
-  localparam [WIDTH_LIMIT-1:0][31:0] local_x_ratio = x_ratio;
+  localparam [HEIGHT_LIMIT-1:0][31:0] local_y_ratio = `PYRAMID9_Y_RATIOS;
+  localparam [WIDTH_LIMIT-1:0][31:0] local_x_ratio = `PYRAMID9_X_RATIOS;
   genvar i, j, k, l, m;
   generate
     for (i = 0; i < HEIGHT_LIMIT; i=i+1) begin: downscaled_row
@@ -31,3 +31,18 @@ module downscaler
 
 endmodule
 
+module downscaler_call();
+
+  localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_widths= `PYRAMID_WIDTHS;
+  localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_heights = `PYRAMID_HEIGHTS;
+  logic [pyramid_heights[9]-1:0][pyramid_widths[9]-1:0][31:0] images0;
+  logic [pyramid_heights[0]-1:0][pyramid_widths[0]-1:0][31:0] images9;
+  logic [pyramid_widths[0]-1:0][31:0] pyramid1_x_ratios = `PYRAMID9_X_RATIOS;
+  logic [pyramid_heights[0]-1:0][31:0] pyramid1_y_ratios = `PYRAMID9_Y_RATIOS;
+
+  downscaler #(.WIDTH_LIMIT(pyramid_widths[0]),
+               .HEIGHT_LIMIT(pyramid_heights[0]))
+             down1(.input_img(images0), .x_ratio(pyramid1_x_ratios),
+                   .y_ratio(pyramid1_y_ratios), .output_img(images9));
+
+endmodule

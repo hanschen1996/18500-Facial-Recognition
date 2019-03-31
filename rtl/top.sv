@@ -149,84 +149,87 @@ module top(
       4'd0: begin
             for (int row = 0; row < pyramid_heights[0]; row++) begin: image0_row
               for (int col = 0; col < pyramid_widths[0]; col++) begin: image0_col
-                curr_int_image[row][col] = images0[row][col];
-                curr_int_image_sq[row][col] = images0[row][col];
+                curr_int_image[row][col] = int_images0[row][col];
+                curr_int_image_sq[row][col] = int_images_sq0[row][col];
               end
             end
             end
       4'd1: begin
             for (int row = 0; row < pyramid_heights[1]; row++) begin: image1_row
               for (int col = 0; col < pyramid_widths[1]; col++) begin: image1_col
-                curr_int_image[row][col] = images1[row][col];
-                curr_int_image_sq[row][col] = images1[row][col];
+                curr_int_image[row][col] = int_images1[row][col];
+                curr_int_image_sq[row][col] = int_images_sq1[row][col];
               end
             end
             end
       4'd2: begin
             for (int row = 0; row < pyramid_heights[2]; row++) begin: image2_row
               for (int col = 0; col < pyramid_widths[2]; col++) begin: image2_col
-                curr_int_image[row][col] = images2[row][col];
-                curr_int_image_sq[row][col] = images2[row][col];
+                curr_int_image[row][col] = int_images2[row][col];
+                curr_int_image_sq[row][col] = int_images_sq2[row][col];
               end
             end
             end
       4'd3: begin
             for (int row = 0; row < pyramid_heights[3]; row++) begin: image3_row
               for (int col = 0; col < pyramid_widths[3]; col++) begin: image3_col
-                curr_int_image[row][col] = images3[row][col];
-                curr_int_image_sq[row][col] = images3[row][col];
+                curr_int_image[row][col] = int_images3[row][col];
+                curr_int_image_sq[row][col] = int_images_sq3[row][col];
               end
             end
             end
       4'd4: begin
             for (int row = 0; row < pyramid_heights[4]; row++) begin: image4_row
               for (int col = 0; col < pyramid_widths[4]; col++) begin: image4_col
-                curr_int_image[row][col] = images4[row][col];
-                curr_int_image_sq[row][col] = images4[row][col];
+                curr_int_image[row][col] = int_images4[row][col];
+                curr_int_image_sq[row][col] = int_images_sq4[row][col];
               end
             end
             end
       4'd5: begin
             for (int row = 0; row < pyramid_heights[5]; row++) begin: image5_row
               for (int col = 0; col < pyramid_widths[5]; col++) begin: image5_col
-                curr_int_image[row][col] = images5[row][col];
-                curr_int_image_sq[row][col] = images5[row][col];
+                curr_int_image[row][col] = int_images5[row][col];
+                curr_int_image_sq[row][col] = int_images_sq5[row][col];
               end
             end
             end
       4'd6: begin
             for (int row = 0; row < pyramid_heights[6]; row++) begin: image6_row
               for (int col = 0; col < pyramid_widths[6]; col++) begin: image6_col
-                curr_int_image[row][col] = images6[row][col];
-                curr_int_image_sq[row][col] = images6[row][col];
+                curr_int_image[row][col] = int_images6[row][col];
+                curr_int_image_sq[row][col] = int_images_sq6[row][col];
               end
             end
             end
       4'd7: begin
             for (int row = 0; row < pyramid_heights[7]; row++) begin: image7_row
               for (int col = 0; col < pyramid_widths[7]; col++) begin: image7_col
-                curr_int_image[row][col] = images7[row][col];
-                curr_int_image_sq[row][col] = images7[row][col];
+                curr_int_image[row][col] = int_images7[row][col];
+                curr_int_image_sq[row][col] = int_images_sq7[row][col];
               end
             end
             end
       4'd8: begin
             for (int row = 0; row < pyramid_heights[8]; row++) begin: image8_row
               for (int col = 0; col < pyramid_widths[8]; col++) begin: image8_col
-                curr_int_image[row][col] = images8[row][col];
-                curr_int_image_sq[row][col] = images8[row][col];
+                curr_int_image[row][col] = int_images8[row][col];
+                curr_int_image_sq[row][col] = int_images_sq8[row][col];
               end
             end
             end
       4'd9: begin
             for (int row = 0; row < pyramid_heights[9]; row++) begin: image9_row
               for (int col = 0; col < pyramid_widths[9]; col++) begin: image9_col
-                curr_int_image[row][col] = images9[row][col];
-                curr_int_image_sq[row][col] = images9[row][col];
+                curr_int_image[row][col] = int_images9[row][col];
+                curr_int_image_sq[row][col] = int_images_sq9[row][col];
               end
             end
             end
-      default: curr_int_image = 'd0;
+      default: begin
+               curr_int_image = 'd0;
+               curr_int_image_sq = 'd0;
+               end
     endcase
   end
 
