@@ -76,12 +76,8 @@ module vj_pipeline(
 
   always_ff @(posedge clock, posedge reset) begin: set_accums_and_is_feature
     if (reset) begin
-      for (int m = 1; m < `NUM_FEATURE; m++) begin
-        stage_accums[m] <= 32'd0;
-        is_feature[m] <= 1'd0;
-      end
-      stage_accums[0] <= 32'd0;
-      is_feature[0] <= 1'd1;
+      stage_accums <= 'd0;
+      is_feature <= 'd0;
     end else begin
       stage_accums[0] <= 32'd0;
       is_feature[0] <= 1'd1;
