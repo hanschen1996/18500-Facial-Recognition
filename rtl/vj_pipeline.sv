@@ -3063,7 +3063,7 @@ module accum_calculator(
                       rectangle2_x, rectangle2_y, rectangle2_width, rectangle2_height, rectangle2_weight,
                       rectangle3_x, rectangle3_y, rectangle3_width, rectangle3_height, rectangle3_weight, 
                       feature_threshold, feature_above, feature_below, scan_win_std_dev,
-  output logic feature_accum);
+  output logic [31:0] feature_accum);
 
   logic [31:0] rectangle1_val, rectangle2_val, rectangle3_val, 
                rectangle1_product, rectangle2_product, rectangle3_product,
