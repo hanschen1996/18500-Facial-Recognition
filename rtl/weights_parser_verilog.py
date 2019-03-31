@@ -18,68 +18,21 @@ pyramid_heights = [120, 99, 83, 69, 57, 48, 40, 33, 27, 23]
 x_mappings = [78841, 94467, 113976, 136179, 163841, 197845, 238313, 283399, 338251]
 y_mappings = [79438, 94751, 113976, 137971, 163841, 196609, 238313, 291272, 341927]
 
-pyramid1_x_mappings = []
-pyramid1_y_mappings = []
-for i in range(pyramid_widths[0]):
-    pyramid1_x_mappings.append((i * x_mappings[0]) >> 16)
-for i in range(pyramid_heights[0]):
-    pyramid1_y_mappings.append((i * y_mappings[0]) >> 16)
+pyramid_x_mappings = []
+pyramid_y_mappings = []
+for i in range(len(x_mappings)):
+    curr_x_mappings = []
+    curr_y_mappings = []
+    for j in range(pyramid_widths[0]):
+        curr_x_mappings.append((j * x_mappings[i]) >> 16)
+    assert(len(curr_x_mappings) == pyramid_widths[0])
 
-pyramid2_x_mappings = []
-pyramid2_y_mappings = []
-for i in range(pyramid_widths[0]):
-    pyramid2_x_mappings.append((i * x_mappings[1]) >> 16)
-for i in range(pyramid_heights[0]):
-    pyramid2_y_mappings.append((i * y_mappings[1]) >> 16)
+    for j in range(pyramid_heights[0]):
+        curr_y_mappings.append((j * y_mappings[i]) >> 16)
+    assert(len(curr_y_mappings) == pyramid_heights[0])
 
-pyramid3_x_mappings = []
-pyramid3_y_mappings = []
-for i in range(pyramid_widths[0]):
-    pyramid3_x_mappings.append((i * x_mappings[2]) >> 16)
-for i in range(pyramid_heights[0]):
-    pyramid3_y_mappings.append((i * y_mappings[2]) >> 16)
-
-pyramid4_x_mappings = []
-pyramid4_y_mappings = []
-for i in range(pyramid_widths[0]):
-    pyramid4_x_mappings.append((i * x_mappings[3]) >> 16)
-for i in range(pyramid_heights[0]):
-    pyramid4_y_mappings.append((i * y_mappings[3]) >> 16)
-
-pyramid5_x_mappings = []
-pyramid5_y_mappings = []
-for i in range(pyramid_widths[0]):
-    pyramid5_x_mappings.append((i * x_mappings[4]) >> 16)
-for i in range(pyramid_heights[0]):
-    pyramid5_y_mappings.append((i * y_mappings[4]) >> 16)
-
-pyramid6_x_mappings = []
-pyramid6_y_mappings = []
-for i in range(pyramid_widths[0]):
-    pyramid6_x_mappings.append((i * x_mappings[5]) >> 16)
-for i in range(pyramid_heights[0]):
-    pyramid6_y_mappings.append((i * y_mappings[5]) >> 16)
-
-pyramid7_x_mappings = []
-pyramid7_y_mappings = []
-for i in range(pyramid_widths[0]):
-    pyramid7_x_mappings.append((i * x_mappings[6]) >> 16)
-for i in range(pyramid_heights[0]):
-    pyramid7_y_mappings.append((i * y_mappings[6]) >> 16)
-
-pyramid8_x_mappings = []
-pyramid8_y_mappings = []
-for i in range(pyramid_widths[0]):
-    pyramid8_x_mappings.append((i * x_mappings[7]) >> 16)
-for i in range(pyramid_heights[0]):
-    pyramid8_y_mappings.append((i * y_mappings[7]) >> 16)
-
-pyramid9_x_mappings = []
-pyramid9_y_mappings = []
-for i in range(pyramid_widths[0]):
-    pyramid9_x_mappings.append((i * x_mappings[8]) >> 16)
-for i in range(pyramid_heights[0]):
-    pyramid9_y_mappings.append((i * y_mappings[8]) >> 16)
+    pyramid_x_mappings.append(curr_x_mappings)
+    pyramid_y_mappings.append(curr_y_mappings)
 
 
 num_stage = 0
@@ -247,7 +200,15 @@ def write_array(arr):
 def write_array_body(arr, arr_name):
     arr_len = len(arr)
     weights_file.write("`define %s "%(arr_name))
-    write_array(arr)
+    if (type(arr[0]) == list):
+        weights_file.write("{")
+        for i in range(arr_len - 1, -1, -1):
+            write_array(arr[i])
+            if (i != 0):
+                weights_file.write(",")
+        weights_file.write("}")
+    else:
+        write_array(arr)
     weights_file.write("\n")
 
 ## write data
@@ -255,30 +216,15 @@ write_array_body(pyramid_widths, "pyramid_widths".upper())
 write_array_body(pyramid_heights, "pyramid_heights".upper())
 weights_file.write("\n")
 
-write_array_body(pyramid1_x_mappings, "pyramid1_x_mappings".upper())
-write_array_body(pyramid1_y_mappings, "pyramid1_y_mappings".upper())
-write_array_body(pyramid2_x_mappings, "pyramid2_x_mappings".upper())
-write_array_body(pyramid2_y_mappings, "pyramid2_y_mappings".upper())
-write_array_body(pyramid3_x_mappings, "pyramid3_x_mappings".upper())
-write_array_body(pyramid3_y_mappings, "pyramid3_y_mappings".upper())
-write_array_body(pyramid4_x_mappings, "pyramid4_x_mappings".upper())
-write_array_body(pyramid4_y_mappings, "pyramid4_y_mappings".upper())
-write_array_body(pyramid5_x_mappings, "pyramid5_x_mappings".upper())
-write_array_body(pyramid5_y_mappings, "pyramid5_y_mappings".upper())
-write_array_body(pyramid6_x_mappings, "pyramid6_x_mappings".upper())
-write_array_body(pyramid6_y_mappings, "pyramid6_y_mappings".upper())
-write_array_body(pyramid7_x_mappings, "pyramid7_x_mappings".upper())
-write_array_body(pyramid7_y_mappings, "pyramid7_y_mappings".upper())
-write_array_body(pyramid8_x_mappings, "pyramid8_x_mappings".upper())
-write_array_body(pyramid8_y_mappings, "pyramid8_y_mappings".upper())
-write_array_body(pyramid9_x_mappings, "pyramid9_x_mappings".upper())
-write_array_body(pyramid9_y_mappings, "pyramid9_y_mappings".upper())
+write_array_body(pyramid_x_mappings, "pyramid_x_mappings".upper())
+write_array_body(pyramid_y_mappings, "pyramid_y_mappings".upper())
 weights_file.write("\n")
 
 # number of features in each stage
 write_array_body(stage_num_feature, "stage_num_feature".upper())
 weights_file.write("// thresholds are negative values\n")
 write_array_body(stage_threshold, "stage_threshold".upper())
+weights_file.write("\n")
 
 write_array_body(rectangle1_xs, "rectangle1_xs".upper())
 write_array_body(rectangle1_ys, "rectangle1_ys".upper())
