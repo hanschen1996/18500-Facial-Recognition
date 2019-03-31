@@ -235,12 +235,12 @@ weights_file.write("`define PYRAMID_LEVELS %d\n\n"%(len(pyramid_widths)))
 def write_array(arr):
     arr_len = len(arr)
     weights_file.write("{")
-    for s in range(arr_len):
+    for s in range(arr_len - 1, -1, -1):
         val = arr[s]
         if (val < 0): val += 2**32
 
         weights_file.write("32'd%d"%(val))
-        if (s != arr_len - 1):
+        if (s != 0):
             weights_file.write(",")
     weights_file.write("}")
 
