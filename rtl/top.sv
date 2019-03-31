@@ -258,7 +258,7 @@ module top(
   logic [31:0] wait_integral_image_count;
   logic vj_pipeline_on;
 
-  always_ff @(posedge clock, reset) begin
+  always_ff @(posedge clock, posedge reset) begin
     if (reset) begin
       wait_integral_image_count <= 32'd0;
       img_index <= 4'd15;

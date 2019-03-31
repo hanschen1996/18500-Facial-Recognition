@@ -43,7 +43,7 @@ module vj_pipeline(
   logic [`NUM_FEATURE-1:0][31:0] rectangle3_widths = `RECTANGLE3_WIDTHS;
   logic [`NUM_FEATURE-1:0][31:0] rectangle3_heights = `RECTANGLE3_HEIGHTS;
   logic [`NUM_FEATURE-1:0][31:0] rectangle3_weights = `RECTANGLE3_WEIGHTS;
-  logic [`NUM_FEATURE-1:0][31:0] feature_threshold = `FEATURE_THRESHOLD;
+  logic [`NUM_FEATURE-1:0][31:0] feature_thresholds = `FEATURE_THRESHOLD;
   logic [`NUM_FEATURE-1:0][31:0] feature_aboves = `FEATURE_ABOVE;
   logic [`NUM_FEATURE-1:0][31:0] feature_belows = `FEATURE_BELOW;
 
@@ -65,7 +65,7 @@ module vj_pipeline(
 
   logic [`NUM_FEATURE-1:0][31:0] rectangle1_vals, rectangle2_vals, rectangle3_vals,
                                 rectangle1_products, rectangle2_products, rectangle3_products,
-                                feature_sums, feature_thresholds, feature_products,
+                                feature_sums, feature_products,
                                 feature_accums;
   logic [`NUM_FEATURE-1:0] feature_comparisons;
 
