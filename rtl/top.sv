@@ -58,40 +58,40 @@ module top(
 
   downscaler #(.WIDTH_LIMIT(pyramid_widths[1]),
                .HEIGHT_LIMIT(pyramid_heights[1]))
-             down1(.input_img(images0), .x_ratio(pyramid1_x_ratios),
-                   .y_ratio(pyramid1_y_ratios), .output_img(images1));
+             down1(.pyramid_index(4'd1),
+                   .input_img(images0), .output_img(images1));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[2]),
                .HEIGHT_LIMIT(pyramid_heights[2]))
-             down2(.input_img(images0), .x_ratio(pyramid2_x_ratios),
-                   .y_ratio(pyramid2_y_ratios), .output_img(images2));
+             down2(.pyramid_index(4'd2),
+                   .input_img(images0), .output_img(images2));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[3]),
                .HEIGHT_LIMIT(pyramid_heights[3]))
-             down3(.input_img(images0), .x_ratio(pyramid3_x_ratios),
-                   .y_ratio(pyramid3_y_ratios), .output_img(images3));
+             down3(.pyramid_index(4'd3),
+                   .input_img(images0), .output_img(images3));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[4]),
                .HEIGHT_LIMIT(pyramid_heights[4]))
-             down4(.input_img(images0), .x_ratio(pyramid4_x_ratios),
-                   .y_ratio(pyramid4_y_ratios), .output_img(images4));
+             down4(.pyramid_index(4'd4),
+                   .input_img(images0), .output_img(images4));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[5]),
                .HEIGHT_LIMIT(pyramid_heights[5]))
-             down5(.input_img(images0), .x_ratio(pyramid5_x_ratios),
-                   .y_ratio(pyramid5_y_ratios), .output_img(images5));
+             down5(.pyramid_index(4'd5),,
+                   .input_img(images0),  .output_img(images5));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[6]),
                .HEIGHT_LIMIT(pyramid_heights[6]))
-             down6(.input_img(images0), .x_ratio(pyramid6_x_ratios),
-                   .y_ratio(pyramid6_y_ratios), .output_img(images6));
+             down6(.pyramid_index(4'd6),
+                   .input_img(images0), .output_img(images6));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[7]),
                .HEIGHT_LIMIT(pyramid_heights[7]))
-             down7(.input_img(images0), .x_ratio(pyramid7_x_ratios),
-                   .y_ratio(pyramid7_y_ratios), .output_img(images7));
+             down7(.pyramid_index(4'd7),
+                   .input_img(images0), .output_img(images7));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[8]),
                .HEIGHT_LIMIT(pyramid_heights[8]))
-             down8(.input_img(images0), .x_ratio(pyramid8_x_ratios),
-                   .y_ratio(pyramid8_y_ratios), .output_img(images8));
+             down8(.pyramid_index(4'd8),
+                   .input_img(images0), .output_img(images8));
   downscaler #(.WIDTH_LIMIT(pyramid_widths[9]),
                .HEIGHT_LIMIT(pyramid_heights[9]))
-             down9(.input_img(images0), .x_ratio(pyramid9_x_ratios),
-                   .y_ratio(pyramid9_y_ratios), .output_img(images9));
+             down9(.pyramid_index(4'd9),
+                   .input_img(images0), .output_img(images9));
 
   int_img_calc #(.WIDTH_LIMIT(pyramid_widths[0]),
                  .HEIGHT_LIMIT(pyramid_heights[0]))

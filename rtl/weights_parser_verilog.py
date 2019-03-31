@@ -15,71 +15,71 @@ if (not os.path.isfile("./vj_weights.xml")):
 pyramid_widths = [160, 133, 111, 92, 77, 64, 53, 44, 37, 31]
 pyramid_heights = [120, 99, 83, 69, 57, 48, 40, 33, 27, 23]
 
-x_ratios = [78841, 94467, 113976, 136179, 163841, 197845, 238313, 283399, 338251]
-y_ratios = [79438, 94751, 113976, 137971, 163841, 196609, 238313, 291272, 341927]
+x_mappings = [78841, 94467, 113976, 136179, 163841, 197845, 238313, 283399, 338251]
+y_mappings = [79438, 94751, 113976, 137971, 163841, 196609, 238313, 291272, 341927]
 
-pyramid1_x_ratios = []
-pyramid1_y_ratios = []
-for i in range(pyramid_widths[1]):
-    pyramid1_x_ratios.append((i * x_ratios[0]) >> 16)
-for i in range(pyramid_heights[1]):
-    pyramid1_y_ratios.append((i * y_ratios[0]) >> 16)
+pyramid1_x_mappings = []
+pyramid1_y_mappings = []
+for i in range(pyramid_widths[0]):
+    pyramid1_x_mappings.append((i * x_mappings[0]) >> 16)
+for i in range(pyramid_heights[0]):
+    pyramid1_y_mappings.append((i * y_mappings[0]) >> 16)
 
-pyramid2_x_ratios = []
-pyramid2_y_ratios = []
-for i in range(pyramid_widths[2]):
-    pyramid2_x_ratios.append((i * x_ratios[1]) >> 16)
-for i in range(pyramid_heights[2]):
-    pyramid2_y_ratios.append((i * y_ratios[1]) >> 16)
+pyramid2_x_mappings = []
+pyramid2_y_mappings = []
+for i in range(pyramid_widths[0]):
+    pyramid2_x_mappings.append((i * x_mappings[1]) >> 16)
+for i in range(pyramid_heights[0]):
+    pyramid2_y_mappings.append((i * y_mappings[1]) >> 16)
 
-pyramid3_x_ratios = []
-pyramid3_y_ratios = []
-for i in range(pyramid_widths[3]):
-    pyramid3_x_ratios.append((i * x_ratios[2]) >> 16)
-for i in range(pyramid_heights[3]):
-    pyramid3_y_ratios.append((i * y_ratios[2]) >> 16)
+pyramid3_x_mappings = []
+pyramid3_y_mappings = []
+for i in range(pyramid_widths[0]):
+    pyramid3_x_mappings.append((i * x_mappings[2]) >> 16)
+for i in range(pyramid_heights[0]):
+    pyramid3_y_mappings.append((i * y_mappings[2]) >> 16)
 
-pyramid4_x_ratios = []
-pyramid4_y_ratios = []
-for i in range(pyramid_widths[4]):
-    pyramid4_x_ratios.append((i * x_ratios[3]) >> 16)
-for i in range(pyramid_heights[4]):
-    pyramid4_y_ratios.append((i * y_ratios[3]) >> 16)
+pyramid4_x_mappings = []
+pyramid4_y_mappings = []
+for i in range(pyramid_widths[0]):
+    pyramid4_x_mappings.append((i * x_mappings[3]) >> 16)
+for i in range(pyramid_heights[0]):
+    pyramid4_y_mappings.append((i * y_mappings[3]) >> 16)
 
-pyramid5_x_ratios = []
-pyramid5_y_ratios = []
-for i in range(pyramid_widths[5]):
-    pyramid5_x_ratios.append((i * x_ratios[4]) >> 16)
-for i in range(pyramid_heights[5]):
-    pyramid5_y_ratios.append((i * y_ratios[4]) >> 16)
+pyramid5_x_mappings = []
+pyramid5_y_mappings = []
+for i in range(pyramid_widths[0]):
+    pyramid5_x_mappings.append((i * x_mappings[4]) >> 16)
+for i in range(pyramid_heights[0]):
+    pyramid5_y_mappings.append((i * y_mappings[4]) >> 16)
 
-pyramid6_x_ratios = []
-pyramid6_y_ratios = []
-for i in range(pyramid_widths[6]):
-    pyramid6_x_ratios.append((i * x_ratios[5]) >> 16)
-for i in range(pyramid_heights[6]):
-    pyramid6_y_ratios.append((i * y_ratios[5]) >> 16)
+pyramid6_x_mappings = []
+pyramid6_y_mappings = []
+for i in range(pyramid_widths[0]):
+    pyramid6_x_mappings.append((i * x_mappings[5]) >> 16)
+for i in range(pyramid_heights[0]):
+    pyramid6_y_mappings.append((i * y_mappings[5]) >> 16)
 
-pyramid7_x_ratios = []
-pyramid7_y_ratios = []
-for i in range(pyramid_widths[7]):
-    pyramid7_x_ratios.append((i * x_ratios[6]) >> 16)
-for i in range(pyramid_heights[7]):
-    pyramid7_y_ratios.append((i * y_ratios[6]) >> 16)
+pyramid7_x_mappings = []
+pyramid7_y_mappings = []
+for i in range(pyramid_widths[0]):
+    pyramid7_x_mappings.append((i * x_mappings[6]) >> 16)
+for i in range(pyramid_heights[0]):
+    pyramid7_y_mappings.append((i * y_mappings[6]) >> 16)
 
-pyramid8_x_ratios = []
-pyramid8_y_ratios = []
-for i in range(pyramid_widths[8]):
-    pyramid8_x_ratios.append((i * x_ratios[7]) >> 16)
-for i in range(pyramid_heights[8]):
-    pyramid8_y_ratios.append((i * y_ratios[7]) >> 16)
+pyramid8_x_mappings = []
+pyramid8_y_mappings = []
+for i in range(pyramid_widths[0]):
+    pyramid8_x_mappings.append((i * x_mappings[7]) >> 16)
+for i in range(pyramid_heights[0]):
+    pyramid8_y_mappings.append((i * y_mappings[7]) >> 16)
 
-pyramid9_x_ratios = []
-pyramid9_y_ratios = []
-for i in range(pyramid_widths[9]):
-    pyramid9_x_ratios.append((i * x_ratios[8]) >> 16)
-for i in range(pyramid_heights[9]):
-    pyramid9_y_ratios.append((i * y_ratios[8]) >> 16)
+pyramid9_x_mappings = []
+pyramid9_y_mappings = []
+for i in range(pyramid_widths[0]):
+    pyramid9_x_mappings.append((i * x_mappings[8]) >> 16)
+for i in range(pyramid_heights[0]):
+    pyramid9_y_mappings.append((i * y_mappings[8]) >> 16)
 
 
 num_stage = 0
@@ -255,24 +255,24 @@ write_array_body(pyramid_widths, "pyramid_widths".upper())
 write_array_body(pyramid_heights, "pyramid_heights".upper())
 weights_file.write("\n")
 
-write_array_body(pyramid1_x_ratios, "pyramid1_x_ratios".upper())
-write_array_body(pyramid1_y_ratios, "pyramid1_y_ratios".upper())
-write_array_body(pyramid2_x_ratios, "pyramid2_x_ratios".upper())
-write_array_body(pyramid2_y_ratios, "pyramid2_y_ratios".upper())
-write_array_body(pyramid3_x_ratios, "pyramid3_x_ratios".upper())
-write_array_body(pyramid3_y_ratios, "pyramid3_y_ratios".upper())
-write_array_body(pyramid4_x_ratios, "pyramid4_x_ratios".upper())
-write_array_body(pyramid4_y_ratios, "pyramid4_y_ratios".upper())
-write_array_body(pyramid5_x_ratios, "pyramid5_x_ratios".upper())
-write_array_body(pyramid5_y_ratios, "pyramid5_y_ratios".upper())
-write_array_body(pyramid6_x_ratios, "pyramid6_x_ratios".upper())
-write_array_body(pyramid6_y_ratios, "pyramid6_y_ratios".upper())
-write_array_body(pyramid7_x_ratios, "pyramid7_x_ratios".upper())
-write_array_body(pyramid7_y_ratios, "pyramid7_y_ratios".upper())
-write_array_body(pyramid8_x_ratios, "pyramid8_x_ratios".upper())
-write_array_body(pyramid8_y_ratios, "pyramid8_y_ratios".upper())
-write_array_body(pyramid9_x_ratios, "pyramid9_x_ratios".upper())
-write_array_body(pyramid9_y_ratios, "pyramid9_y_ratios".upper())
+write_array_body(pyramid1_x_mappings, "pyramid1_x_mappings".upper())
+write_array_body(pyramid1_y_mappings, "pyramid1_y_mappings".upper())
+write_array_body(pyramid2_x_mappings, "pyramid2_x_mappings".upper())
+write_array_body(pyramid2_y_mappings, "pyramid2_y_mappings".upper())
+write_array_body(pyramid3_x_mappings, "pyramid3_x_mappings".upper())
+write_array_body(pyramid3_y_mappings, "pyramid3_y_mappings".upper())
+write_array_body(pyramid4_x_mappings, "pyramid4_x_mappings".upper())
+write_array_body(pyramid4_y_mappings, "pyramid4_y_mappings".upper())
+write_array_body(pyramid5_x_mappings, "pyramid5_x_mappings".upper())
+write_array_body(pyramid5_y_mappings, "pyramid5_y_mappings".upper())
+write_array_body(pyramid6_x_mappings, "pyramid6_x_mappings".upper())
+write_array_body(pyramid6_y_mappings, "pyramid6_y_mappings".upper())
+write_array_body(pyramid7_x_mappings, "pyramid7_x_mappings".upper())
+write_array_body(pyramid7_y_mappings, "pyramid7_y_mappings".upper())
+write_array_body(pyramid8_x_mappings, "pyramid8_x_mappings".upper())
+write_array_body(pyramid8_y_mappings, "pyramid8_y_mappings".upper())
+write_array_body(pyramid9_x_mappings, "pyramid9_x_mappings".upper())
+write_array_body(pyramid9_y_mappings, "pyramid9_y_mappings".upper())
 weights_file.write("\n")
 
 # number of features in each stage
