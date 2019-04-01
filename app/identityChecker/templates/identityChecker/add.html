@@ -16,12 +16,12 @@
             
         <div class="video-container"> 
             <div id="countdown" onclick="captureImages()"></div>
-            <video width="640" height="480" align="center" id="player" playsinline autoplay></video>
+            <video width="512" height="384" align="center" id="player" playsinline autoplay></video>
         
         </div>
             
         <div class="container">
-            <div class="row">
+            <div class="row" id="button-row">
                 <div class="col">
                 </div>
                 
@@ -39,30 +39,34 @@
             </div>
         </div>
             
+        <div class="row"> </div>
+            
         <div class="container">
             <div class="row">
+                <div class="col-1">
+                </div>
                 
-                <div class="col-sm">
+                <div class="col-2">
                     <canvas id="canvas1"></canvas>
                 </div>
                 
-                <div class="col-sm">
+                <div class="col-2">
                     <canvas id="canvas2"></canvas>
                 </div>
                 
-                <div class="col-sm">
+                <div class="col-2">
                     <canvas id="canvas3"></canvas>
                 </div>
                 
-                <div class="col-sm">
+                <div class="col-2">
                     <canvas id="canvas4"></canvas>
                 </div>
                 
-                <div class="col-sm">
+                <div class="col-2">
                     <canvas id="canvas5"></canvas>
                 </div>
                 
-                <div class="col-sm">
+                <div class="col-1">
                 </div>
                 
             </div>
@@ -73,27 +77,19 @@
           const canvas = document.getElementById('canvas1');
             
           const context = canvas.getContext('2d');
-//            var pic1 = context.canvas;
-//            document.body.appendChild(pic1);
           const captureButton = document.getElementById('capture');
 
           const constraints = {
             video: true,
           };
-
-//          captureButton.addEventListener('click', () => {
-//            // Draw the video frame to the canvas.
-//            context.drawImage(player, 0, 0, canvas.width, canvas.height);
-//          });
-
+            
           // Attach the video stream to the video element and autoplay.
           navigator.mediaDevices.getUserMedia(constraints)
             .then((stream) => {
               player.srcObject = stream;
             });
-            
-            
         </script>
+            
         </div>
       
     </body>

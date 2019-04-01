@@ -34,4 +34,6 @@ a:hover i, a, i {
 
 .col-3 {
     text-align: center;
+    margin-top:-2%;
+    padding-bottom:2%;
 }

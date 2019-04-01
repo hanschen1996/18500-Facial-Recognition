@@ -1,21 +1,6 @@
 function captureImages() {
     var count = 0;
 
-    var timeleft = 5;
-    var downloadTimer = setInterval(function(){
-      document.getElementById("countdown").innerHTML = timeleft + " Seconds Until Photo is Taken";
-      timeleft -= 1;
-      if(timeleft < 0){
-        clearInterval(downloadTimer);
-
-      }
-    }, 1000);
-    document.getElementById("countdown").innerHTML = "Finished";
-}
-
-function captureImages() {
-    var count = 0;
-
     var timeleft = 25;
     var downloadTimer = setInterval(function(){
     if(timeleft % 5 == 0) {
@@ -27,11 +12,40 @@ function captureImages() {
 
       timeleft -= 1;
       if(timeleft == 19){
-        clearInterval(downloadTimer);
-        context.drawImage(player, 0, 0, canvas.width, canvas.height);
-        document.getElementById("countdown").innerHTML = "Finished"
-
+        context.drawImage(player, 0, 0, 160, 120);
       }
+        
+    if(timeleft == 14) {
+        const canvas2 = document.getElementById('canvas2');
+        const context2 = canvas2.getContext('2d');
+        
+        context2.drawImage(player, 0, 0, 160, 120);
+    }
+    
+    if(timeleft == 9) {
+        const canvas3 = document.getElementById('canvas3');
+        const context3 = canvas3.getContext('2d');
+        
+        context3.drawImage(player, 0, 0, 160, 120);
+    }
+        
+    if(timeleft == 4) {
+        const canvas4 = document.getElementById('canvas4');
+        const context4 = canvas4.getContext('2d');
+        
+        context4.drawImage(player, 0, 0, 160, 120);
+    }
+        
+    if(timeleft < 0) {
+        const canvas5 = document.getElementById('canvas5');
+        const context5 = canvas5.getContext('2d');
+        
+        context5.drawImage(player, 0, 0, 160, 120);
+        document.getElementById("countdown").innerHTML = "Finished"
+        clearInterval(downloadTimer);
+
+    }
+        
     console.log("count: " + count);
     console.log("timeleft: " + timeleft);
     }, 1000);

@@ -64,32 +64,50 @@ module top_tb();
 
     laptop_img_rdy = 1'b0;
 
-    @(posedge face_coords_ready);
-
+    @(negedge dut.vj_pipeline_on);
+    ##2914;
     $finish;
   end
-
+  
   initial begin
-    int z = 0;
-    @(posedge laptop_img_rdy);
-    while (z == 0) begin 
+    /*int z= 0;
+    while (z == 0) begin
       $display("pyramid_number is %0d", pyramid_number);
       $display("indexing into row %0d, column %0d", dut.row_index, dut.col_index);
       for (int k = 1; k < 26; k++) begin
-        $display("stage %0d comparison result is %b", k, dut.vjp.stage_comparisons[k]);
+       $display("stage %0d comparison result is %b", k, dut.vjp.stage_comparisons[k]);
       end
       $display("face_coords are (r%0d, c%0d)", face_coords[0], face_coords[1]);
       $display("------------------------------------------------------");
       ##1;
+    end*/
+    int z = 0;
+    while (z == 0) begin 
+      @(posedge face_coords_ready);
+      $display("nice!!!!!");
+      $display("pyramid_number is %0d", pyramid_number);
+      // $display("indexing into row %0d, column %0d", dut.row_index, dut.col_index);
+      // for (int k = 1; k < 26; k++) begin
+      //  $display("stage %0d comparison result is %b", k, dut.vjp.stage_comparisons[k]);
+      // end
+      $display("face_coords are (r%0d, c%0d)", face_coords[0], face_coords[1]);
+      $display("------------------------------------------------------");
     end
+    ##10
+    $finish;
   end
-
+  
+  /*
   initial begin
     int g = 0;
+    @(posedge dut.vj_pipeline_on);
     while (g == 0) begin
-      if (pyramid_number == 4'd6) $finish;
+      if (!dut.vj_pipeline_on) g = 1;
       ##1;
     end
+    ##3000;
+    $finish;
   end
+  */
 
 endmodule

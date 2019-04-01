@@ -21,7 +21,6 @@ module top(
   logic [pyramid_heights[6]-1:0][pyramid_widths[6]-1:0][31:0] images6, int_images6, int_images_sq6;
   logic [pyramid_heights[7]-1:0][pyramid_widths[7]-1:0][31:0] images7, int_images7, int_images_sq7;
   logic [pyramid_heights[8]-1:0][pyramid_widths[8]-1:0][31:0] images8, int_images8, int_images_sq8;
-  logic [pyramid_heights[9]-1:0][pyramid_widths[9]-1:0][31:0] images9, int_images9, int_images_sq9;
 
   // temporary array to hold the image for the current pyramid level
   logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] curr_int_image, curr_int_image_sq;
@@ -80,10 +79,6 @@ module top(
                .WIDTH_LIMIT(pyramid_widths[8]),
                .HEIGHT_LIMIT(pyramid_heights[8]))
              down8(.input_img(images0), .output_img(images8));
-  downscaler #(.PYRAMID_INDEX(8),
-               .WIDTH_LIMIT(pyramid_widths[9]),
-               .HEIGHT_LIMIT(pyramid_heights[9]))
-             down9(.input_img(images0), .output_img(images9));
 
   /* integral image calculator for all pyramid levels */
   int_img_calc #(.WIDTH_LIMIT(pyramid_widths[0]),
@@ -122,10 +117,6 @@ module top(
                  .HEIGHT_LIMIT(pyramid_heights[8]))
                int_calc8(.input_img(images8), .output_img(int_images8),
                          .output_img_sq(int_images_sq8));
-  int_img_calc #(.WIDTH_LIMIT(pyramid_widths[9]),
-                 .HEIGHT_LIMIT(pyramid_heights[9]))
-               int_calc9(.input_img(images9), .output_img(int_images9),
-                         .output_img_sq(int_images_sq9));
 
   /* calculate standard deviation of the current scanning window */
   window_std_dev stddev(.scan_win, .scan_win_sq, .scan_win_std_dev);
@@ -133,9 +124,9 @@ module top(
   //logic [1:0][31:0] top_left;
   //logic top_left_ready;
   /* viola-jones pipeline to send scanning window through each feature */
-  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev),
-                  .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready));
-  assign pyramid_number = img_index;
+  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev), .img_index,
+                  .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready), 
+                  .pyramid_number);
 
   /* choose the current integral image because each pyramid level has
    * different sizes */
@@ -210,14 +201,6 @@ module top(
               for (int col = 0; col < pyramid_widths[8]; col++) begin: image8_col
                 curr_int_image[row][col] = int_images8[row][col];
                 curr_int_image_sq[row][col] = int_images_sq8[row][col];
-              end
-            end
-            end
-      4'd9: begin
-            for (int row = 0; row < pyramid_heights[9]; row++) begin: image9_row
-              for (int col = 0; col < pyramid_widths[9]; col++) begin: image9_col
-                curr_int_image[row][col] = int_images9[row][col];
-                curr_int_image_sq[row][col] = int_images_sq9[row][col];
               end
             end
             end
