@@ -32,17 +32,18 @@ module downscaler
   endgenerate
 
 endmodule
-
+/*
 module downscaler_call();
 
   localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_widths= `PYRAMID_WIDTHS;
   localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_heights = `PYRAMID_HEIGHTS;
   logic [pyramid_heights[0]-1:0][pyramid_widths[0]-1:0][31:0] images0;
-  logic [pyramid_heights[9]-1:0][pyramid_widths[9]-1:0][31:0] images9;
+  logic [pyramid_heights[8]-1:0][pyramid_widths[8]-1:0][31:0] images8;
 
-  downscaler #(.PYRAMID_INDEX(8),
-               .WIDTH_LIMIT(pyramid_widths[9]),
-               .HEIGHT_LIMIT(pyramid_heights[9]))
-             down1(.input_img(images0), .output_img(images9));
+  downscaler #(.PYRAMID_INDEX(7),
+               .WIDTH_LIMIT(pyramid_widths[8]),
+               .HEIGHT_LIMIT(pyramid_heights[8]))
+             down1(.input_img(images0), .output_img(images8));
 
 endmodule
+*/
