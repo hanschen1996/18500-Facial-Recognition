@@ -259,10 +259,10 @@ module top(
       if (laptop_img_rdy) begin
         wait_integral_image_count <= 32'd1;
       end
-      if ((wait_integral_image_count > 32'd0) && (wait_integral_image_count < 32'd76800)) begin: waiting_for_first_int_img
+      if ((wait_integral_image_count > 32'd0) && (wait_integral_image_count < 32'd10)) begin: waiting_for_first_int_img
         wait_integral_image_count <= wait_integral_image_count + 32'd1;
       end
-      if (wait_integral_image_count == 32'd76800) begin: turn_on_vj_pipeline
+      if (wait_integral_image_count == 32'd10) begin: turn_on_vj_pipeline
         wait_integral_image_count <= 32'd0;
         vj_pipeline_on <= 1'b1;
         img_index <= 4'd0;
@@ -270,15 +270,15 @@ module top(
         col_index <= 32'd0;
       end
       if (vj_pipeline_on) begin
-        if ((img_index == `PYRAMID_LEVELS-1) && (row_index == pyramid_heights[img_index] - `WINDOW_SIZE) &&
-            (col_index == pyramid_widths[img_index] - `WINDOW_SIZE)) begin: vj_pipeline_finished
+        if ((img_index == `PYRAMID_LEVELS-1) && (row_index == pyramid_heights[img_index] - `WINDOW_SIZE - 1) &&
+            (col_index == pyramid_widths[img_index] - `WINDOW_SIZE - 1)) begin: vj_pipeline_finished
           img_index <= 4'd15;
           row_index <= 32'd0;
           col_index <= 32'd0;
           vj_pipeline_on <= 1'd0;
         end else begin
-          if (col_index == pyramid_widths[img_index] - `WINDOW_SIZE) begin: row_done
-            if (row_index == pyramid_heights[img_index] - `WINDOW_SIZE) begin: col_done
+          if (col_index == pyramid_widths[img_index] - `WINDOW_SIZE - 1) begin: row_done
+            if (row_index == pyramid_heights[img_index] - `WINDOW_SIZE - 1) begin: col_done
               img_index <= img_index + 4'd1;
               row_index <= 32'd0;
               col_index <= 32'd0;
