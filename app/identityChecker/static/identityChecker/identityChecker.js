@@ -53,7 +53,8 @@ function captureImages() {
 
 function download(){    
     var download = document.getElementById("download");
-    var image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+    var image = canvas.toDataURL("image/pgm").replace("image/png", "image/octet-stream");
 
     download.setAttribute("href", image);
+    
 }
