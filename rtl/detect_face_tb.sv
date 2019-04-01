@@ -1,7 +1,7 @@
 `default_nettype none
 `include "vj_weights.vh"
 
-module top_tb();
+module detect_face_tb();
 
   logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] laptop_img;
   logic clock, laptop_img_rdy, reset;
@@ -12,7 +12,7 @@ module top_tb();
   logic [31:0] c;
   logic [31:0] row, col;
 
-  top dut(.*);
+  detect_face dut(.*);
 
   default clocking cb_main 
     @(posedge clock); 

@@ -1,7 +1,7 @@
 `default_nettype none
 `include "vj_weights.vh"
 
-module top(
+module detect_face(
   input logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] laptop_img, // coming from uart module
   input logic clock, laptop_img_rdy, reset,
   output logic [1:0][31:0] face_coords,
