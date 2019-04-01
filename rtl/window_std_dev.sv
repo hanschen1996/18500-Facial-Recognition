@@ -24,5 +24,6 @@ module window_std_dev(
   assign scan_win_std_dev1 = {scan_win_sq_sum[22:0], 9'd0} + {scan_win_sq_sum[25:0], 6'd0};
   multiplier scan_win_mult2(.out(scan_win_std_dev2), .a(scan_win_sum), .b(scan_win_sum));
 
-  sqrt stddev(.val(scan_win_std_dev1 - scan_win_std_dev2), .res(scan_win_std_dev));
+  assign scan_win_std_dev[31:16] = 16'd0;
+  sqrt stddev(.val(scan_win_std_dev1 - scan_win_std_dev2), .res(scan_win_std_dev[15:0]));
 endmodule

@@ -5,8 +5,10 @@ module vj_pipeline(
   input  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] scan_win,
   input  logic [31:0] input_std_dev,
   input  logic [1:0][31:0] scan_win_index,
+  input  logic [3:0] img_index,
   output logic [1:0][31:0] top_left,
-  output logic top_left_ready);
+  output logic top_left_ready,
+  output logic [3:0] pyramid_number);
 
   logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] scan_win0, scan_win1,scan_win2,scan_win3,scan_win4,scan_win5,scan_win6,scan_win7,scan_win8,scan_win9,scan_win10,scan_win11,scan_win12,scan_win13,scan_win14,scan_win15,scan_win16,scan_win17,scan_win18,scan_win19,scan_win20,scan_win21,scan_win22,scan_win23,scan_win24,scan_win25,scan_win26,scan_win27,scan_win28,scan_win29,scan_win30,scan_win31,scan_win32,scan_win33,scan_win34,scan_win35,scan_win36,scan_win37,scan_win38,scan_win39,scan_win40,scan_win41,scan_win42,scan_win43,scan_win44,scan_win45,scan_win46,scan_win47,scan_win48,scan_win49,scan_win50,scan_win51,scan_win52,scan_win53,scan_win54,scan_win55,scan_win56,scan_win57,scan_win58,scan_win59,scan_win60,scan_win61,scan_win62,scan_win63,scan_win64,scan_win65,scan_win66,scan_win67,scan_win68,scan_win69,scan_win70,scan_win71,scan_win72,scan_win73,scan_win74,scan_win75,scan_win76,scan_win77,scan_win78,scan_win79,scan_win80,scan_win81,scan_win82,scan_win83,scan_win84,scan_win85,scan_win86,scan_win87,scan_win88,scan_win89,scan_win90,scan_win91,scan_win92,scan_win93,scan_win94,scan_win95,scan_win96,scan_win97,scan_win98,scan_win99,scan_win100,scan_win101,scan_win102,scan_win103,scan_win104,scan_win105,scan_win106,scan_win107,scan_win108,scan_win109,scan_win110,scan_win111,scan_win112,scan_win113,scan_win114,scan_win115,scan_win116,scan_win117,scan_win118,scan_win119,scan_win120,scan_win121,scan_win122,scan_win123,scan_win124,scan_win125,scan_win126,scan_win127,scan_win128,scan_win129,scan_win130,scan_win131,scan_win132,scan_win133,scan_win134,scan_win135,scan_win136,scan_win137,scan_win138,scan_win139,scan_win140,scan_win141,scan_win142,scan_win143,scan_win144,scan_win145,scan_win146,scan_win147,scan_win148,scan_win149,scan_win150,scan_win151,scan_win152,scan_win153,scan_win154,scan_win155,scan_win156,scan_win157,scan_win158,scan_win159,scan_win160,scan_win161,scan_win162,scan_win163,scan_win164,scan_win165,scan_win166,scan_win167,scan_win168,scan_win169,scan_win170,scan_win171,scan_win172,scan_win173,scan_win174,scan_win175,scan_win176,scan_win177,scan_win178,scan_win179,scan_win180,scan_win181,scan_win182,scan_win183,scan_win184,scan_win185,scan_win186,scan_win187,scan_win188,scan_win189,scan_win190,scan_win191,scan_win192,scan_win193,scan_win194,scan_win195,scan_win196,scan_win197,scan_win198,scan_win199,scan_win200,
   scan_win201,scan_win202,scan_win203,scan_win204,scan_win205,scan_win206,scan_win207,scan_win208,scan_win209,scan_win210,scan_win211,scan_win212,scan_win213,scan_win214,scan_win215,scan_win216,scan_win217,scan_win218,scan_win219,scan_win220,scan_win221,scan_win222,scan_win223,scan_win224,scan_win225,scan_win226,scan_win227,scan_win228,scan_win229,scan_win230,scan_win231,scan_win232,scan_win233,scan_win234,scan_win235,scan_win236,scan_win237,scan_win238,scan_win239,scan_win240,scan_win241,scan_win242,scan_win243,scan_win244,scan_win245,scan_win246,scan_win247,scan_win248,scan_win249,scan_win250,scan_win251,scan_win252,scan_win253,scan_win254,scan_win255,scan_win256,scan_win257,scan_win258,scan_win259,scan_win260,scan_win261,scan_win262,scan_win263,scan_win264,scan_win265,scan_win266,scan_win267,scan_win268,scan_win269,scan_win270,scan_win271,scan_win272,scan_win273,scan_win274,scan_win275,scan_win276,scan_win277,scan_win278,scan_win279,scan_win280,scan_win281,scan_win282,scan_win283,scan_win284,scan_win285,scan_win286,scan_win287,scan_win288,scan_win289,scan_win290,scan_win291,scan_win292,scan_win293,scan_win294,scan_win295,scan_win296,scan_win297,scan_win298,scan_win299,scan_win300,scan_win301,scan_win302,scan_win303,scan_win304,scan_win305,scan_win306,scan_win307,scan_win308,scan_win309,scan_win310,scan_win311,scan_win312,scan_win313,scan_win314,scan_win315,scan_win316,scan_win317,scan_win318,scan_win319,scan_win320,scan_win321,scan_win322,scan_win323,scan_win324,scan_win325,scan_win326,scan_win327,scan_win328,scan_win329,scan_win330,scan_win331,scan_win332,scan_win333,scan_win334,scan_win335,scan_win336,scan_win337,scan_win338,scan_win339,scan_win340,scan_win341,scan_win342,scan_win343,scan_win344,scan_win345,scan_win346,scan_win347,scan_win348,scan_win349,scan_win350,scan_win351,scan_win352,scan_win353,scan_win354,scan_win355,scan_win356,scan_win357,scan_win358,scan_win359,scan_win360,scan_win361,scan_win362,scan_win363,scan_win364,scan_win365,scan_win366,scan_win367,scan_win368,scan_win369,scan_win370,scan_win371,scan_win372,scan_win373,scan_win374,scan_win375,scan_win376,scan_win377,scan_win378,scan_win379,scan_win380,scan_win381,scan_win382,scan_win383,scan_win384,scan_win385,scan_win386,scan_win387,scan_win388,scan_win389,scan_win390,scan_win391,scan_win392,scan_win393,scan_win394,scan_win395,scan_win396,scan_win397,scan_win398,scan_win399,scan_win400,
@@ -25,6 +27,7 @@ module vj_pipeline(
   scan_win2801,scan_win2802,scan_win2803,scan_win2804,scan_win2805,scan_win2806,scan_win2807,scan_win2808,scan_win2809,scan_win2810,scan_win2811,scan_win2812,scan_win2813,scan_win2814,scan_win2815,scan_win2816,scan_win2817,scan_win2818,scan_win2819,scan_win2820,scan_win2821,scan_win2822,scan_win2823,scan_win2824,scan_win2825,scan_win2826,scan_win2827,scan_win2828,scan_win2829,scan_win2830,scan_win2831,scan_win2832,scan_win2833,scan_win2834,scan_win2835,scan_win2836,scan_win2837,scan_win2838,scan_win2839,scan_win2840,scan_win2841,scan_win2842,scan_win2843,scan_win2844,scan_win2845,scan_win2846,scan_win2847,scan_win2848,scan_win2849,scan_win2850,scan_win2851,scan_win2852,scan_win2853,scan_win2854,scan_win2855,scan_win2856,scan_win2857,scan_win2858,scan_win2859,scan_win2860,scan_win2861,scan_win2862,scan_win2863,scan_win2864,scan_win2865,scan_win2866,scan_win2867,scan_win2868,scan_win2869,scan_win2870,scan_win2871,scan_win2872,scan_win2873,scan_win2874,scan_win2875,scan_win2876,scan_win2877,scan_win2878,scan_win2879,scan_win2880,scan_win2881,scan_win2882,scan_win2883,scan_win2884,scan_win2885,scan_win2886,scan_win2887,scan_win2888,scan_win2889,scan_win2890,scan_win2891,scan_win2892,scan_win2893,scan_win2894,scan_win2895,scan_win2896,scan_win2897,scan_win2898,scan_win2899,scan_win2900,scan_win2901,scan_win2902,scan_win2903,scan_win2904,scan_win2905,scan_win2906,scan_win2907,scan_win2908,scan_win2909,scan_win2910,scan_win2911,scan_win2912;
   logic [`NUM_FEATURE-1:0][1:0][31:0] scan_coords;
   logic [`NUM_FEATURE-1:0][31:0] scan_win_std_dev;
+  logic [`NUM_FEATURE-1:0][3:0] pyr_nums;
 
   localparam [`NUM_STAGE:0][31:0] stage_num_feature = `STAGE_NUM_FEATURE;
   localparam [`NUM_STAGE-1:0][31:0] stage_threshold = `STAGE_THRESHOLD;
@@ -52,14 +55,18 @@ module vj_pipeline(
        scan_coords <= 'd0;
        scan_win_std_dev <= 'd0;
        top_left <= 'd0;
+       pyr_nums <= 'd0;
     end else begin: move_scan_coords_and_scan_win_std_devs
       scan_coords[0] <= scan_win_index;
+      pyr_nums[0] <= img_index;
       scan_win_std_dev[0] <= input_std_dev;
       for (int i = 0; i < `NUM_FEATURE-1; i++) begin
         scan_coords[i+1] <= scan_coords[i];
+        pyr_nums[i+1] <= pyr_nums[i];
         scan_win_std_dev[i+1] <= scan_win_std_dev[i];
       end
       top_left <= scan_coords[`NUM_FEATURE-1];
+      pyramid_number <= pyr_nums[`NUM_FEATURE-1];
     end
   end
 

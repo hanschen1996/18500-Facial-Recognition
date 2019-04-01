@@ -124,9 +124,9 @@ module top(
   //logic [1:0][31:0] top_left;
   //logic top_left_ready;
   /* viola-jones pipeline to send scanning window through each feature */
-  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev),
-                  .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready));
-  assign pyramid_number = img_index;
+  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev), .img_index,
+                  .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready), 
+                  .pyramid_number);
 
   /* choose the current integral image because each pyramid level has
    * different sizes */
