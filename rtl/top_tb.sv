@@ -8,7 +8,6 @@ module top_tb();
   logic [1:0][31:0] face_coords;
   logic face_coords_ready;
   logic [3:0] pyramid_number;
-  localparam [`NUM_STAGE:0][31:0] stage_num_feature = `STAGE_NUM_FEATURE;
   integer file;
   logic [31:0] c;
   logic [31:0] row, col;
@@ -25,8 +24,10 @@ module top_tb();
   end
 
   initial begin
-    row <= 0;
-    col <= 0;
+    reset = 1'b1;
+    laptop_img_rdy = 1'b0;
+    row = 0;
+    col = 0;
     ##1;
 
     file = $fopen("input.txt", "r");
@@ -39,24 +40,20 @@ module top_tb();
     while ((c = $fgetc(file)) != -1) begin
       laptop_img[row][col] <= c[7:0];
       if (col == `LAPTOP_WIDTH - 1) begin
-        row <= row + 1;
-        col <= 0;
+        row = row + 1;
+        col = 0;
       end
-      else col <= col + 1;
+      else col = col + 1;
       ##1;
     end
-
+    /*
     for (int y = 0; y < `LAPTOP_HEIGHT; y ++) begin
       for (int x = 0; x < `LAPTOP_WIDTH; x ++) begin
         $write("%0d,", laptop_img[y][x]);
       end
       $write("\n");
     end
-
-    reset = 1'b1;
-    laptop_img_rdy = 1'b0;
-    
-    ##1;
+    */
 
     reset = 1'b0;
 
