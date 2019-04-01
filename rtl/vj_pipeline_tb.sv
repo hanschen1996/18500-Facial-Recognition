@@ -24,21 +24,19 @@ module accum_calculator_tb();
       end
     end
     #10
-
-    for (int i = 0; i < 10; i=i+1) begin
-              for (int j = 0; j < 10; j=j+1) begin
-                $write("%0d ", output_img[i][j]);
-              end
-              $write("\n");
-    end
     $display("----------------------------------------------------------");
-    for (int i = 0; i < 10; i=i+1) begin
-                  for (int j = 0; j < 10; j=j+1) begin
-                    $write("%0d ", output_img_sq[i][j]);
-                  end
-                  $write("\n");
+    for (int i = 0; i < `WINDOW_SIZE+1; i=i+1) begin
+      for (int j = 0; j < `WINDOW_SIZE+1; j=j+1) begin
+        $write("%0d ", scan_win_sq[i][j]);
+      end
+      $write("\n");
     end
     #10
+
+    $display("rectangle1 val: %d, rectangle2 val: %d, rectangle3 val: %d",
+             accum_calculator.rectangle1_val,
+             accum_calculator.rectangle2_val,
+             accum_calculator.rectangle3_val);
     $finish;
   end
 

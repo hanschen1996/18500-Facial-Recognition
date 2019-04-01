@@ -1,8 +1,8 @@
 `include "vj_weights.vh"
 
 module window_std_dev(
-  input  logic [`WINDOW_SIZE-1:0][`WINDOW_SIZE-1:0][31:0] scan_win,
-  input  logic [`WINDOW_SIZE-1:0][`WINDOW_SIZE-1:0][31:0] scan_win_sq,
+  input  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] scan_win,
+  input  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] scan_win_sq,
   output logic [31:0] scan_win_std_dev);
 
   logic [31:0] scan_win_top_left, scan_win_top_right, scan_win_bottom_left, scan_win_bottom_right;
