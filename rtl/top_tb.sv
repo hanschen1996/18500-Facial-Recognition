@@ -44,7 +44,6 @@ module top_tb();
         col = 0;
       end
       else col = col + 1;
-      ##1;
     end
     /*
     for (int y = 0; y < `LAPTOP_HEIGHT; y ++) begin
@@ -65,9 +64,15 @@ module top_tb();
 
     laptop_img_rdy = 1'b0;
 
-    ##76800;
+    @(posedge face_coords_ready);
 
-    for (int z = 0; z < 3200; z++) begin 
+    $finish;
+  end
+
+  initial begin
+    int z = 0;
+    @(posedge laptop_img_rdy);
+    while (z == 0) begin 
       $display("pyramid_number is %0d", pyramid_number);
       $display("indexing into row %0d, column %0d", dut.row_index, dut.col_index);
       for (int k = 1; k < 26; k++) begin
@@ -75,14 +80,16 @@ module top_tb();
       end
       $display("face_coords are (r%0d, c%0d)", face_coords[0], face_coords[1]);
       $display("------------------------------------------------------");
-
       ##1;
-
     end
+  end
 
-    ##5;
-
-    $finish;
+  initial begin
+    int g = 0;
+    while (g == 0) begin
+      if (pyramid_number == 4'd6) $finish;
+      ##1;
+    end
   end
 
 endmodule
