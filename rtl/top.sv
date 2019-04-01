@@ -25,7 +25,16 @@ module top(
 
   // temporary array to hold the image for the current pyramid level
   logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] curr_int_image, curr_int_image_sq;
+  logic [3:0] img_index;
+  logic [31:0] row_index, col_index;
+  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] scan_win, scan_win_sq;
+  logic [1:0][31:0] scan_win_index;
+  logic [31:0] scan_win_std_dev;
 
+  assign scan_win_index[0] = row_index;
+  assign scan_win_index[1] = col_index;
+
+  /* write laptop image into the first image pyramid */
   always_ff @(posedge clock, posedge reset) begin: set_first_img
     if (reset) begin
       images0 <= 'd0;
@@ -38,6 +47,7 @@ module top(
     end
   end
 
+  /* downscalers to downscale the original image into all pyramid levels */
   downscaler #(.PYRAMID_INDEX(0),
                .WIDTH_LIMIT(pyramid_widths[1]),
                .HEIGHT_LIMIT(pyramid_heights[1]))
@@ -75,6 +85,7 @@ module top(
                .HEIGHT_LIMIT(pyramid_heights[9]))
              down9(.input_img(images0), .output_img(images9));
 
+  /* integral image calculator for all pyramid levels */
   int_img_calc #(.WIDTH_LIMIT(pyramid_widths[0]),
                  .HEIGHT_LIMIT(pyramid_heights[0]))
                int_calc0(.input_img(images0), .output_img(int_images0),
@@ -116,16 +127,18 @@ module top(
                int_calc9(.input_img(images9), .output_img(int_images9),
                          .output_img_sq(int_images_sq9));
 
-  logic [3:0] img_index;
-  logic [31:0] row_index, col_index;
-  logic [`WINDOW_SIZE-1:0][`WINDOW_SIZE-1:0][31:0] scan_win;
-  logic [1:0][31:0] scan_win_index;
+  /* calculate standard deviation of the current scanning window */
+  window_std_dev stddev(.scan_win, .scan_win_sq, .scan_win_std_dev);
 
-  logic [31:0] scan_win_top_left, scan_win_top_right, scan_win_bottom_left, scan_win_bottom_right;
-  logic [31:0] scan_win_top_left_sq, scan_win_top_right_sq, scan_win_bottom_left_sq, scan_win_bottom_right_sq;
-  logic [31:0] scan_win_sum, scan_win_sq_sum;
-  logic [31:0] scan_win_std_dev, scan_win_std_dev1, scan_win_std_dev2;
+  //logic [1:0][31:0] top_left;
+  //logic top_left_ready;
+  /* viola-jones pipeline to send scanning window through each feature */
+  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev),
+                  .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready));
+  assign pyramid_number = img_index;
 
+  /* choose the current integral image because each pyramid level has
+   * different sizes */
   always_comb begin
     case (img_index)
       4'd0: begin
@@ -215,41 +228,18 @@ module top(
     endcase
   end
 
-  assign scan_win_index[0] = row_index;
-  assign scan_win_index[1] = col_index;
-  assign scan_win_top_left = curr_int_image[row_index][col_index];
-  assign scan_win_top_right = curr_int_image[row_index][col_index + `WINDOW_SIZE];
-  assign scan_win_bottom_left = curr_int_image[row_index + `WINDOW_SIZE][col_index];
-  assign scan_win_bottom_right = curr_int_image[row_index + `WINDOW_SIZE][col_index + `WINDOW_SIZE];
-  assign scan_win_top_left_sq = curr_int_image_sq[row_index][col_index];
-  assign scan_win_top_right_sq = curr_int_image_sq[row_index][col_index + `WINDOW_SIZE];
-  assign scan_win_bottom_left_sq = curr_int_image_sq[row_index + `WINDOW_SIZE][col_index];
-  assign scan_win_bottom_right_sq = curr_int_image_sq[row_index + `WINDOW_SIZE][col_index + `WINDOW_SIZE];
-  assign scan_win_sq_sum = scan_win_bottom_right_sq - scan_win_bottom_left_sq + scan_win_top_left_sq - scan_win_top_right_sq;
-  assign scan_win_sum = scan_win_bottom_right - scan_win_bottom_left + scan_win_top_left - scan_win_top_right;
-
-  multiplier scan_win_mult1(.out(scan_win_std_dev1), .a(scan_win_sq_sum), .b(32'd576));
-  multiplier scan_win_mult2(.out(scan_win_std_dev2), .a(scan_win_sum), .b(scan_win_sum));
-
-  sqrt stddev(.val(scan_win_std_dev1 - scan_win_std_dev2), .res(scan_win_std_dev));
-
-  // copy current scanning window into a buffer
+  /* choose the current scanning window */
   genvar k, l;
   generate
-    for (k=0; k<`WINDOW_SIZE; k=k+1) begin: scan_win_row
-      for (l=0; l<`WINDOW_SIZE; l=l+1) begin: scan_win_column
+    for (k=0; k<`WINDOW_SIZE+1; k=k+1) begin: scan_win_row
+      for (l=0; l<`WINDOW_SIZE+1; l=l+1) begin: scan_win_column
         assign scan_win[k][l] = (img_index == 4'd15) ? 31'd0 : curr_int_image[row_index+k][col_index+l];
+        assign scan_win_sq[k][l] = (img_index == 4'd15) ? 31'd0 : curr_int_image_sq[row_index+k][col_index+l];
       end
     end
   endgenerate
 
-  //logic [1:0][31:0] top_left;
-  //logic top_left_ready;
-
-  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev),
-                  .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready));
-
-  assign pyramid_number = img_index;
+  
 
   /* ---------------------------------------------------------------------------
    * FSM -----------------------------------------------------------------------

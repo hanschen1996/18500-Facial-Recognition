@@ -13,7 +13,7 @@ module top_tb();
   logic [31:0] c;
   logic [31:0] row, col;
 
-  //top dut(.*);
+  top dut(.*);
 
   default clocking cb_main 
     @(posedge clock); 
