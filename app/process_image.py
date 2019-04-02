@@ -3,9 +3,10 @@ from PIL import Image
 import os
 from subprocess import Popen, PIPE
 import nms
+import sys
 
 IMG_PATH = "/Users/andyshen/Downloads/image.png"
-PROG_PATH = "~/Desktop/18500-Facial-Recognition/facialrecognition/vj"
+PROG_PATH = "/Users/andyshen/Desktop/18500-Facial-Recognition/facialrecognition/vj"
 WIDTH = 160
 HEIGHT = 120
 TMP_OUTPUT = "image.pgm"
@@ -18,9 +19,13 @@ def main():
 
     boxes = []
     p = Popen([PROG_PATH, TMP_OUTPUT], stdout=PIPE, stdin=PIPE)
-    for line in iter(p.stdout.readline, ""):
-        line = line.strip()
-        if (line.startswith("Face:(")):
+
+    while (True):
+        line = p.stdout.readline()
+        line = line.decode().strip()
+        if (line == ""): break
+
+        if (line.startswith('Face:(')):
             box = line[len("Face:("):-1].split(",")
             boxes.append(list(map(lambda x: int(x), box)))
         elif (line.startswith("ERROR:")):

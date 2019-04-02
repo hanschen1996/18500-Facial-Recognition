@@ -4,7 +4,9 @@ THRESHOLD = 0.4
 def nms(boxes):
     boxes.sort(key=lambda x: x[-1], reverse=True)
     keep = [1] * len(boxes)
-    area = list(map(lambda (x1,y1,x2,y2,_): (x2-x1)*(y2-y1), boxes))
+    area = []
+    for (x1,y1,x2,y2,_) in boxes:
+        area.append((x2-x1)*(y2-y1))
     result = []
 
     for i in range(len(boxes)):
