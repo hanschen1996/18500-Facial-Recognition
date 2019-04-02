@@ -16,7 +16,7 @@
             
         <div class="video-container"> 
             <div id="countdown" onclick="captureImages()"></div>
-            <video width="512" height="384" align="center" id="player" playsinline autoplay></video>
+            <video width="400" height="300" align="center" id="player" playsinline autoplay></video>
         
         </div>
             
@@ -25,11 +25,19 @@
                 <div class="col">
                 </div>
                 
-                <div class="col-3">
+                <div class="col-2">
                     <a><button type="button" class="btn btn-dark btn-lg" onClick="captureImages()" id="capture">Capture</button></a>
                 </div>
-                <div class="col-3">
-                    <a id="download" download="image.png"><button type="button" class="btn btn-dark btn-lg"  onClick="download()" id="download">Download</button></a>
+                <div class="col-2">
+                        <a id="download" download="image.png"><button type="submit" class="btn btn-dark btn-lg"  onClick="download()" id="download">Download</button></a>
+
+                </div>
+                <div class="col-2">
+                    <form action="{% url 'downloadImage' %}" method="post" enctype="multipart/form-data">
+                        <a><button type="submit" class="btn btn-dark btn-lg" id="">Detect Face</button></a>
+                        {% csrf_token %}  
+                    </form>
+
                 </div>
                 
                 
@@ -77,8 +85,6 @@
           const canvas = document.getElementById('canvas1');
             
           const context = canvas.getContext('2d');
-          const captureButton = document.getElementById('capture');
-
           const constraints = {
             video: true,
           };
