@@ -8,8 +8,8 @@
 #include <stdint.h>
 
 // assume our input image size is the following
-#define IMAGE_WIDTH 320
-#define IMAGE_HEIGHT 240
+#define IMAGE_WIDTH 160
+#define IMAGE_HEIGHT 120
 #define SCALE_FACTOR 1.2
 
 typedef struct Rectangle {

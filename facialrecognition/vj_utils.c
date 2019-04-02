@@ -53,14 +53,14 @@ unsigned int get_window_std(unsigned int integral_image[IMAGE_HEIGHT][IMAGE_WIDT
                             unsigned int integral_image_sq[IMAGE_HEIGHT][IMAGE_WIDTH],
                             unsigned int start_row,
                             unsigned int start_col) {
-    unsigned int D = integral_image[start_row + WINDOW_SIZE - 1][start_col + WINDOW_SIZE - 1];
+    unsigned int D = integral_image[start_row + WINDOW_SIZE][start_col + WINDOW_SIZE];
     unsigned int A = integral_image[start_row][start_col];
-    unsigned int B = integral_image[start_row][start_col + WINDOW_SIZE - 1];
-    unsigned int C = integral_image[start_row + WINDOW_SIZE - 1][start_col];
-    unsigned int DD = integral_image_sq[start_row + WINDOW_SIZE - 1][start_col + WINDOW_SIZE -   1];
+    unsigned int B = integral_image[start_row][start_col + WINDOW_SIZE];
+    unsigned int C = integral_image[start_row + WINDOW_SIZE][start_col];
+    unsigned int DD = integral_image_sq[start_row + WINDOW_SIZE][start_col + WINDOW_SIZE];
     unsigned int AA = integral_image_sq[start_row][start_col];
-    unsigned int BB = integral_image_sq[start_row][start_col + WINDOW_SIZE - 1];
-    unsigned int CC = integral_image_sq[start_row + WINDOW_SIZE - 1][start_col];
+    unsigned int BB = integral_image_sq[start_row][start_col + WINDOW_SIZE];
+    unsigned int CC = integral_image_sq[start_row + WINDOW_SIZE][start_col];
     unsigned int mean = D-B+A-C;
     return sqrt((DD - BB + AA - CC) * WINDOW_SIZE * WINDOW_SIZE - mean * mean);
 }
