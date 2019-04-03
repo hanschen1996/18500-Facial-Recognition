@@ -89,7 +89,7 @@ print("Number of features: " + str(num_feature))
 
 # get stage threshold
 for item in root.findall("./cascade/stages/_/stageThreshold"):
-    stage_threshold.append(int(round(STAGE_SCALE * (0.4 * float(item.text)))))
+    stage_threshold.append(int(round(STAGE_SCALE * (float(item.text)))))
 
 # get feature threshold
 count = 0
