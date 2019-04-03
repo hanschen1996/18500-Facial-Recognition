@@ -13,6 +13,12 @@
 int main(int argc, char **argv) {
     // read input here
     unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH];
+
+    if (argc <= 1) {
+        printf("Please specify an input image!");
+        return -1;
+    }
+
     if (load_image_file(argv[1], image) < 0) {
         return -1;
     }
