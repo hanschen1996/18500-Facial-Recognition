@@ -9,7 +9,7 @@ module detect_face(
   input logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] laptop_img, // coming from uart module
   input logic clock, laptop_img_rdy, reset,
   output logic [1:0][31:0] face_coords,
-  output logic face_coords_ready,
+  output logic face_coords_ready, vj_pipeline_done,
   output logic [3:0] pyramid_number,
   output logic [31:0] accum);
 
@@ -149,6 +149,9 @@ module detect_face(
   vj_pipeline vjp(.clock(clock_count_max), .reset, .scan_win, .input_std_dev(scan_win_std_dev), .img_index,
                   .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready), 
                   .pyramid_number, .accum);
+  assign vj_pipeline_done = (pyramid_number == `PYRAMID_LEVELS-1) & 
+                            (face_coords[0] == pyramid_heights[`PYRAMID_LEVELS - 1] -`WINDOW_SIZE - 1) &
+                            (face_coords[1] == pyramid_widths[`PYRAMID_LEVELS - 1] - `WINDOW_SIZE - 1);
 
   /* choose the current integral image because each pyramid level has
    * different sizes */
