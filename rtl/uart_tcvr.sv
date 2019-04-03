@@ -32,6 +32,14 @@ module uart_tcvr(
     end
   end
 
+  always_ff @(posedge send_uart_data, posedge reset) begin : proc_to_send
+    if (reset) begin
+      to_send <= 8'd0;
+    end else begin
+      to_send <= uart_data;
+    end
+  end
+
   /* ---------------------------------------------------------------------------
    * ---------------FSM
    */
@@ -79,7 +87,7 @@ module uart_tcvr(
             clk_cnt_en = 1'b1;
             uart_data_cnt_rst = 1'b0;
             uart_data_cnt_en = (clk_cnt == `bauds_per_clock);
-            uart_tx = uart_data[uart_data_cnt];
+            uart_tx = to_send[uart_data_cnt];
             end
       STOP: begin 
             clk_cnt_rst = (clk_cnt == `bauds_per_clock);
