@@ -11,6 +11,7 @@ module uart_tcvr(
   logic clk_cnt_en, clk_cnt_rst;
   logic [2:0] uart_data_cnt;
   logic uart_data_cnt_en, uart_data_cnt_rst;
+  logic [7:0] to_send;
 
   always_ff @(posedge clock) begin: clock_counter
     if (clk_cnt_rst) begin
