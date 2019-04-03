@@ -32,7 +32,7 @@ module int_img_calc
   generate
     for (m = 0; m < HEIGHT_LIMIT; m=m+1) begin: multiplier_row
       for (n = 0; n < WIDTH_LIMIT; n=n+1) begin: multiplier_column
-        multiplier m(.out(input_img_sq[m][n]), .a({24'd0, input_img[m][n]}), .b({24'd0, input_img[m][n]}));
+        mult_8 m(.out(input_img_sq[m][n]), .a(input_img[m][n]), .b(input_img[m][n]));
       end
     end
   endgenerate
