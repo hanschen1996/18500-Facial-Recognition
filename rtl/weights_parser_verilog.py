@@ -212,8 +212,8 @@ def write_array_body(arr, arr_name, width):
     weights_file.write("\n")
 
 ## write data
-write_array_body(pyramid_widths, "pyramid_widths".upper(), 8)
-write_array_body(pyramid_heights, "pyramid_heights".upper(), 8)
+write_array_body(pyramid_widths, "pyramid_widths".upper(), 32)
+write_array_body(pyramid_heights, "pyramid_heights".upper(), 32)
 weights_file.write("\n")
 
 write_array_body(pyramid_x_mappings, "pyramid_x_mappings".upper(), 8)
@@ -230,7 +230,7 @@ write_array_body(rectangle1_x1, "rectangle1_x1".upper(), 5)
 write_array_body(rectangle1_y1, "rectangle1_y1".upper(), 5)
 write_array_body(rectangle1_x2, "rectangle1_x2".upper(), 5)
 write_array_body(rectangle1_y2, "rectangle1_y2".upper(), 5)
-write_array_body(rectangle1_weights, "rectangle1_weights".upper(), 5)
+write_array_body(rectangle1_weights, "rectangle1_weights".upper(), 32)
 
 write_array_body(rectangle2_x1, "rectangle2_x1".upper(), 5)
 write_array_body(rectangle2_y1, "rectangle2_y1".upper(), 5)

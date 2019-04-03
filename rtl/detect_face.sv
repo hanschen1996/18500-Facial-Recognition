@@ -1,6 +1,8 @@
 `default_nettype none
 `include "vj_weights.vh"
 
+`define MAX_CLOCK_COUNT 50
+
 module detect_face(
   input logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] laptop_img, // coming from uart module
   input logic clock, laptop_img_rdy, reset,
