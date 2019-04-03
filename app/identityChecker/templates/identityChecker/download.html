@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Identity Checker</title>
+        <link rel="stylesheet" href="../../static/identityChecker/identityChecker.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="title">Identity Checker</div>
+
+            
+        <div class="container">
+            <div class="row">
+                <div class="col-3">
+                </div>
+                
+                <div class="col-6">
+                    <canvas id="canvas"></canvas>
+                </div>
+                
+                <div class="col-3">
+                </div>
+                
+            </div>
+            
+            <div class="row">
+                <div class="col-5">
+                </div>
+                
+                <div class="col-2">
+                    <form action="{% url 'home' %}" method="post" enctype="multipart/form-data">
+                        <a id="restart"><button type="submit" class="btn btn-dark btn-lg">Restart</button></a>
+                        {% csrf_token %}  
+                    </form>
+                    
+                </div>
+                
+                <div class="col-5">
+                </div>
+                
+            </div>
+            
+            <script>
+//                const canvas = document.getElementById('canvas');
+//                const ctx = canvas.getContext('2d');
+//                
+//              var imageObj = new Image();
+//
+//              imageObj.onload = function() {
+//                ctx.drawImage(imageObj, 10, 10);
+//              };
+//              imageObj.src = '/Users/andyshen/Desktop/18500-Facial-Recognition/app/sample.png';
+            </script>
+        </div> 
+            
+        
+            
+        </div>
+      
+    </body>
+</html>
