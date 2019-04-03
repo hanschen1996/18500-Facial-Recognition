@@ -17,15 +17,24 @@ module detect_face(
   localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_heights = `PYRAMID_HEIGHTS;
 
   // each pyramid image has different size
-  logic [pyramid_heights[0]-1:0][pyramid_widths[0]-1:0][31:0] images0, int_images0, int_images_sq0;
-  logic [pyramid_heights[1]-1:0][pyramid_widths[1]-1:0][31:0] images1, int_images1, int_images_sq1;
-  logic [pyramid_heights[2]-1:0][pyramid_widths[2]-1:0][31:0] images2, int_images2, int_images_sq2;
-  logic [pyramid_heights[3]-1:0][pyramid_widths[3]-1:0][31:0] images3, int_images3, int_images_sq3;
-  logic [pyramid_heights[4]-1:0][pyramid_widths[4]-1:0][31:0] images4, int_images4, int_images_sq4;
-  logic [pyramid_heights[5]-1:0][pyramid_widths[5]-1:0][31:0] images5, int_images5, int_images_sq5;
-  logic [pyramid_heights[6]-1:0][pyramid_widths[6]-1:0][31:0] images6, int_images6, int_images_sq6;
-  logic [pyramid_heights[7]-1:0][pyramid_widths[7]-1:0][31:0] images7, int_images7, int_images_sq7;
-  logic [pyramid_heights[8]-1:0][pyramid_widths[8]-1:0][31:0] images8, int_images8, int_images_sq8;
+  logic [pyramid_heights[0]-1:0][pyramid_widths[0]-1:0][7:0] images0;
+  logic [pyramid_heights[0]-1:0][pyramid_widths[0]-1:0][31:0] int_images0, int_images_sq0;
+  logic [pyramid_heights[1]-1:0][pyramid_widths[1]-1:0][7:0] images1;
+  logic [pyramid_heights[1]-1:0][pyramid_widths[1]-1:0][31:0] int_images1, int_images_sq1;
+  logic [pyramid_heights[2]-1:0][pyramid_widths[2]-1:0][7:0] images2;
+  logic [pyramid_heights[2]-1:0][pyramid_widths[2]-1:0][31:0] int_images2, int_images_sq2;
+  logic [pyramid_heights[3]-1:0][pyramid_widths[3]-1:0][7:0] images3;
+  logic [pyramid_heights[3]-1:0][pyramid_widths[3]-1:0][31:0] int_images3, int_images_sq3;
+  logic [pyramid_heights[4]-1:0][pyramid_widths[4]-1:0][7:0] images4;
+  logic [pyramid_heights[4]-1:0][pyramid_widths[4]-1:0][31:0] int_images4, int_images_sq4;
+  logic [pyramid_heights[5]-1:0][pyramid_widths[5]-1:0][7:0] images5;
+  logic [pyramid_heights[5]-1:0][pyramid_widths[5]-1:0][31:0] int_images5, int_images_sq5;
+  logic [pyramid_heights[6]-1:0][pyramid_widths[6]-1:0][7:0] images6;
+  logic [pyramid_heights[6]-1:0][pyramid_widths[6]-1:0][31:0] int_images6, int_images_sq6;
+  logic [pyramid_heights[7]-1:0][pyramid_widths[7]-1:0][7:0] images7;
+  logic [pyramid_heights[7]-1:0][pyramid_widths[7]-1:0][31:0] int_images7, int_images_sq7;
+  logic [pyramid_heights[8]-1:0][pyramid_widths[8]-1:0][7:0] images8;
+  logic [pyramid_heights[8]-1:0][pyramid_widths[8]-1:0][31:0] int_images8, int_images_sq8;
 
   // temporary array to hold the image for the current pyramid level
   logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] curr_int_image, curr_int_image_sq;
@@ -43,11 +52,7 @@ module detect_face(
     if (reset) begin
       images0 <= 'd0;
     end else if (laptop_img_rdy) begin
-      for (int y = 0; y < `LAPTOP_HEIGHT; y++) begin: traverse_rows
-        for (int z = 0; z < `LAPTOP_WIDTH; z++) begin: traverse_cols
-          images0[y][z] <= {24'd0, laptop_img[y][z]};
-        end
-      end
+      images0 <= laptop_img;
     end
   end
 

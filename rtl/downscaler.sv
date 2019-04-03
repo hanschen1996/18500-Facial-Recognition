@@ -4,8 +4,8 @@
 module downscaler
   #(parameter WIDTH_LIMIT = `LAPTOP_WIDTH, HEIGHT_LIMIT = `LAPTOP_HEIGHT,
     PYRAMID_INDEX = 1)(
-  input  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][31:0] input_img,
-  output logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] output_img);
+  input  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] input_img,
+  output logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][7:0] output_img);
 
   localparam [`PYRAMID_LEVELS-1:0][`LAPTOP_HEIGHT-1:0][7:0] all_y_mappings = `PYRAMID_Y_MAPPINGS;
   localparam [`PYRAMID_LEVELS-1:0][`LAPTOP_WIDTH-1:0][7:0] all_x_mappings = `PYRAMID_X_MAPPINGS;
