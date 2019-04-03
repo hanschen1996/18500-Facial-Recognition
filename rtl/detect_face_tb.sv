@@ -10,7 +10,7 @@ module detect_face_tb();
   logic [3:0] pyramid_number;
   integer file;
   logic [31:0] c;
-  logic [31:0] row, col;
+  logic [31:0] row, col, accum;
 
   detect_face dut(.*);
 
@@ -38,7 +38,7 @@ module detect_face_tb();
     end
 
     while ((c = $fgetc(file)) != -1) begin
-      laptop_img[row][col] <= c[7:0];
+      laptop_img[row][col] = c[7:0];
       if (col == `LAPTOP_WIDTH - 1) begin
         row = row + 1;
         col = 0;
@@ -65,7 +65,7 @@ module detect_face_tb();
     laptop_img_rdy = 1'b0;
 
     @(negedge dut.vj_pipeline_on);
-    ##2914;
+    ##50;
     $finish;
   end
   
@@ -81,7 +81,8 @@ module detect_face_tb();
       $display("------------------------------------------------------");
       ##1;
     end*/
-    int z = 0;
+    int z;
+    #1 z = 0;
     while (z == 0) begin 
       @(posedge face_coords_ready);
       $display("nice!!!!!");
@@ -92,6 +93,16 @@ module detect_face_tb();
       // end
       $display("face_coords are (r%0d, c%0d)", face_coords[0], face_coords[1]);
       $display("------------------------------------------------------");
+      ##1;
+      #1;
+      while (face_coords_ready) begin
+        $display("nice!!!!!");
+        $display("pyramid_number is %0d", pyramid_number);
+        $display("face_coords are (r%0d, c%0d)", face_coords[0], face_coords[1]);
+        $display("------------------------------------------------------");
+        ##1;
+        #1;
+      end
     end
     ##10
     $finish;

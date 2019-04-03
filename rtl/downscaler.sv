@@ -14,7 +14,7 @@ module downscaler
   generate
     for (i = 0; i < HEIGHT_LIMIT; i=i+1) begin: downscaled_row
       for (j = 0; j < WIDTH_LIMIT; j=j+1) begin: downscaled_pixels_in_row
-        assign output_img[i][j][7:0] = input_img[all_y_mappings[PYRAMID_INDEX][i]][all_x_mappings[PYRAMID_INDEX][j]][7:0];
+        assign output_img[i][j] = input_img[all_y_mappings[PYRAMID_INDEX][i]][all_x_mappings[PYRAMID_INDEX][j]];
       end
     end
   endgenerate

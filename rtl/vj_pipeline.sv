@@ -103,7 +103,7 @@ module vj_pipeline(
       feature_accums_prev <= 'd0;
       stage_accums_prev <= 'd0;
       is_feature_prev <= 'd1;
-    end else
+    end else begin
       feature_accums_prev <= feature_accums;
       stage_accums_prev <= stage_accums;
       is_feature_prev[`NUM_STAGE:1] <= is_feature[`NUM_STAGE:1] & is_feature_prev[`NUM_STAGE-1:0];
@@ -116,17 +116,21 @@ module vj_pipeline(
        scan_win_std_devs <= 'd0;
        top_left <= 'd0;
        pyr_nums <= 'd0;
+       pyramid_number <= 'd0;
+       scan_wins <= 'd0;
     end else begin: move_scan_coords_and_scan_win_std_devs
       scan_coords[0] <= scan_win_index;
       pyr_nums[0] <= img_index;
       scan_win_std_devs[0] <= input_std_dev;
-      for (int i = 0; i < `NUM_FEATURE-1; i++) begin
+      scan_wins[0] <= scan_win;
+      for (int i = 0; i < `NUM_STAGE-1; i++) begin
         scan_coords[i+1] <= scan_coords[i];
         pyr_nums[i+1] <= pyr_nums[i];
-        scan_win_std_dev[i+1] <= scan_win_std_dev[i];
+        scan_win_std_devs[i+1] <= scan_win_std_devs[i];
+        scan_wins[i+1] <= scan_wins[i];
       end
-      top_left <= scan_coords[`NUM_FEATURE-1];
-      pyramid_number <= pyr_nums[`NUM_FEATURE-1];
+      top_left <= scan_coords[`NUM_STAGE - 1];
+      pyramid_number <= pyr_nums[`NUM_STAGE - 1];
     end
   end
 

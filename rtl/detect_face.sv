@@ -1,12 +1,17 @@
 `default_nettype none
 `include "vj_weights.vh"
+`define MAX_CLOCK_COUNT 50
+`define IMG_INDEX_DEFAULT 4'd15
+`define PYRAMID_START 4'd0
+`define INT_IMG_WAIT 10
 
 module detect_face(
   input logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] laptop_img, // coming from uart module
   input logic clock, laptop_img_rdy, reset,
   output logic [1:0][31:0] face_coords,
   output logic face_coords_ready,
-  output logic [3:0] pyramid_number);
+  output logic [3:0] pyramid_number,
+  output logic [31:0] accum);
 
   localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_widths = `PYRAMID_WIDTHS;
   localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_heights = `PYRAMID_HEIGHTS;
@@ -120,7 +125,7 @@ module detect_face(
 
   /* calculate standard deviation of the current scanning window */
   window_std_dev stddev(.scan_win, .scan_win_sq, .scan_win_std_dev);
-
+  
   logic clock_count_max;
   logic [31:0] clock_count;
   assign clock_count_max = (clock_count == `MAX_CLOCK_COUNT);
@@ -129,16 +134,16 @@ module detect_face(
     if (reset) begin
       clock_count <= 'd0;
     end else begin
-      clock_count <= clock_count_max ? 0 : clock_count + 1;
+      clock_count <= clock_count_max ? 'd0 : clock_count + 'd1;
     end
   end
-
+  
   //logic [1:0][31:0] top_left;
   //logic top_left_ready;
   /* viola-jones pipeline to send scanning window through each feature */
   vj_pipeline vjp(.clock(clock_count_max), .reset, .scan_win, .input_std_dev(scan_win_std_dev), .img_index,
                   .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready), 
-                  .pyramid_number);
+                  .pyramid_number, .accum);
 
   /* choose the current integral image because each pyramid level has
    * different sizes */
@@ -228,8 +233,8 @@ module detect_face(
   generate
     for (k=0; k<`WINDOW_SIZE+1; k=k+1) begin: scan_win_row
       for (l=0; l<`WINDOW_SIZE+1; l=l+1) begin: scan_win_column
-        assign scan_win[k][l] = (img_index == 4'd15) ? 31'd0 : curr_int_image[row_index+k][col_index+l];
-        assign scan_win_sq[k][l] = (img_index == 4'd15) ? 31'd0 : curr_int_image_sq[row_index+k][col_index+l];
+        assign scan_win[k][l] = (img_index == `IMG_INDEX_DEFAULT) ? 32'd0 : curr_int_image[row_index+k][col_index+l];
+        assign scan_win_sq[k][l] = (img_index == `IMG_INDEX_DEFAULT) ? 32'd0 : curr_int_image_sq[row_index+k][col_index+l];
       end
     end
   endgenerate
@@ -241,36 +246,26 @@ module detect_face(
    */
 
   logic [31:0] wait_integral_image_count;
-  logic vj_pipeline_on;
+  logic vj_pipeline_on, finished_sending_windows;
 
-  always_ff @(posedge clock, posedge reset) begin
+  always_ff @(posedge clock_count_max, posedge reset) begin
     if (reset) begin
-      wait_integral_image_count <= 32'd0;
-      img_index <= 4'd15;
+      img_index <= `IMG_INDEX_DEFAULT;
       row_index <= 32'd0;
       col_index <= 32'd0;
-      vj_pipeline_on <= 1'd0;
     end else begin
-      if (laptop_img_rdy) begin
-        wait_integral_image_count <= 32'd1;
-      end
-      if ((wait_integral_image_count > 32'd0) && (wait_integral_image_count < 32'd10)) begin: waiting_for_first_int_img
-        wait_integral_image_count <= wait_integral_image_count + 32'd1;
-      end
-      if (wait_integral_image_count == 32'd10) begin: turn_on_vj_pipeline
-        wait_integral_image_count <= 32'd0;
-        vj_pipeline_on <= 1'b1;
-        img_index <= 4'd0;
-        row_index <= 32'd0;
-        col_index <= 32'd0;
-      end
       if (vj_pipeline_on) begin
-        if ((img_index == `PYRAMID_LEVELS-1) && (row_index == pyramid_heights[img_index] - `WINDOW_SIZE - 1) &&
-            (col_index == pyramid_widths[img_index] - `WINDOW_SIZE - 1)) begin: vj_pipeline_finished
-          img_index <= 4'd15;
+        if (img_index == `IMG_INDEX_DEFAULT) begin
+          img_index <= `PYRAMID_START;
           row_index <= 32'd0;
           col_index <= 32'd0;
-          vj_pipeline_on <= 1'd0;
+        end
+        if ((img_index == `PYRAMID_LEVELS-1) && (row_index == pyramid_heights[img_index] - `WINDOW_SIZE - 1) &&
+            (col_index == pyramid_widths[img_index] - `WINDOW_SIZE - 1)) begin: vj_pipeline_finished
+          img_index <= `IMG_INDEX_DEFAULT;
+          row_index <= 32'd0;
+          col_index <= 32'd0;
+          finished_sending_windows <= 1'b1;
         end else begin
           if (col_index == pyramid_widths[img_index] - `WINDOW_SIZE - 1) begin: row_done
             if (row_index == pyramid_heights[img_index] - `WINDOW_SIZE - 1) begin: col_done
@@ -285,6 +280,29 @@ module detect_face(
             col_index <= col_index + 32'd1;
           end
         end
+      end else begin
+        finished_sending_windows <= 1'b0;
+      end
+    end
+  end
+
+  always_ff @(posedge clock, posedge reset) begin
+    if (reset) begin
+      wait_integral_image_count <= 32'd0;
+      vj_pipeline_on <= 1'd0;
+    end else begin
+      if (laptop_img_rdy) begin
+        wait_integral_image_count <= 32'd1;
+      end
+      if ((wait_integral_image_count > 32'd0) && (wait_integral_image_count < `INT_IMG_WAIT)) begin: waiting_for_first_int_img
+        wait_integral_image_count <= wait_integral_image_count + 32'd1;
+      end
+      if (wait_integral_image_count == `INT_IMG_WAIT) begin: turn_on_vj_pipeline
+        wait_integral_image_count <= 32'd0;
+        vj_pipeline_on <= 1'b1;
+      end
+      if (finished_sending_windows) begin
+        vj_pipeline_on <= 1'd0;
       end
     end
   end
