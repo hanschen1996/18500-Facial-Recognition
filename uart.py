@@ -1,18 +1,23 @@
 import serial
 import sys
+from PIL import Image
 
-ser = serial.Serial('COM3', 9600,timeout=2)
+img = Image.open('image.png').convert('LA')
+img.save('greyscale.png')
+
+# request to send = rts
+# clear to send = cts
+# DONT FORGET TO SEND TWO DUMMY BYTES AFTER LAPTOP IMAGE
+
+with open("greyscale.png", "rb") as image:
+  f = image.read()
+  b = bytearray(f)
+
+ser = serial.Serial(port='COM3', baudrate=921600, bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE)
 ser.close()
 ser.open()
 ser.write(b'hi')
 print("wrote hi")
 print("recieved: " + str(ser.read(10000)))
 ser.close()
-
-# Bytes literals are always prefixed with 'b' or 'B'; 
-# they produce an instance of the bytes type instead of the str type. 
-# They may only contain ASCII characters; bytes with a numeric value of 
-# 128 or greater must be expressed with escapes.
-
-#print(sys.getsizeof('hello')) 54
-#print(sys.getsizeof(b'hello')) 38
+# ser.getSupportedBaudRates()
