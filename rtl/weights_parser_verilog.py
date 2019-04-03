@@ -40,22 +40,22 @@ num_feature = 0
 window_size = 0
 stage_num_feature = []
 
-rectangle1_xs = []
-rectangle1_ys = []
-rectangle1_widths = []
-rectangle1_heights = []
+rectangle1_x1 = []
+rectangle1_y1 = []
+rectangle1_x2 = []
+rectangle1_y2 = []
 rectangle1_weights = []
 
-rectangle2_xs = []
-rectangle2_ys = []
-rectangle2_widths = []
-rectangle2_heights = []
+rectangle2_x1 = []
+rectangle2_y1 = []
+rectangle2_x2 = []
+rectangle2_y2 = []
 rectangle2_weights = []
 
-rectangle3_xs = []
-rectangle3_ys = []
-rectangle3_widths = []
-rectangle3_heights = []
+rectangle3_x1 = []
+rectangle3_y1 = []
+rectangle3_x2 = []
+rectangle3_y2 = []
 rectangle3_weights = []
 
 feature_threshold = []
@@ -121,32 +121,32 @@ for item in root.iter("rects"):
         texts[4] = int(round(FEATURE_SCALE * float(texts[4])))
 
         if (rect_index == 0):
-            rectangle1_xs.append(texts[0])
-            rectangle1_ys.append(texts[1])
-            rectangle1_widths.append(texts[2])
-            rectangle1_heights.append(texts[3])
+            rectangle1_x1.append(texts[0])
+            rectangle1_y1.append(texts[1])
+            rectangle1_x2.append(texts[0] + texts[2])
+            rectangle1_y2.append(texts[1] + texts[3])
             rectangle1_weights.append(texts[4])
         elif (rect_index == 1):
-            rectangle2_xs.append(texts[0])
-            rectangle2_ys.append(texts[1])
-            rectangle2_widths.append(texts[2])
-            rectangle2_heights.append(texts[3])
+            rectangle2_x1.append(texts[0])
+            rectangle2_y1.append(texts[1])
+            rectangle2_x2.append(texts[0] + texts[2])
+            rectangle2_y2.append(texts[1] + texts[3])
             rectangle2_weights.append(texts[4])
         else:
-            rectangle3_xs.append(texts[0])
-            rectangle3_ys.append(texts[1])
-            rectangle3_widths.append(texts[2])
-            rectangle3_heights.append(texts[3])
+            rectangle3_x1.append(texts[0])
+            rectangle3_y1.append(texts[1])
+            rectangle3_x2.append(texts[0] + texts[2])
+            rectangle3_y2.append(texts[1] + texts[3])
             rectangle3_weights.append(texts[4])
 
         rect_index += 1
 
     assert(rect_index == 2 or rect_index == 3)
     if (rect_index == 2):
-        rectangle3_xs.append(0)
-        rectangle3_ys.append(0)
-        rectangle3_widths.append(0)
-        rectangle3_heights.append(0)
+        rectangle3_x1.append(0)
+        rectangle3_y1.append(0)
+        rectangle3_x2.append(0)
+        rectangle3_y2.append(0)
         rectangle3_weights.append(0)
 
 
@@ -154,20 +154,20 @@ assert(len(stage_threshold) == num_stage)
 assert(len(feature_threshold) == num_feature)
 assert(len(feature_below) == num_feature)
 assert(len(feature_above) == num_feature)
-assert(len(rectangle1_xs) == num_feature)
-assert(len(rectangle1_ys) == num_feature)
-assert(len(rectangle1_widths) == num_feature)
-assert(len(rectangle1_heights) == num_feature)
+assert(len(rectangle1_x1) == num_feature)
+assert(len(rectangle1_y1) == num_feature)
+assert(len(rectangle1_x2) == num_feature)
+assert(len(rectangle1_y2) == num_feature)
 assert(len(rectangle1_weights) == num_feature)
-assert(len(rectangle2_xs) == num_feature)
-assert(len(rectangle2_ys) == num_feature)
-assert(len(rectangle2_widths) == num_feature)
-assert(len(rectangle2_heights) == num_feature)
+assert(len(rectangle2_x1) == num_feature)
+assert(len(rectangle2_y1) == num_feature)
+assert(len(rectangle2_x2) == num_feature)
+assert(len(rectangle2_y2) == num_feature)
 assert(len(rectangle2_weights) == num_feature)
-assert(len(rectangle3_xs) == num_feature)
-assert(len(rectangle3_ys) == num_feature)
-assert(len(rectangle3_widths) == num_feature)
-assert(len(rectangle3_heights) == num_feature)
+assert(len(rectangle3_x1) == num_feature)
+assert(len(rectangle3_y1) == num_feature)
+assert(len(rectangle3_x2) == num_feature)
+assert(len(rectangle3_y2) == num_feature)
 assert(len(rectangle3_weights) == num_feature)
 
 weights_file = open("vj_weights.vh", mode="wb")
@@ -185,65 +185,65 @@ weights_file.write("`define LAPTOP_WIDTH %d\n"%(pyramid_widths[0]))
 weights_file.write("`define LAPTOP_HEIGHT %d\n"%(pyramid_heights[0]))
 weights_file.write("`define PYRAMID_LEVELS %d\n\n"%(len(pyramid_widths)))
 
-def write_array(arr):
+def write_array(arr, width):
     arr_len = len(arr)
     weights_file.write("{")
     for s in range(arr_len - 1, -1, -1):
         val = arr[s]
         if (val < 0): val += 2**32
 
-        weights_file.write("32'd%d"%(val))
+        weights_file.write("%d'd%d"%(width, val))
         if (s != 0):
             weights_file.write(",")
     weights_file.write("}")
 
-def write_array_body(arr, arr_name):
+def write_array_body(arr, arr_name, width):
     arr_len = len(arr)
     weights_file.write("`define %s "%(arr_name))
     if (type(arr[0]) == list):
         weights_file.write("{")
         for i in range(arr_len - 1, -1, -1):
-            write_array(arr[i])
+            write_array(arr[i], width)
             if (i != 0):
                 weights_file.write(",")
         weights_file.write("}")
     else:
-        write_array(arr)
+        write_array(arr, width)
     weights_file.write("\n")
 
 ## write data
-write_array_body(pyramid_widths, "pyramid_widths".upper())
-write_array_body(pyramid_heights, "pyramid_heights".upper())
+write_array_body(pyramid_widths, "pyramid_widths".upper(), 8)
+write_array_body(pyramid_heights, "pyramid_heights".upper(), 8)
 weights_file.write("\n")
 
-write_array_body(pyramid_x_mappings, "pyramid_x_mappings".upper())
-write_array_body(pyramid_y_mappings, "pyramid_y_mappings".upper())
+write_array_body(pyramid_x_mappings, "pyramid_x_mappings".upper(), 8)
+write_array_body(pyramid_y_mappings, "pyramid_y_mappings".upper(), 8)
 weights_file.write("\n")
 
 # number of features in each stage
-write_array_body(stage_num_feature, "stage_num_feature".upper())
+write_array_body(stage_num_feature, "stage_num_feature".upper(), 32)
 weights_file.write("// thresholds are negative values\n")
-write_array_body(stage_threshold, "stage_threshold".upper())
+write_array_body(stage_threshold, "stage_threshold".upper(), 32)
 weights_file.write("\n")
 
-write_array_body(rectangle1_xs, "rectangle1_xs".upper())
-write_array_body(rectangle1_ys, "rectangle1_ys".upper())
-write_array_body(rectangle1_widths, "rectangle1_widths".upper())
-write_array_body(rectangle1_heights, "rectangle1_heights".upper())
-write_array_body(rectangle1_weights, "rectangle1_weights".upper())
+write_array_body(rectangle1_x1, "rectangle1_x1".upper(), 5)
+write_array_body(rectangle1_y1, "rectangle1_y1".upper(), 5)
+write_array_body(rectangle1_x2, "rectangle1_x2".upper(), 5)
+write_array_body(rectangle1_y2, "rectangle1_y2".upper(), 5)
+write_array_body(rectangle1_weights, "rectangle1_weights".upper(), 5)
 
-write_array_body(rectangle2_xs, "rectangle2_xs".upper())
-write_array_body(rectangle2_ys, "rectangle2_ys".upper())
-write_array_body(rectangle2_widths, "rectangle2_widths".upper())
-write_array_body(rectangle2_heights, "rectangle2_heights".upper())
-write_array_body(rectangle2_weights, "rectangle2_weights".upper())
+write_array_body(rectangle2_x1, "rectangle2_x1".upper(), 5)
+write_array_body(rectangle2_y1, "rectangle2_y1".upper(), 5)
+write_array_body(rectangle2_x2, "rectangle2_x2".upper(), 5)
+write_array_body(rectangle2_y2, "rectangle2_y2".upper(), 5)
+write_array_body(rectangle2_weights, "rectangle2_weights".upper(), 32)
 
-write_array_body(rectangle3_xs, "rectangle3_xs".upper())
-write_array_body(rectangle3_ys, "rectangle3_ys".upper())
-write_array_body(rectangle3_widths, "rectangle3_widths".upper())
-write_array_body(rectangle3_heights, "rectangle3_heights".upper())
-write_array_body(rectangle3_weights, "rectangle3_weights".upper())
+write_array_body(rectangle3_x1, "rectangle3_x1".upper(), 5)
+write_array_body(rectangle3_y1, "rectangle3_y1".upper(), 5)
+write_array_body(rectangle3_x2, "rectangle3_x2".upper(), 5)
+write_array_body(rectangle3_y2, "rectangle3_y2".upper(), 5)
+write_array_body(rectangle3_weights, "rectangle3_weights".upper(), 32)
 
-write_array_body(feature_threshold, "feature_threshold".upper())
-write_array_body(feature_above, "feature_above".upper())
-write_array_body(feature_below, "feature_below".upper())
+write_array_body(feature_threshold, "feature_threshold".upper(), 32)
+write_array_body(feature_above, "feature_above".upper(), 32)
+write_array_body(feature_below, "feature_below".upper(), 32)
