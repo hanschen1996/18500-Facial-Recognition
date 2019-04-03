@@ -1,8 +1,6 @@
 `default_nettype none
 `include "vj_weights.vh"
 
-`define MAX_CLOCK_COUNT 50
-
 module detect_face(
   input logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] laptop_img, // coming from uart module
   input logic clock, laptop_img_rdy, reset,
@@ -123,10 +121,22 @@ module detect_face(
   /* calculate standard deviation of the current scanning window */
   window_std_dev stddev(.scan_win, .scan_win_sq, .scan_win_std_dev);
 
+  logic clock_count_max;
+  logic [31:0] clock_count;
+  assign clock_count_max = (clock_count == `MAX_CLOCK_COUNT);
+
+  always_ff @(posedge clock, posedge reset) begin: count_clock
+    if (reset) begin
+      clock_count <= 'd0;
+    end else begin
+      clock_count <= clock_count_max ? 0 : clock_count + 1;
+    end
+  end
+
   //logic [1:0][31:0] top_left;
   //logic top_left_ready;
   /* viola-jones pipeline to send scanning window through each feature */
-  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev), .img_index,
+  vj_pipeline vjp(.clock(clock_count_max), .reset, .scan_win, .input_std_dev(scan_win_std_dev), .img_index,
                   .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready), 
                   .pyramid_number);
 
