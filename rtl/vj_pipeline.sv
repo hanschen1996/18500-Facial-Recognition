@@ -36,8 +36,8 @@ module vj_pipeline(
   logic [`NUM_STAGE-1:0] is_feature;
   
   //all pipeline parts
-  logic [`PIPELINE_PARTS-1:0][1:0][31:0] top_lefts;
-  logic [`PIPELINE_PARTS-1:0][3:0] pyr_nums;
+  logic [`PIPELINE_PARTS-1:1][1:0][31:0] top_lefts;
+  logic [`PIPELINE_PARTS-1:1][3:0] pyr_nums;
 
   //pipeline part 1 to 2
   logic [`NUM_FEATURE-1:0][31:0] feature_sums, feature_products;
@@ -161,9 +161,9 @@ module vj_pipeline(
       feature_sums_prev <= feature_sums;
       feature_accums_prev <= feature_accums;
       stage_accums_prev <= stage_accums;
-      top_lefts[0] <= scan_win_index;
-      pyr_nums[0] <= img_index;
-      for (int n = 0; n < `PIPELINE_PARTS-1; n++) begin
+      top_lefts[1] <= scan_win_index;
+      pyr_nums[1] <= img_index;
+      for (int n = 1; n < `PIPELINE_PARTS - 1; n++) begin
         top_lefts[n+1] <= top_lefts[n];
         pyr_nums[n+1] <= pyr_nums[n];
       end

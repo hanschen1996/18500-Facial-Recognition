@@ -6,7 +6,7 @@ module detect_face_tb();
   logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] laptop_img;
   logic clock, laptop_img_rdy, reset;
   logic [1:0][31:0] face_coords;
-  logic face_coords_ready;
+  logic face_coords_ready, vj_pipeline_done;
   logic [3:0] pyramid_number;
   integer file;
   logic [31:0] c;
@@ -64,8 +64,8 @@ module detect_face_tb();
 
     laptop_img_rdy = 1'b0;
 
-    @(negedge dut.vj_pipeline_on);
-    ##50;
+    @(posedge dut.vj_pipeline_done);
+    ##10;
     $finish;
   end
   

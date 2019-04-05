@@ -1,6 +1,5 @@
 `default_nettype none
 `include "vj_weights.vh"
-`define MAX_CLOCK_COUNT 50
 `define IMG_INDEX_DEFAULT 4'd15
 `define PYRAMID_START 4'd0
 `define INT_IMG_WAIT 10
@@ -131,22 +130,8 @@ module detect_face(
   /* calculate standard deviation of the current scanning window */
   window_std_dev stddev(.scan_win, .scan_win_sq, .scan_win_std_dev);
   
-  logic clock_count_max;
-  logic [31:0] clock_count;
-  assign clock_count_max = (clock_count == `MAX_CLOCK_COUNT);
-
-  always_ff @(posedge clock, posedge reset) begin: count_clock
-    if (reset) begin
-      clock_count <= 'd0;
-    end else begin
-      clock_count <= clock_count_max ? 'd0 : clock_count + 'd1;
-    end
-  end
-  
-  //logic [1:0][31:0] top_left;
-  //logic top_left_ready;
-  /* viola-jones pipeline to send scanning window through each feature */
-  vj_pipeline vjp(.clock(clock_count_max), .reset, .scan_win, .input_std_dev(scan_win_std_dev), .img_index,
+    /* viola-jones pipeline to send scanning window through each feature */
+  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev), .img_index,
                   .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready), 
                   .pyramid_number, .accum);
   assign vj_pipeline_done = (pyramid_number == `PYRAMID_LEVELS-1) & 
@@ -256,7 +241,7 @@ module detect_face(
   logic [31:0] wait_integral_image_count;
   logic vj_pipeline_on, finished_sending_windows;
 
-  always_ff @(posedge clock_count_max, posedge reset) begin
+  always_ff @(posedge clock, posedge reset) begin
     if (reset) begin
       img_index <= `IMG_INDEX_DEFAULT;
       row_index <= 32'd0;
