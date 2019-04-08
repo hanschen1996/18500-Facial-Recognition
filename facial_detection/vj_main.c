@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH];
 
     if (argc <= 1) {
-        printf("Please specify an input image!");
+        printf("ERROR:Please specify an input image!");
         return -1;
     }
 
@@ -29,7 +29,11 @@ int main(int argc, char **argv) {
 
     char output_filename[BUF_SIZE];
     sprintf(output_filename, "%s_detect.pgm", argv[1]);
-    save_image_file(output_filename, IMAGE_HEIGHT, IMAGE_WIDTH, image);
+
+    if (save_image_file(output_filename, IMAGE_HEIGHT, IMAGE_WIDTH, image) < 0) {
+        return -1;
+    }
+
     printf("image saved into %s!\n", output_filename);
     return 0;
 }
