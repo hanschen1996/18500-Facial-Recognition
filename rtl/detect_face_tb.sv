@@ -100,6 +100,7 @@ module detect_face_tb();
         $display("nice!!!!!");
         $display("pyramid_number is %0d", pyramid_number);
         $display("face_coords are (r%0d, c%0d)", face_coords[0], face_coords[1]);
+        $display("accum is %0d", accum);
         $display("------------------------------------------------------");
         ##1;
         #1;
