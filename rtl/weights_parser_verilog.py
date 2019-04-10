@@ -88,8 +88,11 @@ for item in root.findall("./cascade/height"):
 print("Number of features: " + str(num_feature))
 
 # get stage threshold
+stage_threshold = [0] * 2913
+stage_index = 1
 for item in root.findall("./cascade/stages/_/stageThreshold"):
-    stage_threshold.append(int(round(STAGE_SCALE * (float(item.text)))))
+    stage_threshold[stage_num_feature[stage_index] - 1] = (int(round(STAGE_SCALE * (float(item.text)))))
+    stage_index += 1
 
 # get feature threshold
 count = 0
@@ -150,7 +153,7 @@ for item in root.iter("rects"):
         rectangle3_weights.append(0)
 
 
-assert(len(stage_threshold) == num_stage)
+assert(len(stage_threshold) == num_feature)
 assert(len(feature_threshold) == num_feature)
 assert(len(feature_below) == num_feature)
 assert(len(feature_above) == num_feature)
