@@ -1,7 +1,7 @@
 `default_nettype none
 `include "vj_weights.vh"
 `define IMG_INDEX_DEFAULT 4'd15
-`define PYRAMID_START 4'd0
+`define PYRAMID_START 4'd7
 `define INT_IMG_WAIT 10
 
 module detect_face(
@@ -130,13 +130,15 @@ module detect_face(
   /* calculate standard deviation of the current scanning window */
   window_std_dev stddev(.scan_win, .scan_win_sq, .scan_win_std_dev);
   
-    /* viola-jones pipeline to send scanning window through each feature */
-  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev), .img_index,
-                  .scan_win_index, .top_left(face_coords), .top_left_ready(face_coords_ready), 
+  /* viola-jones pipeline to send scanning window through each feature */
+  logic next_scan_win;
+  vj_pipeline vjp(.clock, .reset, .scan_win, .input_std_dev(scan_win_std_dev), .img_index, .vj_pipeline_on,
+                  .scan_win_index, .next_scan_win, .top_left(face_coords), .top_left_ready(face_coords_ready), 
                   .pyramid_number, .accum);
   assign vj_pipeline_done = (pyramid_number == `PYRAMID_LEVELS-1) & 
                             (face_coords[0] == pyramid_heights[`PYRAMID_LEVELS - 1] -`WINDOW_SIZE - 1) &
-                            (face_coords[1] == pyramid_widths[`PYRAMID_LEVELS - 1] - `WINDOW_SIZE - 1);
+                            (face_coords[1] == pyramid_widths[`PYRAMID_LEVELS - 1] - `WINDOW_SIZE - 1) &
+                            next_scan_win;
 
   /* choose the current integral image because each pyramid level has
    * different sizes */
@@ -239,50 +241,15 @@ module detect_face(
    */
 
   logic [31:0] wait_integral_image_count;
-  logic vj_pipeline_on, finished_sending_windows;
+  logic vj_pipeline_on;
 
   always_ff @(posedge clock, posedge reset) begin
     if (reset) begin
       img_index <= `IMG_INDEX_DEFAULT;
       row_index <= 32'd0;
       col_index <= 32'd0;
-    end else begin
-      if (vj_pipeline_on) begin
-        if (img_index == `IMG_INDEX_DEFAULT) begin
-          img_index <= `PYRAMID_START;
-          row_index <= 32'd0;
-          col_index <= 32'd0;
-        end
-        if ((img_index == `PYRAMID_LEVELS-1) && (row_index == pyramid_heights[img_index] - `WINDOW_SIZE - 1) &&
-            (col_index == pyramid_widths[img_index] - `WINDOW_SIZE - 1)) begin: vj_pipeline_finished
-          img_index <= `IMG_INDEX_DEFAULT;
-          row_index <= 32'd0;
-          col_index <= 32'd0;
-          finished_sending_windows <= 1'b1;
-        end else begin
-          if (col_index == pyramid_widths[img_index] - `WINDOW_SIZE - 1) begin: row_done
-            if (row_index == pyramid_heights[img_index] - `WINDOW_SIZE - 1) begin: col_done
-              img_index <= img_index + 4'd1;
-              row_index <= 32'd0;
-              col_index <= 32'd0;
-            end else begin: col_not_done
-              col_index <= 32'd0;
-              row_index <= row_index + 32'd1;
-            end
-          end else begin: row_not_done
-            col_index <= col_index + 32'd1;
-          end
-        end
-      end else begin
-        finished_sending_windows <= 1'b0;
-      end
-    end
-  end
-
-  always_ff @(posedge clock, posedge reset) begin
-    if (reset) begin
-      wait_integral_image_count <= 32'd0;
       vj_pipeline_on <= 1'd0;
+      wait_integral_image_count <= 32'd0;
     end else begin
       if (laptop_img_rdy) begin
         wait_integral_image_count <= 32'd1;
@@ -294,9 +261,34 @@ module detect_face(
         wait_integral_image_count <= 32'd0;
         vj_pipeline_on <= 1'b1;
       end
-      if (finished_sending_windows) begin
-        vj_pipeline_on <= 1'd0;
+      if (vj_pipeline_on) begin
+        if (img_index == `IMG_INDEX_DEFAULT) begin
+          img_index <= `PYRAMID_START;
+          row_index <= 32'd0;
+          col_index <= 32'd0;
+        end
+        if ((img_index == `PYRAMID_LEVELS-1) && (row_index == pyramid_heights[img_index] - `WINDOW_SIZE - 1) &&
+            (col_index == pyramid_widths[img_index] - `WINDOW_SIZE - 1) && next_scan_win) begin: vj_pipeline_finished
+          img_index <= `IMG_INDEX_DEFAULT;
+          row_index <= 32'd0;
+          col_index <= 32'd0;
+          vj_pipeline_on <= 1'b0;
+        end else begin
+          if (col_index == pyramid_widths[img_index] - `WINDOW_SIZE - 1 && next_scan_win) begin: row_done
+            if (row_index == pyramid_heights[img_index] - `WINDOW_SIZE - 1 && next_scan_win) begin: col_done
+              img_index <= img_index + 4'd1;
+              row_index <= 32'd0;
+              col_index <= 32'd0;
+            end else if (next_scan_win) begin: col_not_done
+              col_index <= 32'd0;
+              row_index <= row_index + 32'd1;
+            end
+          end else if (next_scan_win) begin: row_not_done
+            col_index <= col_index + 32'd1;
+          end
+        end
       end
     end
   end
+
 endmodule

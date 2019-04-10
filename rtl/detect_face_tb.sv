@@ -57,6 +57,7 @@ module detect_face_tb();
     reset = 1'b0;
 
     ##1;
+    $display("nice!! %d", $time);
 
     laptop_img_rdy = 1'b1;
 
