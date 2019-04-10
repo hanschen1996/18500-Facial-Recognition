@@ -13,13 +13,13 @@ int load_image_file(char *filename,
     char buffer[BUF_SIZE];
     FILE *fp = fopen(filename, "rb");
     if (fp == NULL) {
-        printf("Failed to open file %s\n", filename);
+        printf("ERROR:Failed to open input file %s\n", filename);
         return -1;
     }
 
     fgets(buffer, BUF_SIZE, fp);
     if (buffer[0] != 'P' || buffer[1] != '5') {
-        printf("Input image is not a valid pgm file\n");
+        printf("ERROR:Input image is not a valid pgm file\n");
         return -1;
     }
 
@@ -33,7 +33,7 @@ int load_image_file(char *filename,
     }
 
     if (width != IMAGE_WIDTH || height != IMAGE_HEIGHT) {
-        printf("Input image does not have valid size\n");
+        printf("ERROR:Input image does not have valid size\n");
         return -1;
     }
 
@@ -61,7 +61,10 @@ int save_image_file(char *filename,
                     unsigned int width,
                     unsigned char image[IMAGE_HEIGHT][IMAGE_WIDTH]) {
     FILE *fp = fopen(filename, "wb");
-    if (fp == NULL) return -1;
+    if (fp == NULL) {
+        printf("ERROR:Failed to open output file %s\n", filename);
+        return -1;
+    }
 
     fputs("P5\n", fp);
     fprintf(fp, "%d %d\n", width, height);
