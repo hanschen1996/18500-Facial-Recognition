@@ -88,8 +88,14 @@ for item in root.findall("./cascade/height"):
 print("Number of features: " + str(num_feature))
 
 # get stage threshold
+is_stage_end = [0] * 2913
+stage_threshold = [0] * 2913
+stage_index = 1
 for item in root.findall("./cascade/stages/_/stageThreshold"):
-    stage_threshold.append(int(round(STAGE_SCALE * (float(item.text)))))
+    is_stage_end[stage_num_feature[stage_index] - 1] = 1
+    stage_threshold[stage_num_feature[stage_index] - 1] = (int(round(STAGE_SCALE * (float(item.text)))))
+    stage_index += 1
+assert(stage_index == 26)
 
 # get feature threshold
 count = 0
@@ -150,7 +156,7 @@ for item in root.iter("rects"):
         rectangle3_weights.append(0)
 
 
-assert(len(stage_threshold) == num_stage)
+assert(len(stage_threshold) == num_feature)
 assert(len(feature_threshold) == num_feature)
 assert(len(feature_below) == num_feature)
 assert(len(feature_above) == num_feature)
@@ -224,6 +230,7 @@ weights_file.write("\n")
 write_array_body(stage_num_feature, "stage_num_feature".upper(), 32)
 weights_file.write("// thresholds are negative values\n")
 write_array_body(stage_threshold, "stage_threshold".upper(), 32)
+write_array_body(is_stage_end, "is_stage_end".upper(), 1)
 weights_file.write("\n")
 
 write_array_body(rectangle1_x1, "rectangle1_x1".upper(), 5)

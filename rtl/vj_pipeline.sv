@@ -1,173 +1,251 @@
+`default_nettype none
 `include "vj_weights.vh"
 
 module vj_pipeline(
-  input  logic clock, reset,
+  input  logic clock, reset, vj_pipeline_on,
   input  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] scan_win,
   input  logic [31:0] input_std_dev,
   input  logic [1:0][31:0] scan_win_index,
   input  logic [3:0] img_index,
+  output logic next_scan_win,
   output logic [1:0][31:0] top_left,
-  output logic top_left_ready,
   output logic [3:0] pyramid_number,
+  output logic top_left_ready,
   output logic [31:0] accum);
 
-  logic [`NUM_FEATURE-1:0][1:0][31:0] scan_coords;
-  
-  logic [`NUM_FEATURE-1:0][3:0] pyr_nums;
+  logic [11:0] curr_feature, next_curr_feature;
+  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] curr_scan_win;
+  logic is_stage_end_prev_x4, stage_comp, vjp_on_prev;
+  logic [1:0][31:0] win_idx_prev;
+  logic [3:0] img_idx_prev;
 
-  localparam [`NUM_STAGE:0][31:0] stage_num_feature = `STAGE_NUM_FEATURE;
-  localparam [`NUM_STAGE-1:0][31:0] stage_threshold = `STAGE_THRESHOLD;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle1_x1 = `RECTANGLE1_X1;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle1_y1 = `RECTANGLE1_Y1;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle1_x2 = `RECTANGLE1_X2;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle1_y2 = `RECTANGLE1_Y2;
-  localparam [`NUM_FEATURE-1:0][31:0] rectangle1_weights = `RECTANGLE1_WEIGHTS;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle2_x1 = `RECTANGLE2_X1;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle2_y1 = `RECTANGLE2_Y1;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle2_x2 = `RECTANGLE2_X2;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle2_y2 = `RECTANGLE2_Y2;
-  localparam [`NUM_FEATURE-1:0][31:0] rectangle2_weights = `RECTANGLE2_WEIGHTS;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle3_x1 = `RECTANGLE3_X1;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle3_y1 = `RECTANGLE3_Y1;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle3_x2 = `RECTANGLE3_X2;
-  localparam [`NUM_FEATURE-1:0][4:0] rectangle3_y2 = `RECTANGLE3_Y2;
-  localparam [`NUM_FEATURE-1:0][31:0] rectangle3_weights = `RECTANGLE3_WEIGHTS;
-  localparam [`NUM_FEATURE-1:0][31:0] feature_thresholds = `FEATURE_THRESHOLD;
-  localparam [`NUM_FEATURE-1:0][31:0] feature_aboves = `FEATURE_ABOVE;
-  localparam [`NUM_FEATURE-1:0][31:0] feature_belows = `FEATURE_BELOW;
+  logic [4:0] rect1_x1, rect1_x2, rect1_y1, rect1_y2, rect2_x1, rect2_x2, 
+              rect2_y1, rect2_y2, rect3_x1, rect3_x2, rect3_y1, rect3_y2;
+  logic [31:0] rect1_wt, rect2_wt, rect3_wt, feat_above, feat_below, feat_thres,
+               stage_thres, std_dev_prev;
+  logic is_stage_end;
 
-  logic [`NUM_STAGE-1:0][`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] scan_wins;
-  logic [`NUM_STAGE-1:0][31:0] scan_win_std_devs;
-  logic [`NUM_FEATURE-1:0][31:0] feature_accums, feature_accums_prev;
-  logic [`NUM_FEATURE-1:0][31:0] feature_accums_prev_sum;
-  logic [`NUM_STAGE:0][31:0] stage_accums_prev, stage_accums;
-  logic [`NUM_STAGE:0] is_feature, is_feature_prev;
+  block_mem_gen_0  r0(.memory(`RECTANGLE1_X1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_x1));
+  block_mem_gen_0  r1(.memory(`RECTANGLE1_Y1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_y1));
+  block_mem_gen_0  r2(.memory(`RECTANGLE1_X2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_x2));
+  block_mem_gen_0  r3(.memory(`RECTANGLE1_Y2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_y2));
+  block_mem_gen_0  r4(.memory(`RECTANGLE2_X1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_x1));
+  block_mem_gen_0  r5(.memory(`RECTANGLE2_Y1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_y1));
+  block_mem_gen_0  r6(.memory(`RECTANGLE2_X2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_x2));
+  block_mem_gen_0  r7(.memory(`RECTANGLE2_Y2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_y2));
+  block_mem_gen_0  r8(.memory(`RECTANGLE3_X1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_x1));
+  block_mem_gen_0  r9(.memory(`RECTANGLE3_Y1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_y1));
+  block_mem_gen_0 r10(.memory(`RECTANGLE3_X2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_x2));
+  block_mem_gen_0 r11(.memory(`RECTANGLE3_Y2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_y2));
+  block_mem_gen_1 r12(.memory(`RECTANGLE1_WEIGHTS), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(rect1_wt));
+  block_mem_gen_1 r13(.memory(`RECTANGLE2_WEIGHTS), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(rect2_wt));
+  block_mem_gen_1 r14(.memory(`RECTANGLE3_WEIGHTS), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(rect3_wt));
+  block_mem_gen_1 r15(.memory(`FEATURE_ABOVE),      .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(feat_above));
+  block_mem_gen_1 r16(.memory(`FEATURE_BELOW),      .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(feat_below));
+  block_mem_gen_1 r17(.memory(`FEATURE_THRESHOLD),  .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(feat_thres));
+  block_mem_gen_1 r18(.memory(`STAGE_THRESHOLD),    .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(stage_thres));
+  block_mem_gen_2 r19(.memory(`IS_STAGE_END), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(1'b0), .douta(is_stage_end));
 
-  assign top_left_ready = is_feature[`NUM_STAGE] & is_feature_prev[`NUM_STAGE-1];
-  assign accum = stage_accums[`NUM_STAGE];
+  always_comb begin
+    next_scan_win = 1'd0;
+    next_curr_feature = 12'd0;
+    if ((curr_feature == 12'd`NUM_FEATURE - 12'd1) | (is_stage_end_prev_x4 & ~stage_comp) | (~vjp_on_prev & vj_pipeline_on))
+      next_scan_win = 1'd1;
+    if (~reset && ~next_scan_win) next_curr_feature = curr_feature + 12'd1;
+  end
 
-  genvar i, j;
-  generate
-    for (i = 0; i < `NUM_STAGE; i ++) begin
-      for (j = stage_num_feature[i]; j < stage_num_feature[i+1]; j++) begin
-        accum_calculator #(.RECT1_X1(rectangle1_x1[j]),
-                           .RECT1_Y1(rectangle1_y1[j]),
-                           .RECT1_X2(rectangle1_x2[j]),
-                           .RECT1_Y2(rectangle1_y2[j]),
-                           .RECT1_WEIGHT(rectangle1_weights[j]),
-                           .RECT2_X1(rectangle2_x1[j]),
-                           .RECT2_Y1(rectangle2_y1[j]),
-                           .RECT2_X2(rectangle2_x2[j]),
-                           .RECT2_Y2(rectangle2_y2[j]),
-                           .RECT2_WEIGHT(rectangle2_weights[j]),
-                           .RECT3_X1(rectangle3_x1[j]),
-                           .RECT3_Y1(rectangle3_y1[j]),
-                           .RECT3_X2(rectangle3_x2[j]),
-                           .RECT3_Y2(rectangle3_y2[j]),
-                           .RECT3_WEIGHT(rectangle3_weights[j]),
-                           .FEAT_THRES(feature_thresholds[j]),
-                           .FEAT_ABOVE(feature_aboves[j]),
-                           .FEAT_BELOW(feature_belows[j]))
-                         calc(.scan_win(scan_wins[i]),
-                              .scan_win_std_dev(scan_win_std_devs[i]),
-                              .feature_accum(feature_accums[j]));
-      end
-    end
-  endgenerate
-
-  genvar k, l;
-  generate
-    for (k = 0; k < `NUM_STAGE; k ++) begin
-      for (l = stage_num_feature[k] + 1; l < stage_num_feature[k+1]; l++) begin
-        assign feature_accums_prev_sum[l] = feature_accums_prev_sum[l - 1] + feature_accums_prev[l];
-      end
-      assign feature_accums_prev_sum[stage_num_feature[k]] = feature_accums_prev[stage_num_feature[k]];
-    end
-  endgenerate
-
-  genvar m;
-  generate
-    for (m = 1; m < `NUM_STAGE + 1; m++) begin
-      assign stage_accums[m] = feature_accums_prev_sum[stage_num_feature[m] - 1] + stage_accums_prev[m - 1];
-      signed_comparator stage_c(.gt(is_feature[m]), .A(feature_accums_prev_sum[stage_num_feature[m] - 1]), .B(stage_threshold[m-1]));
-    end
-  endgenerate
-
-  assign stage_accums[0] = 32'd0;
-  assign is_feature[0] = 1'b1;
-
-  // propagate current feature accums so we calculate the sum
-  // in the next cycle
-  always_ff @(posedge clock, posedge reset) begin: set_feature_accums_prev
+  always_ff @(posedge clock, posedge reset) begin
+    vjp_on_prev <= vj_pipeline_on;
     if (reset) begin
-      feature_accums_prev <= 'd0;
-      stage_accums_prev <= 'd0;
-      is_feature_prev <= 'd1;
+      win_idx_prev <= 'd0;
+      img_idx_prev <= 4'd0;
+      curr_scan_win <= 'd0;
+      curr_feature <= 12'd0;
+      std_dev_prev <= 32'd0;
     end else begin
-      feature_accums_prev <= feature_accums;
-      stage_accums_prev <= stage_accums;
-      is_feature_prev[`NUM_STAGE:1] <= is_feature[`NUM_STAGE:1] & is_feature_prev[`NUM_STAGE-1:0];
+      curr_feature <= next_curr_feature;
+      if (next_scan_win && vj_pipeline_on) begin
+        win_idx_prev <= scan_win_index;
+        img_idx_prev <= img_index;
+        curr_scan_win <= scan_win;
+        std_dev_prev <= input_std_dev;
+      end
     end
   end
 
-  always_ff @(posedge clock, posedge reset) begin: set_scan_coords_and_scan_win_std_devs
-    if (reset) begin: reset_scanning_windows
-       scan_coords <= 'd0;
-       scan_win_std_devs <= 'd0;
-       top_left <= 'd0;
-       pyr_nums <= 'd0;
-       pyramid_number <= 'd0;
-       scan_wins <= 'd0;
-    end else begin: move_scan_coords_and_scan_win_std_devs
-      scan_coords[0] <= scan_win_index;
-      pyr_nums[0] <= img_index;
-      scan_win_std_devs[0] <= input_std_dev;
-      scan_wins[0] <= scan_win;
-      for (int i = 0; i < `NUM_STAGE-1; i++) begin
-        scan_coords[i+1] <= scan_coords[i];
-        pyr_nums[i+1] <= pyr_nums[i];
-        scan_win_std_devs[i+1] <= scan_win_std_devs[i];
-        scan_wins[i+1] <= scan_wins[i];
-      end
-      top_left <= scan_coords[`NUM_STAGE - 1];
-      pyramid_number <= pyr_nums[`NUM_STAGE - 1];
+
+
+  logic [31:0] rect1_val, rect2_val, rect3_val, rect1_val_prev, rect2_val_prev, rect3_val_prev;
+  logic [31:0] rect1_wt_prev, rect2_wt_prev, rect3_wt_prev, feat_above_prev, 
+               feat_below_prev, feat_thres_prev, std_dev_prev_x2, stage_thres_prev;
+  logic [11:0] curr_feature_prev;
+  logic is_stage_end_prev;
+
+  calc_rect_vals stage1_r(.scan_win(curr_scan_win), .rect1_x1, .rect1_x2, 
+                          .rect1_y1, .rect1_y2, .rect2_x1, .rect2_x2, .rect2_y1, 
+                          .rect2_y2, .rect3_x1, .rect3_x2, .rect3_y1, .rect3_y2,
+                          .rect1_val, .rect2_val, .rect3_val);
+
+  always_ff @(posedge clock, posedge reset) begin
+    if (reset) begin
+      rect1_val_prev <= 5'd0;
+      rect2_val_prev <= 5'd0;
+      rect3_val_prev <= 5'd0;
+      rect1_wt_prev <= 32'd0;
+      rect2_wt_prev <= 32'd0;
+      rect3_wt_prev <= 32'd0;
+      feat_above_prev <= 32'd0;
+      feat_below_prev <= 32'd0;
+      feat_thres_prev <= 32'd0;
+      std_dev_prev_x2 <= 32'd0;
+      is_stage_end_prev <= 1'd0;
+      stage_thres_prev <= 32'd0;
+      curr_feature_prev <= 12'd0;
+    end else begin
+      rect1_val_prev <= rect1_val;
+      rect2_val_prev <= rect2_val;
+      rect3_val_prev <= rect3_val;
+      rect1_wt_prev <= rect1_wt;
+      rect2_wt_prev <= rect2_wt;
+      rect3_wt_prev <= rect3_wt;
+      feat_above_prev <= feat_above;
+      feat_below_prev <= feat_below;
+      feat_thres_prev <= feat_thres;
+      std_dev_prev_x2 <= std_dev_prev;
+      is_stage_end_prev <= is_stage_end;
+      stage_thres_prev <= stage_thres;
+      curr_feature_prev <= curr_feature;
     end
   end
+
+  logic [31:0] rect1_prod_prev, rect2_prod_prev, rect3_prod_prev, feat_prod_prev,
+               feat_above_prev_x2, feat_below_prev_x2, stage_thres_prev_x2;
+  logic [11:0] curr_feature_prev_x2;
+  logic is_stage_end_prev_x2;
+
+  mult_gen_1 stage2_m1(.P(rect1_prod_prev), .A(rect1_wt_prev), .B(rect1_val_prev), .CLK(clock));
+  mult_gen_1 stage2_m2(.P(rect2_prod_prev), .A(rect2_wt_prev), .B(rect2_val_prev), .CLK(clock));
+  mult_gen_1 stage2_m3(.P(rect3_prod_prev), .A(rect3_wt_prev), .B(rect3_val_prev), .CLK(clock));
+  mult_gen_1 stage2_m4(.P(feat_prod_prev), .A(std_dev_prev_x2), .B(feat_thres_prev), .CLK(clock));
+
+  always_ff @(posedge clock, posedge reset) begin
+    if (reset) begin
+      feat_above_prev_x2 <= 32'd0;
+      feat_below_prev_x2 <= 32'd0;
+      stage_thres_prev_x2 <= 32'd0;
+      is_stage_end_prev_x2 <= 1'd0;
+      curr_feature_prev_x2 <= 12'd0;
+    end else begin
+      feat_above_prev_x2 <= feat_above_prev;
+      feat_below_prev_x2 <= feat_below_prev;
+      stage_thres_prev_x2 <= stage_thres_prev;
+      is_stage_end_prev_x2 <= is_stage_end_prev;
+      curr_feature_prev_x2 <= curr_feature_prev;
+    end
+  end
+
+  logic [31:0] feat_sum, feat_accum, feat_accum_prev, stage_thres_prev_x3;
+  logic [11:0] curr_feature_prev_x3;
+  logic feat_comp, is_stage_end_prev_x3;
+
+  assign feat_sum = rect1_prod_prev + rect2_prod_prev + rect3_prod_prev;
+  signed_comparator stage3_c(.gt(feat_comp), .A(feat_sum), .B(feat_prod_prev));
+  assign feat_accum = (curr_feature < 12'd2) ? 32'd0 : (feat_comp) ? feat_above_prev_x2 : feat_below_prev_x2;
+
+  always_ff @(posedge clock, posedge reset) begin
+    if (reset) begin
+      feat_accum_prev <= 32'd0;
+      stage_thres_prev_x3 <= 32'd0;
+      is_stage_end_prev_x3 <= 1'd0;
+      curr_feature_prev_x3 <= 32'd0;
+    end else begin
+      feat_accum_prev <= feat_accum;
+      stage_thres_prev_x3 <= stage_thres_prev_x2;
+      is_stage_end_prev_x3 <= is_stage_end_prev_x2;
+      curr_feature_prev_x3 <= curr_feature_prev_x2;
+    end
+  end
+
+  logic [31:0] stage_accum_prev, stage_thres_prev_x4, final_stage_accum;
+  logic [11:0] curr_feature_prev_x4;
+
+  always_ff @(posedge clock, posedge reset) begin
+    if (reset) begin
+      stage_accum_prev <= 32'd0;
+      final_stage_accum <= 32'd0;
+      stage_thres_prev_x4 <= 32'd0;
+      curr_feature_prev_x4 <= 12'd0;
+      is_stage_end_prev_x4 <= 1'd0;
+    end else begin
+      stage_accum_prev <= (is_stage_end_prev_x3) ? 32'd0 : stage_accum_prev + feat_accum_prev;
+      final_stage_accum <= (is_stage_end_prev_x3) ? stage_accum_prev + feat_accum_prev : 32'd0;
+      stage_thres_prev_x4 <= stage_thres_prev_x3;
+      curr_feature_prev_x4 <= curr_feature_prev_x3;
+      is_stage_end_prev_x4 <= is_stage_end_prev_x3;
+    end
+  end
+
+  logic is_face;
+
+  assign is_face = (curr_feature_prev_x4 == 12'd`NUM_FEATURE - 12'd1) & stage_comp;
+  signed_comparator stage5_c(.gt(stage_comp), .A(final_stage_accum), .B(stage_thres_prev_x4));
+
+  logic [1:0][31:0] win_idx_prev_x2, win_idx_prev_x3, win_idx_prev_x4, win_idx_prev_x5;
+  logic [3:0] img_idx_prev_x2, img_idx_prev_x3, img_idx_prev_x4, img_idx_prev_x5; 
+
+  always_ff @(posedge clock, posedge reset) begin
+    if (reset) begin
+      win_idx_prev_x2 <= 'd0;
+      win_idx_prev_x3 <= 'd0;
+      win_idx_prev_x4 <= 'd0;
+      win_idx_prev_x5 <= 'd0;
+      img_idx_prev_x2 <= 4'd0;
+      img_idx_prev_x3 <= 4'd0;
+      img_idx_prev_x4 <= 4'd0;
+      img_idx_prev_x5 <= 4'd0;
+    end else begin
+      win_idx_prev_x2 <= win_idx_prev;
+      win_idx_prev_x3 <= win_idx_prev_x2;
+      win_idx_prev_x4 <= win_idx_prev_x3;
+      win_idx_prev_x5 <= win_idx_prev_x4;
+      img_idx_prev_x2 <= img_idx_prev;
+      img_idx_prev_x3 <= img_idx_prev_x2;
+      img_idx_prev_x4 <= img_idx_prev_x3;
+      img_idx_prev_x5 <= img_idx_prev_x4;
+    end
+  end
+
+  always_ff @(posedge clock, posedge reset) begin
+    if (reset) begin
+      accum <= 32'd0;
+    end else begin
+      accum <= (is_stage_end_prev_x3) ? accum + stage_accum_prev + feat_accum_prev : accum;
+    end
+  end
+
+  assign top_left = win_idx_prev_x5;
+  assign pyramid_number = img_idx_prev_x5;
+  assign top_left_ready = is_face;
 
 endmodule
 
-module accum_calculator
-  #(parameter RECT1_X1 = 0, RECT1_Y1 = 0, RECT1_X2 = 0, RECT1_Y2 = 0, RECT1_WEIGHT = 0,
-              RECT2_X1 = 0, RECT2_Y1 = 0, RECT2_X2 = 0, RECT2_Y2 = 0, RECT2_WEIGHT = 0,
-              RECT3_X1 = 0, RECT3_Y1 = 0, RECT3_X2 = 0, RECT3_Y2 = 0, RECT3_WEIGHT = 0,
-              FEAT_THRES = 0, FEAT_ABOVE = 0, FEAT_BELOW = 0) (
+module calc_rect_vals (
+  input  logic [4:0] rect1_x1, rect1_x2, rect1_y1, rect1_y2, 
+                     rect2_x1, rect2_x2, rect2_y1, rect2_y2,
+                     rect3_x1, rect3_x2, rect3_y1, rect3_y2,
   input  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] scan_win,
-  input  logic [31:0] scan_win_std_dev,
-  output logic [31:0] feature_accum);
+  output logic [31:0] rect1_val, rect2_val, rect3_val);
 
-  logic [31:0] rectangle1_val, rectangle2_val, rectangle3_val, 
-               rectangle1_product, rectangle2_product, rectangle3_product,
-               feature_product, feature_sum;
-  logic feature_comparison;
+  logic [31:0] rect1_val1, rect1_val2, rect2_val1, rect2_val2, rect3_val1, rect3_val2;
 
-  assign rectangle1_val = scan_win[RECT1_Y2][RECT1_X2] +
-                          scan_win[RECT1_Y1][RECT1_X1] -
-                          scan_win[RECT1_Y1][RECT1_X2] -
-                          scan_win[RECT1_Y2][RECT1_X1];
-  assign rectangle2_val = scan_win[RECT2_Y2][RECT2_X2] +
-                          scan_win[RECT2_Y1][RECT2_X1] -
-                          scan_win[RECT2_Y1][RECT2_X2] -
-                          scan_win[RECT2_Y2][RECT2_X1];
-  assign rectangle3_val = scan_win[RECT3_Y2][RECT3_X2] +
-                          scan_win[RECT3_Y1][RECT3_X1] -
-                          scan_win[RECT3_Y1][RECT3_X2] -
-                          scan_win[RECT3_Y2][RECT3_X1];
-  multiplier m1(.out(rectangle1_product), .a(rectangle1_val), .b(RECT1_WEIGHT));
-  multiplier m2(.out(rectangle2_product), .a(rectangle2_val), .b(RECT2_WEIGHT));
-  multiplier m3(.out(rectangle3_product), .a(rectangle3_val), .b(RECT3_WEIGHT));
-  multiplier m4(.out(feature_product), .a(FEAT_THRES), .b(scan_win_std_dev));
-  assign feature_sum = rectangle1_product + rectangle2_product + rectangle3_product;
-  signed_comparator feature_c(.gt(feature_comparison), .A(feature_sum), .B(feature_product));
-  assign feature_accum = (feature_comparison) ? FEAT_ABOVE : FEAT_BELOW;
+  assign rect1_val1 = scan_win[rect1_y2][rect1_x2] + scan_win[rect1_y1][rect1_x1];
+  assign rect1_val2 = scan_win[rect1_y1][rect1_x2] + scan_win[rect1_y2][rect1_x1];
+  assign rect1_val  = rect1_val1 - rect1_val2;
+  assign rect2_val1 = scan_win[rect2_y2][rect2_x2] + scan_win[rect2_y1][rect2_x1];
+  assign rect2_val2 = scan_win[rect2_y1][rect2_x2] + scan_win[rect2_y2][rect2_x1];
+  assign rect2_val  = rect2_val1 - rect2_val2;
+  assign rect3_val1 = scan_win[rect3_y2][rect3_x2] + scan_win[rect3_y1][rect3_x1];
+  assign rect3_val2 = scan_win[rect3_y1][rect3_x2] + scan_win[rect3_y2][rect3_x1];
+  assign rect3_val  = rect3_val1 - rect3_val2;
 
 endmodule
