@@ -1,4 +1,6 @@
 <!doctype html>
+
+{% load staticfiles %}
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -18,13 +20,16 @@
                 </div>
                 
                 <div class="col-6">
-                    <canvas id="canvas"></canvas>
+<!--                    <img src= "{% static "identityChecker/face_output.pgm" %}">-->
                 </div>
                 
                 <div class="col-3">
                 </div>
                 
             </div>
+            
+            <br>
+            
             
             <div class="row">
                 <div class="col-5">
@@ -44,15 +49,7 @@
             </div>
             
             <script>
-//                const canvas = document.getElementById('canvas');
-//                const ctx = canvas.getContext('2d');
-//                
-//              var imageObj = new Image();
-//
-//              imageObj.onload = function() {
-//                ctx.drawImage(imageObj, 10, 10);
-//              };
-//              imageObj.src = '/Users/andyshen/Desktop/18500-Facial-Recognition/app/sample.png';
+               
             </script>
         </div> 
             
