@@ -1,34 +1,44 @@
-var download = function(){
+function getName(){
+    var name = document.getElementById('first_name').value + '_' + document.getElementById('last_name').value;
+    return name;
+}
+
+function download(){
+  var name = getName();
   var link = document.createElement('a');
-  link.download = 'image.png';
+  link.download = name + '.png';
   link.href = document.getElementById('canvas1').toDataURL()
   link.click();
 }
 
-var download2 = function(){
+function download2(){
+  var name = getName();
   var link = document.createElement('a');
-  link.download = 'image2.png';
+  link.download = name + '.png';
   link.href = document.getElementById('canvas2').toDataURL()
   link.click();
 }
 
-var download3 = function(){
+function download3(){
+  var name = getName();
   var link = document.createElement('a');
-  link.download = 'image3.png';
+  link.download = name + '.png';
   link.href = document.getElementById('canvas3').toDataURL()
   link.click();
 }
 
-var download4 = function(){
+function download4(){
+  var name = getName();
   var link = document.createElement('a');
-  link.download = 'image4.png';
+  link.download = name + '.png';
   link.href = document.getElementById('canvas4').toDataURL()
   link.click();
 }
 
-var download5 = function(){
+function download5(){
+  var name = getName();
   var link = document.createElement('a');
-  link.download = 'image5.png';
+  link.download = name + '.png';
   link.href = document.getElementById('canvas5').toDataURL()
   link.click();
 }

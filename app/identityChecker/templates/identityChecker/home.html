@@ -10,6 +10,8 @@
     <body>
         <div class="container">
             <div class="title">Identity Checker</div>
+            <input type = "hidden" id = "first_name" value = "{{request.session.fname}}">
+            <input type = "hidden" id = "last_name" value = "{{request.session.lname}}">
 
             <div class="button-container">
                 <a href="{% url 'add' %}"><button type="button" class="btn btn-dark btn-lg btn-block" name = "add_button" id = "add_button">Add to Database</button></a>
