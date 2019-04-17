@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Identity Checker</title>
+        <link rel="stylesheet" href="../../static/identityChecker/identityChecker.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="title">Identity Checker</div>
+                <p>Enter your name for the Identity Checker:</p>
+
+                <form class = "login_form" method="post" action="{% url 'inputName' %}">
+                    <div class="container">
+                        <span>First Name: <input name = "fname" type = "text"></span>
+                        <br>
+                        <span>Last Name:  <input name = "lname" type = "text"></span>
+                    </div>
+                    {% csrf_token %}
+                    <button type="submit" value="submit"><span id="submit_button">Submit</span></button>
+                </form>
+            
+        </div>
+      
+    </body>
+</html>
+
+
+

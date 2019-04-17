@@ -17,7 +17,7 @@ from django.urls import path, include
 from identityChecker import views
 
 urlpatterns = [
-    path('', views.home),
+    path('', views.inputName),
     path('identityChecker/', include('identityChecker.urls')),
     
 ]

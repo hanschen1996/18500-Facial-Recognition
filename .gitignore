@@ -4,3 +4,11 @@ crop_images/
 app/webapps/__pycache__/
 app/identityChecker/migrations/__pycache__/
 app/identityChecker/__pycache__/
+rtl/DVEfiles
+rtl/csrc
+rtl/inter.vpd
+rtl/simv*
+rtl/ucli.key
+vivado/
+rtl/.restart*
+rtl/.synopsys*

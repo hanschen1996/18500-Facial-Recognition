@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="detect_face" xd:componentRef="detect_face" xd:initiationInterval="x" xd:clockPeriod="10.000000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="ap_ctrl" xd:busTypeRef="acc_handshake" xd:type="acc_handshake"/>
+  <xd:arg xd:name="*(success)" xd:originalName="success" xd:direction="out" xd:interfaceRef="success" xd:busTypeRef="register" xd:handshakeRef="ap_vld" xd:dataWidth="32"/>
+  <xd:arg xd:name="orig_image_q0" xd:originalName="orig_image_q0" xd:direction="in" xd:interfaceRef="orig_image_q0" xd:busTypeRef="ap_memory" xd:arraySize="19200" xd:dataWidth="8"/>
+  <xd:latencyEstimates xd:best-case="undef" xd:worst-case="undef" xd:average-case="undef"/>
+  <xd:resourceEstimates xd:LUT="9693" xd:FF="5766" xd:BRAM="182" xd:DSP="28"/>
+</xd:acceleratorMap>

@@ -14,7 +14,7 @@ def nms(boxes):
 
         # current bounding box is a correct one
         result.append(boxes[i])
-
+        print("choosing (%d,%d,%d,%d,%d)"%(boxes[i][0], boxes[i][1],boxes[i][2],boxes[i][3], boxes[i][4]))
         # get its coordinates
         (x1,y1,x2,y2,_) = boxes[i]
 
@@ -34,7 +34,7 @@ def nms(boxes):
                 overlap_area = (right_x-left_x)*(down_y-up_y)
 
             total_area = area[i] + area[j] - overlap_area
-            if (float(overlap_area) / total_area > THRESHOLD):
+            if (float(overlap_area) / area[j] > THRESHOLD):
                 keep[j] = 0
 
     return result

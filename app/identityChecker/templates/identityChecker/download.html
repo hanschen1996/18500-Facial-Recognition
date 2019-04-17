@@ -5,60 +5,94 @@
         <title>Identity Checker</title>
         <link rel="stylesheet" href="../../static/identityChecker/identityChecker.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="../../static/identityChecker/identityChecker.js"></script>
+
     </head>
 
     <body>
         <div class="container">
             <div class="title">Identity Checker</div>
+            <input type = "hidden" id = "first_name" value = "{{request.session.fname}}">
+            <input type = "hidden" id = "last_name" value = "{{request.session.lname}}">
 
             
-        <div class="container">
-            <div class="row">
-                <div class="col-3">
-                </div>
-                
-                <div class="col-6">
-                    <canvas id="canvas"></canvas>
-                </div>
-                
-                <div class="col-3">
-                </div>
-                
-            </div>
+        <div class="video-container"> 
+            <div id="countdown" onclick="captureImages()"></div>
+            <video width="400" height="300" align="center" id="player" playsinline autoplay></video>
+        
+        </div>
             
-            <div class="row">
+        <div class="container">
+            <div class="row" id="button-row">
                 <div class="col-5">
                 </div>
-                
+
                 <div class="col-2">
                     <form action="{% url 'home' %}" method="post" enctype="multipart/form-data">
                         <a id="restart"><button type="submit" class="btn btn-dark btn-lg">Restart</button></a>
                         {% csrf_token %}  
                     </form>
-                    
+
                 </div>
-                
+
                 <div class="col-5">
                 </div>
                 
+                
+                <div class="col">
+                </div>
+                
             </div>
+        </div>
             
-            <script>
-//                const canvas = document.getElementById('canvas');
-//                const ctx = canvas.getContext('2d');
-//                
-//              var imageObj = new Image();
-//
-//              imageObj.onload = function() {
-//                ctx.drawImage(imageObj, 10, 10);
-//              };
-//              imageObj.src = '/Users/andyshen/Desktop/18500-Facial-Recognition/app/sample.png';
-            </script>
+        <div class="row"> </div>
+            
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                </div>
+                
+                <div class="col-2">
+                    <img src="../../static/identityChecker/face_output.png">
+                </div>
+                
+                <div class="col-2">
+                    <canvas id="canvas2" width="160" height="120"></canvas>
+                </div>
+                
+                <div class="col-2">
+                    <canvas id="canvas3" width="160" height="120"></canvas>
+                </div>
+                
+                <div class="col-2">
+                    <canvas id="canvas4" width="160" height="120"></canvas>
+                </div>
+                
+                <div class="col-2">
+                    <canvas id="canvas5" width="160" height="120"></canvas>
+                </div>
+                
+                <div class="col-1">
+                </div>
+                
+            </div>
         </div> 
+
+        <script>
+          const player = document.getElementById('player');
+          const constraints = {
+            video: true,
+          };
             
-        
+          // Attach the video stream to the video element and autoplay.
+          navigator.mediaDevices.getUserMedia(constraints)
+            .then((stream) => {
+              player.srcObject = stream;
+            });
+        </script>
             
         </div>
       
     </body>
 </html>
+

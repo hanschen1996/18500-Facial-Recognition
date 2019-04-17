@@ -5,11 +5,12 @@ from subprocess import Popen, PIPE
 import nms
 import sys
 
-IMG_PATH = "/Users/andyshen/Downloads/image.png"
+IMG_PATH = "/Users/andyshen/Downloads/image0.png"
 PROG_PATH = "/Users/andyshen/Desktop/18500-Facial-Recognition/facialrecognition/vj"
 WIDTH = 160
 HEIGHT = 120
-TMP_OUTPUT = "image.pgm"
+TMP_OUTPUT = "image0.pgm"
+STATIC_OUTPUT = "/Users/andyshen/Desktop/18500-Facial-Recognition/app/identityChecker/static/identityChecker/face_output.png"
 
 def main():
     img = Image.open(IMG_PATH)
@@ -45,8 +46,8 @@ def main():
             img_data[x2,y] = 0
 
     print("Face found! Image saved in face_output.pgm")
-    img.show()
-    img.save("face_output.pgm")
+#    img.show()
+    img.save(STATIC_OUTPUT)
 
     # cleanup
     os.remove(TMP_OUTPUT)

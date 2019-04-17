@@ -12,7 +12,7 @@ module detect_face_tb();
   logic [7:0] laptop_uart_data;
   logic uart_data_rdy;
 
-  top dut(.*);
+  top dut(.sys_clk_p(clock), .sys_clk_n(), .GPIO_SW_C(reset), .uart_rx, .uart_cts, .uart_tx, .uart_rts);
   uart_rcvr u_r(.clock, .reset, .uart_data(laptop_uart_data), .uart_data_rdy, .uart_rx(uart_tx));
 
   integer file;
@@ -78,6 +78,12 @@ module detect_face_tb();
     writeUart(8'd0);
     $display("nice! %d", $time);
     @(posedge dut.vj_pipeline_done);
+    ##1000000;
+    $finish;
+  end
+
+  initial begin
+    #103690905;
     ##1000000;
     $finish;
   end
