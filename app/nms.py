@@ -14,7 +14,6 @@ def nms(boxes):
 
         # current bounding box is a correct one
         result.append(boxes[i])
-        print("choosing (%d,%d,%d,%d,%d)"%(boxes[i][0], boxes[i][1],boxes[i][2],boxes[i][3], boxes[i][4]))
         # get its coordinates
         (x1,y1,x2,y2,_) = boxes[i]
 

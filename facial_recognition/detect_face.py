@@ -17,7 +17,7 @@ CROP_IMG_DIR = "crop_images"
 CROP_IMG_WIDTH = 20
 CROP_IMG_HEIGHT = 20
 CROP_IMG_SIZE = CROP_IMG_WIDTH * CROP_IMG_HEIGHT
-
+MIN_FACE_SIZE = 30
 
 def detect_face():
     for filename in os.listdir(IMG_DIR):
@@ -37,7 +37,8 @@ def detect_face():
                 print("------------------------------------------------")
                 break
 
-        boxes = filter(lambda x: x[-1] >= SCORE_THRESHOLD, boxes)
+        boxes = filter(lambda x: x[-1] >= SCORE_THRESHOLD and
+                                 x[2] - x[0] >= MIN_FACE_SIZE, boxes)
         # use nms to find all faces
         results = nms.nms(boxes)
         if (results == []): continue
@@ -58,11 +59,6 @@ def detect_face():
             print("------------------------------------------------")
             continue
 
-        if (detect_width < 40 or detect_height < 40):
-            print("%s:\tNot using this image for training, face size too small?"%(filename))
-            print("------------------------------------------------")
-            continue
-
         # accept this image as training data
         print("%s:\tDetected face window size (width=%d,height=%d)"%(filename, detect_width, detect_height))
 
@@ -74,4 +70,3 @@ def detect_face():
 
         print("------------------------------------------------")
 
-detect_face()

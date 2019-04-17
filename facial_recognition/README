@@ -1,0 +1,11 @@
+
+detect_face.py:
+    detect faces in all images under images/, crops out the face if there
+    is any, and save the grayscale 20x20 outputs to crop_images/
+
+partition.py:
+    partition images under crop_images/ into a train set and a test set.
+    train set images are stored under face_database/, test set images
+    are stored under test_database/
+
+
