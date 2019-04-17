@@ -3,7 +3,7 @@
 
 module vj_pipeline(
   input  logic clock, reset, vj_pipeline_on,
-  input  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] scan_win,
+  input  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][17:0] scan_win,
   input  logic [31:0] input_std_dev,
   input  logic [1:0][31:0] scan_win_index,
   input  logic [3:0] img_index,
@@ -14,7 +14,7 @@ module vj_pipeline(
   output logic [31:0] accum);
 
   logic [11:0] curr_feature, next_curr_feature;
-  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] curr_scan_win;
+  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][17:0] curr_scan_win;
   logic is_stage_end_prev_x4, stage_comp, vjp_on_prev;
   logic [1:0][31:0] win_idx_prev;
   logic [3:0] img_idx_prev;
@@ -25,26 +25,26 @@ module vj_pipeline(
                stage_thres, std_dev_prev;
   logic is_stage_end;
 
-  block_mem_gen_0  r0(.memory(`RECTANGLE1_X1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_x1));
-  block_mem_gen_0  r1(.memory(`RECTANGLE1_Y1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_y1));
-  block_mem_gen_0  r2(.memory(`RECTANGLE1_X2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_x2));
-  block_mem_gen_0  r3(.memory(`RECTANGLE1_Y2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_y2));
-  block_mem_gen_0  r4(.memory(`RECTANGLE2_X1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_x1));
-  block_mem_gen_0  r5(.memory(`RECTANGLE2_Y1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_y1));
-  block_mem_gen_0  r6(.memory(`RECTANGLE2_X2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_x2));
-  block_mem_gen_0  r7(.memory(`RECTANGLE2_Y2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_y2));
-  block_mem_gen_0  r8(.memory(`RECTANGLE3_X1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_x1));
-  block_mem_gen_0  r9(.memory(`RECTANGLE3_Y1), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_y1));
-  block_mem_gen_0 r10(.memory(`RECTANGLE3_X2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_x2));
-  block_mem_gen_0 r11(.memory(`RECTANGLE3_Y2), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_y2));
-  block_mem_gen_1 r12(.memory(`RECTANGLE1_WEIGHTS), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(rect1_wt));
-  block_mem_gen_1 r13(.memory(`RECTANGLE2_WEIGHTS), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(rect2_wt));
-  block_mem_gen_1 r14(.memory(`RECTANGLE3_WEIGHTS), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(rect3_wt));
-  block_mem_gen_1 r15(.memory(`FEATURE_ABOVE),      .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(feat_above));
-  block_mem_gen_1 r16(.memory(`FEATURE_BELOW),      .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(feat_below));
-  block_mem_gen_1 r17(.memory(`FEATURE_THRESHOLD),  .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(feat_thres));
-  block_mem_gen_1 r18(.memory(`STAGE_THRESHOLD),    .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(stage_thres));
-  block_mem_gen_2 r19(.memory(`IS_STAGE_END), .clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(1'b0), .douta(is_stage_end));
+  blk_mem_gen_r1x1  r0(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_x1));
+  blk_mem_gen_r1y1  r1(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_y1));
+  blk_mem_gen_r1x2  r2(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_x2));
+  blk_mem_gen_r1y2  r3(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect1_y2));
+  blk_mem_gen_r2x1  r4(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_x1));
+  blk_mem_gen_r2y1  r5(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_y1));
+  blk_mem_gen_r2x2  r6(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_x2));
+  blk_mem_gen_r2y2  r7(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect2_y2));
+  blk_mem_gen_r3x1  r8(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_x1));
+  blk_mem_gen_r3y1  r9(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_y1));
+  blk_mem_gen_r3x2 r10(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_x2));
+  blk_mem_gen_r3y2 r11(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(5'd0), .douta(rect3_y2));
+  blk_mem_gen_r1w  r12(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(rect1_wt));
+  blk_mem_gen_r2w  r13(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(rect2_wt));
+  blk_mem_gen_r3w  r14(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(rect3_wt));
+  blk_mem_gen_fa   r15(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(feat_above));
+  blk_mem_gen_fb   r16(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(feat_below));
+  blk_mem_gen_ft   r17(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(feat_thres));
+  blk_mem_gen_st   r18(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(32'd0), .douta(stage_thres));
+  blk_mem_gen_ise  r19(.clka(clock), .wea(1'b0), .addra(next_curr_feature), .dina(1'b0),  .douta(is_stage_end));
 
   always_comb begin
     next_scan_win = 1'd0;
@@ -233,7 +233,7 @@ module calc_rect_vals (
   input  logic [4:0] rect1_x1, rect1_x2, rect1_y1, rect1_y2, 
                      rect2_x1, rect2_x2, rect2_y1, rect2_y2,
                      rect3_x1, rect3_x2, rect3_y1, rect3_y2,
-  input  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][31:0] scan_win,
+  input  logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][17:0] scan_win,
   output logic [31:0] rect1_val, rect2_val, rect3_val);
 
   logic [31:0] rect1_val1, rect1_val2, rect2_val1, rect2_val2, rect3_val1, rect3_val2;

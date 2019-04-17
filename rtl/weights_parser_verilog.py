@@ -12,28 +12,8 @@ def get_xml():
 if (not os.path.isfile("./vj_weights.xml")):
     get_xml()
 
-pyramid_widths = [160, 133, 111, 92, 77, 64, 53, 44, 37]
-pyramid_heights = [120, 99, 83, 69, 57, 48, 40, 33, 27]
-
-x_mappings = [78841, 94467, 113976, 136179, 163841, 197845, 238313, 283399]
-y_mappings = [79438, 94751, 113976, 137971, 163841, 196609, 238313, 291272]
-
-pyramid_x_mappings = []
-pyramid_y_mappings = []
-for i in range(len(x_mappings)):
-    curr_x_mappings = []
-    curr_y_mappings = []
-    for j in range(pyramid_widths[0]):
-        curr_x_mappings.append((j * x_mappings[i]) >> 16)
-    assert(len(curr_x_mappings) == pyramid_widths[0])
-
-    for j in range(pyramid_heights[0]):
-        curr_y_mappings.append((j * y_mappings[i]) >> 16)
-    assert(len(curr_y_mappings) == pyramid_heights[0])
-
-    pyramid_x_mappings.append(curr_x_mappings)
-    pyramid_y_mappings.append(curr_y_mappings)
-
+pyramid_widths = [160, 128, 102, 81, 64, 51, 40]
+pyramid_heights = [120, 96, 76, 60, 48, 38, 30]
 
 num_stage = 0
 num_feature = 0
@@ -220,10 +200,6 @@ def write_array_body(arr, arr_name, width):
 ## write data
 write_array_body(pyramid_widths, "pyramid_widths".upper(), 32)
 write_array_body(pyramid_heights, "pyramid_heights".upper(), 32)
-weights_file.write("\n")
-
-write_array_body(pyramid_x_mappings, "pyramid_x_mappings".upper(), 8)
-write_array_body(pyramid_y_mappings, "pyramid_y_mappings".upper(), 8)
 weights_file.write("\n")
 
 # number of features in each stage

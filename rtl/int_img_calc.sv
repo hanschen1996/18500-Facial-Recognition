@@ -5,11 +5,12 @@ module int_img_calc
   #(parameter WIDTH_LIMIT = `LAPTOP_WIDTH, HEIGHT_LIMIT = `LAPTOP_HEIGHT)(
   input  logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][7:0] input_img,
   input  logic clock, reset, enable,
-  output logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] output_img, output_img_sq);
+  output logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][17:0] output_img,
+  output logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] output_img_sq);
 
   logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][15:0] input_img_sq;
-  logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] saved_input_img, saved_input_img_sq,
-                                                  input_img_sum, input_img_sq_sum;
+  logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][17:0] saved_input_img, input_img_sum;
+  logic [HEIGHT_LIMIT-1:0][WIDTH_LIMIT-1:0][31:0] saved_input_img_sq, input_img_sq_sum;
   logic [1:0] clock_count;
 
   always_ff @(posedge clock, posedge reset) begin
@@ -54,7 +55,7 @@ module int_img_calc
   generate
     for (q = 0; q < HEIGHT_LIMIT; q=q+1) begin: multiplier_row
       for (r = 0; r < WIDTH_LIMIT; r=r+1) begin: multiplier_column
-        mult_gen_0 m(.P(input_img_sq[q][r]), .A(input_img[q][r]), .B(input_img[q][r]), .CLK(clock));
+        mult_gen_0 m(.P(input_img_sq[q][r]), .A(input_img[q][r]), .B(input_img[q][r]));
         //assign input_img_sq[q][r] = input_img[q][r] * input_img[q][r];
       end
     end
