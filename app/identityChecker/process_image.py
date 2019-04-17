@@ -26,32 +26,19 @@ def find_images(firstname, lastname):
     print(all_files)
     filenames = []
 
-    for i in range(5):
+    for i in range(8):
         curr_file = "%s_%s_%d.png"%(firstname, lastname, i+1)
         if (curr_file not in all_files):
             print("Cannot find %s"%(curr_file))
             exit(-1)
         filenames.append(curr_file)
     return filenames
-        
-    """
-    first = None
-    last = None
-    files = []
-    for filename in os.listdir(INPUT_IMG_DIR):
-        if (filename.endswith(INPUT_FILE_EXT)):
-            [name, _] = filename.split(".")
-            [curr_first, curr_last, _] = name.split("_")
-            if (first == None):
-                first = curr_first
-                last = curr_last
-            else:
-                assert(first == curr_first)
-                assert(last == curr_last)
-            files.append(filename)
-    assert(len(files) == 5)
-    return (files, first, last)
-    """
+
+def output_image(img, firstname, lastname, img_index):
+    # save output for webapp to display
+    output_filename = "%s/%s_%s_%d.png"%(OUTPUT_IMG_DIR, firstname, lastname, img_index)
+    img.save(output_filename)
+    return output_filename
 
 def add_face(firstname, lastname):
     # read person label
@@ -94,7 +81,9 @@ def add_face(firstname, lastname):
 
         # remove temporary files
         os.remove(tmp_filename)
-        os.remove("%s_detect.pgm"%(tmp_filename))
+        face_output = "%s_detect.pgm"%(tmp_filename)
+        if (os.path.exists(face_output)):
+            os.remove(face_output)
 
         # filter out boxes with low score and small size
         boxes = list(filter(lambda x:
@@ -103,6 +92,7 @@ def add_face(firstname, lastname):
         if (len(boxes) == 0):
             print("No face found in %s!"%(filename))
             failed_img_index.append(img_index)
+            output_image(img, firstname, lastname, img_index)
             continue
         results = nms.nms(boxes)
 
@@ -137,17 +127,15 @@ def add_face(firstname, lastname):
         for y in range(y1, y2):
             img_data[x1,y] = 0
             img_data[x2,y] = 0
-
-        # save output for webapp to display
-        output_filename = "%s/%s_%s_%d.png"%(OUTPUT_IMG_DIR, firstname, lastname, img_index)
+        
+        output_filename = output_image(img, firstname, lastname, img_index)
         print("Face found! Image saved in %s"%(output_filename))
-        img.save(output_filename)
         print("-------------------------------------------------")
 
     # check if no face is found at all
     if (valid_img is None):
         print("No face is detected in any of the files for %s_%s"%(firstname, lastname))
-        exit(-1)
+        return
 
     # duplicate valid images if some detection fails
     for i in range(len(failed_img_index)):

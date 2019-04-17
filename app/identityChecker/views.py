@@ -33,4 +33,6 @@ def downloadImage(request):
     return render(request, 'identityChecker/download.html', {})
 
 def checkIdentity(request):
+    if request.method == 'POST':
+        find_face(request.session['fname'], request.session['lname'])
     return render(request, 'identityChecker/checkIdentity.html', {})
