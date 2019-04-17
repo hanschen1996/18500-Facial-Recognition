@@ -208,3 +208,6 @@ write_coe(rectangle3_weights, "rectangle3_weights")
 write_coe(feature_threshold, "feature_threshold")
 write_coe(feature_above, "feature_above")
 write_coe(feature_below, "feature_below")
+write_coe(stage_threshold, "stage_threshold")
+
+write_coe(is_stage_end, "is_stage_end")
