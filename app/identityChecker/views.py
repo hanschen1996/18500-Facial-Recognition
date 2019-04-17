@@ -4,8 +4,6 @@ import os
 from django.contrib.auth.models import User
 from identityChecker.forms import InputForm
 
-IMG_PATH = "/Users/andyshen/Downloads/image0.png"
-
 def inputName(request):
     context = {}
 
@@ -31,7 +29,6 @@ def add(request):
 def downloadImage(request):
     if request.method == 'POST':
         subprocess.call(['./script.sh'])
-        os.remove(IMG_PATH)
     return render(request, 'identityChecker/download.html', {})
 
 def checkIdentity(request):
