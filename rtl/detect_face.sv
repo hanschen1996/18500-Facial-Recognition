@@ -5,10 +5,11 @@
 `define INT_IMG_WAIT 3
 
 module detect_face(
-  input logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] laptop_img, // coming from uart module
+  input logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] laptop_img,
   input logic clock, laptop_img_rdy, reset,
+  output logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] curr_image_down,
   output logic [1:0][31:0] face_coords,
-  output logic face_coords_ready, vj_pipeline_done,
+  output logic face_coords_ready, vj_pipeline_done, downscale_laptop_img,
   output logic [3:0] pyramid_number,
   output logic [31:0] accum);
 
@@ -16,7 +17,6 @@ module detect_face(
   localparam [`PYRAMID_LEVELS-1:0][31:0] pyramid_heights = `PYRAMID_HEIGHTS;
 
   // temporary array to hold the image for the current pyramid level
-  logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] curr_image, curr_image_down;
   logic [3:0] img_index;
   logic [31:0] row_index, col_index;
   logic [`WINDOW_SIZE:0][`WINDOW_SIZE:0][7:0] scan_win;
@@ -29,7 +29,7 @@ module detect_face(
   assign scan_win_index[1] = col_index;
 
   /* downscalers to downscale the original image into all pyramid levels */
-  downscaler down(.input_img(curr_image), .output_img(curr_image_down));
+  downscaler down(.input_img(laptop_img), .output_img(curr_image_down));
 
   /* calculate standard deviation of the current scanning window */
   window_std_dev stddev(.scan_win(scan_win_int), .scan_win_sq(scan_win_int_sq), .scan_win_std_dev);
@@ -53,7 +53,7 @@ module detect_face(
   generate
     for (k=0; k<`WINDOW_SIZE+1; k=k+1) begin: scan_win_row
       for (l=0; l<`WINDOW_SIZE+1; l=l+1) begin: scan_win_column
-        assign scan_win[k][l] = (img_index == `IMG_INDEX_DEFAULT) ? 8'd0 : curr_image[row_index+k][col_index+l];
+        assign scan_win[k][l] = (img_index == `IMG_INDEX_DEFAULT) ? 8'd0 : laptop_img[row_index+k][col_index+l];
       end
     end
   endgenerate
@@ -72,13 +72,11 @@ module detect_face(
       img_index <= `IMG_INDEX_DEFAULT;
       row_index <= 32'd0;
       col_index <= 32'd0;
-      curr_image <= 'd0;
       vj_pipeline_on <= 1'd0;
       wait_integral_image_count <= 32'd0;
     end else begin
       if (laptop_img_rdy) begin
         wait_integral_image_count <= 32'd1;
-        curr_image <= laptop_img;
       end
       if ((wait_integral_image_count > 32'd0) && (wait_integral_image_count < `INT_IMG_WAIT)) begin: waiting_for_first_int_img
         wait_integral_image_count <= wait_integral_image_count + 32'd1;
@@ -103,7 +101,6 @@ module detect_face(
               img_index <= img_index + 4'd1;
               row_index <= 32'd0;
               col_index <= 32'd0;
-              curr_image <= curr_image_down;
             end else if (next_scan_win) begin: col_not_done
               col_index <= 32'd0;
               row_index <= row_index + 32'd1;
@@ -115,5 +112,8 @@ module detect_face(
       end
     end
   end
+
+  assign downscale_laptop_img = vj_pipeline_on && col_index == pyramid_widths[img_index] - `WINDOW_SIZE - 1 && next_scan_win 
+                                               && row_index == pyramid_heights[img_index] - `WINDOW_SIZE - 1;
 
 endmodule
