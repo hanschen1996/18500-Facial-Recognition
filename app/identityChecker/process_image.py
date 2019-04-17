@@ -6,7 +6,8 @@ import nms
 import sys
 
 INPUT_FILE_EXT = ".png"
-INPUT_IMG_DIR = "identityChecker/static/identityChecker/"
+#INPUT_IMG_DIR = "identityChecker/static/identityChecker/"
+INPUT_IMG_DIR = "/Users/andyshen/Downloads"
 DETECT_PROG_PATH = "../facial_detection/vj"
 WIDTH = 160
 HEIGHT = 120
@@ -14,13 +15,26 @@ CROP_IMG_WIDTH = 20
 CROP_IMG_HEIGHT = 20
 SCORE_THRESHOLD = -500
 TRAIN_IMG_DIR = "../facial_recognition/face_database"
-OUTPUT_IMG_DIR = "display"
+OUTPUT_IMG_DIR = "identityChecker/static/identityChecker/"
 MIN_FACE_SIZE = 30
 COUNTER_FILE = "counter"
 
 #STATIC_OUTPUT = "/Users/andyshen/Desktop/18500-Facial-Recognition/app/identityChecker/static/identityChecker/face_output.png"
 
-def find_images():
+def find_images(firstname, lastname):
+    all_files = os.listdir(INPUT_IMG_DIR)
+    print(all_files)
+    filenames = []
+
+    for i in range(5):
+        curr_file = "%s_%s_%d.png"%(firstname, lastname, i+1)
+        if (curr_file not in all_files):
+            print("Cannot find %s"%(curr_file))
+            exit(-1)
+        filenames.append(curr_file)
+    return filenames
+        
+    """
     first = None
     last = None
     files = []
@@ -37,15 +51,16 @@ def find_images():
             files.append(filename)
     assert(len(files) == 5)
     return (files, first, last)
+    """
 
-def main():
+def add_face(firstname, lastname):
     # read person label
     counter_file = open(COUNTER_FILE, mode="r")
     counter = int(counter_file.read().strip())
     print("New person takes label %d"%(counter))
     counter_file.close()
 
-    (files, firstname, lastname) = find_images()
+    files = find_images(firstname, lastname)
     accepted_files = []
     imgs = []
     valid_img = None
@@ -55,7 +70,7 @@ def main():
         img_index = int(filename[-len(INPUT_FILE_EXT)-1])
         tmp_filename = filename[:-len(INPUT_FILE_EXT)] + ".pgm"
 
-        img = Image.open(INPUT_IMG_DIR + filename)
+        img = Image.open("%s/%s"%(INPUT_IMG_DIR, filename))
         # resize just in case
         img = img.resize((WIDTH, HEIGHT), Image.NEAREST)
         img = img.convert("L")
@@ -82,9 +97,9 @@ def main():
         os.remove("%s_detect.pgm"%(tmp_filename))
 
         # filter out boxes with low score and small size
-        boxes = filter(lambda x:
+        boxes = list(filter(lambda x:
                            x[-1] >= SCORE_THRESHOLD and
-                           x[2]-x[0] >= MIN_FACE_SIZE, boxes)
+                           x[2]-x[0] >= MIN_FACE_SIZE, boxes))
         if (len(boxes) == 0):
             print("No face found in %s!"%(filename))
             failed_img_index.append(img_index)
@@ -139,7 +154,7 @@ def main():
         valid_img.save("%s/subject%d_%s_%s_%d_20x20.pgm"%(TRAIN_IMG_DIR, counter, firstname, lastname, failed_img_index[i]))
 
     counter_file = open("counter", mode="wb")
-    counter_file.write("%d"%(counter+1))
+    counter_file.write(("%d"%(counter+1)).encode())
     counter_file.close()
 
 if __name__ == "__main__":

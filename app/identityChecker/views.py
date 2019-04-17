@@ -3,6 +3,7 @@ import subprocess
 import os
 from django.contrib.auth.models import User
 from identityChecker.forms import InputForm
+from identityChecker.process_image import add_face
 
 def inputName(request):
     context = {}
@@ -28,7 +29,7 @@ def add(request):
 
 def downloadImage(request):
     if request.method == 'POST':
-        subprocess.call(['./script.sh'])
+        add_face(request.session['fname'], request.session['lname'])
     return render(request, 'identityChecker/download.html', {})
 
 def checkIdentity(request):

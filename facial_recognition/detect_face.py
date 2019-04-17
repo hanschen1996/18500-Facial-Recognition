@@ -37,8 +37,8 @@ def detect_face():
                 print("------------------------------------------------")
                 break
 
-        boxes = filter(lambda x: x[-1] >= SCORE_THRESHOLD and
-                                 x[2] - x[0] >= MIN_FACE_SIZE, boxes)
+        boxes = list(filter(lambda x: x[-1] >= SCORE_THRESHOLD and
+                                 x[2] - x[0] >= MIN_FACE_SIZE, boxes))
         # use nms to find all faces
         results = nms.nms(boxes)
         if (results == []): continue

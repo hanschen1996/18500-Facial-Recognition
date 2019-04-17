@@ -6,7 +6,7 @@ function getName(){
 function download(){
   var name = getName();
   var link = document.createElement('a');
-  link.download = name + '.png';
+  link.download = name + '_1' + '.png';
   link.href = document.getElementById('canvas1').toDataURL()
   link.click();
 }
@@ -14,7 +14,7 @@ function download(){
 function download2(){
   var name = getName();
   var link = document.createElement('a');
-  link.download = name + '.png';
+  link.download = name + '_2' + '.png';
   link.href = document.getElementById('canvas2').toDataURL()
   link.click();
 }
@@ -22,7 +22,7 @@ function download2(){
 function download3(){
   var name = getName();
   var link = document.createElement('a');
-  link.download = name + '.png';
+  link.download = name + '_3' + '.png';
   link.href = document.getElementById('canvas3').toDataURL()
   link.click();
 }
@@ -30,7 +30,7 @@ function download3(){
 function download4(){
   var name = getName();
   var link = document.createElement('a');
-  link.download = name + '.png';
+  link.download = name + '_4' + '.png';
   link.href = document.getElementById('canvas4').toDataURL()
   link.click();
 }
@@ -38,7 +38,7 @@ function download4(){
 function download5(){
   var name = getName();
   var link = document.createElement('a');
-  link.download = name + '.png';
+  link.download = name + '_5' + '.png';
   link.href = document.getElementById('canvas5').toDataURL()
   link.click();
 }
