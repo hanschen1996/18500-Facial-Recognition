@@ -9,8 +9,11 @@ CROP_IMG_HEIGHT = 20
 CROP_IMG_SIZE = CROP_IMG_WIDTH * CROP_IMG_HEIGHT
 EIGEN_THRESHOLD = 0.95
 
-def train():
-    (train_face_data, train_face_labels) = read_face_data(TRAIN_DIR)
+def get_initial_train_data(base_path):
+    (train_face_data, train_face_labels) = read_face_data("%s/%s"%(base_path, TRAIN_DIR))
+    return (train_face_data, train_face_labels)
+
+def train(train_face_data):
     (num_train_face, img_size) = train_face_data.shape
     assert(img_size == CROP_IMG_SIZE)
 
@@ -50,5 +53,5 @@ def train():
     eigen_vecs = eigen_vecs[:, :num_eigen]
     eigen_vecs_T = eigen_vecs.T # num_eigen x 400
     weights = eigen_vecs_T.dot(norm_face) # num_eigen x 400 multiply 400 x num_face
-    return (train_face_labels, mean_face, num_eigen, eigen_vals, eigen_vecs_T, weights)
+    return (mean_face, num_eigen, eigen_vals, eigen_vecs_T, weights)
 
