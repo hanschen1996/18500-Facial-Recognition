@@ -10,17 +10,34 @@
     <body>
         <div class="container">
             <div class="title">Identity Checker</div>
-                <p>Enter your name for the Identity Checker:</p>
-
-                <form class = "login_form" method="post" action="{% url 'inputName' %}">
-                    <div class="container">
-                        <span>First Name: <input name = "fname" type = "text"></span>
-                        <br>
-                        <span>Last Name:  <input name = "lname" type = "text"></span>
+            
+                <div class = "name-body">
+                    <div class="row">
+                        <p id="name-text">Enter your name for the Identity Checker:</p>
                     </div>
-                    {% csrf_token %}
-                    <button type="submit" value="submit"><span id="submit_button">Submit</span></button>
-                </form>
+                    <div class="row" id="input-name-row">
+                        <form class = "login_form" method="post" action="{% url 'inputName' %}">
+                            <div class="container">
+                                <div class="input-group mb-3">
+                                  <input name = "fname" type="text" class="form-control" placeholder="First Name" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+                              
+                                <div class="input-group mb-3">
+                                  <input name = "lname" type="text" class="form-control" placeholder="Last Name" aria-label="Username" aria-describedby="basic-addon2">
+                                </div>
+                                
+                                
+                            </div>
+                            {% csrf_token %}
+                            <button id="name-submit-button" type="submit" class="btn btn-dark btn-lg btn-block" value="submit"><span>Submit</span></button>
+                        </form>
+                    </div>
+                </div>
+                
+                    
+                
+                
+                
             
         </div>
       

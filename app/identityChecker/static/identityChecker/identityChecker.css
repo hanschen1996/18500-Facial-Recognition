@@ -37,3 +37,25 @@ a:hover i, a, i {
     margin-top:-3%;
     padding-bottom:5%;
 }
+
+.name-body {
+    text-align: center;
+    width: 25%;
+    height:20%;
+    padding-top:8%;
+    margin-left:37.5%;
+    margin-right:37.5%;
+}
+
+#name-text {
+    margin-bottom: 10%;
+}
+
+#input-name-row {
+    display:block
+}
+
+#name-submit-button {
+    width: 50%;
+    height: 50%;
+}
