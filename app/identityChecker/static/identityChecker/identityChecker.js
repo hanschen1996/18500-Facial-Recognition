@@ -153,3 +153,32 @@ function captureImages() {
     console.log("timeleft: " + timeleft);
     }, 1000);
 }
+
+
+function captureOneImage() {
+    var count = 0;
+
+    var timeleft = 2;
+    var downloadTimer = setInterval(function(){
+      document.getElementById("countdown").innerHTML = timeleft + " Seconds Until Photo is Taken";
+
+      timeleft -= 1;
+        
+    if(timeleft < 0) {
+        const canvas1 = document.getElementById('canvas1');
+        const context1 = canvas1.getContext('2d');
+        
+        context1.drawImage(player, 0, 0, 160, 120);
+        download();
+        document.getElementById("countdown").innerHTML = "Finished"
+        
+        clearInterval(downloadTimer);
+
+    }
+        
+    console.log("count: " + count);
+    console.log("timeleft: " + timeleft);
+    }, 1000);
+}
+
+
