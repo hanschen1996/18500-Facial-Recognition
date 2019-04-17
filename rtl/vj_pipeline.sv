@@ -69,6 +69,11 @@ module vj_pipeline(
         img_idx_prev <= img_index;
         curr_scan_win <= scan_win;
         std_dev_prev <= input_std_dev;
+      end else if (next_scan_win && ~vj_pipeline_on) begin
+        win_idx_prev <= 'd0;
+        img_idx_prev <= 'd0;
+        curr_scan_win <= 'd0;
+        std_dev_prev <= 32'd0;
       end
     end
   end

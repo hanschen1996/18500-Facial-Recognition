@@ -225,7 +225,7 @@ module uart_to_img(
             laptop_img_rdy = 1'b0;
             end
       SAVING: begin
-              row_ctr_en = max_col_idx;
+              row_ctr_en = max_col_idx & uart_data_rdy;
               col_ctr_en = uart_data_rdy;
               save_uart_data = uart_data_rdy;
               laptop_img_rdy = 1'b0;

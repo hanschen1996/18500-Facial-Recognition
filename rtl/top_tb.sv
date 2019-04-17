@@ -69,14 +69,14 @@ module detect_face_tb();
     reset = 1'b0;
 
     ##10;
-    // for (i = 0; i < `LAPTOP_HEIGHT; i++) begin
-    //   for (j = 0; j < `LAPTOP_WIDTH; j++) begin
-    //     writeUart(in_img[i][j]);
-    //   end
-    //   $display("wrote in_img[%0d]", i);
-    // end
-    force dut.laptop_img = in_img;
-    ##10;
+    for (i = 0; i < `LAPTOP_HEIGHT; i++) begin
+      for (j = 0; j < `LAPTOP_WIDTH; j++) begin
+        writeUart(in_img[i][j]);
+      end
+      $display("wrote in_img[%0d]", i);
+    end
+    // force dut.laptop_img = in_img;
+    // ##10;
     for (i = 0; i < `LAPTOP_HEIGHT; i++) begin
       for (j = 0; j < `LAPTOP_WIDTH; j++) begin
         $write("%0h ", dut.laptop_img[i][j]);
@@ -85,11 +85,11 @@ module detect_face_tb();
     end
 
     $display("uart sent successfully! %d", $time);
-    force dut.laptop_img_rdy = 1'b1;
-    ##1;
-    force dut.laptop_img_rdy = 1'b0;
-    force dut.enq = 1'b0;
-    release dut.laptop_img;
+    // force dut.laptop_img_rdy = 1'b1;
+    // ##1;
+    // force dut.laptop_img_rdy = 1'b0;
+    // force dut.enq = 1'b0;
+    // release dut.laptop_img;
     @(posedge dut.vj_pipeline_done);
     $display("vj pipeline done! %d", $time);
     ##1000000;
@@ -97,31 +97,31 @@ module detect_face_tb();
   end
 
   initial begin
-    #103690905;
+    #113679975;
     ##1000000;
     $finish;
   end
 
-  // initial begin
-  //   int z;
-  //   logic [31:0] read;
-  //   #1 z = 0;
-  //   while (z >= 0) begin 
-  //     @(posedge uart_data_rdy);
-  //     if (z == 0) #1 read[7:0] = laptop_uart_data;
-  //     else if (z == 8) #1 read[15:8] = laptop_uart_data;
-  //     else if (z == 16) #1 read[23:16] = laptop_uart_data;
-  //     else #1 read[31:24] = laptop_uart_data;
+  initial begin
+    int z;
+    logic [31:0] read;
+    #1 z = 0;
+    while (z >= 0) begin 
+      @(posedge uart_data_rdy);
+      if (z == 0) #1 read[7:0] = laptop_uart_data;
+      else if (z == 8) #1 read[15:8] = laptop_uart_data;
+      else if (z == 16) #1 read[23:16] = laptop_uart_data;
+      else #1 read[31:24] = laptop_uart_data;
       
-  //     z = z + 8;
-  //     if (z == 32) begin
-  //       z = 0;
-  //       $display("saw %0d", read);
-  //     end
-  //   end
-  //   ##10
-  //   $finish;
-  // end
+      z = z + 8;
+      if (z == 32) begin
+        z = 0;
+        $display("saw %0d", read);
+      end
+    end
+    ##10
+    $finish;
+  end
 
   initial begin
     int z;
