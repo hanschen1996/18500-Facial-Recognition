@@ -7,6 +7,7 @@ import nms
 from PIL import Image
 import numpy as np
 import sys
+from shutil import rmtree
 
 IMG_WIDTH = 160
 IMG_HEIGHT = 120
@@ -19,9 +20,14 @@ CROP_IMG_HEIGHT = 20
 CROP_IMG_SIZE = CROP_IMG_WIDTH * CROP_IMG_HEIGHT
 MIN_FACE_SIZE = 30
 
-def detect_face():
-    for filename in os.listdir(IMG_DIR):
-        p = Popen([DETECTION_PROG_PATH, IMG_DIR + "/" + filename], stdout=PIPE, stdin=PIPE)
+def detect_face(base_path):
+    img_dir = "%s/%s"%(base_path, IMG_DIR)
+    crop_img_dir = "%s/%s"%(base_path, CROP_IMG_DIR)
+    rmtree(crop_img_dir, ignore_errors=True)
+    os.makedirs(crop_img_dir)
+
+    for filename in os.listdir(img_dir):
+        p = Popen([DETECTION_PROG_PATH, "%s/%s"%(img_dir, filename)], stdout=PIPE, stdin=PIPE)
         boxes = []
 
         while (True):
@@ -44,7 +50,7 @@ def detect_face():
         if (results == []): continue
 
         # remove temporary output file if any face is found
-        os.remove("%s/%s_detect.pgm"%(IMG_DIR, filename))
+        os.remove("%s/%s_detect.pgm"%(img_dir, filename))
         if (len(results) > 1):
             print("%s:\tDetected more than one face, using the first one"%(filename))
 
@@ -63,10 +69,10 @@ def detect_face():
         print("%s:\tDetected face window size (width=%d,height=%d)"%(filename, detect_width, detect_height))
 
         # crop the face out
-        img = Image.open(IMG_DIR + "/" + filename)
+        img = Image.open(img_dir + "/" + filename)
         img = img.crop((x1,y1,x2,y2))
         img = img.resize((CROP_IMG_WIDTH, CROP_IMG_HEIGHT))
-        img.save("%s/%s_20x20.pgm"%(CROP_IMG_DIR, filename))
+        img.save("%s/%s_20x20.pgm"%(crop_img_dir, filename))
 
         print("------------------------------------------------")
 

@@ -93,8 +93,5 @@ def recognition(img_arr,
 
     distances = np.square(diff_weights).sum(0) # (num_train_face, )
     assert(distances.shape[0] == weights.shape[1])
-    #print(distances)
-    #print("face index: %d"%(distances.argmin()))
-    print("face label: %d"%(train_face_labels[distances.argmin()]))
-    #return face_labels[distances.argmin()]
+
     return train_face_labels[distances.argmin()]
