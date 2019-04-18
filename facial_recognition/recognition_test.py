@@ -10,13 +10,14 @@ CROP_IMG_WIDTH = 20
 CROP_IMG_HEIGHT = 20
 CROP_IMG_SIZE = CROP_IMG_WIDTH * CROP_IMG_HEIGHT
 
-def test(train_face_labels,
+def test(base_path,
+         train_face_labels,
          mean_face,
          num_eigen,
          eigen_vals,
          eigen_vecs,
          weights):
-    (test_face_data, test_face_labels) = read_face_data(TEST_DIR)
+    (test_face_data, test_face_labels) = read_face_data("%s/%s"%(base_path, TEST_DIR))
     (num_train_face, ) = train_face_labels.shape
     (num_test_face, ) = test_face_labels.shape
 
@@ -68,17 +69,21 @@ def test(train_face_labels,
     print("Total number of test images: %d, correct: %d, correctness percentage: %f"
           %(num_test_face, correct, float(correct) / num_test_face))
 
-def recognition(img_path,
+def recognition(img_arr,
                 train_face_labels,
                 mean_face,
                 num_eigen,
                 eigen_vals,
                 eigen_vecs,
                 weights):
-    img = Image.open(img_path)
-    img = img.resize((CROP_IMG_HEIGHT, CROP_IMG_WIDTH))
+    (num_train_face, ) = train_face_labels.shape
 
-    img_arr = np.array(img).reshape(CROP_IMG_SIZE)
+    # dimension checks
+    assert(mean_face.shape == (CROP_IMG_SIZE, ))
+    assert(eigen_vals.shape == (num_eigen, ))
+    assert(eigen_vecs.shape == (num_eigen, CROP_IMG_SIZE))
+    assert(weights.shape == (num_eigen, num_train_face))
+
     diff = img_arr - mean_face # (400, )
     diff = diff[:, None] # 400 x 1
 
@@ -92,3 +97,4 @@ def recognition(img_path,
     #print("face index: %d"%(distances.argmin()))
     print("face label: %d"%(train_face_labels[distances.argmin()]))
     #return face_labels[distances.argmin()]
+    return train_face_labels[distances.argmin()]
