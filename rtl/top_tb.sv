@@ -104,19 +104,16 @@ module detect_face_tb();
 
   initial begin
     int z;
-    logic [31:0] read;
+    logic [103:0] read;
     #1 z = 0;
     while (z >= 0) begin 
       @(posedge uart_data_rdy);
-      if (z == 0) #1 read[7:0] = laptop_uart_data;
-      else if (z == 8) #1 read[15:8] = laptop_uart_data;
-      else if (z == 16) #1 read[23:16] = laptop_uart_data;
-      else #1 read[31:24] = laptop_uart_data;
+      #1 read[8*z +: 8] = laptop_uart_data;
       
-      z = z + 8;
-      if (z == 32) begin
+      z = z + 1;
+      if (z == 13) begin
         z = 0;
-        $display("saw %0d", read);
+        $display("face @ pyramid number %0d, (r%0d,c%0d), with accum %d", read[7:0], read[71:40], read[39:8], read[103:72]);
       end
     end
     ##10
