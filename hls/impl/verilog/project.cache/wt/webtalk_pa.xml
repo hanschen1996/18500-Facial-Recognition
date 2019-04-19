@@ -3,10 +3,10 @@
 <!--The data in this file is primarily intended for consumption by Xilinx tools.
 The structure and the elements are likely to change over the next few releases.
 This means code written to parse this file will need to be revisited each subsequent release.-->
-<application name="pa" timeStamp="Fri Apr 19 05:08:14 2019">
+<application name="pa" timeStamp="Fri Apr 19 15:40:40 2019">
 <section name="Project Information" visible="false">
-<property name="ProjectID" value="34469846baa94f7c828c9b9435eee4d8" type="ProjectID"/>
-<property name="ProjectIteration" value="3" type="ProjectIteration"/>
+<property name="ProjectID" value="5293684d1a0a4ddab196cedf2eaf4943" type="ProjectID"/>
+<property name="ProjectIteration" value="2" type="ProjectIteration"/>
 </section>
 <section name="PlanAhead Usage" visible="true">
 <item name="Project Data">
@@ -17,18 +17,8 @@ This means code written to parse this file will need to be revisited each subseq
 <property name="ImplStrategy" value="Vivado Implementation Defaults" type="ImplStrategy"/>
 </item>
 <item name="Java Command Handlers">
-<property name="RunBitgen" value="1" type="JavaHandler"/>
+<property name="OpenProject" value="1" type="JavaHandler"/>
 <property name="RunImplementation" value="1" type="JavaHandler"/>
-<property name="ShowView" value="1" type="JavaHandler"/>
-</item>
-<item name="Gui Resources Info">
-<property name="PAResourceQtoS.RunGadget_RUN_GADGET_TABBED_PANE, PAResourceQtoS.RunGadget_ROUTE_STATUS, Route Status, 1" value="1" type="GuiResourceData"/>
-<property name="RDIResource.BaseDialog_OK, OK" value="1" type="GuiResourceData"/>
-</item>
-<item name="Other">
-<property name="GuiMode" value="57" type="GuiMode"/>
-<property name="BatchMode" value="0" type="BatchMode"/>
-<property name="TclMode" value="26" type="TclMode"/>
 </item>
 </section>
 </application>

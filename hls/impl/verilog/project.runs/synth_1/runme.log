@@ -14,12 +14,12 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7k325t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7k325t'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 88605 
+INFO: Helper process launched with PID 21118 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1222.680 ; gain = 237.402 ; free physical = 207392 ; free virtual = 258149
+Starting RTL Elaboration : Time (s): cpu = 00:00:12 ; elapsed = 00:00:14 . Memory (MB): peak = 1222.676 ; gain = 237.402 ; free physical = 17370 ; free virtual = 34434
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'detect_face' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:12]
-INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:128]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:113]
 INFO: [Synth 8-638] synthesizing module 'detect_face_input_image' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_input_image.v:49]
 INFO: [Synth 8-638] synthesizing module 'detect_face_input_image_ram' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_input_image.v:9]
 INFO: [Synth 8-5534] Detected attribute (* ram_style = "block" *) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_input_image.v:22]
@@ -37,7 +37,7 @@ INFO: [Synth 8-5534] Detected attribute (* ram_style = "block" *) [/afs/ece.cmu.
 INFO: [Synth 8-256] done synthesizing module 'detect_face_integral_image_ram' (5#1) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_integral_image.v:9]
 INFO: [Synth 8-256] done synthesizing module 'detect_face_integral_image' (6#1) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_integral_image.v:58]
 INFO: [Synth 8-638] synthesizing module 'detect_face_cascade_classifier' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:10]
-INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:162]
+INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:136]
 INFO: [Synth 8-638] synthesizing module 'detect_face_cascade_classifier_STAGE_THRESH' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier_STAGE_THRESH.v:43]
 INFO: [Synth 8-638] synthesizing module 'detect_face_cascade_classifier_STAGE_THRESH_rom' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier_STAGE_THRESH.v:9]
 INFO: [Synth 8-5534] Detected attribute (* ram_style = "distributed" *) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier_STAGE_THRESH.v:21]
@@ -177,14 +177,14 @@ INFO: [Synth 8-638] synthesizing module 'detect_face_mul_mul_8s_16ns_24_1' [/afs
 INFO: [Synth 8-638] synthesizing module 'detect_face_mul_mul_8s_16ns_24_1_DSP48_0' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_mul_mul_8s_16ns_24_1.v:4]
 INFO: [Synth 8-256] done synthesizing module 'detect_face_mul_mul_8s_16ns_24_1_DSP48_0' (76#1) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_mul_mul_8s_16ns_24_1.v:4]
 INFO: [Synth 8-256] done synthesizing module 'detect_face_mul_mul_8s_16ns_24_1' (77#1) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_mul_mul_8s_16ns_24_1.v:14]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1797]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1811]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1911]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1913]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1943]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1951]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:2137]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:2139]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1710]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1724]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1824]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1826]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1844]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1852]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:2040]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:2042]
 INFO: [Synth 8-256] done synthesizing module 'detect_face_cascade_classifier' (78#1) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:10]
 INFO: [Synth 8-638] synthesizing module 'detect_face_downscale' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_downscale.v:10]
 INFO: [Synth 8-5534] Detected attribute (* fsm_encoding = "none" *) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_downscale.v:103]
@@ -224,12 +224,12 @@ INFO: [Synth 8-638] synthesizing module 'detect_face_ap_dmul_2_max_dsp_64' [/afs
 INFO: [Synth 8-3491] module 'floating_point_v7_1_2' declared at '/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/project.srcs/sources_1/ip/detect_face_ap_fmul_0_max_dsp_32/floating_point_v7_1_2/hdl/floating_point_v7_1_vh_rfs.vhd:91604' bound to instance 'U0' of component 'floating_point_v7_1_2' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/project.srcs/sources_1/ip/detect_face_ap_dmul_2_max_dsp_64/synth/detect_face_ap_dmul_2_max_dsp_64.vhd:197]
 INFO: [Synth 8-256] done synthesizing module 'detect_face_ap_dmul_2_max_dsp_64' (100#1) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/project.srcs/sources_1/ip/detect_face_ap_dmul_2_max_dsp_64/synth/detect_face_ap_dmul_2_max_dsp_64.vhd:72]
 INFO: [Synth 8-256] done synthesizing module 'detect_face_dmul_64ns_64ns_64_4_max_dsp' (101#1) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_dmul_64ns_64ns_64_4_max_dsp.v:11]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1146]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1148]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1126]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1128]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1130]
 WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1150]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1194]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1198]
-WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1214]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1154]
+WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1170]
 INFO: [Synth 8-256] done synthesizing module 'detect_face' (102#1) [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:12]
 WARNING: [Synth 8-3331] design flt_dec_op_lat__parameterized1 has unconnected port DEC_OP_STATE[11]
 WARNING: [Synth 8-3331] design flt_dec_op_lat__parameterized1 has unconnected port DEC_OP_STATE[10]
@@ -333,7 +333,7 @@ WARNING: [Synth 8-3331] design xbip_pipe_v3_0_2_viv__parameterized825 has unconn
 WARNING: [Synth 8-3331] design xbip_pipe_v3_0_2_viv__parameterized825 has unconnected port SCLR
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:26 ; elapsed = 00:00:28 . Memory (MB): peak = 1396.016 ; gain = 410.738 ; free physical = 207205 ; free virtual = 257972
+Finished RTL Elaboration : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 1396.012 ; gain = 410.738 ; free physical = 17183 ; free virtual = 34257
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -343,7 +343,7 @@ Report Check Netlist:
 |1     |multi_driven_nets |      0|        0|Passed |Multi driven nets |
 +------+------------------+-------+---------+-------+------------------+
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 1396.016 ; gain = 410.738 ; free physical = 207210 ; free virtual = 257972
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:20 ; elapsed = 00:00:25 . Memory (MB): peak = 1396.012 ; gain = 410.738 ; free physical = 17184 ; free virtual = 34258
 ---------------------------------------------------------------------------------
 INFO: [Netlist 29-17] Analyzing 3201 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
@@ -361,16 +361,16 @@ Completed Processing XDC Constraints
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.12 ; elapsed = 00:00:00.04 . Memory (MB): peak = 1719.023 ; gain = 2.000 ; free physical = 206945 ; free virtual = 257741
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.06 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1717.020 ; gain = 1.000 ; free physical = 16879 ; free virtual = 34036
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:48 ; elapsed = 00:00:53 . Memory (MB): peak = 1719.023 ; gain = 733.746 ; free physical = 206943 ; free virtual = 257739
+Finished Constraint Validation : Time (s): cpu = 00:00:36 ; elapsed = 00:00:45 . Memory (MB): peak = 1717.020 ; gain = 731.746 ; free physical = 16875 ; free virtual = 34033
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7k325tffg900-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:48 ; elapsed = 00:00:53 . Memory (MB): peak = 1719.023 ; gain = 733.746 ; free physical = 206943 ; free virtual = 257739
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:36 ; elapsed = 00:00:45 . Memory (MB): peak = 1717.020 ; gain = 731.746 ; free physical = 16875 ; free virtual = 34033
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -381,10 +381,10 @@ Applied set_property DONT_TOUCH = true for detect_face_fdiv_32ns_32ns_32_6_U44/d
 Applied set_property DONT_TOUCH = true for detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for detect_face_fpext_32ns_64_1_U46/detect_face_ap_fpext_0_no_dsp_32_u. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for detect_face_fptrunc_64ns_32_1_U45/detect_face_ap_fptrunc_0_no_dsp_64_u. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u. (constraint file  auto generated constraint, line ).
-Applied set_property DONT_TOUCH = true for grp_detect_face_cascade_classifier_fu_311/detect_face_uitofp_32ns_32_1_U9/detect_face_ap_uitofp_0_no_dsp_32_u. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for grp_detect_face_cascade_classifier_fu_330/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u. (constraint file  auto generated constraint, line ).
+Applied set_property DONT_TOUCH = true for grp_detect_face_cascade_classifier_fu_330/detect_face_uitofp_32ns_32_1_U9/detect_face_ap_uitofp_0_no_dsp_32_u. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:48 ; elapsed = 00:00:53 . Memory (MB): peak = 1719.023 ; gain = 733.746 ; free physical = 206943 ; free virtual = 257739
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:00:45 . Memory (MB): peak = 1717.020 ; gain = 731.746 ; free physical = 16875 ; free virtual = 34033
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5542] Attribute ram_style/rom_style = distributed specified for ROM  "ram". This will be implemented in logic
 INFO: [Synth 8-5542] Attribute ram_style/rom_style = distributed specified for ROM  "ram". This will be implemented in logic
@@ -415,18 +415,20 @@ INFO: [Synth 8-5544] ROM "enc_chunk" won't be mapped to Block RAM because addres
 INFO: [Synth 8-5544] ROM "enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "enc_chunk" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_96_reg_2223_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1097]
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_97_reg_2228_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1098]
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_90_reg_2148_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1090]
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_91_reg_2153_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1091]
-WARNING: [Synth 8-3936] Found unconnected internal register 'val_assign_3_mid2_reg_2019_reg' and it is trimmed from '32' to '31' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1003]
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_102_reg_2278_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:965]
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_103_reg_2283_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:966]
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_81_reg_1985_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:989]
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_79_reg_1975_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:988]
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_43_reg_2075_reg' and it is trimmed from '13' to '12' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1048]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_96_reg_2242_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1071]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_97_reg_2247_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1072]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_90_reg_2167_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1064]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_91_reg_2172_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1065]
+WARNING: [Synth 8-3936] Found unconnected internal register 'val_assign_3_mid2_reg_2038_reg' and it is trimmed from '32' to '31' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:984]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_102_reg_2297_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:946]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_103_reg_2302_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:947]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_81_reg_2004_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:970]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_79_reg_1994_reg' and it is trimmed from '16' to '15' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:969]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_44_reg_2094_reg' and it is trimmed from '13' to '12' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_cascade_classifier.v:1022]
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
-INFO: [Synth 8-5544] ROM "tmp_44_mid2_v_v_cast_fu_800_p3" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "tmp_38_fu_1905_p2" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "tmp_38_fu_1905_p2" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5544] ROM "tmp_44_mid2_v_v_cast_fu_810_p3" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "ap_NS_fsm" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "ap_NS_fsm" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "ap_NS_fsm" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
@@ -435,7 +437,7 @@ INFO: [Synth 8-5544] ROM "ap_NS_fsm" won't be mapped to Block RAM because addres
 INFO: [Synth 8-5544] ROM "ap_NS_fsm" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "ap_NS_fsm" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
-INFO: [Synth 8-5546] ROM "exitcond7_fu_197_p2" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "exitcond_fu_197_p2" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "exitcond_flatten_fu_179_p2" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
 INFO: [Synth 8-5546] ROM "exp_all_one_ip" won't be mapped to RAM because it is too sparse
@@ -466,14 +468,14 @@ INFO: [Synth 8-5546] ROM "exp_just_over_sig" won't be mapped to RAM because it i
 INFO: [Synth 8-5546] ROM "flow_sig" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "flow_sig" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5544] ROM "state_int_up" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
-INFO: [Synth 8-4471] merging register 'tmp_73_reg_1061_reg[4:0]' into 'tmp_72_reg_1052_reg[4:0]' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1310]
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_73_reg_1061_reg' and it is trimmed from '11' to '10' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:708]
-WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_72_reg_1052_reg' and it is trimmed from '11' to '10' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:707]
+INFO: [Synth 8-4471] merging register 'tmp_73_reg_1089_reg[4:0]' into 'tmp_72_reg_1080_reg[4:0]' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:1266]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_73_reg_1089_reg' and it is trimmed from '11' to '10' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:672]
+WARNING: [Synth 8-3936] Found unconnected internal register 'tmp_72_reg_1080_reg' and it is trimmed from '11' to '10' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.v:671]
 INFO: [Synth 8-4490] FSM extraction disabled for register 'ap_CS_fsm_reg' through user attribute
-INFO: [Synth 8-5545] ROM "tmp_s_fu_479_p2" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
-INFO: [Synth 8-5545] ROM "tmp_16_fu_581_p2" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "tmp_s_fu_498_p2" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "tmp_16_fu_600_p2" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:54 ; elapsed = 00:01:00 . Memory (MB): peak = 1719.023 ; gain = 733.746 ; free physical = 206936 ; free virtual = 257732
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:41 ; elapsed = 00:00:50 . Memory (MB): peak = 1717.020 ; gain = 731.746 ; free physical = 16863 ; free virtual = 34021
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -502,13 +504,13 @@ BRAMs: 890 (col length: RAMB18 140 RAMB36 70)
 ---------------------------------------------------------------------------------
 Finished Part Resource Summary
 ---------------------------------------------------------------------------------
-Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:55 ; elapsed = 00:01:00 . Memory (MB): peak = 1719.023 ; gain = 733.746 ; free physical = 206936 ; free virtual = 257732
+Start Parallel Synthesis Optimization  : Time (s): cpu = 00:00:42 ; elapsed = 00:00:51 . Memory (MB): peak = 1717.020 ; gain = 731.746 ; free physical = 16863 ; free virtual = 34020
 ---------------------------------------------------------------------------------
 Start Cross Boundary Optimization
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-4471] merging register 'detect_face_fdiv_32ns_32ns_32_6_U44/din1_buf1_reg[31:0]' into 'detect_face_fdiv_32ns_32ns_32_6_U43/din1_buf1_reg[31:0]' [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_fdiv_32ns_32ns_32_6.v:54]
-INFO: [Synth 8-5545] ROM "tmp_s_fu_479_p2" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
-INFO: [Synth 8-5545] ROM "tmp_16_fu_581_p2" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "tmp_s_fu_498_p2" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "tmp_16_fu_600_p2" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 INFO: [Synth 8-5546] ROM "MULT.OP/EXP/COND_DET_A/exp_all_one_ip" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "MULT.OP/EXP/COND_DET_A/exp_all_zero_ip" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "MULT.OP/EXP/COND_DET_B/exp_all_one_ip" won't be mapped to RAM because it is too sparse
@@ -538,7 +540,7 @@ WARNING: [Synth 8-3936] Found unconnected internal register 'x_ratio_reg_389_reg
 WARNING: [Synth 8-3936] Found unconnected internal register 'detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/quot_reg' and it is trimmed from '32' to '31' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_udiv_25ns_32ns_32_29_seq.v:145]
 WARNING: [Synth 8-3936] Found unconnected internal register 'detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/remd_tmp_reg' and it is trimmed from '25' to '24' bits. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face_udiv_25ns_32ns_32_29_seq.v:42]
 INFO: [Synth 8-5546] ROM "exitcond_flatten_fu_179_p2" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5546] ROM "exitcond7_fu_197_p2" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "exitcond_fu_197_p2" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "MULT.OP/EXP/COND_DET_A/exp_all_one_ip" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "MULT.OP/EXP/COND_DET_A/exp_all_zero_ip" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "MULT.OP/EXP/COND_DET_B/exp_all_one_ip" won't be mapped to RAM because it is too sparse
@@ -569,11 +571,11 @@ INFO: [Synth 8-5546] ROM "MULT.OP/EXP/COND_DET_B/exp_all_zero_ip" won't be mappe
 INFO: [Synth 8-5546] ROM "MULT.OP/EXP/exp_just_over_sig" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "MULT.OP/EXP/flow_sig" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "MULT.OP/EXP/flow_sig" won't be mapped to RAM because it is too sparse
-INFO: [Synth 8-5545] ROM "tmp_16_fu_581_p2" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
+INFO: [Synth 8-5545] ROM "tmp_16_fu_600_p2" won't be mapped to RAM because address size (32) is larger than maximum supported(25)
 ---------------------------------------------------------------------------------
-Finished Cross Boundary Optimization : Time (s): cpu = 00:01:37 ; elapsed = 00:01:43 . Memory (MB): peak = 1719.023 ; gain = 733.746 ; free physical = 206922 ; free virtual = 257718
+Finished Cross Boundary Optimization : Time (s): cpu = 00:01:11 ; elapsed = 00:01:21 . Memory (MB): peak = 1717.020 ; gain = 731.746 ; free physical = 16843 ; free virtual = 34001
 ---------------------------------------------------------------------------------
-Finished Parallel Reinference  : Time (s): cpu = 00:01:37 ; elapsed = 00:01:43 . Memory (MB): peak = 1719.023 ; gain = 733.746 ; free physical = 206922 ; free virtual = 257718
+Finished Parallel Reinference  : Time (s): cpu = 00:01:11 ; elapsed = 00:01:21 . Memory (MB): peak = 1717.020 ; gain = 731.746 ; free physical = 16843 ; free virtual = 34001
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -583,102 +585,107 @@ Report RTL Partitions:
 ---------------------------------------------------------------------------------
 Start Area Optimization
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[24] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[4] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[5] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[6] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[7] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[8] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[9] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[10] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[11] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[12] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[13] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[14] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[15] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[16] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[17] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[18] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[19] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[20] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[21] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[22] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[23] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[4] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[5] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[6] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[7] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[8] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[9] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[10] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[11] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[12] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[13] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[14] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[15] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[16] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[17] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[18] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[19] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[20] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[21] )
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[22] )
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[0]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[1]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[1]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[2]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[2]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[3]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[3]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[4]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[4]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[5]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[5]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[6]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[6]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[7]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[7]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[8]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[8]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[9]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[9]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[10]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[10]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[11]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[11]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[12]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[12]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[13]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[13]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[14]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[14]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[15]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[15]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[16]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[16]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[17]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[17]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[18]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[18]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[19]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[19]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[20]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[20]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[22]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[21]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[23]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[22]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[24]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[0]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[1]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[1]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[2]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[2]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[3]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[3]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[4]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[4]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[5]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[5]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[6]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[6]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[7]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[7]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[8]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[8]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[9]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[9]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[10]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[10]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[11]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[11]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[12]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[12]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[13]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[13]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[14]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[14]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[15]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[15]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[16]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[16]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[17]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[17]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[18]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[18]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[23]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[19]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[20]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[20]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[21]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[21]' (FDE) to 'grp_detect_face_downscale_fu_376/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[22]'
-INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_376/B[2]' (FDE) to 'grp_detect_face_downscale_fu_376/B[1]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_376/B[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[24] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[23] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[14] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[16] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[17] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[18] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[19] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[20] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[21] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[22] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/dividend0_reg[23] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[4] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[5] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[6] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[7] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[8] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[9] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[10] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[11] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[12] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[13] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[14] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[15] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[16] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[17] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[18] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[19] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[20] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[21] )
+INFO: [Synth 8-3333] propagating constant 1 across sequential element (\grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/dividend0_reg[22] )
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[0]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[1]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[2]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[3]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[4]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[5]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[6]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[6]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[7]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[7]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[8]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[8]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[9]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[9]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[10]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[10]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[11]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[11]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[12]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[12]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[13]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[13]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[14]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[14]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[15]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[15]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[16]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[16]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[17]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[17]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[18]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[18]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[19]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[19]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[20]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[20]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[22]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[21]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[23]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[22]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_25ns_32ns_32_29_seq_U1/detect_face_udiv_25ns_32ns_32_29_seq_div_U/detect_face_udiv_25ns_32ns_32_29_seq_div_u_0/dividend0_reg[24]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[0]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[1]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[1]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[2]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[2]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[3]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[3]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[4]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[4]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[5]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[5]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[6]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[6]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[7]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[7]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[8]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[8]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[9]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[9]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[10]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[10]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[11]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[11]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[12]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[12]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[13]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[13]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[14]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[14]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[15]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[15]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[16]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[16]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[17]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[17]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[18]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[18]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[23]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[19]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[20]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[20]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[21]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[21]' (FDE) to 'grp_detect_face_downscale_fu_395/detect_face_udiv_24ns_32ns_32_28_seq_U2/detect_face_udiv_24ns_32ns_32_28_seq_div_U/detect_face_udiv_24ns_32ns_32_28_seq_div_u_0/dividend0_reg[22]'
+INFO: [Synth 8-3886] merging instance 'grp_detect_face_downscale_fu_395/B[2]' (FDE) to 'grp_detect_face_downscale_fu_395/B[1]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\grp_detect_face_downscale_fu_395/B[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\tmp_72_reg_1080_reg[0] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\tmp_72_reg_1080_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\tmp_72_reg_1080_reg[2] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\tmp_72_reg_1080_reg[3] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (\tmp_72_reg_1080_reg[4] )
 INFO: [Synth 8-3886] merging instance 'detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/din1_buf1_reg[0]' (FDE) to 'detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/din1_buf1_reg[1]'
 INFO: [Synth 8-3886] merging instance 'detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/din1_buf1_reg[1]' (FDE) to 'detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/din1_buf1_reg[4]'
 INFO: [Synth 8-3886] merging instance 'detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/din1_buf1_reg[2]' (FDE) to 'detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/din1_buf1_reg[3]'
@@ -736,11 +743,6 @@ INFO: [Synth 8-3886] merging instance 'detect_face_dmul_64ns_64ns_64_4_max_dsp_U
 INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Synth 8-3333] propagating constant 1 across sequential element (\detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/din1_buf1_reg[61] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/din1_buf1_reg[63] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\tmp_72_reg_1052_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\tmp_72_reg_1052_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\tmp_72_reg_1052_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\tmp_72_reg_1052_reg[3] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\tmp_72_reg_1052_reg[4] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\detect_face_fdiv_32ns_32ns_32_6_U44/din0_buf1_reg[0] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\detect_face_fdiv_32ns_32ns_32_6_U44/din0_buf1_reg[1] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\detect_face_fdiv_32ns_32ns_32_6_U44/din0_buf1_reg[2] )
@@ -789,107 +791,107 @@ WARNING: [Synth 8-3332] Sequential element (tmp_65_reg_1804_reg[26]) is unused a
 WARNING: [Synth 8-3332] Sequential element (tmp_65_reg_1804_reg[25]) is unused and will be removed from module detect_face_int_sqrt.
 WARNING: [Synth 8-3332] Sequential element (tmp_65_reg_1804_reg[24]) is unused and will be removed from module detect_face_int_sqrt.
 WARNING: [Synth 8-3332] Sequential element (tmp_65_reg_1804_reg[23]) is unused and will be removed from module detect_face_int_sqrt.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[47]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[46]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[45]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[44]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[43]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[42]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[41]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[40]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[39]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[38]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[37]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[36]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[35]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[34]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[33]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[32]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[31]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[30]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[29]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[28]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[27]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[26]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[25]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[24]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[23]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[22]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[21]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[20]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[19]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[18]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2328_reg[17]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[47]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[46]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[45]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[44]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[43]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[42]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[41]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[40]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[39]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[38]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[37]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[36]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[35]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[34]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[33]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[32]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[31]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[30]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[29]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[28]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[27]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[26]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[25]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[24]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[23]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[22]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[21]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[20]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[19]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[18]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (tmp_56_reg_2313_reg[17]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[47]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[46]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[45]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[44]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[43]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[42]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[41]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[40]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[39]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[38]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[37]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[36]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[35]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[34]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[33]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[32]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[31]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[30]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[29]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[28]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[27]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[26]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[25]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[24]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[23]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[22]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[21]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[20]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[19]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[18]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[17]) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[47]__0) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[46]__0) is unused and will be removed from module detect_face_cascade_classifier.
-WARNING: [Synth 8-3332] Sequential element (bound_reg_1939_reg[45]__0) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[47]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[46]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[45]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[44]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[43]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[42]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[41]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[40]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[39]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[38]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[37]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[36]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[35]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[34]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[33]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[32]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[31]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[30]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[29]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[28]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[27]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[26]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[25]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[24]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[23]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[22]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[21]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[20]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[19]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[18]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_58_reg_2347_reg[17]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[47]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[46]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[45]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[44]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[43]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[42]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[41]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[40]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[39]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[38]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[37]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[36]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[35]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[34]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[33]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[32]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[31]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[30]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[29]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[28]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[27]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[26]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[25]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[24]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[23]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[22]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[21]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[20]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[19]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[18]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (tmp_57_reg_2332_reg[17]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[47]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[46]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[45]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[44]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[43]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[42]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[41]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[40]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[39]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[38]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[37]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[36]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[35]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[34]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[33]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[32]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[31]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[30]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[29]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[28]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[27]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[26]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[25]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[24]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[23]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[22]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[21]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[20]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[19]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[18]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[17]) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[47]__0) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[46]__0) is unused and will be removed from module detect_face_cascade_classifier.
+WARNING: [Synth 8-3332] Sequential element (bound_reg_1958_reg[45]__0) is unused and will be removed from module detect_face_cascade_classifier.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Area Optimization : Time (s): cpu = 00:01:49 ; elapsed = 00:01:55 . Memory (MB): peak = 1719.023 ; gain = 733.746 ; free physical = 206921 ; free virtual = 257718
+Finished Area Optimization : Time (s): cpu = 00:01:21 ; elapsed = 00:01:31 . Memory (MB): peak = 1717.020 ; gain = 731.746 ; free physical = 16839 ; free virtual = 33999
 ---------------------------------------------------------------------------------
-Finished Parallel Area Optimization  : Time (s): cpu = 00:01:49 ; elapsed = 00:01:55 . Memory (MB): peak = 1719.023 ; gain = 733.746 ; free physical = 206921 ; free virtual = 257718
+Finished Parallel Area Optimization  : Time (s): cpu = 00:01:21 ; elapsed = 00:01:31 . Memory (MB): peak = 1717.020 ; gain = 731.746 ; free physical = 16839 ; free virtual = 33999
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
@@ -903,10 +905,10 @@ Start Timing Optimization
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:57 ; elapsed = 00:02:03 . Memory (MB): peak = 1864.008 ; gain = 878.730 ; free physical = 206735 ; free virtual = 257539
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:28 ; elapsed = 00:01:38 . Memory (MB): peak = 1865.004 ; gain = 879.730 ; free physical = 16644 ; free virtual = 33818
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:01 ; elapsed = 00:02:07 . Memory (MB): peak = 1909.164 ; gain = 923.887 ; free physical = 206691 ; free virtual = 257494
+Finished Timing Optimization : Time (s): cpu = 00:01:31 ; elapsed = 00:01:41 . Memory (MB): peak = 1911.160 ; gain = 925.887 ; free physical = 16599 ; free virtual = 33773
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -997,24 +999,24 @@ INFO: [Synth 8-4480] The timing for the instance integral_image_U/detect_face_in
 INFO: [Synth 8-4480] The timing for the instance integral_image_U/detect_face_integral_image_ram_U/ram_reg_0_30 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance integral_image_U/detect_face_integral_image_ram_U/ram_reg_0_31 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 INFO: [Synth 8-4480] The timing for the instance integral_image_U/detect_face_integral_image_ram_U/ram_reg_0_31 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_311/tmp_43_reg_2075_reg_rep__0 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_311/tmp_43_reg_2075_reg_rep__1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_311/tmp_43_reg_2075_reg_rep__2 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_311/RECT1_Y_U/detect_face_cascade_classifier_RECT1_Y_rom_U/q0_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_311/RECT1_X_U/detect_face_cascade_classifier_RECT1_X_rom_U/q0_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_311/RECT1_HEIGHT_U/detect_face_cascade_classifier_RECT1_HEIGHT_rom_U/q0_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
-INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_311/RECT1_WIDTH_U/detect_face_cascade_classifier_RECT1_WIDTH_rom_U/q0_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_330/tmp_44_reg_2094_reg_rep__0 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_330/tmp_44_reg_2094_reg_rep__1 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_330/tmp_44_reg_2094_reg_rep__2 (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_330/RECT1_Y_U/detect_face_cascade_classifier_RECT1_Y_rom_U/q0_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_330/RECT1_X_U/detect_face_cascade_classifier_RECT1_X_rom_U/q0_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_330/RECT1_HEIGHT_U/detect_face_cascade_classifier_RECT1_HEIGHT_rom_U/q0_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
+INFO: [Synth 8-4480] The timing for the instance grp_detect_face_cascade_classifier_fu_330/RECT1_WIDTH_U/detect_face_cascade_classifier_RECT1_WIDTH_rom_U/q0_reg (implemented as a block RAM) might be sub-optimal as no optional output register could be merged into the block ram. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:02:05 ; elapsed = 00:02:11 . Memory (MB): peak = 1945.414 ; gain = 960.137 ; free physical = 206652 ; free virtual = 257456
+Finished Technology Mapping : Time (s): cpu = 00:01:34 ; elapsed = 00:01:45 . Memory (MB): peak = 1946.480 ; gain = 961.207 ; free physical = 16560 ; free virtual = 33734
 ---------------------------------------------------------------------------------
-Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:02:05 ; elapsed = 00:02:11 . Memory (MB): peak = 1945.414 ; gain = 960.137 ; free physical = 206652 ; free virtual = 257456
+Finished Parallel Technology Mapping Optimization  : Time (s): cpu = 00:01:34 ; elapsed = 00:01:45 . Memory (MB): peak = 1946.480 ; gain = 961.207 ; free physical = 16560 ; free virtual = 33734
 
 Report RTL Partitions: 
 +-+--------------+------------+----------+
 | |RTL Partition |Replication |Instances |
 +-+--------------+------------+----------+
 +-+--------------+------------+----------+
-Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:02:05 ; elapsed = 00:02:11 . Memory (MB): peak = 1945.414 ; gain = 960.137 ; free physical = 206652 ; free virtual = 257456
+Finished Parallel Synthesis Optimization  : Time (s): cpu = 00:01:34 ; elapsed = 00:01:45 . Memory (MB): peak = 1946.480 ; gain = 961.207 ; free physical = 16560 ; free virtual = 33734
 ---------------------------------------------------------------------------------
 Start IO Insertion
 ---------------------------------------------------------------------------------
@@ -1031,7 +1033,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:06 ; elapsed = 00:02:12 . Memory (MB): peak = 1945.414 ; gain = 960.137 ; free physical = 206653 ; free virtual = 257457
+Finished IO Insertion : Time (s): cpu = 00:01:35 ; elapsed = 00:01:45 . Memory (MB): peak = 1946.480 ; gain = 961.207 ; free physical = 16560 ; free virtual = 33734
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1044,7 +1046,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:06 ; elapsed = 00:02:12 . Memory (MB): peak = 1945.414 ; gain = 960.137 ; free physical = 206653 ; free virtual = 257457
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:35 ; elapsed = 00:01:45 . Memory (MB): peak = 1946.480 ; gain = 961.207 ; free physical = 16560 ; free virtual = 33734
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1056,25 +1058,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:08 ; elapsed = 00:02:14 . Memory (MB): peak = 1945.414 ; gain = 960.137 ; free physical = 206653 ; free virtual = 257457
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:37 ; elapsed = 00:01:47 . Memory (MB): peak = 1946.480 ; gain = 961.207 ; free physical = 16560 ; free virtual = 33734
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:08 ; elapsed = 00:02:14 . Memory (MB): peak = 1945.414 ; gain = 960.137 ; free physical = 206653 ; free virtual = 257457
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:37 ; elapsed = 00:01:47 . Memory (MB): peak = 1946.480 ; gain = 961.207 ; free physical = 16560 ; free virtual = 33734
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:08 ; elapsed = 00:02:15 . Memory (MB): peak = 1945.414 ; gain = 960.137 ; free physical = 206653 ; free virtual = 257457
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:37 ; elapsed = 00:01:47 . Memory (MB): peak = 1946.480 ; gain = 961.207 ; free physical = 16560 ; free virtual = 33734
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:08 ; elapsed = 00:02:15 . Memory (MB): peak = 1945.414 ; gain = 960.137 ; free physical = 206653 ; free virtual = 257457
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:37 ; elapsed = 00:01:47 . Memory (MB): peak = 1946.480 ; gain = 961.207 ; free physical = 16560 ; free virtual = 33734
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1091,7 +1093,7 @@ Report Cell Usage:
 |      |Cell        |Count |
 +------+------------+------+
 |1     |BUFG        |     1|
-|2     |CARRY4      |   578|
+|2     |CARRY4      |   574|
 |3     |DSP48E1     |     4|
 |4     |DSP48E1_1   |     2|
 |5     |DSP48E1_10  |     2|
@@ -1100,19 +1102,19 @@ Report Cell Usage:
 |8     |DSP48E1_13  |     1|
 |9     |DSP48E1_14  |     1|
 |10    |DSP48E1_15  |     2|
-|11    |DSP48E1_16  |     2|
-|12    |DSP48E1_17  |     4|
+|11    |DSP48E1_16  |     4|
+|12    |DSP48E1_17  |     2|
 |13    |DSP48E1_2   |     3|
 |14    |DSP48E1_6   |    11|
 |15    |DSP48E1_7   |     2|
 |16    |DSP48E1_8   |     3|
 |17    |DSP48E1_9   |     7|
 |18    |LUT1        |   666|
-|19    |LUT2        |  1396|
-|20    |LUT3        |  1941|
-|21    |LUT4        |   765|
-|22    |LUT5        |   523|
-|23    |LUT6        |  1074|
+|19    |LUT2        |  1397|
+|20    |LUT3        |  1946|
+|21    |LUT4        |   804|
+|22    |LUT5        |   520|
+|23    |LUT6        |  1101|
 |24    |MUXCY       |  1635|
 |25    |MUXF7       |    22|
 |26    |RAMB18E1    |     1|
@@ -1141,19 +1143,19 @@ Report Cell Usage:
 |49    |SRL16E      |    36|
 |50    |SRLC32E     |     2|
 |51    |XORCY       |  1494|
-|52    |FDRE        |  2692|
-|53    |FDSE        |    21|
-|54    |IBUF        |    11|
-|55    |OBUF        |   235|
+|52    |FDRE        |  2588|
+|53    |FDSE        |    29|
+|54    |IBUF        |    43|
+|55    |OBUF        |   176|
 +------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:08 ; elapsed = 00:02:15 . Memory (MB): peak = 1945.414 ; gain = 960.137 ; free physical = 206653 ; free virtual = 257457
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:37 ; elapsed = 00:01:47 . Memory (MB): peak = 1946.480 ; gain = 961.207 ; free physical = 16560 ; free virtual = 33734
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 983 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:39 ; elapsed = 00:01:44 . Memory (MB): peak = 1945.414 ; gain = 472.727 ; free physical = 206653 ; free virtual = 257457
-Synthesis Optimization Complete : Time (s): cpu = 00:02:08 ; elapsed = 00:02:15 . Memory (MB): peak = 1945.422 ; gain = 960.145 ; free physical = 206653 ; free virtual = 257457
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:15 ; elapsed = 00:01:21 . Memory (MB): peak = 1946.480 ; gain = 475.797 ; free physical = 16560 ; free virtual = 33734
+Synthesis Optimization Complete : Time (s): cpu = 00:01:37 ; elapsed = 00:01:48 . Memory (MB): peak = 1946.488 ; gain = 961.215 ; free physical = 16560 ; free virtual = 33734
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 3832 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 3860 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
@@ -1162,8 +1164,8 @@ INFO: [Project 1-111] Unisim Transformation Summary:
   (MUXCY,XORCY) => CARRY4: 479 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-613 Infos, 254 Warnings, 0 Critical Warnings and 0 Errors encountered.
+615 Infos, 254 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:11 ; elapsed = 00:02:16 . Memory (MB): peak = 1977.430 ; gain = 904.598 ; free physical = 206654 ; free virtual = 257458
-report_utilization: Time (s): cpu = 00:00:00.07 ; elapsed = 00:00:00.15 . Memory (MB): peak = 2009.449 ; gain = 0.000 ; free physical = 206646 ; free virtual = 257454
-INFO: [Common 17-206] Exiting Vivado at Fri Apr 19 04:04:21 2019...
+synth_design: Time (s): cpu = 00:01:40 ; elapsed = 00:01:49 . Memory (MB): peak = 1978.496 ; gain = 905.668 ; free physical = 16559 ; free virtual = 33735
+report_utilization: Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.10 . Memory (MB): peak = 2010.516 ; gain = 0.000 ; free physical = 16552 ; free virtual = 33734
+INFO: [Common 17-206] Exiting Vivado at Fri Apr 19 15:42:37 2019...
