@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1555702839">
+<GenRun Id="synth_1" LaunchPart="xc7k325tffg900-2" LaunchTime="1555706131">
   <File Type="VDS-TIMING-PB" Name="detect_face_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="detect_face_timing_summary_synth.rpt"/>
   <File Type="RDS-RDS" Name="detect_face.vds"/>

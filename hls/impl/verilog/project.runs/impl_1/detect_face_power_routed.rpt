@@ -1,7 +1,7 @@
 Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
-| Date             : Fri Apr 19 15:45:54 2019
+| Date             : Fri Apr 19 16:40:49 2019
 | Host             : ares.andrew.local.cmu.edu running 64-bit Red Hat Enterprise Linux Server release 7.6 (Maipo)
 | Command          : report_power -file detect_face_power_routed.rpt -pb detect_face_power_summary_routed.pb -rpx detect_face_power_routed.rpx
 | Design           : detect_face
@@ -30,8 +30,8 @@ Table of Contents
 ----------
 
 +--------------------------+-------+
-| Total On-Chip Power (W)  | 0.271 |
-| Dynamic (W)              | 0.108 |
+| Total On-Chip Power (W)  | 0.254 |
+| Dynamic (W)              | 0.091 |
 | Device Static (W)        | 0.163 |
 | Effective TJA (C/W)      | 1.8   |
 | Max Ambient (C)          | 84.5  |
@@ -50,19 +50,19 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.007 |        3 |       --- |             --- |
-| Slice Logic             |     0.019 |    10087 |       --- |             --- |
-|   LUT as Logic          |     0.016 |     4951 |    203800 |            2.43 |
-|   CARRY4                |     0.002 |     1034 |     50950 |            2.03 |
-|   Register              |    <0.001 |     2552 |    407600 |            0.63 |
+| Slice Logic             |     0.018 |     9748 |       --- |             --- |
+|   LUT as Logic          |     0.015 |     4757 |    203800 |            2.33 |
+|   CARRY4                |     0.002 |     1022 |     50950 |            2.01 |
+|   Register              |    <0.001 |     2521 |    407600 |            0.62 |
 |   LUT as Shift Register |    <0.001 |       18 |     64000 |            0.03 |
-|   F7/F8 Muxes           |    <0.001 |       12 |    203800 |           <0.01 |
+|   F7/F8 Muxes           |    <0.001 |       18 |    203800 |           <0.01 |
 |   Others                |     0.000 |      736 |       --- |             --- |
-| Signals                 |     0.024 |    10094 |       --- |             --- |
-| Block RAM               |     0.026 |       66 |       445 |           14.83 |
+| Signals                 |     0.022 |     9732 |       --- |             --- |
+| Block RAM               |     0.029 |       66 |       445 |           14.83 |
 | DSPs                    |     0.011 |       46 |       840 |            5.48 |
-| I/O                     |     0.021 |      219 |       500 |           43.80 |
+| I/O                     |     0.003 |       58 |       500 |           11.60 |
 | Static Power            |     0.163 |          |           |                 |
-| Total                   |     0.271 |          |           |                 |
+| Total                   |     0.254 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -72,16 +72,16 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.155 |       0.085 |      0.070 |
-| Vccaux    |       1.800 |     0.030 |       0.002 |      0.028 |
+| Vccint    |       1.000 |     0.156 |       0.086 |      0.070 |
+| Vccaux    |       1.800 |     0.029 |       0.000 |      0.028 |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
-| Vcco18    |       1.800 |     0.011 |       0.010 |      0.001 |
+| Vcco18    |       1.800 |     0.002 |       0.001 |      0.001 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccbram   |       1.000 |     0.006 |       0.002 |      0.004 |
+| Vccbram   |       1.000 |     0.006 |       0.003 |      0.004 |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |
@@ -142,9 +142,9 @@ Table of Contents
 +--------------------------------------------------------------+-----------+
 | Name                                                         | Power (W) |
 +--------------------------------------------------------------+-----------+
-| detect_face                                                  |     0.108 |
-|   curr_image_U                                               |     0.004 |
-|     detect_face_curr_image_ram_U                             |     0.004 |
+| detect_face                                                  |     0.091 |
+|   curr_image_U                                               |     0.005 |
+|     detect_face_curr_image_ram_U                             |     0.005 |
 |   detect_face_dmul_64ns_64ns_64_4_max_dsp_U47                |     0.004 |
 |     detect_face_ap_dmul_2_max_dsp_64_u                       |     0.004 |
 |       U0                                                     |     0.004 |
@@ -187,10 +187,10 @@ Table of Contents
 |                 RND_BIT_GEN                                  |    <0.001 |
 |                   NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1        |    <0.001 |
 |   detect_face_fdiv_32ns_32ns_32_6_U43                        |     0.010 |
-|     detect_face_ap_fdiv_4_no_dsp_32_u                        |     0.009 |
-|       U0                                                     |     0.009 |
-|         i_synth                                              |     0.009 |
-|           DIV_OP.SPD.OP                                      |     0.009 |
+|     detect_face_ap_fdiv_4_no_dsp_32_u                        |     0.008 |
+|       U0                                                     |     0.008 |
+|         i_synth                                              |     0.008 |
+|           DIV_OP.SPD.OP                                      |     0.008 |
 |             EXP                                              |    <0.001 |
 |               EXP_PRE_RND_DEL                                |    <0.001 |
 |                 i_pipe                                       |    <0.001 |
@@ -273,10 +273,10 @@ Table of Contents
 |               RND_BIT_GEN                                    |    <0.001 |
 |                 NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1          |    <0.001 |
 |   detect_face_fdiv_32ns_32ns_32_6_U44                        |     0.010 |
-|     detect_face_ap_fdiv_4_no_dsp_32_u                        |     0.009 |
-|       U0                                                     |     0.009 |
-|         i_synth                                              |     0.009 |
-|           DIV_OP.SPD.OP                                      |     0.009 |
+|     detect_face_ap_fdiv_4_no_dsp_32_u                        |     0.008 |
+|       U0                                                     |     0.008 |
+|         i_synth                                              |     0.008 |
+|           DIV_OP.SPD.OP                                      |     0.008 |
 |             EXP                                              |    <0.001 |
 |               EXP_PRE_RND_DEL                                |    <0.001 |
 |                 i_pipe                                       |    <0.001 |
@@ -401,7 +401,7 @@ Table of Contents
 |                 NORM_1_OR_0.STRUCT_REQ.SPECIAL.RND_CHAIN     |    <0.001 |
 |             RND_REQ.Z_DET_REQ.DET_ZERO                       |    <0.001 |
 |               WIDE_NOR                                       |    <0.001 |
-|   grp_detect_face_cascade_classifier_fu_330                  |     0.043 |
+|   grp_detect_face_cascade_classifier_fu_315                  |     0.035 |
 |     RECT1_HEIGHT_U                                           |    <0.001 |
 |       detect_face_cascade_classifier_RECT1_HEIGHT_rom_U      |    <0.001 |
 |     RECT1_WIDTH_U                                            |     0.001 |
@@ -414,7 +414,7 @@ Table of Contents
 |       detect_face_cascade_classifier_STAGE_NUM_FEATURE_rom_U |    <0.001 |
 |     STAGE_THRESH_U                                           |    <0.001 |
 |       detect_face_cascade_classifier_STAGE_THRESH_rom_U      |    <0.001 |
-|     detect_face_fmul_32ns_32ns_32_1_max_dsp_U8               |     0.003 |
+|     detect_face_fmul_32ns_32ns_32_1_max_dsp_U8               |    <0.001 |
 |       detect_face_ap_fmul_0_max_dsp_32_u                     |    <0.001 |
 |         U0                                                   |    <0.001 |
 |           i_synth                                            |    <0.001 |
@@ -451,8 +451,8 @@ Table of Contents
 |                 LOGIC.RND2                                   |    <0.001 |
 |                 RND_BIT_GEN                                  |    <0.001 |
 |                   NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1        |    <0.001 |
-|     grp_detect_face_int_sqrt_fu_701                          |     0.003 |
-|   grp_detect_face_downscale_fu_395                           |     0.004 |
+|     grp_detect_face_int_sqrt_fu_699                          |     0.003 |
+|   grp_detect_face_downscale_fu_379                           |     0.003 |
 |     detect_face_udiv_24ns_32ns_32_28_seq_U2                  |    <0.001 |
 |       detect_face_udiv_24ns_32ns_32_28_seq_div_U             |    <0.001 |
 |         detect_face_udiv_24ns_32ns_32_28_seq_div_u_0         |    <0.001 |
@@ -461,8 +461,8 @@ Table of Contents
 |         detect_face_udiv_25ns_32ns_32_29_seq_div_u_0         |    <0.001 |
 |   input_image_U                                              |     0.004 |
 |     detect_face_input_image_ram_U                            |     0.004 |
-|   integral_image_U                                           |     0.005 |
-|     detect_face_integral_image_ram_U                         |     0.005 |
+|   integral_image_U                                           |     0.014 |
+|     detect_face_integral_image_ram_U                         |     0.014 |
 +--------------------------------------------------------------+-----------+
 
 
