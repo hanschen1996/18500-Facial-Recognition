@@ -39,7 +39,7 @@ module top(
   logic clock, reset;
 
   assign reset = GPIO_SW_C;
-  clk_wiz_0 cw(.clk_out1(clock), .reset(1'b0), .clk_in1_p(sys_clk_p), 
+  clk_wiz_0 cw(.clk_out1(clock), .clk_in1_p(sys_clk_p), 
                .clk_in1_n(sys_clk_n));
 
   logic [7:0] uart_data_rx;
