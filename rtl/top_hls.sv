@@ -1,7 +1,6 @@
 `default_nettype none
 `include "vj_weights.vh"
-`define NUM_SAVED_FACES_TIMES_13 390
-`define bauds_per_clock 54
+`define NUM_SAVED_FACES_TIMES_5 150
 
 /*
 With hardware flow control (also called RTS/CTS flow control), two extra wires are needed in addition to the data lines. They are called
@@ -49,26 +48,21 @@ module top(
   uart_rcvr u_r(.clock, .reset, .uart_data(uart_data_rx), .uart_data_rdy, 
                 .uart_rx);
 
-  logic [31:0] accum;
-  logic [3:0] pyramid_number;
-  logic [1:0][31:0] face_coords;
+  logic [7:0] result_x1_0, result_y1_0, result_x2_0, result_y2_0,
+              faces_found;
   logic face_coords_ready, vj_pipeline_done;
-  logic [31:0] faces_found;
-  assign accum = faces_found;
 
-  detect_face_wrapper df(.ap_clk(clock), .ap_rst(reset), .ap_start(uart_data_rdy), 
+  detect_face_wrapper df(.ap_clk(clock), .ap_rst(reset), .ap_start(uart_data_rdy), .pixel(uart_data_rx),
                          .ap_done(face_coords_ready), .ap_idle(), .ap_ready(), .ap_return(faces_found),
-                         .result_x1_address0(), .result_x1_ce0(1'b1), .result_x1_we0(), .result_x1_d0(),
-                         .result_x2_address0(), .result_x2_ce0(1'b1), .result_x2_we0(), .result_x2_d0(),
-                         .result_y1_address0(), .result_y1_ce0(1'b1), .result_y1_we0(), .result_y1_d0(),
-                         .result_y2_address0(), .result_y2_ce0(1'b1), .result_y2_we0(), .result_y2_d0(),
-                         .result_score_address0(), .result_score_ce0(1'b1), .result_score_we0(), .result_score_d0());
-                 
-  assign pyramid_number = 'd0;
-  assign face_coords = 'd0;
+                         .result_x1_0, .result_x1_0_ap_vld(),
+                         .result_x2_0, .result_x2_0_ap_vld(),
+                         .result_y1_0, .result_y1_0_ap_vld(),
+                         .result_y2_0, .result_y2_0_ap_vld());
+  
+  assign vj_pipeline_done = face_coords_ready;
 
   logic [7:0] queue_out;
-  logic [`NUM_SAVED_FACES_TIMES_13:0][7:0] saved_faces;
+  logic [`NUM_SAVED_FACES_TIMES_5:0][7:0] saved_faces;
   logic [31:0] enq_idx, deq_idx;
   logic enq, deq;
 
@@ -80,21 +74,13 @@ module top(
       deq_idx <= 32'd0;
       enq_idx <= 32'd0;
     end else begin
-      if (enq && (enq_idx < `NUM_SAVED_FACES_TIMES_13)) begin
-        saved_faces[enq_idx] <= {4'd0, pyramid_number};
-        saved_faces[enq_idx+32'd1] <= face_coords[1][7:0];
-        saved_faces[enq_idx+32'd2] <= face_coords[1][15:8];
-        saved_faces[enq_idx+32'd3] <= face_coords[1][23:16];
-        saved_faces[enq_idx+32'd4] <= face_coords[1][31:24];
-        saved_faces[enq_idx+32'd5] <= face_coords[0][7:0];
-        saved_faces[enq_idx+32'd6] <= face_coords[0][15:8];
-        saved_faces[enq_idx+32'd7] <= face_coords[0][23:16];
-        saved_faces[enq_idx+32'd8] <= face_coords[0][31:24];
-        saved_faces[enq_idx+32'd9] <= accum[7:0];
-        saved_faces[enq_idx+32'd10] <= accum[15:8];
-        saved_faces[enq_idx+32'd11] <= accum[23:16];
-        saved_faces[enq_idx+32'd12] <= accum[31:24];
-        enq_idx <= enq_idx + 32'd13;
+      if (enq && (enq_idx < `NUM_SAVED_FACES_TIMES_5)) begin
+        saved_faces[enq_idx] <= faces_found;
+        saved_faces[enq_idx+32'd1] <= result_x1_0;
+        saved_faces[enq_idx+32'd2] <= result_y1_0;
+        saved_faces[enq_idx+32'd3] <= result_x2_0;
+        saved_faces[enq_idx+32'd4] <= result_y2_0;
+        enq_idx <= enq_idx + 32'd5;
       end else if (deq && (deq_idx < enq_idx)) begin
         queue_out <= saved_faces[deq_idx];
         deq_idx <= deq_idx + 32'd1;
@@ -114,6 +100,8 @@ module top(
   results_to_uart r_u(.enq_idx, .deq_idx, .vj_pipeline_done, .uart_data_sent, 
                       .clock, .reset, .queue_out, .send_uart_data, .deq,
                       .uart_data_tx);
+  
+  ila_0 i(.clk(clock), .probe0(face_coords_ready), .probe1(uart_tx), .probe2(enq), .probe3(deq));
   
 endmodule
 
