@@ -1,4 +1,4 @@
-`default_nettype none
+//`default_nettype none
 `include "vj_weights.vh"
 `define bauds_per_clock 54 // 50 MHz clock for now
 
@@ -8,6 +8,7 @@ module detect_face_tb();
   logic uart_rx, uart_cts;
   logic uart_tx, uart_rts;
   logic [`LAPTOP_HEIGHT-1:0][`LAPTOP_WIDTH-1:0][7:0] in_img;
+  logic [7:0] in_data;
 
   logic [7:0] laptop_uart_data;
   logic uart_data_rdy;
@@ -18,10 +19,6 @@ module detect_face_tb();
   integer file;
   logic [31:0] c;
   logic [31:0] row, col;
-
-  default clocking cb_main 
-    @(posedge clock); 
-  endclocking
   
   initial begin
     clock = 1'b0;
@@ -31,24 +28,27 @@ module detect_face_tb();
   task writeUart(input [7:0] data);
     begin
       uart_rx = 1'd0;
-      ##`bauds_per_clock;
+      for (int a = 0; a < `bauds_per_clock; a++) begin @(posedge clock); end
       for (int i = 0; i < 8; i++) begin
         uart_rx = data[i];
-        ##`bauds_per_clock;
+        for (int b = 0; b < `bauds_per_clock; b++) begin @(posedge clock); end
       end
       uart_rx = 1'd1;
-      ##`bauds_per_clock;
+      for (int c = 0; c < `bauds_per_clock; c++) begin @(posedge clock); end
     end
   endtask
 
+  logic uart_sent_successfully;
+
   initial begin
-    int i, j;
+    int i, j, d, e;
+    uart_sent_successfully = 1'b0;
     reset = 1'b1;
     row = 0;
     col = 0;
     uart_rx = 1'd1;
     uart_cts = 1'b1;
-    ##1;
+    @(posedge clock);
 
     file = $fopen("input.txt", "r");
 
@@ -68,42 +68,34 @@ module detect_face_tb();
 
     reset = 1'b0;
 
-    ##10;
+    for (d = 0; d < 10; d++) begin @(posedge clock); end
     for (i = 0; i < `LAPTOP_HEIGHT; i++) begin
       for (j = 0; j < `LAPTOP_WIDTH; j++) begin
+        in_data = in_img[i][j];
         writeUart(in_img[i][j]);
       end
-      $display("wrote in_img[%0d]", i);
-    end
-    // force dut.laptop_img = in_img;
-    // ##10;
-    for (i = 0; i < `LAPTOP_HEIGHT; i++) begin
-      for (j = 0; j < `LAPTOP_WIDTH; j++) begin
-        $write("%0h ", dut.laptop_img[i][j]);
-      end
-      $write("\n");
     end
 
-    $display("uart sent successfully! %d", $time);
+    uart_sent_successfully = 1'b1;
     // force dut.laptop_img_rdy = 1'b1;
     // ##1;
     // force dut.laptop_img_rdy = 1'b0;
     // force dut.enq = 1'b0;
     // release dut.laptop_img;
     @(posedge dut.vj_pipeline_done);
-    $display("vj pipeline done! %d", $time);
-    ##1000000;
+    for (e = 0; e < 10000; e++) begin @(posedge clock); end
     $finish;
   end
 
   initial begin
+    int f;
     #113679975;
-    ##1000000;
+    for (f = 0; f < 1000000; f++) begin @(posedge clock); end
     $finish;
   end
 
   initial begin
-    int z;
+    int z,g;
     logic [103:0] read;
     #1 z = 0;
     while (z >= 0) begin 
@@ -116,7 +108,7 @@ module detect_face_tb();
         $display("face_found = %0d, from (r%0d,c%0d) to (r%0d,c%0d)", read[7:0], read[23:16], read[15:8], read[39:32], read[31:24]);
       end
     end
-    ##10
+    for (g = 0; g < 10; g++) begin @(posedge clock); end
     $finish;
   end
 
