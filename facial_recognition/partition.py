@@ -7,29 +7,34 @@ DEST_TEST_DIR = "test_database"
 
 TRAIN_COUNT = 8
 
-def partition():
-    rmtree(DEST_TRAIN_DIR, ignore_errors=True)
-    os.makedirs(DEST_TRAIN_DIR)
-    rmtree(DEST_TEST_DIR, ignore_errors=True)
-    os.makedirs(DEST_TEST_DIR)
+def partition(base_path):
+    src_dir = "%s/%s"%(base_path, SRC_DIR)
+    dest_train_dir = "%s/%s"%(base_path, DEST_TRAIN_DIR)
+    dest_test_dir = "%s/%s"%(base_path, DEST_TEST_DIR)
 
-    all_imgs = os.listdir(SRC_DIR)
+    rmtree(dest_train_dir, ignore_errors=True)
+    os.makedirs(dest_train_dir)
+    rmtree(dest_test_dir, ignore_errors=True)
+    os.makedirs(dest_test_dir)
+
+    all_imgs = os.listdir(src_dir)
     all_imgs.sort()
 
     prev_index = None
     prev_index_count = 0
 
     for filename in all_imgs:
-        curr_index = int(filename[len("subject"):len("subject")+2])
+        name_list = filename.split(".")
+        curr_index = int(name_list[0][len("subject"):])
         if (prev_index is None or prev_index != curr_index):
-            copyfile("%s/%s"%(SRC_DIR, filename), "%s/%s"%(DEST_TRAIN_DIR, filename))
+            copyfile("%s/%s"%(src_dir, filename), "%s/%s"%(dest_train_dir, filename))
             prev_index = curr_index
             prev_index_count = 1
         else:
             if (prev_index_count >= TRAIN_COUNT):
-                copyfile("%s/%s"%(SRC_DIR, filename), "%s/%s"%(DEST_TEST_DIR, filename))
+                copyfile("%s/%s"%(src_dir, filename), "%s/%s"%(dest_test_dir, filename))
             else:
-                copyfile("%s/%s"%(SRC_DIR, filename), "%s/%s"%(DEST_TRAIN_DIR, filename))
+                copyfile("%s/%s"%(src_dir, filename), "%s/%s"%(dest_train_dir, filename))
             prev_index_count += 1
 
 
