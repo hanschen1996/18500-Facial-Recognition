@@ -47,14 +47,14 @@
 -- DO NOT MODIFY THIS FILE.
 
 -- IP VLNV: xilinx.com:ip:floating_point:7.1
--- IP Revision: 3
+-- IP Revision: 2
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
-LIBRARY floating_point_v7_1_3;
-USE floating_point_v7_1_3.floating_point_v7_1_3;
+LIBRARY floating_point_v7_1_2;
+USE floating_point_v7_1_2.floating_point_v7_1_2;
 
 ENTITY detect_face_ap_fmul_0_max_dsp_32 IS
   PORT (
@@ -70,7 +70,7 @@ END detect_face_ap_fmul_0_max_dsp_32;
 ARCHITECTURE detect_face_ap_fmul_0_max_dsp_32_arch OF detect_face_ap_fmul_0_max_dsp_32 IS
   ATTRIBUTE DowngradeIPIdentifiedWarnings : STRING;
   ATTRIBUTE DowngradeIPIdentifiedWarnings OF detect_face_ap_fmul_0_max_dsp_32_arch: ARCHITECTURE IS "yes";
-  COMPONENT floating_point_v7_1_3 IS
+  COMPONENT floating_point_v7_1_2 IS
     GENERIC (
       C_XDEVICEFAMILY : STRING;
       C_HAS_ADD : INTEGER;
@@ -173,7 +173,7 @@ ARCHITECTURE detect_face_ap_fmul_0_max_dsp_32_arch OF detect_face_ap_fmul_0_max_
       m_axis_result_tuser : OUT STD_LOGIC_VECTOR(0 DOWNTO 0);
       m_axis_result_tlast : OUT STD_LOGIC
     );
-  END COMPONENT floating_point_v7_1_3;
+  END COMPONENT floating_point_v7_1_2;
   ATTRIBUTE X_INTERFACE_INFO : STRING;
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_a_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 S_AXIS_A TVALID";
   ATTRIBUTE X_INTERFACE_INFO OF s_axis_a_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 S_AXIS_A TDATA";
@@ -182,9 +182,9 @@ ARCHITECTURE detect_face_ap_fmul_0_max_dsp_32_arch OF detect_face_ap_fmul_0_max_
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_result_tvalid: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_RESULT TVALID";
   ATTRIBUTE X_INTERFACE_INFO OF m_axis_result_tdata: SIGNAL IS "xilinx.com:interface:axis:1.0 M_AXIS_RESULT TDATA";
 BEGIN
-  U0 : floating_point_v7_1_3
+  U0 : floating_point_v7_1_2
     GENERIC MAP (
-      C_XDEVICEFAMILY => "kintex7",
+      C_XDEVICEFAMILY => "virtex7",
       C_HAS_ADD => 0,
       C_HAS_SUBTRACT => 0,
       C_HAS_MULTIPLY => 1,

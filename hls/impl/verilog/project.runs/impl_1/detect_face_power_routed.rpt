@@ -1,0 +1,468 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version     : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date             : Fri Apr 19 04:05:46 2019
+| Host             : ece030.ece.local.cmu.edu running 64-bit Red Hat Enterprise Linux Server release 7.6 (Maipo)
+| Command          : report_power -file detect_face_power_routed.rpt -pb detect_face_power_summary_routed.pb -rpx detect_face_power_routed.rpx
+| Design           : detect_face
+| Device           : xc7k325tffg900-2
+| Design State     : routed
+| Grade            : commercial
+| Process          : typical
+| Characterization : Production
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Power Report
+
+Table of Contents
+-----------------
+1. Summary
+1.1 On-Chip Components
+1.2 Power Supply Summary
+1.3 Confidence Level
+2. Settings
+2.1 Environment
+2.2 Clock Constraints
+3. Detailed Reports
+3.1 By Hierarchy
+
+1. Summary
+----------
+
++--------------------------+-------+
+| Total On-Chip Power (W)  | 0.258 |
+| Dynamic (W)              | 0.096 |
+| Device Static (W)        | 0.163 |
+| Effective TJA (C/W)      | 1.8   |
+| Max Ambient (C)          | 84.5  |
+| Junction Temperature (C) | 25.5  |
+| Confidence Level         | Low   |
+| Setting File             | ---   |
+| Simulation Activity File | ---   |
+| Design Nets Matched      | NA    |
++--------------------------+-------+
+
+
+1.1 On-Chip Components
+----------------------
+
++-------------------------+-----------+----------+-----------+-----------------+
+| On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
++-------------------------+-----------+----------+-----------+-----------------+
+| Clocks                  |     0.008 |        3 |       --- |             --- |
+| Slice Logic             |     0.018 |    10117 |       --- |             --- |
+|   LUT as Logic          |     0.015 |     4919 |    203800 |            2.41 |
+|   CARRY4                |     0.002 |     1038 |     50950 |            2.04 |
+|   Register              |    <0.001 |     2648 |    407600 |            0.65 |
+|   LUT as Shift Register |    <0.001 |       18 |     64000 |            0.03 |
+|   F7/F8 Muxes           |    <0.001 |       12 |    203800 |           <0.01 |
+|   Others                |     0.000 |      735 |       --- |             --- |
+| Signals                 |     0.023 |    10123 |       --- |             --- |
+| Block RAM               |     0.028 |       66 |       445 |           14.83 |
+| DSPs                    |     0.011 |       46 |       840 |            5.48 |
+| I/O                     |     0.008 |      246 |       500 |           49.20 |
+| Static Power            |     0.163 |          |           |                 |
+| Total                   |     0.258 |          |           |                 |
++-------------------------+-----------+----------+-----------+-----------------+
+
+
+1.2 Power Supply Summary
+------------------------
+
++-----------+-------------+-----------+-------------+------------+
+| Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
++-----------+-------------+-----------+-------------+------------+
+| Vccint    |       1.000 |     0.155 |       0.085 |      0.070 |
+| Vccaux    |       1.800 |     0.029 |       0.001 |      0.028 |
+| Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |
+| Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
+| Vcco18    |       1.800 |     0.005 |       0.004 |      0.001 |
+| Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
+| Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
+| Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
+| Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccbram   |       1.000 |     0.006 |       0.002 |      0.004 |
+| MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
+| MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
+| MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
++-----------+-------------+-----------+-------------+------------+
+
+
+1.3 Confidence Level
+--------------------
+
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| User Input Data             | Confidence | Details                                                | Action                                                                                                     |
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+| Design implementation state | High       | Design is routed                                       |                                                                                                            |
+| Clock nodes activity        | High       | User specified more than 95% of clocks                 |                                                                                                            |
+| I/O nodes activity          | Low        | More than 75% of inputs are missing user specification | Provide missing input activity with simulation results or by editing the "By Resource Type -> I/Os" view   |
+| Internal nodes activity     | Medium     | User specified less than 25% of internal nodes         | Provide missing internal nodes activity with simulation results or by editing the "By Resource Type" views |
+| Device models               | High       | Device models are Production                           |                                                                                                            |
+|                             |            |                                                        |                                                                                                            |
+| Overall confidence level    | Low        |                                                        |                                                                                                            |
++-----------------------------+------------+--------------------------------------------------------+------------------------------------------------------------------------------------------------------------+
+
+
+2. Settings
+-----------
+
+2.1 Environment
+---------------
+
++-----------------------+--------------------------+
+| Ambient Temp (C)      | 25.0                     |
+| ThetaJA (C/W)         | 1.8                      |
+| Airflow (LFM)         | 250                      |
+| Heat Sink             | medium (Medium Profile)  |
+| ThetaSA (C/W)         | 3.3                      |
+| Board Selection       | medium (10"x10")         |
+| # of Board Layers     | 12to15 (12 to 15 Layers) |
+| Board Temperature (C) | 25.0                     |
++-----------------------+--------------------------+
+
+
+2.2 Clock Constraints
+---------------------
+
++--------+--------+-----------------+
+| Clock  | Domain | Constraint (ns) |
++--------+--------+-----------------+
+| ap_clk | ap_clk |            20.0 |
++--------+--------+-----------------+
+
+
+3. Detailed Reports
+-------------------
+
+3.1 By Hierarchy
+----------------
+
++--------------------------------------------------------------+-----------+
+| Name                                                         | Power (W) |
++--------------------------------------------------------------+-----------+
+| detect_face                                                  |     0.096 |
+|   curr_image_U                                               |     0.004 |
+|     detect_face_curr_image_ram_U                             |     0.004 |
+|   detect_face_dmul_64ns_64ns_64_4_max_dsp_U47                |     0.004 |
+|     detect_face_ap_dmul_2_max_dsp_64_u                       |     0.004 |
+|       U0                                                     |     0.004 |
+|         i_synth                                              |     0.004 |
+|           MULT.OP                                            |     0.004 |
+|             EXP                                              |    <0.001 |
+|               COND_DET_A                                     |    <0.001 |
+|                 MANT_CARRY.MANT_ALL_ZERO_DET                 |    <0.001 |
+|                   CARRY_ZERO_DET                             |    <0.001 |
+|               COND_DET_B                                     |    <0.001 |
+|                 MANT_CARRY.MANT_ALL_ZERO_DET                 |    <0.001 |
+|                   CARRY_ZERO_DET                             |    <0.001 |
+|               EXP_ADD.C_CHAIN                                |    <0.001 |
+|               EXP_PRE_RND_DEL                                |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               SIG_DELAY                                      |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               STATE_DELAY                                    |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|             MULT                                             |     0.003 |
+|               DSP48E1_SPD_DBL_VARIANT.FIX_MULT               |     0.003 |
+|                 DSP0                                         |    <0.001 |
+|                 DSP1                                         |    <0.001 |
+|                 DSP2                                         |    <0.001 |
+|                 DSP3                                         |    <0.001 |
+|                 DSP4                                         |    <0.001 |
+|                 DSP5                                         |    <0.001 |
+|                 DSP6                                         |    <0.001 |
+|                 DSP7                                         |    <0.001 |
+|                 DSP8                                         |    <0.001 |
+|                 FULL_MAX_USAGE.DSP9                          |    <0.001 |
+|                 ZD1_DEL                                      |    <0.001 |
+|                   i_pipe                                     |    <0.001 |
+|             OP                                               |    <0.001 |
+|             R_AND_R                                          |    <0.001 |
+|               LOGIC.R_AND_R                                  |    <0.001 |
+|                 DSP48_E1.DSP48E1_ADD.DSP48E1_ADD             |    <0.001 |
+|                 DSP48_E1.DSP_LOGIC_ADDERS.RND_0              |    <0.001 |
+|                 DSP48_E1.DSP_LOGIC_ADDERS.RND_1              |    <0.001 |
+|                 RND_BIT_GEN                                  |    <0.001 |
+|                   NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1        |    <0.001 |
+|   detect_face_fdiv_32ns_32ns_32_6_U43                        |     0.010 |
+|     detect_face_ap_fdiv_4_no_dsp_32_u                        |     0.008 |
+|       U0                                                     |     0.008 |
+|         i_synth                                              |     0.008 |
+|           DIV_OP.SPD.OP                                      |     0.008 |
+|             EXP                                              |    <0.001 |
+|               EXP_PRE_RND_DEL                                |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               FLOW_DEC_DEL                                   |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               FLOW_UP_DEL                                    |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               STATE_UP_DELAY                                 |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|             MANT_DIV                                         |     0.008 |
+|               Q_MANT_DEL                                     |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               RT[0].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[10].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[11].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[12].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[13].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[14].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[15].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[16].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[17].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|                   Q_DEL                                      |    <0.001 |
+|                     i_pipe                                   |    <0.001 |
+|               RT[17].MANT_DEL                                |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               RT[17].Q_DEL                                   |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               RT[18].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[19].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[1].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[20].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[21].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[22].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[23].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[24].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[25].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[2].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[3].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[4].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[5].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[6].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[7].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[8].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|                   Q_DEL                                      |    <0.001 |
+|                     i_pipe                                   |    <0.001 |
+|               RT[8].MANT_DEL                                 |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               RT[9].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|             OP                                               |    <0.001 |
+|             ROUND                                            |    <0.001 |
+|               EXP_ADD.ADD                                    |    <0.001 |
+|               LOGIC.RND1                                     |    <0.001 |
+|               LOGIC.RND2                                     |    <0.001 |
+|               RND_BIT_GEN                                    |    <0.001 |
+|                 NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1          |    <0.001 |
+|   detect_face_fdiv_32ns_32ns_32_6_U44                        |     0.010 |
+|     detect_face_ap_fdiv_4_no_dsp_32_u                        |     0.009 |
+|       U0                                                     |     0.009 |
+|         i_synth                                              |     0.009 |
+|           DIV_OP.SPD.OP                                      |     0.009 |
+|             EXP                                              |    <0.001 |
+|               EXP_PRE_RND_DEL                                |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               FLOW_DEC_DEL                                   |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               FLOW_UP_DEL                                    |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               STATE_UP_DELAY                                 |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|             MANT_DIV                                         |     0.008 |
+|               Q_MANT_DEL                                     |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               RT[0].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[10].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[11].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[12].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[13].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[14].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[15].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[16].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[17].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|                   Q_DEL                                      |    <0.001 |
+|                     i_pipe                                   |    <0.001 |
+|               RT[17].MANT_DEL                                |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               RT[17].Q_DEL                                   |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               RT[18].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[19].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[1].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[20].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[21].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[22].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[23].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[24].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[25].ADDSUB                                  |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[2].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[3].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[4].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[5].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[6].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[7].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|               RT[8].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|                   Q_DEL                                      |    <0.001 |
+|                     i_pipe                                   |    <0.001 |
+|               RT[8].MANT_DEL                                 |    <0.001 |
+|                 i_pipe                                       |    <0.001 |
+|               RT[9].ADDSUB                                   |    <0.001 |
+|                 ADDSUB                                       |    <0.001 |
+|             OP                                               |    <0.001 |
+|             ROUND                                            |    <0.001 |
+|               EXP_ADD.ADD                                    |    <0.001 |
+|               LOGIC.RND1                                     |    <0.001 |
+|               LOGIC.RND2                                     |    <0.001 |
+|               RND_BIT_GEN                                    |    <0.001 |
+|                 NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1          |    <0.001 |
+|   detect_face_fmul_32ns_32ns_32_1_max_dsp_U42                |    <0.001 |
+|     detect_face_ap_fmul_0_max_dsp_32_u                       |    <0.001 |
+|       U0                                                     |    <0.001 |
+|         i_synth                                              |    <0.001 |
+|           MULT.OP                                            |    <0.001 |
+|             EXP                                              |    <0.001 |
+|               COND_DET_A                                     |     0.000 |
+|                 MANT_CARRY.MANT_ALL_ZERO_DET                 |     0.000 |
+|                   CARRY_ZERO_DET                             |     0.000 |
+|               EXP_ADD.C_CHAIN                                |    <0.001 |
+|             MULT                                             |    <0.001 |
+|               DSP48E1_SPD_SGL_VARIANT.FIX_MULT               |    <0.001 |
+|                 DSP1                                         |    <0.001 |
+|                 DSP2                                         |    <0.001 |
+|             R_AND_R                                          |    <0.001 |
+|               LAT_OPT.FULL.R_AND_R                           |    <0.001 |
+|                 DSP48E1_SGL_EXP_IP.OLD_ADD.ADD               |    <0.001 |
+|   detect_face_fpext_32ns_64_1_U46                            |    <0.001 |
+|     detect_face_ap_fpext_0_no_dsp_32_u                       |    <0.001 |
+|       U0                                                     |    <0.001 |
+|         i_synth                                              |    <0.001 |
+|           FLT_TO_FLT_OP.SPD.OP                               |    <0.001 |
+|             EXP                                              |    <0.001 |
+|               COND_DET                                       |    <0.001 |
+|                 MANT_CARRY.MANT_ALL_ZERO_DET                 |    <0.001 |
+|                   CARRY_ZERO_DET                             |    <0.001 |
+|   detect_face_fptrunc_64ns_32_1_U45                          |    <0.001 |
+|     detect_face_ap_fptrunc_0_no_dsp_64_u                     |    <0.001 |
+|       U0                                                     |    <0.001 |
+|         i_synth                                              |    <0.001 |
+|           FLT_TO_FLT_OP.SPD.OP                               |    <0.001 |
+|             EXP                                              |    <0.001 |
+|               COND_DET                                       |    <0.001 |
+|                 MANT_CARRY.MANT_ALL_ZERO_DET                 |    <0.001 |
+|                   CARRY_ZERO_DET                             |    <0.001 |
+|             RND_REQ.ROUND                                    |    <0.001 |
+|               EXP_ADD.ADD                                    |    <0.001 |
+|               LOGIC.RND1                                     |    <0.001 |
+|               LOGIC.RND2                                     |    <0.001 |
+|               RND_BIT_GEN                                    |    <0.001 |
+|                 NORM_1_OR_0.STRUCT_REQ.SPECIAL.RND_CHAIN     |    <0.001 |
+|             RND_REQ.Z_DET_REQ.DET_ZERO                       |    <0.001 |
+|               WIDE_NOR                                       |    <0.001 |
+|   grp_detect_face_cascade_classifier_fu_311                  |     0.042 |
+|     RECT1_HEIGHT_U                                           |     0.001 |
+|       detect_face_cascade_classifier_RECT1_HEIGHT_rom_U      |     0.001 |
+|     RECT1_WIDTH_U                                            |     0.001 |
+|       detect_face_cascade_classifier_RECT1_WIDTH_rom_U       |     0.001 |
+|     RECT1_X_U                                                |    <0.001 |
+|       detect_face_cascade_classifier_RECT1_X_rom_U           |    <0.001 |
+|     RECT1_Y_U                                                |     0.001 |
+|       detect_face_cascade_classifier_RECT1_Y_rom_U           |     0.001 |
+|     STAGE_NUM_FEATURE_U                                      |    <0.001 |
+|       detect_face_cascade_classifier_STAGE_NUM_FEATURE_rom_U |    <0.001 |
+|     STAGE_THRESH_U                                           |    <0.001 |
+|       detect_face_cascade_classifier_STAGE_THRESH_rom_U      |    <0.001 |
+|     detect_face_fmul_32ns_32ns_32_1_max_dsp_U8               |    <0.001 |
+|       detect_face_ap_fmul_0_max_dsp_32_u                     |    <0.001 |
+|         U0                                                   |    <0.001 |
+|           i_synth                                            |    <0.001 |
+|             MULT.OP                                          |    <0.001 |
+|               EXP                                            |    <0.001 |
+|                 COND_DET_A                                   |    <0.001 |
+|                   MANT_CARRY.MANT_ALL_ZERO_DET               |    <0.001 |
+|                     CARRY_ZERO_DET                           |    <0.001 |
+|                 COND_DET_B                                   |     0.000 |
+|                   MANT_CARRY.MANT_ALL_ZERO_DET               |     0.000 |
+|                     CARRY_ZERO_DET                           |     0.000 |
+|                 EXP_ADD.C_CHAIN                              |    <0.001 |
+|               MULT                                           |    <0.001 |
+|                 DSP48E1_SPD_SGL_VARIANT.FIX_MULT             |    <0.001 |
+|                   DSP1                                       |    <0.001 |
+|                   DSP2                                       |    <0.001 |
+|               R_AND_R                                        |    <0.001 |
+|                 LAT_OPT.FULL.R_AND_R                         |    <0.001 |
+|                   DSP48E1_SGL_EXP_IP.OLD_ADD.ADD             |    <0.001 |
+|     detect_face_mul_mul_8s_16ns_24_1_U10                     |     0.001 |
+|       detect_face_mul_mul_8s_16ns_24_1_DSP48_0_U             |     0.001 |
+|     detect_face_uitofp_32ns_32_1_U9                          |    <0.001 |
+|       detect_face_ap_uitofp_0_no_dsp_32_u                    |    <0.001 |
+|         U0                                                   |    <0.001 |
+|           i_synth                                            |    <0.001 |
+|             FIX_TO_FLT_OP.SPD.OP                             |    <0.001 |
+|               FIXED_DATA_SIGNED.M_ABS                        |    <0.001 |
+|               LZE                                            |    <0.001 |
+|                 ZERO_DET_CC_1                                |    <0.001 |
+|                 ZERO_DET_CC_2.CC                             |    <0.001 |
+|               NEED_Z_DET.Z_DET                               |    <0.001 |
+|               ROUND                                          |    <0.001 |
+|                 LOGIC.RND1                                   |    <0.001 |
+|                 LOGIC.RND2                                   |    <0.001 |
+|                 RND_BIT_GEN                                  |    <0.001 |
+|                   NORM_1_OR_0.STRUCT_REQ.GENERAL.RND1        |    <0.001 |
+|     grp_detect_face_int_sqrt_fu_713                          |     0.003 |
+|   grp_detect_face_downscale_fu_376                           |     0.004 |
+|     detect_face_udiv_24ns_32ns_32_28_seq_U2                  |    <0.001 |
+|       detect_face_udiv_24ns_32ns_32_28_seq_div_U             |    <0.001 |
+|         detect_face_udiv_24ns_32ns_32_28_seq_div_u_0         |    <0.001 |
+|     detect_face_udiv_25ns_32ns_32_29_seq_U1                  |     0.001 |
+|       detect_face_udiv_25ns_32ns_32_29_seq_div_U             |     0.001 |
+|         detect_face_udiv_25ns_32ns_32_29_seq_div_u_0         |    <0.001 |
+|   input_image_U                                              |     0.004 |
+|     detect_face_input_image_ram_U                            |     0.004 |
+|   integral_image_U                                           |     0.005 |
+|     detect_face_integral_image_ram_U                         |     0.005 |
++--------------------------------------------------------------+-----------+
+
+

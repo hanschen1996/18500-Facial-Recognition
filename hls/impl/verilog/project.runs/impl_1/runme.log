@@ -1,0 +1,705 @@
+
+*** Running vivado
+    with args -log detect_face.vdi -applog -m64 -messageDb vivado.pb -mode batch -source detect_face.tcl -notrace
+
+
+****** Vivado v2016.2 (64-bit)
+  **** SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+  **** IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source detect_face.tcl -notrace
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+INFO: [Netlist 29-17] Analyzing 1114 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.2
+INFO: [Device 21-403] Loading part xc7k325tffg900-2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.xdc]
+CRITICAL WARNING: [Common 17-69] Command failed: Port ap_clk is not a partition pin, the pin is already buffered; cannot set clk src on ports that are already buffered. [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.xdc:2]
+Finished Parsing XDC File [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/detect_face.xdc]
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+link_design: Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1482.758 ; gain = 418.926 ; free physical = 207333 ; free virtual = 257902
+INFO: [Vivado_Tcl 4-424] Cannot write hardware definition file as there are no IPI block design hardware handoff files present
+Command: opt_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7k325t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7k325t'
+Running DRC as a precondition to command opt_design
+
+Starting DRC Task
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Project 1-461] DRC finished with 0 Errors
+INFO: [Project 1-462] Please refer to the DRC report (report_drc) for more information.
+
+Time (s): cpu = 00:00:00.15 ; elapsed = 00:00:00.13 . Memory (MB): peak = 1558.793 ; gain = 68.031 ; free physical = 207328 ; free virtual = 257897
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Starting Logic Optimization Task
+Implement Debug Cores | Checksum: f03435d7
+
+Phase 1 Retarget
+INFO: [Opt 31-138] Pushed 1 inverter(s) to 2 load pin(s).
+INFO: [Opt 31-49] Retargeted 0 cell(s).
+Phase 1 Retarget | Checksum: f26bde63
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 2020.434 ; gain = 0.000 ; free physical = 206906 ; free virtual = 257492
+
+Phase 2 Constant Propagation
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+INFO: [Opt 31-10] Eliminated 442 cells.
+Phase 2 Constant Propagation | Checksum: db172885
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 2020.434 ; gain = 0.000 ; free physical = 206904 ; free virtual = 257489
+
+Phase 3 Sweep
+INFO: [Opt 31-12] Eliminated 5391 unconnected nets.
+INFO: [Opt 31-11] Eliminated 233 unconnected cells.
+Phase 3 Sweep | Checksum: 148bf763f
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2020.434 ; gain = 0.000 ; free physical = 206902 ; free virtual = 257487
+
+Starting Connectivity Check Task
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2020.434 ; gain = 0.000 ; free physical = 206902 ; free virtual = 257487
+Ending Logic Optimization Task | Checksum: 148bf763f
+
+Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 2020.434 ; gain = 0.000 ; free physical = 206902 ; free virtual = 257487
+
+Starting Power Optimization Task
+INFO: [Pwropt 34-132] Skipping clock gating for clocks with a period < 2.00 ns.
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+INFO: [Pwropt 34-9] Applying IDT optimizations ...
+INFO: [Pwropt 34-10] Applying ODC optimizations ...
+
+
+Starting PowerOpt Patch Enables Task
+INFO: [Pwropt 34-162] WRITE_MODE attribute of 0 BRAM(s) out of a total of 68 has been updated to save power. Run report_power_opt to get a complete listing of the BRAMs updated.
+INFO: [Pwropt 34-201] Structural ODC has moved 0 WE to EN ports
+Number of BRAM Ports augmented: 0 newly gated: 0 Total Ports: 136
+Ending PowerOpt Patch Enables Task | Checksum: 148bf763f
+
+Time (s): cpu = 00:00:00.05 ; elapsed = 00:00:00.04 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206658 ; free virtual = 257244
+Ending Power Optimization Task | Checksum: 148bf763f
+
+Time (s): cpu = 00:00:08 ; elapsed = 00:00:05 . Memory (MB): peak = 2378.742 ; gain = 358.309 ; free physical = 206658 ; free virtual = 257244
+INFO: [Common 17-83] Releasing license: Implementation
+26 Infos, 0 Warnings, 1 Critical Warnings and 0 Errors encountered.
+opt_design completed successfully
+opt_design: Time (s): cpu = 00:00:21 ; elapsed = 00:00:15 . Memory (MB): peak = 2378.742 ; gain = 895.984 ; free physical = 206658 ; free virtual = 257244
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/project.runs/impl_1/detect_face_drc_opted.rpt.
+INFO: [Chipscope 16-241] No debug cores found in the current design.
+Before running the implement_debug_core command, either use the Set Up Debug wizard (GUI mode)
+or use the create_debug_core and connect_debug_core Tcl commands to insert debug cores into the design.
+Command: place_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7k325t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7k325t'
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+Running DRC as a precondition to command place_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+Starting Placer Task
+INFO: [Place 30-611] Multithreading enabled for place_design using a maximum of 8 CPUs
+
+Phase 1 Placer Initialization
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+
+Phase 1.1 IO Placement/ Clock Placement/ Build Placer Device
+
+Phase 1.1.1 ParallelPlaceIOClockAndInitTop
+
+Phase 1.1.1.1 Pre-Place Cells
+Phase 1.1.1.1 Pre-Place Cells | Checksum: 00000000
+
+Time (s): cpu = 00:00:00.11 ; elapsed = 00:00:00.12 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+
+Phase 1.1.1.2 Constructing HAPIClkRuleMgr
+Phase 1.1.1.2 Constructing HAPIClkRuleMgr | Checksum: 00000000
+
+Time (s): cpu = 00:00:00.24 ; elapsed = 00:00:00.47 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+
+Phase 1.1.1.3 ClockRegionPlacementChecker
+
+Phase 1.1.1.5 IOBufferPlacementChecker
+
+Phase 1.1.1.4 DSPChecker
+
+Phase 1.1.1.6 IOLockPlacementChecker
+Phase 1.1.1.4 DSPChecker | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.93 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+
+Phase 1.1.1.7 V7IOVoltageChecker
+Phase 1.1.1.7 V7IOVoltageChecker | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.94 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+
+Phase 1.1.1.8 OverlappingPBlocksChecker
+Phase 1.1.1.8 OverlappingPBlocksChecker | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.94 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+Phase 1.1.1.6 IOLockPlacementChecker | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.94 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+
+Phase 1.1.1.9 CheckerForMandatoryPrePlacedCells
+Phase 1.1.1.9 CheckerForMandatoryPrePlacedCells | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.94 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+
+Phase 1.1.1.10 CascadeElementConstraintsChecker
+Phase 1.1.1.10 CascadeElementConstraintsChecker | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.94 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+
+Phase 1.1.1.11 HdioRelatedChecker
+Phase 1.1.1.5 IOBufferPlacementChecker | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.95 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+
+Phase 1.1.1.12 DisallowedInsts
+Phase 1.1.1.12 DisallowedInsts | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.95 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+Phase 1.1.1.11 HdioRelatedChecker | Checksum: 00000000
+
+Phase 1.1.1.13 Laguna PBlock Checker
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.95 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+Phase 1.1.1.13 Laguna PBlock Checker | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.95 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+
+Phase 1.1.1.14 ShapePlacementValidityChecker
+Phase 1.1.1.3 ClockRegionPlacementChecker | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.96 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257240
+
+Phase 1.1.1.15 CheckerForUnsupportedConstraints
+Phase 1.1.1.15 CheckerForUnsupportedConstraints | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.96 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257241
+
+Phase 1.1.1.16 ShapesExcludeCompatibilityChecker
+Phase 1.1.1.16 ShapesExcludeCompatibilityChecker | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.97 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257241
+
+Phase 1.1.1.17 IOStdCompatabilityChecker
+Phase 1.1.1.17 IOStdCompatabilityChecker | Checksum: 00000000
+
+Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.97 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206650 ; free virtual = 257241
+Phase 1.1.1.14 ShapePlacementValidityChecker | Checksum: 00000000
+
+Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 1.1.1.18 IO and Clk Clean Up
+
+Phase 1.1.1.18.1 Constructing HAPIClkRuleMgr
+Phase 1.1.1.18.1 Constructing HAPIClkRuleMgr | Checksum: 00000000
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+Phase 1.1.1.18 IO and Clk Clean Up | Checksum: 00000000
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+
+Phase 1.1.1.19 Implementation Feasibility check On IDelay
+Phase 1.1.1.19 Implementation Feasibility check On IDelay | Checksum: 00000000
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+
+Phase 1.1.1.20 Commit IO Placement
+Phase 1.1.1.20 Commit IO Placement | Checksum: 0636e971
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+Phase 1.1.1 ParallelPlaceIOClockAndInitTop | Checksum: 0636e971
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+Phase 1.1 IO Placement/ Clock Placement/ Build Placer Device | Checksum: e6969b40
+
+Time (s): cpu = 00:00:05 ; elapsed = 00:00:04 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+
+Phase 1.2 Build Placer Netlist Model
+
+Phase 1.2.1 Place Init Design
+
+Phase 1.2.1.1 Make Others
+Phase 1.2.1.1 Make Others | Checksum: 1b547444b
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206649 ; free virtual = 257240
+
+Phase 1.2.1.2 Init Lut Pin Assignment
+Phase 1.2.1.2 Init Lut Pin Assignment | Checksum: 1b547444b
+
+Time (s): cpu = 00:00:06 ; elapsed = 00:00:04 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206648 ; free virtual = 257239
+Phase 1.2.1 Place Init Design | Checksum: 16d701ba8
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206647 ; free virtual = 257238
+Phase 1.2 Build Placer Netlist Model | Checksum: 16d701ba8
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206647 ; free virtual = 257238
+
+Phase 1.3 Constrain Clocks/Macros
+Phase 1.3 Constrain Clocks/Macros | Checksum: 16d701ba8
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206647 ; free virtual = 257238
+Phase 1 Placer Initialization | Checksum: 16d701ba8
+
+Time (s): cpu = 00:00:10 ; elapsed = 00:00:06 . Memory (MB): peak = 2378.742 ; gain = 0.000 ; free physical = 206647 ; free virtual = 257238
+
+Phase 2 Global Placement
+Phase 2 Global Placement | Checksum: 20f2d6757
+
+Time (s): cpu = 00:00:23 ; elapsed = 00:00:12 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206640 ; free virtual = 257231
+
+Phase 3 Detail Placement
+
+Phase 3.1 Commit Multi Column Macros
+Phase 3.1 Commit Multi Column Macros | Checksum: 20f2d6757
+
+Time (s): cpu = 00:00:24 ; elapsed = 00:00:12 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206640 ; free virtual = 257231
+
+Phase 3.2 Commit Most Macros & LUTRAMs
+Phase 3.2 Commit Most Macros & LUTRAMs | Checksum: 1745665a1
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:14 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 3.3 Area Swap Optimization
+Phase 3.3 Area Swap Optimization | Checksum: 1db2ae85e
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:14 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 3.4 updateClock Trees: DP
+Phase 3.4 updateClock Trees: DP | Checksum: 1db2ae85e
+
+Time (s): cpu = 00:00:27 ; elapsed = 00:00:14 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 3.5 Timing Path Optimizer
+Phase 3.5 Timing Path Optimizer | Checksum: 1a4601c15
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:14 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 3.6 Fast Optimization
+Phase 3.6 Fast Optimization | Checksum: 1a4601c15
+
+Time (s): cpu = 00:00:28 ; elapsed = 00:00:14 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 3.7 Small Shape Detail Placement
+Phase 3.7 Small Shape Detail Placement | Checksum: 20a49ebbd
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:16 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 3.8 Re-assign LUT pins
+Phase 3.8 Re-assign LUT pins | Checksum: 24c3e0902
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:16 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 3.9 Pipeline Register Optimization
+Phase 3.9 Pipeline Register Optimization | Checksum: 24c3e0902
+
+Time (s): cpu = 00:00:30 ; elapsed = 00:00:16 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 3.10 Fast Optimization
+Phase 3.10 Fast Optimization | Checksum: 24c3e0902
+
+Time (s): cpu = 00:00:31 ; elapsed = 00:00:17 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206644 ; free virtual = 257235
+Phase 3 Detail Placement | Checksum: 24c3e0902
+
+Time (s): cpu = 00:00:31 ; elapsed = 00:00:17 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206644 ; free virtual = 257235
+
+Phase 4 Post Placement Optimization and Clean-Up
+
+Phase 4.1 Post Commit Optimization
+INFO: [Timing 38-35] Done setting XDC timing constraints.
+
+Phase 4.1.1 updateClock Trees: PCOPT
+Phase 4.1.1 updateClock Trees: PCOPT | Checksum: 272e2ea03
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:18 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206642 ; free virtual = 257233
+
+Phase 4.1.2 Post Placement Optimization
+INFO: [Place 30-746] Post Placement Timing Summary WNS=4.650. For the most accurate timing information please run report_timing.
+Phase 4.1.2 Post Placement Optimization | Checksum: 14ffb2958
+
+Time (s): cpu = 00:00:35 ; elapsed = 00:00:18 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+Phase 4.1 Post Commit Optimization | Checksum: 14ffb2958
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:18 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 4.2 Sweep Clock Roots: Post-Placement
+Phase 4.2 Sweep Clock Roots: Post-Placement | Checksum: 14ffb2958
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:18 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 4.3 Uram Pipeline Register Optimization
+Phase 4.3 Uram Pipeline Register Optimization | Checksum: 14ffb2958
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:18 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 4.4 Post Placement Cleanup
+Phase 4.4 Post Placement Cleanup | Checksum: 14ffb2958
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:18 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 4.5 Placer Reporting
+Phase 4.5 Placer Reporting | Checksum: 14ffb2958
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:18 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+
+Phase 4.6 Final Placement Cleanup
+Phase 4.6 Final Placement Cleanup | Checksum: 1859f0547
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:18 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+Phase 4 Post Placement Optimization and Clean-Up | Checksum: 1859f0547
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:18 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+Ending Placer Task | Checksum: 13c98bae7
+
+Time (s): cpu = 00:00:36 ; elapsed = 00:00:18 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+INFO: [Common 17-83] Releasing license: Implementation
+41 Infos, 0 Warnings, 1 Critical Warnings and 0 Errors encountered.
+place_design completed successfully
+place_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:19 . Memory (MB): peak = 2402.754 ; gain = 24.012 ; free physical = 206643 ; free virtual = 257234
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2402.754 ; gain = 0.000 ; free physical = 206615 ; free virtual = 257233
+report_io: Time (s): cpu = 00:00:00.18 ; elapsed = 00:00:00.27 . Memory (MB): peak = 2402.754 ; gain = 0.000 ; free physical = 206630 ; free virtual = 257229
+report_utilization: Time (s): cpu = 00:00:00.08 ; elapsed = 00:00:00.15 . Memory (MB): peak = 2402.754 ; gain = 0.000 ; free physical = 206627 ; free virtual = 257226
+report_control_sets: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.09 . Memory (MB): peak = 2402.754 ; gain = 0.000 ; free physical = 206628 ; free virtual = 257227
+Command: route_design
+Attempting to get a license for feature 'Implementation' and/or device 'xc7k325t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7k325t'
+Running DRC as a precondition to command route_design
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Vivado_Tcl 4-198] DRC finished with 0 Errors
+INFO: [Vivado_Tcl 4-199] Please refer to the DRC report (report_drc) for more information.
+
+
+Starting Routing Task
+INFO: [Route 35-254] Multithreading enabled for route_design using a maximum of 8 CPUs
+Checksum: PlaceDB: c00d8548 ConstDB: 0 ShapeSum: 7c8b359f RouteDB: 0
+
+Phase 1 Build RT Design
+Phase 1 Build RT Design | Checksum: ef3138a3
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:16 . Memory (MB): peak = 2473.793 ; gain = 71.039 ; free physical = 206475 ; free virtual = 257074
+
+Phase 2 Router Initialization
+
+Phase 2.1 Create Timer
+Phase 2.1 Create Timer | Checksum: ef3138a3
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:16 . Memory (MB): peak = 2473.793 ; gain = 71.039 ; free physical = 206474 ; free virtual = 257073
+
+Phase 2.2 Fix Topology Constraints
+Phase 2.2 Fix Topology Constraints | Checksum: ef3138a3
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:16 . Memory (MB): peak = 2473.793 ; gain = 71.039 ; free physical = 206458 ; free virtual = 257056
+
+Phase 2.3 Pre Route Cleanup
+Phase 2.3 Pre Route Cleanup | Checksum: ef3138a3
+
+Time (s): cpu = 00:00:29 ; elapsed = 00:00:16 . Memory (MB): peak = 2473.793 ; gain = 71.039 ; free physical = 206458 ; free virtual = 257056
+ Number of Nodes with overlaps = 0
+
+Phase 2.4 Update Timing
+Phase 2.4 Update Timing | Checksum: 186209942
+
+Time (s): cpu = 00:00:34 ; elapsed = 00:00:19 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206403 ; free virtual = 257001
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=5.084  | TNS=0.000  | WHS=-0.370 | THS=-141.861|
+
+Phase 2 Router Initialization | Checksum: 1a06b8fc5
+
+Time (s): cpu = 00:00:37 ; elapsed = 00:00:19 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206403 ; free virtual = 257002
+
+Phase 3 Initial Routing
+Phase 3 Initial Routing | Checksum: 164cbcbe3
+
+Time (s): cpu = 00:00:41 ; elapsed = 00:00:20 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206403 ; free virtual = 257001
+
+Phase 4 Rip-up And Reroute
+
+Phase 4.1 Global Iteration 0
+ Number of Nodes with overlaps = 474
+ Number of Nodes with overlaps = 1
+ Number of Nodes with overlaps = 0
+
+Phase 4.1.1 Update Timing
+Phase 4.1.1 Update Timing | Checksum: 183e3418b
+
+Time (s): cpu = 00:00:48 ; elapsed = 00:00:22 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257003
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=3.563  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 4.1 Global Iteration 0 | Checksum: 191fc229f
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:22 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257003
+Phase 4 Rip-up And Reroute | Checksum: 191fc229f
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:22 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257003
+
+Phase 5 Delay and Skew Optimization
+
+Phase 5.1 Delay CleanUp
+
+Phase 5.1.1 Update Timing
+Phase 5.1.1 Update Timing | Checksum: 140a5426e
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:22 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257003
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=3.655  | TNS=0.000  | WHS=N/A    | THS=N/A    |
+
+Phase 5.1 Delay CleanUp | Checksum: 140a5426e
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:22 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257003
+
+Phase 5.2 Clock Skew Optimization
+Phase 5.2 Clock Skew Optimization | Checksum: 140a5426e
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:22 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257003
+Phase 5 Delay and Skew Optimization | Checksum: 140a5426e
+
+Time (s): cpu = 00:00:49 ; elapsed = 00:00:22 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257003
+
+Phase 6 Post Hold Fix
+
+Phase 6.1 Hold Fix Iter
+
+Phase 6.1.1 Update Timing
+Phase 6.1.1 Update Timing | Checksum: 1c4952ab7
+
+Time (s): cpu = 00:00:50 ; elapsed = 00:00:22 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257004
+INFO: [Route 35-416] Intermediate Timing Summary | WNS=3.655  | TNS=0.000  | WHS=0.081  | THS=0.000  |
+
+Phase 6.1 Hold Fix Iter | Checksum: 1c4952ab7
+
+Time (s): cpu = 00:00:50 ; elapsed = 00:00:23 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257004
+Phase 6 Post Hold Fix | Checksum: 1c4952ab7
+
+Time (s): cpu = 00:00:50 ; elapsed = 00:00:23 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257004
+
+Phase 7 Route finalize
+
+Router Utilization Summary
+  Global Vertical Routing Utilization    = 1.06987 %
+  Global Horizontal Routing Utilization  = 0.830408 %
+  Routable Net Status*
+  *Does not include unroutable nets such as driverless and loadless.
+  Run report_route_status for detailed report.
+  Number of Failed Nets               = 0
+  Number of Unrouted Nets             = 0
+  Number of Partially Routed Nets     = 0
+  Number of Node Overlaps             = 0
+
+Phase 7 Route finalize | Checksum: 1267ca4b9
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:23 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257004
+
+Phase 8 Verifying routed nets
+
+ Verification completed successfully
+Phase 8 Verifying routed nets | Checksum: 1267ca4b9
+
+Time (s): cpu = 00:00:51 ; elapsed = 00:00:23 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257004
+
+Phase 9 Depositing Routes
+Phase 9 Depositing Routes | Checksum: 104d3f876
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:23 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257004
+
+Phase 10 Post Router Timing
+INFO: [Route 35-57] Estimated Timing Summary | WNS=3.655  | TNS=0.000  | WHS=0.081  | THS=0.000  |
+
+INFO: [Route 35-327] The final timing numbers are based on the router estimated timing analysis. For a complete and accurate timing signoff, please run report_timing_summary.
+Phase 10 Post Router Timing | Checksum: 104d3f876
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:23 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257004
+INFO: [Route 35-16] Router Completed Successfully
+
+Time (s): cpu = 00:00:52 ; elapsed = 00:00:23 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257004
+
+Routing Is Done.
+INFO: [Common 17-83] Releasing license: Implementation
+54 Infos, 0 Warnings, 1 Critical Warnings and 0 Errors encountered.
+route_design completed successfully
+route_design: Time (s): cpu = 00:00:53 ; elapsed = 00:00:24 . Memory (MB): peak = 2522.664 ; gain = 119.910 ; free physical = 206405 ; free virtual = 257004
+Writing placer database...
+Writing XDEF routing.
+Writing XDEF routing logical nets.
+Writing XDEF routing special nets.
+Write XDEF Complete: Time (s): cpu = 00:00:03 ; elapsed = 00:00:01 . Memory (MB): peak = 2522.664 ; gain = 0.000 ; free physical = 206370 ; free virtual = 257004
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/project.runs/impl_1/detect_face_drc_routed.rpt.
+INFO: [Timing 38-91] UpdateTimingParams: Speed grade: -2, Delay Type: min_max.
+INFO: [Timing 38-191] Multithreading enabled for timing update using a maximum of 8 CPUs
+Running Vector-less Activity Propagation...
+
+Finished Running Vector-less Activity Propagation
+INFO: [Common 17-206] Exiting Vivado at Fri Apr 19 04:05:47 2019...
+
+*** Running vivado
+    with args -log detect_face.vdi -applog -m64 -messageDb vivado.pb -mode batch -source detect_face.tcl -notrace
+
+
+****** Vivado v2016.2 (64-bit)
+  **** SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+  **** IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+    ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+
+source detect_face.tcl -notrace
+Command: open_checkpoint detect_face_routed.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.02 . Memory (MB): peak = 1057.820 ; gain = 0.000 ; free physical = 207574 ; free virtual = 258193
+INFO: [Netlist 29-17] Analyzing 1095 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.2
+INFO: [Device 21-403] Loading part xc7k325tffg900-2
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/project.runs/impl_1/.Xil/Vivado-93070-ece030.ece.local.cmu.edu/dcp/detect_face.xdc]
+Finished Parsing XDC File [/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/verilog/project.runs/impl_1/.Xil/Vivado-93070-ece030.ece.local.cmu.edu/dcp/detect_face.xdc]
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:00.50 ; elapsed = 00:00:00.53 . Memory (MB): peak = 1435.734 ; gain = 13.000 ; free physical = 207226 ; free virtual = 257882
+Restored from archive | CPU: 0.530000 secs | Memory: 12.302979 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.50 ; elapsed = 00:00:00.53 . Memory (MB): peak = 1435.734 ; gain = 13.000 ; free physical = 207226 ; free virtual = 257882
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2016.2 (64-bit) build 1577090
+open_checkpoint: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1435.734 ; gain = 377.914 ; free physical = 207262 ; free virtual = 257883
+Attempting to get a license for feature 'Implementation' and/or device 'xc7k325t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7k325t'
+Running DRC as a precondition to command write_bitstream
+INFO: [DRC 23-27] Running DRC with 8 threads
+ERROR: [DRC 23-20] Rule violation (NSTD-1) Unspecified I/O Standard - 246 out of 246 logical ports use I/O standard (IOSTANDARD) value 'DEFAULT', instead of a user assigned specific value. This may cause I/O contention or incompatibility with the board power or connectivity affecting performance, signal integrity or in extreme cases cause damage to the device or the components to which it is connected. To correct this violation, specify all I/O standards. This design will fail to generate a bitstream unless all logical ports have a user specified I/O standard value defined. To allow bitstream creation with unspecified I/O standard values (not recommended), use this command: set_property SEVERITY {Warning} [get_drc_checks NSTD-1].  NOTE: When using the Vivado Runs infrastructure (e.g. launch_runs Tcl command), add this command to a .tcl file and add that file as a pre-hook for write_bitstream step for the implementation run. Problem ports: pixel[7:0], result_x1_address0[5:0], result_x1_d0[31:0], result_y1_address0[5:0], result_y1_d0[31:0], result_x2_address0[5:0], result_x2_d0[31:0], result_y2_address0[5:0], result_y2_d0[31:0], result_score_address0[5:0], result_score_d0[31:0], ap_return[31:0], result_score_we0, ap_rst, ap_start (the first 15 of 28 listed).
+ERROR: [DRC 23-20] Rule violation (UCIO-1) Unconstrained Logical Port - 246 out of 246 logical ports have no user assigned specific location constraint (LOC). This may cause I/O contention or incompatibility with the board power or connectivity affecting performance, signal integrity or in extreme cases cause damage to the device or the components to which it is connected. To correct this violation, specify all pin locations. This design will fail to generate a bitstream unless all logical ports have a user specified site LOC constraint defined.  To allow bitstream creation with unspecified pin locations (not recommended), use this command: set_property SEVERITY {Warning} [get_drc_checks UCIO-1].  NOTE: When using the Vivado Runs infrastructure (e.g. launch_runs Tcl command), add this command to a .tcl file and add that file as a pre-hook for write_bitstream step for the implementation run.  Problem ports: pixel[7:0], result_x1_address0[5:0], result_x1_d0[31:0], result_y1_address0[5:0], result_y1_d0[31:0], result_x2_address0[5:0], result_x2_d0[31:0], result_y2_address0[5:0], result_y2_d0[31:0], result_score_address0[5:0], result_score_d0[31:0], ap_return[31:0], result_score_we0, ap_rst, ap_start (the first 15 of 28 listed).
+WARNING: [DRC 23-20] Rule violation (CFGBVS-1) Missing CFGBVS and CONFIG_VOLTAGE Design Properties - Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
+
+ set_property CFGBVS value1 [current_design]
+ #where value1 is either VCCO or GND
+
+ set_property CONFIG_VOLTAGE value2 [current_design]
+ #where value2 is the voltage provided to configuration bank 0
+
+Refer to the device configuration user guide for more information.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP1/DSP input detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP1/DSP/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP input detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP3/DSP/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP4/DSP input detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP4/DSP/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP6/DSP input detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP6/DSP/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/R_AND_R/LOGIC.R_AND_R/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP input detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/R_AND_R/LOGIC.R_AND_R/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/R_AND_R/LOGIC.R_AND_R/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP input detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/R_AND_R/LOGIC.R_AND_R/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP input detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP input detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2 input grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2 input grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2__0 input grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2__0 input grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/bound_reg_1939_reg__0 input grp_detect_face_cascade_classifier_fu_311/bound_reg_1939_reg__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/bound_reg_1939_reg__0 input grp_detect_face_cascade_classifier_fu_311/bound_reg_1939_reg__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/bound_reg_1939_reg__2 input grp_detect_face_cascade_classifier_fu_311/bound_reg_1939_reg__2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/bound_reg_1939_reg__2 input grp_detect_face_cascade_classifier_fu_311/bound_reg_1939_reg__2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP input grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP input grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP input grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP input grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP/C[47:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2 input grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2 input grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__0 input grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__0 input grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__1 input grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__1/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__1 input grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2 input grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2 input grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__0 input grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__0 input grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__1 input grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__1/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__1 input grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2 input grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2 input grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__0 input grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__0 input grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__1 input grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__1/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__1 input grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__1/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_56_fu_1543_p2 input grp_detect_face_cascade_classifier_fu_311/tmp_56_fu_1543_p2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_56_reg_2313_reg__0 input grp_detect_face_cascade_classifier_fu_311/tmp_56_reg_2313_reg__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_57_fu_1571_p2 input grp_detect_face_cascade_classifier_fu_311/tmp_57_fu_1571_p2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_57_reg_2328_reg__0 input grp_detect_face_cascade_classifier_fu_311/tmp_57_reg_2328_reg__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_58_fu_1597_p2 input grp_detect_face_cascade_classifier_fu_311/tmp_58_fu_1597_p2/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_58_fu_1597_p2__0 input grp_detect_face_cascade_classifier_fu_311/tmp_58_fu_1597_p2__0/A[29:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_downscale_fu_376/tmp_17_mid2_v_v_fu_240_p2 input grp_detect_face_downscale_fu_376/tmp_17_mid2_v_v_fu_240_p2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_downscale_fu_376/tmp_4_fu_302_p2 input grp_detect_face_downscale_fu_376/tmp_4_fu_302_p2/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPIP-1) Input pipelining - DSP grp_detect_face_downscale_fu_376/tmp_4_fu_302_p2__0 input grp_detect_face_downscale_fu_376/tmp_4_fu_302_p2__0/B[17:0] is not pipelined. Pipelining DSP48 input will improve performance.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP0/DSP output detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP0/DSP/PATTERNDETECT is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP2/DSP output detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP2/DSP/PATTERNDETECT is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP7/DSP output detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP7/DSP/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP8/DSP output detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP8/DSP/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/FULL_MAX_USAGE.DSP9/DSP output detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/FULL_MAX_USAGE.DSP9/DSP/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/R_AND_R/LOGIC.R_AND_R/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP output detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/R_AND_R/LOGIC.R_AND_R/DSP48_E1.DSP48E1_ADD.DSP48E1_ADD/DSP/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP output detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP/PATTERNDETECT is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP output detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP/PATTERNDETECT is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP output detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP output detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP/CARRYOUT[3:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP output detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2 output grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2__0 output grp_detect_face_cascade_classifier_fu_311/bound_fu_759_p2__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP output grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP/PATTERNDETECT is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP output grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP/PATTERNDETECT is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP output grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP output grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP/CARRYOUT[3:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP output grp_detect_face_cascade_classifier_fu_311/detect_face_fmul_32ns_32ns_32_1_max_dsp_U8/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/R_AND_R/LAT_OPT.FULL.R_AND_R/DSP48E1_SGL_EXP_IP.OLD_ADD.ADD/DSP/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/detect_face_mul_mul_8s_16ns_24_1_U10/detect_face_mul_mul_8s_16ns_24_1_DSP48_0_U/p output grp_detect_face_cascade_classifier_fu_311/detect_face_mul_mul_8s_16ns_24_1_U10/detect_face_mul_mul_8s_16ns_24_1_DSP48_0_U/p/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_24_fu_938_p2 output grp_detect_face_cascade_classifier_fu_311/tmp_24_fu_938_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_24_fu_938_p2__0 output grp_detect_face_cascade_classifier_fu_311/tmp_24_fu_938_p2__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_24_fu_938_p2__1 output grp_detect_face_cascade_classifier_fu_311/tmp_24_fu_938_p2__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_25_fu_942_p2 output grp_detect_face_cascade_classifier_fu_311/tmp_25_fu_942_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_25_fu_942_p2__0 output grp_detect_face_cascade_classifier_fu_311/tmp_25_fu_942_p2__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_25_fu_942_p2__1 output grp_detect_face_cascade_classifier_fu_311/tmp_25_fu_942_p2__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2 output grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__0 output grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__1 output grp_detect_face_cascade_classifier_fu_311/tmp_26_fu_946_p2__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2 output grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__0 output grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__1 output grp_detect_face_cascade_classifier_fu_311/tmp_27_fu_952_p2__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2 output grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__0 output grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__1 output grp_detect_face_cascade_classifier_fu_311/tmp_33_fu_1010_p2__1/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_56_fu_1543_p2 output grp_detect_face_cascade_classifier_fu_311/tmp_56_fu_1543_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_57_fu_1571_p2 output grp_detect_face_cascade_classifier_fu_311/tmp_57_fu_1571_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_58_fu_1597_p2 output grp_detect_face_cascade_classifier_fu_311/tmp_58_fu_1597_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_cascade_classifier_fu_311/tmp_58_fu_1597_p2__0 output grp_detect_face_cascade_classifier_fu_311/tmp_58_fu_1597_p2__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_downscale_fu_376/tmp_17_mid2_v_v_fu_240_p2 output grp_detect_face_downscale_fu_376/tmp_17_mid2_v_v_fu_240_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_downscale_fu_376/tmp_4_fu_302_p2 output grp_detect_face_downscale_fu_376/tmp_4_fu_302_p2/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-1) PREG Output pipelining - DSP grp_detect_face_downscale_fu_376/tmp_4_fu_302_p2__0 output grp_detect_face_downscale_fu_376/tmp_4_fu_302_p2__0/P[47:0] is not pipelined (PREG=0). Pipelining the DSP48 output will improve performance and often saves power so it is suggested whenever possible to fully pipeline this function.  If this DSP48 function was inferred, it is suggested to describe an additional register stage after this function.  If the DSP48 was instantiated in the design, it is suggested to set the PREG attribute to 1.
+WARNING: [DRC 23-20] Rule violation (DPOP-2) MREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP0/DSP multiplier stage detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP0/DSP/PATTERNDETECT is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC 23-20] Rule violation (DPOP-2) MREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP2/DSP multiplier stage detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP2/DSP/PATTERNDETECT is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC 23-20] Rule violation (DPOP-2) MREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP5/DSP multiplier stage detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP5/DSP/PATTERNDETECT is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC 23-20] Rule violation (DPOP-2) MREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP7/DSP multiplier stage detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP7/DSP/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC 23-20] Rule violation (DPOP-2) MREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP8/DSP multiplier stage detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/DSP8/DSP/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC 23-20] Rule violation (DPOP-2) MREG Output pipelining - DSP detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/FULL_MAX_USAGE.DSP9/DSP multiplier stage detect_face_dmul_64ns_64ns_64_4_max_dsp_U47/detect_face_ap_dmul_2_max_dsp_64_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_DBL_VARIANT.FIX_MULT/FULL_MAX_USAGE.DSP9/DSP/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC 23-20] Rule violation (DPOP-2) MREG Output pipelining - DSP detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP multiplier stage detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP1/DSP/PATTERNDETECT is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC 23-20] Rule violation (DPOP-2) MREG Output pipelining - DSP detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP multiplier stage detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP/PATTERNDETECT is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+WARNING: [DRC 23-20] Rule violation (DPOP-2) MREG Output pipelining - DSP detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP multiplier stage detect_face_fmul_32ns_32ns_32_1_max_dsp_U42/detect_face_ap_fmul_0_max_dsp_32_u/U0/i_synth/MULT.OP/MULT/DSP48E1_SPD_SGL_VARIANT.FIX_MULT/DSP2/DSP/P[47:0] is not pipelined (MREG=0). Pipelining the multiplier function will improve performance and will save significant power so it is suggested whenever possible to fully pipeline this function.  If this multiplier was inferred, it is suggested to describe an additional register stage after this function.  If there is no registered adder/accumulator following the multiply function, two pipeline stages are suggested to allow both the MREG and PREG registers to be used.  If the DSP48 was instantiated in the design, it is suggested to set both the MREG and PREG attributes to 1 when performing multiply functions.
+INFO: [Common 17-14] Message 'DRC 23-20' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Vivado 12-3199] DRC finished with 2 Errors, 130 Warnings, 20 Advisories
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+ERROR: [Vivado 12-1345] Error(s) found during DRC. Bitgen not run.
+INFO: [Common 17-83] Releasing license: Implementation
+ERROR: [Common 17-39] 'write_bitstream' failed due to earlier errors.
+
+INFO: [Common 17-206] Exiting Vivado at Fri Apr 19 04:06:11 2019...

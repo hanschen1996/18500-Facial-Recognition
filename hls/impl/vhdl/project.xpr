@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Product Version: Vivado v2016.4 (64-bit)              -->
+<!-- Product Version: Vivado v2016.2 (64-bit)              -->
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="17" Path="F:/CMU/Classes/18500/vivado_hls/FacialDetection/solution1/impl/vhdl/project.xpr">
+<Project Version="7" Minor="14" Path="/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/vhdl/project.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="8c3a0d760ac9424c85583b2a4440a6e7"/>
+    <Option Name="Id" Val="b82f7ee350ad4886b3f103dbb2a8be44"/>
     <Option Name="Part" Val="xc7k325tffg900-2"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -20,15 +20,11 @@
     <Option Name="BoardPart" Val=""/>
     <Option Name="ActiveSimSet" Val="sim_1"/>
     <Option Name="DefaultLib" Val="xil_defaultlib"/>
-    <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
-    <Option Name="IPCachePermission" Val="read"/>
-    <Option Name="IPCachePermission" Val="write"/>
     <Option Name="EnableCoreContainer" Val="FALSE"/>
     <Option Name="CreateRefXciForCoreContainers" Val="FALSE"/>
     <Option Name="IPUserFilesDir" Val="$PPRDIR/project.ip_user_files"/>
     <Option Name="IPStaticSourceDir" Val="$PPRDIR/project.ip_user_files/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
-    <Option Name="DSANumComputeUnits" Val="16"/>
     <Option Name="WTXSimLaunchSim" Val="0"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
@@ -43,136 +39,101 @@
     <Option Name="WTVcsExportSim" Val="0"/>
     <Option Name="WTRivieraExportSim" Val="0"/>
     <Option Name="WTActivehdlExportSim" Val="0"/>
-    <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
-    <Option Name="XSimRadix" Val="hex"/>
-    <Option Name="XSimTimeUnit" Val="ns"/>
-    <Option Name="XSimArrayDisplayLimit" Val="64"/>
-    <Option Name="XSimTraceLimit" Val="65536"/>
   </Configuration>
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/cascade_classifieeOg.vhd">
+      <File Path="$PPRDIR/detect_face_fmul_32ns_32ns_32_1_max_dsp.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifiefYi.vhd">
+      <File Path="$PPRDIR/detect_face_uitofp_32ns_32_1.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifieg8j.vhd">
+      <File Path="$PPRDIR/detect_face_fdiv_32ns_32ns_32_6.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifiehbi.vhd">
+      <File Path="$PPRDIR/detect_face_fptrunc_64ns_32_1.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifieibs.vhd">
+      <File Path="$PPRDIR/detect_face_fpext_32ns_64_1.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifiejbC.vhd">
+      <File Path="$PPRDIR/detect_face_dmul_64ns_64ns_64_4_max_dsp.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifiekbM.vhd">
+      <File Path="$PPRDIR/detect_face_udiv_25ns_32ns_32_29_seq.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifielbW.vhd">
+      <File Path="$PPRDIR/detect_face_udiv_24ns_32ns_32_28_seq.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifiemb6.vhd">
+      <File Path="$PPRDIR/detect_face_mul_mul_8s_16ns_24_1.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifiencg.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_STAGE_THRESH.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifieocq.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_STAGE_NUM_FEATURE.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifiepcA.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_FEATURE_THRESH.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifieqcK.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_FEATURE_ABOVE.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifier.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_FEATURE_BELOW.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifiercU.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT1_X.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/cascade_classifiesc4.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/cascade_classifietde.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/cascade_classifieudo.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/cascade_classifievdy.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/cascade_classifiewdI.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/cascade_classifiexdS.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT1_Y.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -184,133 +145,117 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_dmul_JfO.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT1_WIDTH.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_dsqrtCeG.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT1_HEIGHT.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_fadd_yd2.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT1_WEIGHT.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_fdiv_Gfk.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT2_X.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_fmul_zec.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT2_Y.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_fpextIfE.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT2_WIDTH.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_fptruHfu.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT2_HEIGHT.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_image.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT2_WEIGHT.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_integEe0.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT3_X.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_mac_mKfY.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT3_Y.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_mul_3DeQ.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT3_WIDTH.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_mul_mdEe.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT3_HEIGHT.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_udiv_bkb.vhd">
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT3_WEIGHT.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_udiv_cud.vhd">
+      <File Path="$PPRDIR/detect_face_input_image.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_uitodBew.vhd">
+      <File Path="$PPRDIR/detect_face_curr_image.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_uitofAem.vhd">
+      <File Path="$PPRDIR/detect_face_integral_image.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/downscale.vhd">
+      <File Path="$PPRDIR/detect_face_downscale.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_dmul_3_max_dsp_64/detect_face_ap_dmul_3_max_dsp_64.xci">
+      <File Path="$PPRDIR/detect_face_int_sqrt.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_dsqrt_19_no_dsp_64/detect_face_ap_dsqrt_19_no_dsp_64.xci">
+      <File Path="$PPRDIR/detect_face_cascade_classifier.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fadd_2_full_dsp_32/detect_face_ap_fadd_2_full_dsp_32.xci">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fdiv_6_no_dsp_32/detect_face_ap_fdiv_6_no_dsp_32.xci">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
@@ -321,7 +266,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fpext_0_no_dsp_32/detect_face_ap_fpext_0_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_uitofp_0_no_dsp_32/detect_face_ap_uitofp_0_no_dsp_32.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fdiv_4_no_dsp_32/detect_face_ap_fdiv_4_no_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -335,14 +287,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_uitodp_2_no_dsp_32/detect_face_ap_uitodp_2_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fpext_0_no_dsp_32/detect_face_ap_fpext_0_no_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_uitofp_1_no_dsp_32/detect_face_ap_uitofp_1_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_dmul_2_max_dsp_64/detect_face_ap_dmul_2_max_dsp_64.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -387,11 +339,14 @@
     <Simulator Name="Questa">
       <Option Name="Description" Val="Questa Advanced Simulator"/>
     </Simulator>
+    <Simulator Name="IES">
+      <Option Name="Description" Val="Incisive Enterprise Simulator (IES)"/>
+    </Simulator>
+    <Simulator Name="VCS">
+      <Option Name="Description" Val="Verilog Compiler Simulator (VCS)"/>
+    </Simulator>
     <Simulator Name="Riviera">
       <Option Name="Description" Val="Riviera-PRO Simulator"/>
-    </Simulator>
-    <Simulator Name="ActiveHDL">
-      <Option Name="Description" Val="Active-HDL Simulator"/>
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="10">
@@ -402,7 +357,6 @@
         </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7k325tffg900-2" ConstrsSet="constrs_1" Description="Default settings for Implementation." State="current" SynthRun="synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
@@ -419,7 +373,6 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
   </Runs>
 </Project>
