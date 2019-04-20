@@ -1310,7 +1310,7 @@
       <spirit:file>
         <spirit:name>hdl/vhdl/detect_face_cascade_classifier.vhd</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_266e91e7</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_805ec621</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1615,8 +1615,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>Detect_face</xilinx:displayName>
       <xilinx:definitionSource>HLS</xilinx:definitionSource>
-      <xilinx:coreRevision>1904191633</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2019-04-19T20:33:23Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>1904200231</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2019-04-20T06:31:58Z</xilinx:coreCreationDateTime>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2016.2</xilinx:xilinxVersion>

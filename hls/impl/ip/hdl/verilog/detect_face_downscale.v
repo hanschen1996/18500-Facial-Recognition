@@ -136,7 +136,7 @@ wire   [23:0] grp_fu_152_p0;
 wire   [31:0] grp_fu_146_p2;
 wire   [31:0] grp_fu_152_p2;
 wire   [31:0] row_cast2_fu_170_p1;
-wire   [0:0] exitcond_fu_197_p2;
+wire   [0:0] exitcond7_fu_197_p2;
 wire   [6:0] row_1_fu_191_p2;
 wire   [31:0] row_cast2_mid1_fu_211_p1;
 wire   [0:0] tmp_14_mid1_fu_215_p2;
@@ -539,15 +539,15 @@ assign col_1_fu_328_p2 = (col_mid2_fu_203_p3 + ap_const_lv8_1);
 
 assign col_cast1_fu_287_p1 = col_mid2_fu_203_p3;
 
-assign col_mid2_fu_203_p3 = ((exitcond_fu_197_p2[0:0] === 1'b1) ? ap_const_lv8_0 : col_reg_135);
+assign col_mid2_fu_203_p3 = ((exitcond7_fu_197_p2[0:0] === 1'b1) ? ap_const_lv8_0 : col_reg_135);
 
 assign dest_address0 = tmp_65_cast_fu_371_p1;
 
 assign dest_d0 = src_q0;
 
-assign exitcond_flatten_fu_179_p2 = ((indvar_flatten_reg_113 == ap_const_lv15_4B00) ? 1'b1 : 1'b0);
+assign exitcond7_fu_197_p2 = ((col_reg_135 == ap_const_lv8_A0) ? 1'b1 : 1'b0);
 
-assign exitcond_fu_197_p2 = ((col_reg_135 == ap_const_lv8_A0) ? 1'b1 : 1'b0);
+assign exitcond_flatten_fu_179_p2 = ((indvar_flatten_reg_113 == ap_const_lv15_4B00) ? 1'b1 : 1'b0);
 
 assign grp_fu_146_p0 = ap_const_lv32_A00000;
 
@@ -575,7 +575,7 @@ assign src_address0 = tmp_64_cast_fu_323_p1;
 
 assign tmp_14_mid1_fu_215_p2 = ((row_cast2_mid1_fu_211_p1 < dest_height) ? 1'b1 : 1'b0);
 
-assign tmp_14_mid2_fu_220_p3 = ((exitcond_fu_197_p2[0:0] === 1'b1) ? tmp_14_mid1_fu_215_p2 : tmp_1_fu_174_p2);
+assign tmp_14_mid2_fu_220_p3 = ((exitcond7_fu_197_p2[0:0] === 1'b1) ? tmp_14_mid1_fu_215_p2 : tmp_1_fu_174_p2);
 
 assign tmp_17_mid2_v_v_fu_240_p0 = tmp_17_mid2_v_v_fu_240_p00;
 
@@ -583,7 +583,7 @@ assign tmp_17_mid2_v_v_fu_240_p00 = tmp_17_mid2_v_v_v_fu_228_p3;
 
 assign tmp_17_mid2_v_v_fu_240_p2 = ($signed({{1'b0}, {tmp_17_mid2_v_v_fu_240_p0}}) * $signed(y_ratio_reg_394));
 
-assign tmp_17_mid2_v_v_v_fu_228_p3 = ((exitcond_fu_197_p2[0:0] === 1'b1) ? row_1_fu_191_p2 : row_phi_fu_128_p4);
+assign tmp_17_mid2_v_v_v_fu_228_p3 = ((exitcond7_fu_197_p2[0:0] === 1'b1) ? row_1_fu_191_p2 : row_phi_fu_128_p4);
 
 assign tmp_1_fu_174_p2 = ((row_cast2_fu_170_p1 < dest_height) ? 1'b1 : 1'b0);
 

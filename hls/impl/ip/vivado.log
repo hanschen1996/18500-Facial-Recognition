@@ -2,8 +2,8 @@
 # Vivado v2016.2 (64-bit)
 # SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
 # IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
-# Start of session at: Fri Apr 19 16:33:07 2019
-# Process ID: 5604
+# Start of session at: Sat Apr 20 02:31:40 2019
+# Process ID: 140247
 # Current directory: /afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/ip
 # Command line: vivado -notrace -mode batch -source run_ippack.tcl
 # Log file: /afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/ip/vivado.log
@@ -31,8 +31,8 @@ INFO: [IP_Flow 19-1686] Generating 'Simulation' target for IP 'detect_face_ap_dm
     ** Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
 
 source /afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/ip/tmp.hw/webtalk/labtool_webtalk.tcl -notrace
-INFO: [Common 17-206] Exiting Webtalk at Fri Apr 19 16:33:23 2019...
+INFO: [Common 17-206] Exiting Webtalk at Sat Apr 20 02:31:58 2019...
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository '/usr/local/xilinx/Vivado-2016.2/Vivado/2016.2/data/ip'.
-INFO: [Common 17-206] Exiting Vivado at Fri Apr 19 16:33:24 2019...
+INFO: [Common 17-206] Exiting Vivado at Sat Apr 20 02:31:59 2019...

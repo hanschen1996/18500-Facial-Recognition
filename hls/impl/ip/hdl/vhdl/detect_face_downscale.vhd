@@ -124,7 +124,7 @@ architecture behav of detect_face_downscale is
     signal grp_fu_146_p2 : STD_LOGIC_VECTOR (31 downto 0);
     signal grp_fu_152_p2 : STD_LOGIC_VECTOR (31 downto 0);
     signal row_cast2_fu_170_p1 : STD_LOGIC_VECTOR (31 downto 0);
-    signal exitcond_fu_197_p2 : STD_LOGIC_VECTOR (0 downto 0);
+    signal exitcond7_fu_197_p2 : STD_LOGIC_VECTOR (0 downto 0);
     signal row_1_fu_191_p2 : STD_LOGIC_VECTOR (6 downto 0);
     signal row_cast2_mid1_fu_211_p1 : STD_LOGIC_VECTOR (31 downto 0);
     signal tmp_14_mid1_fu_215_p2 : STD_LOGIC_VECTOR (0 downto 0);
@@ -538,7 +538,7 @@ begin
     col_1_fu_328_p2 <= std_logic_vector(unsigned(col_mid2_fu_203_p3) + unsigned(ap_const_lv8_1));
     col_cast1_fu_287_p1 <= std_logic_vector(resize(unsigned(col_mid2_fu_203_p3),32));
     col_mid2_fu_203_p3 <= 
-        ap_const_lv8_0 when (exitcond_fu_197_p2(0) = '1') else 
+        ap_const_lv8_0 when (exitcond7_fu_197_p2(0) = '1') else 
         col_reg_135;
     dest_address0 <= tmp_65_cast_fu_371_p1(15 - 1 downto 0);
 
@@ -562,8 +562,8 @@ begin
         end if; 
     end process;
 
+    exitcond7_fu_197_p2 <= "1" when (col_reg_135 = ap_const_lv8_A0) else "0";
     exitcond_flatten_fu_179_p2 <= "1" when (indvar_flatten_reg_113 = ap_const_lv15_4B00) else "0";
-    exitcond_fu_197_p2 <= "1" when (col_reg_135 = ap_const_lv8_A0) else "0";
 
     grp_fu_146_ap_start_assign_proc : process(ap_start, ap_sig_cseq_ST_st1_fsm_0)
     begin
@@ -618,13 +618,13 @@ begin
 
     tmp_14_mid1_fu_215_p2 <= "1" when (unsigned(row_cast2_mid1_fu_211_p1) < unsigned(dest_height)) else "0";
     tmp_14_mid2_fu_220_p3 <= 
-        tmp_14_mid1_fu_215_p2 when (exitcond_fu_197_p2(0) = '1') else 
+        tmp_14_mid1_fu_215_p2 when (exitcond7_fu_197_p2(0) = '1') else 
         tmp_1_fu_174_p2;
     tmp_17_mid2_v_v_fu_240_p0 <= tmp_17_mid2_v_v_fu_240_p00(7 - 1 downto 0);
     tmp_17_mid2_v_v_fu_240_p00 <= std_logic_vector(resize(unsigned(tmp_17_mid2_v_v_v_fu_228_p3),32));
     tmp_17_mid2_v_v_fu_240_p2 <= std_logic_vector(resize(unsigned(std_logic_vector(signed('0' &tmp_17_mid2_v_v_fu_240_p0) * signed(y_ratio_reg_394))), 32));
     tmp_17_mid2_v_v_v_fu_228_p3 <= 
-        row_1_fu_191_p2 when (exitcond_fu_197_p2(0) = '1') else 
+        row_1_fu_191_p2 when (exitcond7_fu_197_p2(0) = '1') else 
         row_phi_fu_128_p4;
     tmp_1_fu_174_p2 <= "1" when (unsigned(row_cast2_fu_170_p1) < unsigned(dest_height)) else "0";
     tmp_3_fu_291_p2 <= "1" when (unsigned(col_cast1_fu_287_p1) < unsigned(dest_width)) else "0";

@@ -88,13 +88,6 @@ module detect_face_tb();
   end
 
   initial begin
-    int f;
-    #113679975;
-    for (f = 0; f < 1000000; f++) begin @(posedge clock); end
-    $finish;
-  end
-
-  initial begin
     int z,g;
     logic [103:0] read;
     #1 z = 0;

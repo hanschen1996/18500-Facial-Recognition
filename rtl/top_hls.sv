@@ -50,23 +50,24 @@ module top(
 
   logic [7:0] result_x1_0, result_y1_0, result_x2_0, result_y2_0,
               faces_found;
-  logic face_coords_ready, vj_pipeline_done;
-
+  logic result_x1_0_ap_vld, result_x2_0_ap_vld, result_y1_0_ap_vld, result_y2_0_ap_vld;
+  logic ap_done, vj_pipeline_done;
+ 
   detect_face_wrapper df(.ap_clk(clock), .ap_rst(reset), .ap_start(uart_data_rdy), .pixel(uart_data_rx),
-                         .ap_done(face_coords_ready), .ap_idle(), .ap_ready(), .ap_return(faces_found),
-                         .result_x1_0, .result_x1_0_ap_vld(),
-                         .result_x2_0, .result_x2_0_ap_vld(),
-                         .result_y1_0, .result_y1_0_ap_vld(),
-                         .result_y2_0, .result_y2_0_ap_vld());
+                         .ap_done, .ap_idle(), .ap_ready(), .ap_return(faces_found),
+                         .result_x1_0, .result_x1_0_ap_vld,
+                         .result_x2_0, .result_x2_0_ap_vld,
+                         .result_y1_0, .result_y1_0_ap_vld,
+                         .result_y2_0, .result_y2_0_ap_vld);
   
-  assign vj_pipeline_done = face_coords_ready;
+  assign vj_pipeline_done = ap_done & ((faces_found == 8'd1) | (faces_found == 8'hff));
 
   logic [7:0] queue_out;
   logic [`NUM_SAVED_FACES_TIMES_5:0][7:0] saved_faces;
   logic [31:0] enq_idx, deq_idx;
   logic enq, deq;
 
-  assign enq = face_coords_ready;
+  assign enq = result_x1_0_ap_vld & result_y1_0_ap_vld & result_x2_0_ap_vld & result_y2_0_ap_vld;
 
   always_ff @(posedge clock, posedge reset) begin: queue_data
     if (reset) begin
@@ -75,7 +76,7 @@ module top(
       enq_idx <= 32'd0;
     end else begin
       if (enq && (enq_idx < `NUM_SAVED_FACES_TIMES_5)) begin
-        saved_faces[enq_idx] <= faces_found;
+        saved_faces[enq_idx] <= 8'd1; // when valid signal asserted there is always a face
         saved_faces[enq_idx+32'd1] <= result_x1_0;
         saved_faces[enq_idx+32'd2] <= result_y1_0;
         saved_faces[enq_idx+32'd3] <= result_x2_0;
