@@ -68,6 +68,7 @@ module uart_rcvr(
   always_ff @(posedge clock, posedge reset) begin
     if (reset) begin
       state <= 3'd0;
+      uart_data <= 'd0;
     end else begin
       if (state == WAIT) state <= (uart_rx == 1'b0) ? START : WAIT;
       else if (state == START) state <= (clk_cnt == 32'd26) ? DATA : START;
