@@ -102,7 +102,36 @@ module top(
                       .clock, .reset, .queue_out, .send_uart_data, .deq,
                       .uart_data_tx);
   
-  ila_0 i(.clk(clock), .probe0(face_coords_ready), .probe1(uart_tx), .probe2(enq), .probe3(deq));
+  logic [31:0] data_count, result_x1_count, result_y1_count, result_x2_count, result_y2_count;
+  always_ff @(posedge clock, posedge reset) begin
+    if (reset) begin
+      data_count <= 32'd0;
+      result_x1_count <= 32'd0;
+      result_y1_count <= 32'd0;
+      result_x2_count <= 32'd0;
+      result_y2_count <= 32'd0;
+    end else begin
+      if (uart_data_rdy) begin
+        data_count <= 32'd1 + data_count;
+      end
+      if (result_x1_0_ap_vld) begin
+        result_x1_count <= result_x1_count + 32'd1;
+      end 
+      if (result_y1_0_ap_vld) begin
+        result_y1_count <= result_y1_count + 32'd1;
+      end 
+      if (result_x2_0_ap_vld) begin
+        result_x2_count <= result_x2_count + 32'd1;
+      end
+      if (result_y2_0_ap_vld) begin
+        result_y2_count <= result_y2_count + 32'd1;
+      end
+    end
+  end
+  
+  ila_0 i(.clk(clock), .probe0(vj_pipeline_done), .probe1(uart_tx), .probe2(enq), .probe3(deq), .probe4(uart_rx), .probe5(reset));
+  
+  ila_1 i1(.clk(clock), .probe0(data_count), .probe1(result_x1_count), .probe2(result_y1_count), .probe3(result_x2_count), .probe4(result_y2_count), .probe5(vj_pipeline_done));
   
 endmodule
 

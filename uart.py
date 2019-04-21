@@ -20,7 +20,8 @@ for i in range(HEIGHT):
     for j in range(WIDTH):
         ser.write(bytes([data[i][j]]))
 
-ser.read()
-time.sleep(10)
+while (True)
+    ser.read()
+    time.sleep(10)
 
 ser.close()

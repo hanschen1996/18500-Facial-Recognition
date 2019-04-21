@@ -21,8 +21,15 @@ module detect_face_tb();
   logic [31:0] row, col;
   
   initial begin
-    clock = 1'b0;
-    forever #5 clock = ~clock;
+    int clock_lock;
+    clock_lock = 0;
+    clock = 1'b1;
+    while (clock_lock == 0) begin
+      #2 clock = 1'b0;
+      #3 clock = 1'b1;
+    end
+    //    clock = 1'b0;
+    //    forever #5 clock = ~clock;
   end
 
   task writeUart(input [7:0] data);
@@ -72,6 +79,7 @@ module detect_face_tb();
     for (i = 0; i < `LAPTOP_HEIGHT; i++) begin
       for (j = 0; j < `LAPTOP_WIDTH; j++) begin
         in_data = in_img[i][j];
+        #5;
         writeUart(in_img[i][j]);
       end
     end
