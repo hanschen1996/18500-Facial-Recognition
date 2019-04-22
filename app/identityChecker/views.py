@@ -6,6 +6,7 @@ from identityChecker.forms import InputForm
 from identityChecker.process_image import add_face, detect_face, CROP_IMG_SIZE, draw_bounding_box, output_image
 import sys
 import numpy as np
+import serial
 
 # add facial recognition library to path
 curr_path = os.getcwd()
@@ -17,7 +18,20 @@ from recognition_train import train
 from recognition_test import recognition
 from recognition_main import recognition_init
 
+# initialize recognition system
 (train_face_data, train_face_labels, names, mean_face, num_eigen, eigen_vals, eigen_vecs, weights) = recognition_init("../facial_recognition")
+print("Recognition system initialized successfully!")
+
+# open FPGA connection port
+fpga_port = None
+try:
+    fpga_port = serial.Serial(port='COM3', baudrate=921600, bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE, stopbits=serial.STOPBITS_ONE, timeout=1)
+    fpga_port.close()
+    fpga_port.open()
+    print("FPGA connection established successfully!")
+except:
+    print("FPGA connection failed to establish")
+
 
 def inputName(request):
     context = {}
@@ -47,7 +61,7 @@ def downloadImage(request):
         global mean_face, num_eigen, eigen_vals, eigen_vecs, weights
 
         face_name = "%s_%s"%(request.session['fname'], request.session['lname'])
-        (new_face_data, new_face_labels) = add_face(face_name, len(names))
+        (new_face_data, new_face_labels) = add_face(face_name, len(names), fpga_port=fpga_port)
 
         if (new_face_data is None):
             print("No face found for %s"%(face_name))
@@ -58,7 +72,7 @@ def downloadImage(request):
             (mean_face, num_eigen, eigen_vals, eigen_vecs, weights) = train(train_face_data)
             names.append(face_name)
             name_file = open("../facial_recognition/labels", mode="a")
-            name_file.write(face_name)
+            name_file.write(face_name + "\n")
             name_file.close()
             print("Face added successfully for %s"%(face_name))
         
@@ -68,12 +82,13 @@ def checkIdentity(request):
     if request.method == 'POST':
         # TODO (andy): shouldn't need to know the session, just use test_image as the name or smth
         filename = "%s_%s_1"%(request.session['fname'], request.session['lname'])
-        (orig_img, crop_img, boxes) = detect_face(filename + ".png")
+        (orig_img, crop_img, boxes) = detect_face(filename + ".png", fpga_port=fpga_port)
 
         # check if face is found
         if (len(boxes) > 0):
             (x1,y1,x2,y2,_) = boxes[0]
-            draw_bounding_box(orig_img, x1, y1, x2, y2)
+
+            # save image to display for webapp
             output_image(orig_img, filename)
             face_label = recognition(np.array(crop_img).reshape(CROP_IMG_SIZE),
                                      train_face_labels,

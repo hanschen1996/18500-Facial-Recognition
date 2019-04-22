@@ -8,7 +8,7 @@ from recognition_test import test
 
 def reset_labels(base_path):
     label_file = open("%s/labels"%(base_path), mode="wb")
-    label_file.write("01\n02\n03\n04\n05\n06\n07\n08\n09\n10\n11\n12\n13\n14\n15".encode())
+    label_file.write("01\n02\n03\n04\n05\n06\n07\n08\n09\n10\n11\n12\n13\n14\n15\n".encode())
     label_file.close()
 
 def recognition_init(base_path):
