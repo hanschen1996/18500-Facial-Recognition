@@ -1,6 +1,5 @@
 *.o
 images/
-crop_images/
 app/webapps/__pycache__/
 app/identityChecker/migrations/__pycache__/
 app/identityChecker/__pycache__/
