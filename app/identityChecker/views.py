@@ -79,6 +79,10 @@ def downloadImage(request):
     return render(request, 'identityChecker/download.html', {})
 
 def checkIdentity(request):
+    
+    return render(request, 'identityChecker/checkIdentity.html', {})
+
+def displayIdentity(request):
     if request.method == 'POST':
         # TODO (andy): shouldn't need to know the session, just use test_image as the name or smth
         filename = "%s_%s_1"%(request.session['fname'], request.session['lname'])
@@ -97,7 +101,9 @@ def checkIdentity(request):
                                      eigen_vals,
                                      eigen_vecs,
                                      weights)
-            print("You must be %s"%(names[face_label])) # TODO (andy): send this back to server to display the name
+            print("You must be %s"%(names[face_label]))
+            request.session['identified_user'] = names[face_label]
         else:
             print("person face not found!")
-    return render(request, 'identityChecker/checkIdentity.html', {})
+    return render(request, 'identityChecker/displayIdentity.html', {})
+

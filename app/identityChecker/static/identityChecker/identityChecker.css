@@ -63,3 +63,16 @@ a:hover i, a, i {
 .name_button {
     border-left:20%;
 }
+
+.center {
+    text-align: center;
+}
+
+#identified-user {
+    font-size: 28px;
+}
+
+.col-center {
+    text-align: center;
+    margin-top: 15%;
+}

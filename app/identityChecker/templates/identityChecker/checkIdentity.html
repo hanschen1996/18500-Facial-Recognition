@@ -29,7 +29,7 @@
                     <a><button type="button" class="btn btn-dark btn-lg" onClick="captureOneImage()" id="capture">Capture</button></a>
                 </div>
                 <div class="col-2">
-                    <form action="{% url 'checkIdentity' %}" method="post" enctype="multipart/form-data">
+                    <form action="{% url 'displayIdentity' %}" method="post" enctype="multipart/form-data">
                         <a><button type="submit" class="btn btn-dark btn-lg" id="">
 Identify</button></a>
                         {% csrf_token %}  

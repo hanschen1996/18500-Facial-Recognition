@@ -8,7 +8,7 @@ import numpy as np
 import time
 
 INPUT_FILE_EXT = ".png"
-INPUT_IMG_DIR = "/mnt/c/Users/asus/Downloads"#"/Users/andyshen/Downloads"
+INPUT_IMG_DIR = "/Users/andyshen/Downloads" #"/mnt/c/Users/asus/Downloads"
 DETECT_PROG_PATH = "../facial_detection/vj"
 WIDTH = 160
 HEIGHT = 120
