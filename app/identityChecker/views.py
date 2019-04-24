@@ -101,8 +101,9 @@ def displayIdentity(request):
                                      eigen_vals,
                                      eigen_vecs,
                                      weights)
-            print("You must be %s"%(names[face_label]))
-            request.session['identified_user'] = names[face_label]
+            name = names[face_label].replace("_", " ")
+            print("You must be %s"%(name))
+            request.session['identified_user'] = name
         else:
             print("person face not found!")
     return render(request, 'identityChecker/displayIdentity.html', {})

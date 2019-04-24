@@ -1,7 +1,6 @@
 # main function to start the recognition system
 
 import os
-from detect_face import detect_face
 from partition import partition
 from recognition_train import train, get_initial_train_data, TRAIN_DIR
 from recognition_test import test
@@ -12,17 +11,11 @@ def reset_labels(base_path):
     label_file.close()
 
 def recognition_init(base_path):
-    crop_image_dir = "%s/crop_images"%(base_path)
     train_dir = "%s/%s"%(base_path, TRAIN_DIR)
 
-    # training face is not cropped out
-    if ((not os.path.exists(crop_image_dir)) or (len(os.listdir(crop_image_dir)) == 0)):
-        print("Looks like the first time running facial recognition system... Loading initial training database")
-        detect_face(base_path)
-        partition(base_path)
-        reset_labels(base_path)
+    # assume crop_images/ exists
     # initial faces are not partitioned
-    elif (not os.path.exists(train_dir) or (len(os.listdir(train_dir)) == 0)):
+    if (not os.path.exists(train_dir) or (len(os.listdir(train_dir)) == 0)):
         print("Partition initial database into training and test set")
         partition(base_path)
         reset_labels(base_path)
