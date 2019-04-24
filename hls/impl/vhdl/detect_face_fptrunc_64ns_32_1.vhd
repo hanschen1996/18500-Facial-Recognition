@@ -10,7 +10,7 @@ use ieee.std_logic_1164.all;
 
 entity detect_face_fptrunc_64ns_32_1 is
     generic (
-        ID         : integer := 45;
+        ID         : integer := 71;
         NUM_STAGE  : integer := 1;
         din0_WIDTH : integer := 64;
         dout_WIDTH : integer := 32

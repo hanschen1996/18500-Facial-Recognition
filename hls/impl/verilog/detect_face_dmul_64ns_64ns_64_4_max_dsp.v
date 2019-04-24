@@ -10,7 +10,7 @@
 
 module detect_face_dmul_64ns_64ns_64_4_max_dsp
 #(parameter
-    ID         = 47,
+    ID         = 73,
     NUM_STAGE  = 4,
     din0_WIDTH = 64,
     din1_WIDTH = 64,
