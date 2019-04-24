@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Identity Checker</title>
+        <link rel="stylesheet" href="../../static/identityChecker/identityChecker.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <script src="../../static/identityChecker/identityChecker.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="title">Identity Checker</div>
+            <input type = "hidden" id = "first_name" value = "{{request.session.fname}}">
+            <input type = "hidden" id = "last_name" value = "{{request.session.lname}}">
+            
+            <div class="col-center" id="identify_user"> 
+                <p id="identified-user">You must be: {{request.session.identified_user}}<p>
+            </div>
+         
+            
+        
+            <div class="col-center" id="button-row">
+                <form action="{% url 'home' %}" method="post" enctype="multipart/form-data">
+                    <a id="restart"><button type="submit" class="btn btn-dark btn-lg">Restart</button></a>
+                    {% csrf_token %}  
+                </form>
+            </div>
+
+            
+        </div>
+      
+    </body>
+</html>
