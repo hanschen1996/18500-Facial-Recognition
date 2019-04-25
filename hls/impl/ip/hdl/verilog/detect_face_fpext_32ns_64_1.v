@@ -10,7 +10,7 @@
 
 module detect_face_fpext_32ns_64_1
 #(parameter
-    ID         = 72,
+    ID         = 52,
     NUM_STAGE  = 1,
     din0_WIDTH = 32,
     dout_WIDTH = 64

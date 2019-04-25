@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<webTalkData  fileName='usage_statistics_ext_labtool.xml'  majorVersion='1' minorVersion='0' timeStamp='Wed Apr 24 10:46:02 2019'>
+<webTalkData  fileName='usage_statistics_ext_labtool.xml'  majorVersion='1' minorVersion='0' timeStamp='Thu Apr 25 05:13:24 2019'>
 <section name="__ROOT__" level="0" order="1" description="">
  <section name="software_version_and_target_device" level="1" order="1" description="">
   <keyValuePair key="beta" value="FALSE" description="" />
   <keyValuePair key="build_version" value="1577090" description="" />
-  <keyValuePair key="date_generated" value="Wed Apr 24 10:46:02 2019" description="" />
+  <keyValuePair key="date_generated" value="Thu Apr 25 05:13:23 2019" description="" />
   <keyValuePair key="os_platform" value="LIN64" description="" />
   <keyValuePair key="product_version" value="Vivado v2016.2 (64-bit)" description="" />
-  <keyValuePair key="project_id" value="b361b00a-ad69-43ff-8775-27503ac4b7cc" description="" />
+  <keyValuePair key="project_id" value="b35e4652-e1f6-4aa0-8c78-40dcf8924081" description="" />
   <keyValuePair key="project_iteration" value="1" description="" />
   <keyValuePair key="random_id" value="62c2e26f-e9b7-4e02-a820-eb0816921356" description="" />
   <keyValuePair key="registration_id" value="174621394_1777526976_210699534_260" description="" />
@@ -20,7 +20,7 @@
  </section>
  <section name="user_environment" level="1" order="2" description="">
   <keyValuePair key="cpu_name" value="Intel(R) Xeon(R) CPU E5-2680 v4 @ 2.40GHz" description="" />
-  <keyValuePair key="cpu_speed" value="3004.980 MHz" description="" />
+  <keyValuePair key="cpu_speed" value="2877.978 MHz" description="" />
   <keyValuePair key="os_name" value="RedHatEnterpriseServer" description="" />
   <keyValuePair key="os_release" value="Red Hat Enterprise Linux Server release 7.6 (Maipo)" description="" />
   <keyValuePair key="system_ram" value="270.000 GB" description="" />

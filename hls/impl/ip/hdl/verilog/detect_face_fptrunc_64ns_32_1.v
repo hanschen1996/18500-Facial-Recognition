@@ -10,7 +10,7 @@
 
 module detect_face_fptrunc_64ns_32_1
 #(parameter
-    ID         = 71,
+    ID         = 51,
     NUM_STAGE  = 1,
     din0_WIDTH = 64,
     dout_WIDTH = 32

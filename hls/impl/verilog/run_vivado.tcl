@@ -11,7 +11,7 @@
 source ./settings.tcl
 source ./extraction.tcl
 
-set projectName FacialDetectionWholeInt
+set projectName FacialDetectionFastClock
 set solutionName solution1
 set targetPart ${device}${package}${speed}
 set outputBaseName $top_module

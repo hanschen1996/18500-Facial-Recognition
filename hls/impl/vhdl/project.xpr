@@ -3,10 +3,10 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="14" Path="/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetectionWholeInt/solution1/impl/vhdl/project.xpr">
+<Project Version="7" Minor="14" Path="/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetectionFastClock/solution1/impl/vhdl/project.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="69bc31d0261642eba5b3cf023415e311"/>
+    <Option Name="Id" Val="3b17d6df0def4b99bc2a89e4f38f9fa6"/>
     <Option Name="Part" Val="xc7k325tffg900-2"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -43,19 +43,19 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/detect_face_fmul_32ns_32ns_32_1_max_dsp.vhd">
+      <File Path="$PPRDIR/detect_face_fmul_32ns_32ns_32_2_max_dsp.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_uitofp_32ns_32_2.vhd">
+      <File Path="$PPRDIR/detect_face_uitofp_32ns_32_3.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_fdiv_32ns_32ns_32_7.vhd">
+      <File Path="$PPRDIR/detect_face_fdiv_32ns_32ns_32_8.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -73,7 +73,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_dmul_64ns_64ns_64_4_max_dsp.vhd">
+      <File Path="$PPRDIR/detect_face_dmul_64ns_64ns_64_5_max_dsp.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -91,13 +91,13 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_mux_25to1_sel5_32_1.vhd">
+      <File Path="$PPRDIR/detect_face_mul_32ns_32ns_64_3.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_mux_625to1_sel10_32_1.vhd">
+      <File Path="$PPRDIR/detect_face_mul_32s_32s_32_3.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -278,14 +278,14 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_uitofp_0_no_dsp_32/detect_face_ap_uitofp_0_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_uitofp_1_no_dsp_32/detect_face_ap_uitofp_1_no_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fdiv_5_no_dsp_32/detect_face_ap_fdiv_5_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fdiv_6_no_dsp_32/detect_face_ap_fdiv_6_no_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -306,7 +306,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_dmul_2_max_dsp_64/detect_face_ap_dmul_2_max_dsp_64.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_dmul_3_max_dsp_64/detect_face_ap_dmul_3_max_dsp_64.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
