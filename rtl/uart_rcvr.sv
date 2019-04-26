@@ -1,5 +1,6 @@
 `default_nettype none
-`define bauds_per_clock 217
+`define bauds_per_clock 32'd217
+`define bauds_per_clock_d2 32'd108
 
 /*
 With hardware flow control (also called RTS/CTS flow control), two extra wires are needed in addition to the data lines. They are called
@@ -71,13 +72,13 @@ module uart_rcvr(
       uart_data <= 'd0;
     end else begin
       if (state == WAIT) state <= (uart_rx == 1'b0) ? START : WAIT;
-      else if (state == START) state <= (clk_cnt == 32'd26) ? DATA : START;
+      else if (state == START) state <= (clk_cnt == `bauds_per_clock_d2) ? DATA : START;
       else if (state == DATA) begin
         state <= (uart_data_cnt == 4'd7 && clk_cnt == `bauds_per_clock) ? STOP : DATA;
         if (clk_cnt == `bauds_per_clock) begin
           uart_data[uart_data_cnt] <= uart_rx;
         end
-      end else if (state == STOP) state <= (clk_cnt == 32'd26) ? BUFFER : STOP;
+      end else if (state == STOP) state <= (clk_cnt == `bauds_per_clock_d2) ? BUFFER : STOP;
       else if (state == BUFFER) state <= WAIT;
     end
   end
@@ -94,7 +95,7 @@ module uart_rcvr(
               end
       START,
       STOP: begin 
-            clk_cnt_rst = (clk_cnt == 32'd26);
+            clk_cnt_rst = (clk_cnt == `bauds_per_clock_d2);
             clk_cnt_en = 1'b1;
             uart_data_cnt_rst = 1'b1;
             uart_data_cnt_en = 1'b0;
