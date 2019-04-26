@@ -26,9 +26,11 @@ Image received on laptop: fpga_can_receive = 1, laptop_can_receive = 0 (forked l
 */
 
 module top(
-  input logic sys_clk_p, sys_clk_n, GPIO_SW_C,
+  input  logic sys_clk_p, sys_clk_n, reset,
   input  logic uart_rx, uart_cts,
-  output logic uart_tx, uart_rts);
+  input  logic [3:0] sw,
+  output logic uart_tx, uart_rts,
+  output logic [7:0] led);
   
   logic laptop_can_receive;
   assign laptop_can_receive = uart_cts;
@@ -36,9 +38,7 @@ module top(
   assign uart_rts = fpga_can_receive;
   assign fpga_can_receive = 1'b1;
 
-  logic clock, reset;
-
-  assign reset = GPIO_SW_C;
+  logic clock;
   clk_wiz_0 cw(.clk_out1(clock), .clk_in1_p(sys_clk_p), 
                .clk_in1_n(sys_clk_n));
 
@@ -92,7 +92,7 @@ module top(
     end
   end
 
-  logic send_uart_data, uart_data_sent;
+  logic send_uart_data, uart_data_sent, at_WAIT;
   logic [7:0] uart_data_tx;
   
   uart_tcvr u_t(.clock, .reset, .uart_data(uart_data_tx), .send_uart_data, 
@@ -100,38 +100,81 @@ module top(
 
   results_to_uart r_u(.enq_idx, .deq_idx, .vj_pipeline_done, .uart_data_sent, 
                       .clock, .reset, .queue_out, .send_uart_data, .deq,
-                      .uart_data_tx);
+                      .uart_data_tx, .at_WAIT);
   
-  logic [31:0] data_count, result_x1_count, result_y1_count, result_x2_count, result_y2_count;
-  always_ff @(posedge clock, posedge reset) begin
+  // timing logic
+  
+  logic count_cycles;
+  always_ff @(negedge uart_rx, posedge reset, posedge at_WAIT) begin
     if (reset) begin
-      data_count <= 32'd0;
-      result_x1_count <= 32'd0;
-      result_y1_count <= 32'd0;
-      result_x2_count <= 32'd0;
-      result_y2_count <= 32'd0;
-    end else begin
-      if (uart_data_rdy) begin
-        data_count <= 32'd1 + data_count;
-      end
-      if (result_x1_0_ap_vld) begin
-        result_x1_count <= result_x1_count + 32'd1;
-      end 
-      if (result_y1_0_ap_vld) begin
-        result_y1_count <= result_y1_count + 32'd1;
-      end 
-      if (result_x2_0_ap_vld) begin
-        result_x2_count <= result_x2_count + 32'd1;
-      end
-      if (result_y2_0_ap_vld) begin
-        result_y2_count <= result_y2_count + 32'd1;
-      end
+      count_cycles <= 1'b0;
+    end else if (~uart_rx) begin
+      count_cycles <= 1'b1;
+    end else if (at_WAIT & (enq_idx == 0)) begin
+      count_cycles <= 1'b0;
     end
   end
   
-  ila_0 i(.clk(clock), .probe0(vj_pipeline_done), .probe1(uart_tx), .probe2(enq), .probe3(deq), .probe4(uart_rx), .probe5(reset));
+  logic [31:0] clock_count;
+  always_ff @(posedge clock, posedge reset) begin
+    if (reset) begin
+      clock_count <= 32'd0;
+    end else if (count_cycles) begin
+      clock_count <= clock_count + 32'd1;
+    end else begin
+      clock_count <= 32'd0;
+    end
+  end
   
-  ila_1 i1(.clk(clock), .probe0(data_count), .probe1(result_x1_count), .probe2(result_y1_count), .probe3(result_x2_count), .probe4(result_y2_count), .probe5(vj_pipeline_done));
+  logic [31:0] saved_clock_count;
+  always_ff @(negedge count_cycles, posedge reset) begin
+    if (reset) begin
+      saved_clock_count <= 32'd0;
+    end else if (~count_cycles) begin
+      saved_clock_count <= clock_count;
+    end
+  end  
+  
+  always_comb begin
+    case (sw)
+      4'b0001: led = saved_clock_count[7:0];
+      4'b0010: led = saved_clock_count[15:8];
+      4'b0100: led = saved_clock_count[23:16];
+      4'b1000: led = saved_clock_count[31:24];
+      default: led = 8'd0;
+    endcase
+  end
+  
+  //  logic [31:0] data_count, result_x1_count, result_y1_count, result_x2_count, result_y2_count;
+  //  always_ff @(posedge clock, posedge reset) begin
+  //    if (reset) begin
+  //      data_count <= 32'd0;
+  //      result_x1_count <= 32'd0;
+  //      result_y1_count <= 32'd0;
+  //      result_x2_count <= 32'd0;
+  //      result_y2_count <= 32'd0;
+  //    end else begin
+  //      if (uart_data_rdy) begin
+  //        data_count <= 32'd1 + data_count;
+  //      end
+  //      if (result_x1_0_ap_vld) begin
+  //        result_x1_count <= result_x1_count + 32'd1;
+  //      end 
+  //      if (result_y1_0_ap_vld) begin
+  //        result_y1_count <= result_y1_count + 32'd1;
+  //      end 
+  //      if (result_x2_0_ap_vld) begin
+  //        result_x2_count <= result_x2_count + 32'd1;
+  //      end
+  //      if (result_y2_0_ap_vld) begin
+  //        result_y2_count <= result_y2_count + 32'd1;
+  //      end
+  //    end
+  //  end
+  
+  //ila_0 i(.clk(clock), .probe0(vj_pipeline_done), .probe1(uart_tx), .probe2(enq), .probe3(deq), .probe4(uart_rx), .probe5(reset));
+  
+  //ila_1 i1(.clk(clock), .probe0(data_count), .probe1(result_x1_count), .probe2(result_y1_count), .probe3(result_x2_count), .probe4(result_y2_count), .probe5(vj_pipeline_done));
   
 endmodule
 
@@ -139,7 +182,7 @@ module results_to_uart(
   input logic [31:0] enq_idx, deq_idx, 
   input logic vj_pipeline_done, uart_data_sent, clock, reset,
   input logic [7:0] queue_out,
-  output logic send_uart_data, deq, 
+  output logic send_uart_data, deq, at_WAIT,
   output logic [7:0] uart_data_tx);
 
   enum logic [2:0] {WAIT, DEQ, PREP_Y, SEND_Y, PREP_N, SEND_N} state, next_state;
@@ -153,6 +196,7 @@ module results_to_uart(
   end
 
   always_comb begin : send_data_fsm_signals
+    at_WAIT = state == WAIT;
     case (state)
          WAIT: begin
                send_uart_data = 1'b0;

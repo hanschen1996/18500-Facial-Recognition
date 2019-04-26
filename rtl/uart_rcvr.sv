@@ -1,5 +1,5 @@
 `default_nettype none
-`define bauds_per_clock 54
+`define bauds_per_clock 217
 
 /*
 With hardware flow control (also called RTS/CTS flow control), two extra wires are needed in addition to the data lines. They are called
