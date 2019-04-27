@@ -39,12 +39,8 @@ def inputName(request):
     # Just display the input fields if this is a GET request.
     if request.method == 'GET':
         return render(request, 'identityChecker/name.html', context)
-    
-    if request.method == "POST":
-        request.session['fname'] = request.POST['fname']
-        request.session['lname'] = request.POST['lname']
         
-    return render(request, 'identityChecker/home.html', context)
+    return render(request, 'identityChecker/add.html', context)
 
 def home(request):
     context = {}
@@ -52,7 +48,10 @@ def home(request):
 
 def add(request):
     context = {}
-#    print(request.session.get('fname'))
+    
+    if request.method == "POST":
+        request.session['fname'] = request.POST['fname']
+        request.session['lname'] = request.POST['lname']
     return render(request, 'identityChecker/add.html', context)
 
 def downloadImage(request):
@@ -79,13 +78,11 @@ def downloadImage(request):
     return render(request, 'identityChecker/download.html', {})
 
 def checkIdentity(request):
-    
     return render(request, 'identityChecker/checkIdentity.html', {})
 
 def displayIdentity(request):
     if request.method == 'POST':
-        # TODO (andy): shouldn't need to know the session, just use test_image as the name or smth
-        filename = "%s_%s_1"%(request.session['fname'], request.session['lname'])
+        filename = "image"
         (orig_img, crop_img, boxes) = detect_face(filename + ".png", fpga_port=fpga_port)
 
         # check if face is found
@@ -104,7 +101,9 @@ def displayIdentity(request):
             name = names[face_label].replace("_", " ")
             print("You must be %s"%(name))
             request.session['identified_user'] = name
+            
         else:
             print("person face not found!")
+            request.session['identified_user'] = "a new user"
     return render(request, 'identityChecker/displayIdentity.html', {})
 

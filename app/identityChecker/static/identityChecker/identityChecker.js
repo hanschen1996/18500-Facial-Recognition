@@ -3,6 +3,12 @@ function getName(){
     return name;
 }
 
+function identityImageDownload() {
+    var link = document.createElement('a');
+    link.download = 'image.png';
+    link.href = document.getElementById('canvas1').toDataURL()
+    link.click();
+}
 
 function download(){
   var name = getName();
@@ -169,7 +175,7 @@ function captureOneImage() {
         const context1 = canvas1.getContext('2d');
         
         context1.drawImage(player, 0, 0, 160, 120);
-        download();
+        identityImageDownload();
         document.getElementById("countdown").innerHTML = "Finished"
         
         clearInterval(downloadTimer);
