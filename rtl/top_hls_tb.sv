@@ -1,6 +1,6 @@
 //`default_nettype none
 `include "vj_weights.vh"
-`define bauds_per_clock 54 // 50 MHz clock for now
+`define bauds_per_clock 217
 
 module detect_face_tb();
 
@@ -12,8 +12,10 @@ module detect_face_tb();
 
   logic [7:0] laptop_uart_data;
   logic uart_data_rdy;
+  logic [3:0] sw;
+  logic [7:0] led;
 
-  top dut(.sys_clk_p(clock), .sys_clk_n(), .GPIO_SW_C(reset), .uart_rx, .uart_cts, .uart_tx, .uart_rts);
+  top dut(.sys_clk_p(clock), .sys_clk_n(~clock), .reset, .uart_rx, .uart_cts, .uart_tx, .uart_rts, .sw, .led);
   uart_rcvr u_r(.clock, .reset, .uart_data(laptop_uart_data), .uart_data_rdy, .uart_rx(uart_tx));
 
   integer file;

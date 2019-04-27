@@ -1,5 +1,5 @@
 `default_nettype none
-`define bauds_per_clock 54
+`define bauds_per_clock 217
 
 module uart_tcvr(
   input logic clock, reset,

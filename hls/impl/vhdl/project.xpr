@@ -3,10 +3,10 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="14" Path="/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/vhdl/project.xpr">
+<Project Version="7" Minor="14" Path="/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetectionFastClock/solution1/impl/vhdl/project.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="acedd10c7730425ba896b4c2e788bef6"/>
+    <Option Name="Id" Val="48b0128f432b468a8f33a4f97fb478e4"/>
     <Option Name="Part" Val="xc7k325tffg900-2"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -43,19 +43,19 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PPRDIR/detect_face_fmul_32ns_32ns_32_1_max_dsp.vhd">
+      <File Path="$PPRDIR/detect_face_fmul_32ns_32ns_32_4_max_dsp.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_uitofp_32ns_32_1.vhd">
+      <File Path="$PPRDIR/detect_face_uitofp_32ns_32_6.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_fdiv_32ns_32ns_32_6.vhd">
+      <File Path="$PPRDIR/detect_face_fdiv_32ns_32ns_32_12.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -73,7 +73,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_dmul_64ns_64ns_64_4_max_dsp.vhd">
+      <File Path="$PPRDIR/detect_face_dmul_64ns_64ns_64_8_max_dsp.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -91,7 +91,43 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_mul_mul_8s_16ns_24_1.vhd">
+      <File Path="$PPRDIR/detect_face_mul_7ns_32s_32_5.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/detect_face_mul_8ns_32s_32_5.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/detect_face_mul_32s_32s_32_7.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/detect_face_mul_32ns_32ns_64_7.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/detect_face_mul_8s_32s_32_5.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/detect_face_mul_9ns_32s_32_5.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/detect_face_mul_mul_8s_16ns_24_2.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -104,6 +140,12 @@
         </FileInfo>
       </File>
       <File Path="$PPRDIR/detect_face_cascade_classifier_STAGE_NUM_FEATURE.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT1_X.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -127,19 +169,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PPRDIR/detect_face_cascade_classifier_RECT1_X.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
       <File Path="$PPRDIR/detect_face_cascade_classifier_RECT1_Y.vhd">
-        <FileInfo>
-          <Attr Name="UsedIn" Val="synthesis"/>
-          <Attr Name="UsedIn" Val="simulation"/>
-        </FileInfo>
-      </File>
-      <File Path="$PPRDIR/detect_face.vhd">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -259,21 +289,27 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fmul_0_max_dsp_32/detect_face_ap_fmul_0_max_dsp_32.xci">
+      <File Path="$PPRDIR/detect_face.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fmul_2_max_dsp_32/detect_face_ap_fmul_2_max_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_uitofp_0_no_dsp_32/detect_face_ap_uitofp_0_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_uitofp_4_no_dsp_32/detect_face_ap_uitofp_4_no_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fdiv_4_no_dsp_32/detect_face_ap_fdiv_4_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fdiv_10_no_dsp_32/detect_face_ap_fdiv_10_no_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -294,7 +330,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_dmul_2_max_dsp_64/detect_face_ap_dmul_2_max_dsp_64.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_dmul_6_max_dsp_64/detect_face_ap_dmul_6_max_dsp_64.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>

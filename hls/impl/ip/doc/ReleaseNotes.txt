@@ -10,4 +10,4 @@ Family       : kintex7
 Device       : xc7k325t
 Package      : ffg900
 Speed Grade  : -2
-Clock Period : 20.000 ns
+Clock Period : 5.000 ns

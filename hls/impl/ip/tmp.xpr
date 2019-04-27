@@ -3,10 +3,10 @@
 <!--                                                         -->
 <!-- Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.   -->
 
-<Project Version="7" Minor="14" Path="/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetection/solution1/impl/ip/tmp.xpr">
+<Project Version="7" Minor="14" Path="/afs/ece.cmu.edu/usr/junyec/Private/class/18500/FacialDetectionFastClock/solution1/impl/ip/tmp.xpr">
   <DefaultLaunch Dir="$PRUNDIR"/>
   <Configuration>
-    <Option Name="Id" Val="8ddd6a3e43c748d1b0effb7012604322"/>
+    <Option Name="Id" Val="02bdbfdbe9f248f0b577f117c0ea2b8e"/>
     <Option Name="Part" Val="xc7vx485tffg1157-1"/>
     <Option Name="CompiledLibDir" Val="$PCACHEDIR/compile_simlib"/>
     <Option Name="CompiledLibDirXSim" Val=""/>
@@ -43,21 +43,21 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fmul_0_max_dsp_32/detect_face_ap_fmul_0_max_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fmul_2_max_dsp_32/detect_face_ap_fmul_2_max_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_uitofp_0_no_dsp_32/detect_face_ap_uitofp_0_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_uitofp_4_no_dsp_32/detect_face_ap_uitofp_4_no_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fdiv_4_no_dsp_32/detect_face_ap_fdiv_4_no_dsp_32.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_fdiv_10_no_dsp_32/detect_face_ap_fdiv_10_no_dsp_32.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -78,7 +78,7 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
-      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_dmul_2_max_dsp_64/detect_face_ap_dmul_2_max_dsp_64.xci">
+      <File Path="$PSRCDIR/sources_1/ip/detect_face_ap_dmul_6_max_dsp_64/detect_face_ap_dmul_6_max_dsp_64.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
