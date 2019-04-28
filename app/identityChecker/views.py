@@ -100,10 +100,12 @@ def displayIdentity(request):
                                      weights)
             name = names[face_label].replace("_", " ")
             print("You must be %s"%(name))
-            request.session['identified_user'] = name
+            request.session['identified_user'] = "You must be:" + name 
+            request.session['identified'] = "T"
             
         else:
             print("person face not found!")
-            request.session['identified_user'] = "a new user"
+            request.session['identified_user'] = "Face not detected"
+            request.session['identified'] = "F"
     return render(request, 'identityChecker/displayIdentity.html', {})
 

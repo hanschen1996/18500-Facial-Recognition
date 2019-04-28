@@ -15,8 +15,10 @@
             <input type = "hidden" id = "last_name" value = "{{request.session.lname}}">
             
             <div class="col-center" id="identify_user"> 
+                {% if request.session.identified == "T" %}
                 <img src="../identityChecker/../identityChecker/../../static/identityChecker/image.png">
-                <p id="identified-user">You must be: {{request.session.identified_user}}<p>
+                {% endif %}
+                <p id="identified-user">{{request.session.identified_user}}<p>
             </div>
          
             
