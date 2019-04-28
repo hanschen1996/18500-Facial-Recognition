@@ -110,6 +110,7 @@ def detect_face(filename, method="software", fpga_port=None):
     gray_img = img.convert("L")
 
     # remove the original image since we already read it in
+    img.save("%s/%s"%(INPUT_IMG_DIR, filename))
     os.remove("%s/%s"%(INPUT_IMG_DIR, filename))
     boxes = []
 
