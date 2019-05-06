@@ -8,7 +8,7 @@ import numpy as np
 import time
 
 INPUT_FILE_EXT = ".png"
-INPUT_IMG_DIR = "/Users/andyshen/Downloads" #"/mnt/c/Users/asus/Downloads"
+INPUT_IMG_DIR = "/mnt/c/Users/asus/Downloads"
 DETECT_PROG_PATH = "../facial_detection/vj"
 WIDTH = 160
 HEIGHT = 120
@@ -73,11 +73,11 @@ def detect_face_software(img):
     return boxes
 
 def detect_face_fpga(port, img_data):
-    assert(img_data.shape == (IMG_HEIGHT, IMG_WIDTH))
+    assert(img_data.shape == (HEIGHT, WIDTH))
     data = bytes()
 
-    for i in range(IMG_HEIGHT):
-        for j in range(IMG_WIDTH):
+    for i in range(HEIGHT):
+        for j in range(WIDTH):
             # PYTHON3 ONLY!
             data += bytes([img_data[i][j]])
 
